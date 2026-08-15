@@ -820,9 +820,9 @@
 
         .plans-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
-            max-width: 950px;
+            max-width: 1100px;
             margin: 0 auto;
         }
         .plan-card {
@@ -836,16 +836,6 @@
             overflow: hidden;
         }
         .plan-card:hover { transform: translateY(-6px); border-color: var(--primary); box-shadow: 0 10px 40px rgba(0,0,0,0.2); }
-        .plan-card.popular { border-color: var(--secondary); box-shadow: 0 0 60px rgba(124,58,237,0.1); }
-        .plan-card.popular::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-        }
         .plan-card .badge {
             position: absolute;
             top: 12px;
@@ -952,6 +942,75 @@
             gap: 6px;
         }
         .script-features li i { color: var(--success); font-size: 0.7rem; }
+
+        /* ===== PLANO DESABILITADO ===== */
+        .plan-card.disabled {
+            opacity: 0.5;
+            filter: grayscale(0.8);
+            pointer-events: none;
+            border-color: var(--danger);
+        }
+        .plan-card.disabled .badge {
+            background: var(--danger);
+        }
+        .plan-card.disabled::after {
+            content: '❌ INDISPONÍVEL';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-15deg);
+            background: rgba(239,68,68,0.9);
+            color: #fff;
+            padding: 0.5rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 900;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            border: 3px solid #fff;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            z-index: 10;
+        }
+
+        .plans-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            padding: 0 1rem;
+        }
+        .plans-header h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 0.3rem;
+        }
+        .plans-header h3 i { color: var(--primary); }
+        .plans-header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .aviso-plano {
+            max-width: 800px;
+            margin: 2rem auto 0;
+            background: rgba(239,68,68,0.1);
+            border: 2px solid var(--danger);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .aviso-plano h4 {
+            color: var(--danger);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        .aviso-plano h4 i { margin-right: 8px; }
+        .aviso-plano p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        .aviso-plano .destaque {
+            color: var(--primary);
+            font-weight: 700;
+        }
 
         .form-container {
             max-width: 600px;
@@ -1482,15 +1541,6 @@
             background: var(--glass);
         }
 
-        /* ===== BOTÕES DO CHAT ===== */
-        .chat-header .chat-actions .theme-btn:hover,
-        .chat-header .chat-actions .search-btn:hover,
-        .chat-header .chat-actions .stats-btn:hover {
-            color: var(--text);
-            background: var(--glass);
-        }
-
-        /* ===== BOTÃO FECHAR CHAT ===== */
         .chat-header .chat-actions .close-chat-btn {
             font-size: 1.2rem;
             font-weight: 700;
@@ -1678,7 +1728,6 @@
             margin-top: 2px;
         }
 
-        /* ===== MENSAGEM DESTACADA POR MENÇÃO ===== */
         .chat-msg.msg-mencao {
             border-left: 3px solid var(--warning);
             background: rgba(245,158,11,0.08);
@@ -1689,7 +1738,6 @@
             50% { transform: scale(1.02); }
         }
 
-        /* ===== SEARCH BOX ===== */
         .search-box {
             position: absolute;
             top: 100%;
@@ -1796,7 +1844,6 @@
             50% { background: var(--danger); }
         }
 
-        /* ===== MENTION MENU ===== */
         .mention-menu {
             position: absolute;
             bottom: 60px;
@@ -1827,7 +1874,6 @@
             background: var(--glass);
         }
 
-        /* ===== MODAIS ===== */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -1967,7 +2013,6 @@
             min-height: 50px;
         }
 
-        /* ===== BOTÃO FECHAR PADRÃO PARA MODAIS ===== */
         .modal-close-btn {
             position: absolute;
             top: 12px;
@@ -2181,7 +2226,6 @@
             font-size: 0.7rem;
         }
 
-        /* ===== MODAL PIX KZN ===== */
         .modal-pix {
             display: none;
             position: fixed;
@@ -2635,43 +2679,160 @@
             </div>
 
             <div class="tab-content active" id="tab-classic">
+                <div class="plans-header">
+                    <h3><i class="fas fa-bolt"></i> KZN MENU</h3>
+                    <p>MOD MENU • GRAAL ONLINE CLASSIC</p>
+                    <p style="font-size:0.85rem;color:var(--text-muted);margin-top:0.5rem;">
+                        Escolha seu plano de acesso
+                    </p>
+                    <p style="font-size:0.8rem;color:var(--text-muted);">
+                        Acesso ao KZN Menu através de uma Key com validade definida. Escolha o período que melhor atende às suas necessidades.
+                    </p>
+                </div>
+
                 <div class="plans-grid">
+                    <!-- BASIC -->
                     <div class="plan-card">
+                        <span class="badge" style="background:var(--success);">🟢 BASIC</span>
                         <div style="text-align:center;margin:0.5rem 0;">
-                            <img src="https://yt3.ggpht.com/oYAWnZbDYE_qwmC3hZLpA3dOlsPfzlJxALD3WrRyXItZCw5oUOfuFH4zwt-lc-VNElQHN9UO5ugLyQ=s800-rw-nd-v1" alt="KZN MENU Classic" class="mod-image" />
+                            <img src="https://yt3.ggpht.com/oYAWnZbDYE_qwmC3hZLpA3dOlsPfzlJxALD3WrRyXItZCw5oUOfuFH4zwt-lc-VNElQHN9UO5ugLyQ=s800-rw-nd-v1" alt="KZN MENU Classic" class="mod-image" style="max-width:180px;" />
                         </div>
-                        <div class="icon">⚔️</div>
-                        <h3>KZN MENU Classic</h3>
-                        <div class="sub-plano">Plano Mensal</div>
-                        <div class="price">R$ 50,00 <small>/ 35 dias</small></div>
+                        <div class="price">R$ 50,00</div>
+                        <div class="sub-plano" style="font-size:0.8rem;color:var(--text-muted);">35 DIAS DE ACESSO</div>
                         <ul class="features">
-                            <li><i class="fas fa-check"></i> Acesso completo</li>
-                            <li><i class="fas fa-check"></i> Todas as funcionalidades</li>
-                            <li><i class="fas fa-check"></i> Suporte via Discord</li>
-                            <li><i class="fas fa-check"></i> Atualizações automáticas</li>
-                            <li><i class="fas fa-check"></i> Válido por 35 dias</li>
+                            <li><i class="fas fa-check"></i> Acesso ao Mod Menu</li>
+                            <li><i class="fas fa-check"></i> Key de ativação</li>
+                            <li><i class="fas fa-check"></i> Suporte ao cliente</li>
                         </ul>
-                        <button class="btn-buy" onclick="adicionarAoCarrinho('KZN MENU Classic - Mensal', 50)">Comprar R$ 50,00</button>
-                        <button class="btn-add-cart" onclick="adicionarAoCarrinho('KZN MENU Classic - Mensal', 50)"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                        <button class="btn-buy" onclick="adicionarAoCarrinho('KZN MENU Classic - BASIC (35 dias)', 50)">COMPRAR AGORA</button>
+                        <button class="btn-add-cart" onclick="adicionarAoCarrinho('KZN MENU Classic - BASIC (35 dias)', 50)"><i class="fas fa-cart-plus"></i> Adicionar</button>
                     </div>
 
-                    <div class="plan-card popular">
-                        <span class="badge">🔥 Mais Vantagem</span>
+                    <!-- PLUS -->
+                    <div class="plan-card">
+                        <span class="badge" style="background:var(--classic);">🔵 PLUS</span>
                         <div style="text-align:center;margin:0.5rem 0;">
-                            <img src="https://yt3.ggpht.com/oYAWnZbDYE_qwmC3hZLpA3dOlsPfzlJxALD3WrRyXItZCw5oUOfuFH4zwt-lc-VNElQHN9UO5ugLyQ=s800-rw-nd-v1" alt="KZN MENU Classic" class="mod-image" />
+                            <img src="https://yt3.ggpht.com/oYAWnZbDYE_qwmC3hZLpA3dOlsPfzlJxALD3WrRyXItZCw5oUOfuFH4zwt-lc-VNElQHN9UO5ugLyQ=s800-rw-nd-v1" alt="KZN MENU Classic" class="mod-image" style="max-width:180px;" />
                         </div>
-                        <h3>KZN MENU Classic</h3>
-                        <div class="sub-plano">Plano Permanente</div>
-                        <div class="price">R$ 200,00 <small>/ vitalício</small><span class="parcelamento">ou 2x R$ 100,00</span></div>
+                        <div class="price">R$ 100,00</div>
+                        <div class="sub-plano" style="font-size:0.8rem;color:var(--text-muted);">70 DIAS DE ACESSO</div>
                         <ul class="features">
-                            <li><i class="fas fa-check"></i> +50 funcionalidades</li>
-                            <li><i class="fas fa-check"></i> Suporte VIP via Discord</li>
-                            <li><i class="fas fa-check"></i> Atualizações vitalícias</li>
-                            <li><i class="fas fa-check"></i> Sem renovação!</li>
+                            <li><i class="fas fa-check"></i> Acesso ao Mod Menu</li>
+                            <li><i class="fas fa-check"></i> Key de ativação</li>
+                            <li><i class="fas fa-check"></i> Suporte ao cliente</li>
+                            <li><i class="fas fa-check"></i> 70 dias de acesso</li>
                         </ul>
-                        <button class="btn-buy" onclick="adicionarAoCarrinho('KZN MENU Classic - Permanente', 200)">Comprar R$ 200,00</button>
-                        <button class="btn-add-cart" onclick="adicionarAoCarrinho('KZN MENU Classic - Permanente', 200)"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                        <button class="btn-buy" onclick="adicionarAoCarrinho('KZN MENU Classic - PLUS (70 dias)', 100)">COMPRAR AGORA</button>
+                        <button class="btn-add-cart" onclick="adicionarAoCarrinho('KZN MENU Classic - PLUS (70 dias)', 100)"><i class="fas fa-cart-plus"></i> Adicionar</button>
                     </div>
+
+                    <!-- PRO -->
+                    <div class="plan-card">
+                        <span class="badge" style="background:var(--secondary);">🟣 PRO</span>
+                        <div style="text-align:center;margin:0.5rem 0;">
+                            <img src="https://yt3.ggpht.com/oYAWnZbDYE_qwmC3hZLpA3dOlsPfzlJxALD3WrRyXItZCw5oUOfuFH4zwt-lc-VNElQHN9UO5ugLyQ=s800-rw-nd-v1" alt="KZN MENU Classic" class="mod-image" style="max-width:180px;" />
+                        </div>
+                        <div class="price">R$ 150,00</div>
+                        <div class="sub-plano" style="font-size:0.8rem;color:var(--text-muted);">105 DIAS DE ACESSO</div>
+                        <ul class="features">
+                            <li><i class="fas fa-check"></i> Acesso ao Mod Menu</li>
+                            <li><i class="fas fa-check"></i> Key de ativação</li>
+                            <li><i class="fas fa-check"></i> Suporte prioritário</li>
+                            <li><i class="fas fa-check"></i> 105 dias de acesso</li>
+                        </ul>
+                        <button class="btn-buy" onclick="adicionarAoCarrinho('KZN MENU Classic - PRO (105 dias)', 150)">COMPRAR AGORA</button>
+                        <button class="btn-add-cart" onclick="adicionarAoCarrinho('KZN MENU Classic - PRO (105 dias)', 150)"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                    </div>
+
+                    <!-- PREMIUM -->
+                    <div class="plan-card popular">
+                        <span class="badge" style="background:var(--warning);color:#000;">🔥 PREMIUM</span>
+                        <div style="text-align:center;margin:0.5rem 0;">
+                            <img src="https://yt3.ggpht.com/oYAWnZbDYE_qwmC3hZLpA3dOlsPfzlJxALD3WrRyXItZCw5oUOfuFH4zwt-lc-VNElQHN9UO5ugLyQ=s800-rw-nd-v1" alt="KZN MENU Classic" class="mod-image" style="max-width:180px;" />
+                        </div>
+                        <div class="price">R$ 200,00</div>
+                        <div class="sub-plano" style="font-size:0.8rem;color:var(--text-muted);">140 DIAS DE ACESSO</div>
+                        <ul class="features">
+                            <li><i class="fas fa-check"></i> Acesso ao Mod Menu</li>
+                            <li><i class="fas fa-check"></i> Key de ativação</li>
+                            <li><i class="fas fa-check"></i> Suporte prioritário</li>
+                            <li><i class="fas fa-check"></i> Recursos premium</li>
+                            <li><i class="fas fa-check"></i> 140 dias de acesso</li>
+                        </ul>
+                        <button class="btn-buy" onclick="adicionarAoCarrinho('KZN MENU Classic - PREMIUM (140 dias)', 200)">COMPRAR AGORA</button>
+                        <button class="btn-add-cart" onclick="adicionarAoCarrinho('KZN MENU Classic - PREMIUM (140 dias)', 200)"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                    </div>
+
+                    <!-- ULTIMATE -->
+                    <div class="plan-card">
+                        <span class="badge" style="background:var(--primary);">👑 ULTIMATE</span>
+                        <div style="text-align:center;margin:0.5rem 0;">
+                            <img src="https://yt3.ggpht.com/oYAWnZbDYE_qwmC3hZLpA3dOlsPfzlJxALD3WrRyXItZCw5oUOfuFH4zwt-lc-VNElQHN9UO5ugLyQ=s800-rw-nd-v1" alt="KZN MENU Classic" class="mod-image" style="max-width:180px;" />
+                        </div>
+                        <div class="price">R$ 250,00</div>
+                        <div class="sub-plano" style="font-size:0.8rem;color:var(--text-muted);">175 DIAS DE ACESSO</div>
+                        <ul class="features">
+                            <li><i class="fas fa-check"></i> Acesso ao Mod Menu</li>
+                            <li><i class="fas fa-check"></i> Key de ativação</li>
+                            <li><i class="fas fa-check"></i> Suporte VIP</li>
+                            <li><i class="fas fa-check"></i> Recursos premium</li>
+                            <li><i class="fas fa-check"></i> 175 dias de acesso</li>
+                        </ul>
+                        <button class="btn-buy" onclick="adicionarAoCarrinho('KZN MENU Classic - ULTIMATE (175 dias)', 250)">COMPRAR AGORA</button>
+                        <button class="btn-add-cart" onclick="adicionarAoCarrinho('KZN MENU Classic - ULTIMATE (175 dias)', 250)"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                    </div>
+
+                    <!-- ELITE -->
+                    <div class="plan-card">
+                        <span class="badge" style="background:linear-gradient(135deg,var(--primary),var(--secondary));">💎 ELITE</span>
+                        <div style="text-align:center;margin:0.5rem 0;">
+                            <img src="https://yt3.ggpht.com/oYAWnZbDYE_qwmC3hZLpA3dOlsPfzlJxALD3WrRyXItZCw5oUOfuFH4zwt-lc-VNElQHN9UO5ugLyQ=s800-rw-nd-v1" alt="KZN MENU Classic" class="mod-image" style="max-width:180px;" />
+                        </div>
+                        <div class="price">R$ 300,00</div>
+                        <div class="sub-plano" style="font-size:0.8rem;color:var(--text-muted);">210 DIAS DE ACESSO</div>
+                        <ul class="features">
+                            <li><i class="fas fa-check"></i> Acesso ao Mod Menu</li>
+                            <li><i class="fas fa-check"></i> Key de ativação</li>
+                            <li><i class="fas fa-check"></i> Suporte VIP</li>
+                            <li><i class="fas fa-check"></i> Todos os recursos disponíveis</li>
+                            <li><i class="fas fa-check"></i> 210 dias de acesso</li>
+                        </ul>
+                        <button class="btn-buy" onclick="adicionarAoCarrinho('KZN MENU Classic - ELITE (210 dias)', 300)">COMPRAR AGORA</button>
+                        <button class="btn-add-cart" onclick="adicionarAoCarrinho('KZN MENU Classic - ELITE (210 dias)', 300)"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                    </div>
+
+                    <!-- PLANO PERMANENTE DESABILITADO -->
+                    <div class="plan-card disabled">
+                        <span class="badge" style="background:var(--danger);">❌ INDISPONÍVEL</span>
+                        <div style="text-align:center;margin:0.5rem 0;">
+                            <img src="https://yt3.ggpht.com/oYAWnZbDYE_qwmC3hZLpA3dOlsPfzlJxALD3WrRyXItZCw5oUOfuFH4zwt-lc-VNElQHN9UO5ugLyQ=s800-rw-nd-v1" alt="KZN MENU Classic" class="mod-image" style="max-width:180px;filter:grayscale(1);opacity:0.5;" />
+                        </div>
+                        <h3 style="color:var(--text-muted);">PLANO PERMANENTE</h3>
+                        <div class="price" style="color:var(--text-muted);">R$ 200,00</div>
+                        <div class="sub-plano" style="font-size:0.8rem;color:var(--text-muted);">❌ DESABILITADO</div>
+                        <ul class="features">
+                            <li><i class="fas fa-times" style="color:var(--danger);"></i> Não disponível para novas compras</li>
+                            <li><i class="fas fa-times" style="color:var(--danger);"></i> Plano removido</li>
+                        </ul>
+                        <button class="btn-buy" style="background:var(--border);color:var(--text-muted);cursor:not-allowed;opacity:0.5;" disabled>INDISPONÍVEL</button>
+                    </div>
+                </div>
+
+                <!-- AVISO IMPORTANTE -->
+                <div class="aviso-plano">
+                    <h4><i class="fas fa-exclamation-triangle"></i> AVISO IMPORTANTE</h4>
+                    <p>
+                        <strong>O PLANO PERMANENTE DE R$200 FOI DESABILITADO.</strong><br>
+                        O antigo plano permanente não está mais disponível para novas compras. Os novos planos possuem validade definida, conforme indicado acima.
+                    </p>
+                    <p style="margin-top:0.8rem;font-size:0.85rem;">
+                        <i class="fas fa-key" style="color:var(--secondary);"></i>
+                        <strong>🔐 ATIVAÇÃO POR KEY</strong><br>
+                        Após a confirmação do pagamento, sua Key será disponibilizada para ativação.
+                    </p>
+                    <p style="margin-top:0.5rem;font-size:0.8rem;color:var(--text-muted);">
+                        KZN MENU • GRAAL ONLINE CLASSIC
+                    </p>
                 </div>
             </div>
 
@@ -2837,11 +2998,13 @@
                     <div class="form-group"><label><i class="fas fa-crown"></i> Plano Escolhido</label>
                         <select name="Plano" required>
                             <option value="">Selecione um plano...</option>
-                            <option value="KZN MENU Classic - Mensal R$ 50,00">⚔️ Classic - Mensal R$ 50,00 (35 dias)</option>
-                            <option value="KZN MENU Classic - Permanente R$ 200,00">⚔️ Classic - Permanente R$ 200,00</option>
+                            <option value="KZN MENU Classic - BASIC (35 dias) R$ 50,00">🟢 BASIC - R$ 50,00 (35 dias)</option>
+                            <option value="KZN MENU Classic - PLUS (70 dias) R$ 100,00">🔵 PLUS - R$ 100,00 (70 dias)</option>
+                            <option value="KZN MENU Classic - PRO (105 dias) R$ 150,00">🟣 PRO - R$ 150,00 (105 dias)</option>
+                            <option value="KZN MENU Classic - PREMIUM (140 dias) R$ 200,00">🔥 PREMIUM - R$ 200,00 (140 dias)</option>
+                            <option value="KZN MENU Classic - ULTIMATE (175 dias) R$ 250,00">👑 ULTIMATE - R$ 250,00 (175 dias)</option>
+                            <option value="KZN MENU Classic - ELITE (210 dias) R$ 300,00">💎 ELITE - R$ 300,00 (210 dias)</option>
                             <option value="Auto Trash Automatic - R$ 200,00 (Graal Era)">♻️ Auto Trash - R$ 200,00 (Graal Era)</option>
-                            <option value="Classic - 2x R$ 100,00">⚔️ Classic - 2x R$ 100,00</option>
-                            <option value="Era - 2x R$ 100,00">♻️ Era - 2x R$ 100,00</option>
                         </select>
                     </div>
                     <div class="form-group"><label><i class="fas fa-image"></i> 📸 Comprovante PIX <span style="color:var(--primary);">*</span></label><input type="file" name="Comprovante" accept="image/*,.pdf" required><p style="font-size:0.65rem;color:var(--text-muted);margin-top:0.3rem;">Envie uma foto do comprovante PIX (PNG, JPG, PDF - até 5MB)</p></div>
@@ -2870,8 +3033,8 @@
                     <div class="answer">Sim! O KZN Menu é 100% compatível com Graal Mobile (Android e iOS).</div>
                 </div>
                 <div class="faq-item" onclick="toggleFaq(this)">
-                    <div class="question"><span>🔄 O que acontece após a compra?</span><span class="faq-icon"><i class="fas fa-chevron-down"></i></span></div>
-                    <div class="answer">Ambos os mods são vitalícios! Você recebe a key e instruções via Discord. Sem renovação.</div>
+                    <div class="question"><span>🔄 Como funciona a ativação por Key?</span><span class="faq-icon"><i class="fas fa-chevron-down"></i></span></div>
+                    <div class="answer">Após a confirmação do pagamento, você receberá uma Key de ativação com validade conforme o plano escolhido. A Key é ativada no próprio KZN Menu.</div>
                 </div>
                 <div class="faq-item" onclick="toggleFaq(this)">
                     <div class="question"><span>📦 Como recebo o mod após o pagamento?</span><span class="faq-icon"><i class="fas fa-chevron-down"></i></span></div>
@@ -2879,7 +3042,11 @@
                 </div>
                 <div class="faq-item" onclick="toggleFaq(this)">
                     <div class="question"><span>💳 Quais formas de pagamento?</span><span class="faq-icon"><i class="fas fa-chevron-down"></i></span></div>
-                    <div class="answer">Aceitamos PIX (chave: <code style="color:var(--success);">6c80021c-957b-49c0-9a5d-98371bf67120</code>). Parcelamento em 2x R$ 100,00.</div>
+                    <div class="answer">Aceitamos PIX (chave: <code style="color:var(--success);">6c80021c-957b-49c0-9a5d-98371bf67120</code>).</div>
+                </div>
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="question"><span>❌ O plano permanente acabou?</span><span class="faq-icon"><i class="fas fa-chevron-down"></i></span></div>
+                    <div class="answer">Sim! O plano permanente de R$200 não está mais disponível para novas compras. Agora oferecemos planos com validade definida de 35 a 210 dias.</div>
                 </div>
             </div>
         </div>
@@ -5034,7 +5201,8 @@
             }
 
             if (notificacoes.length === 0) {
-                adicionarNotificacao('🔥 Bem-vindo ao KZN MENU! Confira nossos mods.', 'info');
+                adicionarNotificacao('🔥 Bem-vindo ao KZN MENU! Confira nossos novos planos.', 'info');
+                adicionarNotificacao('📢 O plano permanente foi desativado! Novos planos com validade definida disponíveis.', 'alerta');
             }
 
             console.log('✅ KZN MENU carregado com sucesso!');
@@ -5046,6 +5214,7 @@
             console.log('✏️ Mensagens editáveis: clique em ✏️');
             console.log('🎤 Áudio: clique no microfone');
             console.log('📌 Fixar: administradores podem fixar mensagens');
+            console.log('📦 Novos planos: BASIC, PLUS, PRO, PREMIUM, ULTIMATE, ELITE');
         });
     </script>
 </body>
