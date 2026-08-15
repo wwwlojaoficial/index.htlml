@@ -89,9 +89,7 @@
             border-left-color: var(--secondary);
         }
         body.tema-claro .plan-card,
-        body.tema-claro .xcore-plan,
-        body.tema-claro .faq-item,
-        body.tema-claro .xcore-restrictions {
+        body.tema-claro .faq-item {
             background: #ffffff;
             border-color: #e2e8f0;
         }
@@ -813,8 +811,6 @@
         .tab-btn.classic.active { background: var(--classic); border-color: var(--classic); }
         .tab-btn.era { border-color: var(--era); }
         .tab-btn.era.active { background: var(--era); border-color: var(--era); }
-        .tab-btn.xcore-tab { border-color: var(--secondary); }
-        .tab-btn.xcore-tab.active { background: var(--secondary); border-color: var(--secondary); }
         .tab-content { display: none; animation: fadeIn 0.4s ease; }
         .tab-content.active { display: block; }
         @keyframes fadeIn {
@@ -956,161 +952,6 @@
             gap: 6px;
         }
         .script-features li i { color: var(--success); font-size: 0.7rem; }
-
-        .xcore-plans {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            max-width: 950px;
-            margin: 0 auto;
-        }
-        .xcore-plan {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 2rem 1.5rem;
-            text-align: center;
-            transition: 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-        .xcore-plan:hover { transform: translateY(-6px); border-color: var(--secondary); box-shadow: 0 10px 40px rgba(0,0,0,0.2); }
-        .xcore-plan .plan-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
-        .xcore-plan .plan-name {
-            font-size: 1.5rem;
-            font-weight: 800;
-            margin-bottom: 0.2rem;
-        }
-        .xcore-plan .plan-sub {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            margin-bottom: 0.5rem;
-        }
-        .xcore-plan .plan-price {
-            font-size: 2rem;
-            font-weight: 900;
-            margin: 0.8rem 0;
-        }
-        .xcore-plan .plan-price small {
-            font-size: 0.8rem;
-            font-weight: 400;
-            color: var(--text-muted);
-        }
-        .xcore-plan .plan-features {
-            list-style: none;
-            text-align: left;
-            margin: 1rem 0;
-        }
-        .xcore-plan .plan-features li {
-            padding: 0.3rem 0;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--text-muted);
-            font-size: 0.8rem;
-        }
-        .xcore-plan .plan-features li i { color: var(--success); width: 18px; font-size: 0.7rem; }
-        .xcore-plan .plan-btn {
-            width: 100%;
-            padding: 0.7rem;
-            border: none;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: 0.3s;
-            color: #fff;
-        }
-        .xcore-plan .plan-btn:hover { transform: scale(1.02); box-shadow: 0 4px 30px rgba(0,0,0,0.3); }
-        .xcore-plan .plan-btn.free { background: var(--success); }
-        .xcore-plan .plan-btn.silver { background: linear-gradient(135deg, #94a3b8, #64748b); }
-        .xcore-plan .plan-btn.gold { background: linear-gradient(135deg, #f59e0b, #d97706); }
-        .xcore-plan.free { border-color: var(--success); }
-        .xcore-plan.silver { border-color: #94a3b8; }
-        .xcore-plan.gold { border-color: var(--warning); }
-        .xcore-plan.free .plan-name { color: var(--success); }
-        .xcore-plan.silver .plan-name { color: #94a3b8; }
-        .xcore-plan.gold .plan-name { color: var(--warning); }
-        .xcore-restrictions {
-            max-width: 800px;
-            margin: 2.5rem auto 0;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 2rem;
-        }
-        .xcore-restrictions h3 {
-            text-align: center;
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: var(--text);
-        }
-        .xcore-restrictions h3 i { color: var(--warning); margin-right: 8px; }
-        .xcore-restrictions-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 0.8rem;
-        }
-        .xcore-restriction-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.6rem 1rem;
-            background: var(--bg);
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            font-size: 0.85rem;
-        }
-        .xcore-restriction-item .area { color: var(--text); font-weight: 600; }
-        .xcore-restriction-item .level {
-            padding: 0.15rem 0.8rem;
-            border-radius: 20px;
-            font-weight: 700;
-            font-size: 0.7rem;
-        }
-        .level-free { background: var(--success); color: #fff; }
-        .level-silver { background: #64748b; color: #fff; }
-        .level-gold { background: var(--warning); color: #000; }
-        .xcore-restrictions .restriction-note {
-            text-align: center;
-            margin-top: 1rem;
-            color: var(--text-muted);
-            font-size: 0.8rem;
-            border-top: 1px solid var(--border);
-            padding-top: 1rem;
-        }
-        .xcore-restrictions .restriction-note i { color: var(--warning); }
-        .xcore-obrigatorio {
-            max-width: 800px;
-            margin: 1.5rem auto 0;
-            background: rgba(220,38,38,0.08);
-            border: 2px solid var(--primary);
-            border-radius: var(--radius);
-            padding: 1.2rem;
-            text-align: center;
-        }
-        .xcore-obrigatorio p {
-            color: var(--primary);
-            font-weight: 700;
-            font-size: 0.9rem;
-        }
-        .xcore-obrigatorio p i { margin-right: 8px; }
-        .xcore-obrigatorio .discord-link {
-            display: inline-block;
-            margin-top: 0.5rem;
-            padding: 0.5rem 1.5rem;
-            background: #5865f2;
-            color: #fff;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 700;
-            transition: 0.3s;
-            font-size: 0.9rem;
-        }
-        .xcore-obrigatorio .discord-link:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 30px rgba(88,101,242,0.4);
-        }
 
         .form-container {
             max-width: 600px;
@@ -2330,7 +2171,6 @@
         .footer-social a:hover { color: #fff; transform: translateY(-4px); }
         .footer-social a.discord:hover { background: #5865f2; border-color: #5865f2; }
         .footer-social a.pix-kzn:hover { background: var(--primary); border-color: var(--primary); }
-        .footer-social a.pix-xcore:hover { background: var(--secondary); border-color: var(--secondary); }
         .footer-bottom {
             max-width: var(--container-max);
             margin: 1.2rem auto 0;
@@ -2341,7 +2181,7 @@
             font-size: 0.7rem;
         }
 
-        /* ===== MODAIS PIX ===== */
+        /* ===== MODAL PIX KZN ===== */
         .modal-pix {
             display: none;
             position: fixed;
@@ -2367,37 +2207,11 @@
             position: relative;
             animation: modalIn 0.3s ease;
         }
-        .modal-pix-xcore {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.85);
-            backdrop-filter: blur(4px);
-            z-index: 2001;
-            align-items: center;
-            justify-content: center;
-        }
-        .modal-pix-xcore.open { display: flex; }
-        .modal-pix-xcore .modal-content {
-            background: var(--bg-card);
-            border: 2px solid var(--secondary);
-            border-radius: var(--radius);
-            padding: 2rem;
-            max-width: 400px;
-            width: 90%;
-            text-align: center;
-            position: relative;
-            animation: modalIn 0.3s ease;
-        }
         @keyframes modalIn {
             from { opacity: 0; transform: scale(0.9) translateY(20px); }
             to { opacity: 1; transform: scale(1) translateY(0); }
         }
-        .modal-pix .modal-content .pix-key,
-        .modal-pix-xcore .modal-content .pix-key {
+        .modal-pix .modal-content .pix-key {
             background: var(--bg);
             padding: 0.8rem;
             border-radius: 8px;
@@ -2408,8 +2222,7 @@
             color: var(--success);
             word-break: break-all;
         }
-        .modal-pix .modal-content .btn-copy,
-        .modal-pix-xcore .modal-content .btn-copy {
+        .modal-pix .modal-content .btn-copy {
             background: var(--secondary);
             color: #fff;
             border: none;
@@ -2420,10 +2233,8 @@
             transition: 0.3s;
             font-size: 0.85rem;
         }
-        .modal-pix .modal-content .btn-copy:hover,
-        .modal-pix-xcore .modal-content .btn-copy:hover { transform: scale(1.05); }
-        .modal-pix .modal-content .discord-link,
-        .modal-pix-xcore .modal-content .discord-link {
+        .modal-pix .modal-content .btn-copy:hover { transform: scale(1.05); }
+        .modal-pix .modal-content .discord-link {
             display: inline-block;
             margin-top: 0.8rem;
             padding: 0.5rem 1.2rem;
@@ -2435,13 +2246,7 @@
             transition: 0.3s;
             font-size: 0.85rem;
         }
-        .modal-pix .modal-content .discord-link:hover,
-        .modal-pix-xcore .modal-content .discord-link:hover { transform: scale(1.05); box-shadow: 0 4px 30px rgba(88,101,242,0.4); }
-        .modal-pix-xcore .modal-content h2 {
-            margin-bottom: 0.8rem;
-            font-size: 1.3rem;
-            color: var(--secondary-light);
-        }
+        .modal-pix .modal-content .discord-link:hover { transform: scale(1.05); box-shadow: 0 4px 30px rgba(88,101,242,0.4); }
         .plan-info {
             margin: 0.5rem 0;
             font-size: 0.85rem;
@@ -2521,13 +2326,10 @@
             .hero h1 { font-size: 2.2rem; }
             .section-header h2 { font-size: 1.8rem; }
             .plans-grid { grid-template-columns: 1fr; }
-            .xcore-plans { grid-template-columns: 1fr; }
             .form-container { padding: 1.2rem; }
             .btn-whatsapp-fixo { width: 44px; height: 44px; font-size: 22px; bottom: 14px; left: 14px; }
             .tab-btn { padding: 0.4rem 0.8rem; font-size: 0.7rem; }
             .script-features { grid-template-columns: 1fr; }
-            .xcore-restrictions-grid { grid-template-columns: 1fr; }
-            .xcore-obrigatorio p { font-size: 0.8rem; }
             .chat-window {
                 width: 320px;
                 max-height: 420px;
@@ -2562,8 +2364,8 @@
         @media (max-width: 480px) {
             .hero h1 { font-size: 1.8rem; }
             .btn { padding: 0.4rem 0.8rem; font-size: 0.8rem; }
-            .modal-pix .modal-content, .modal-pix-xcore .modal-content { padding: 1.2rem; }
-            .modal-pix .modal-content .pix-key, .modal-pix-xcore .modal-content .pix-key { font-size: 0.75rem; }
+            .modal-pix .modal-content { padding: 1.2rem; }
+            .modal-pix .modal-content .pix-key { font-size: 0.75rem; }
             .profile-section .profile-actions { flex-direction: column; }
             .dropdown { width: 230px; right: -30px; }
             .cart-dropdown { width: 210px; right: -20px; }
@@ -2820,7 +2622,7 @@
         <div class="container">
             <div class="section-header">
                 <h2><i class="fas fa-cubes"></i> Nossos Mods</h2>
-                <p>Escolha seu jogo ou executor</p>
+                <p>Escolha seu jogo</p>
             </div>
 
             <div class="tabs-nav">
@@ -2829,9 +2631,6 @@
                 </button>
                 <button class="tab-btn era" onclick="trocarAba('era')">
                     <i class="fas fa-city"></i> Graal Era
-                </button>
-                <button class="tab-btn xcore-tab" onclick="trocarAba('xcore')" style="border-color:var(--secondary);">
-                    <i class="fas fa-bolt"></i> Xcore Executor
                 </button>
             </div>
 
@@ -2899,172 +2698,6 @@
                         </div>
                         <button class="btn-buy" onclick="adicionarAoCarrinho('Auto Trash Automatic', 200)">Comprar R$ 200,00</button>
                         <button class="btn-add-cart" onclick="adicionarAoCarrinho('Auto Trash Automatic', 200)"><i class="fas fa-cart-plus"></i> Adicionar</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="tab-content" id="tab-xcore">
-                <div style="max-width:700px;margin:0 auto 1.5rem;text-align:center;background:var(--bg-card);border:2px solid #5865f2;border-radius:var(--radius);padding:1.2rem;">
-                    <p style="color:var(--text-muted);font-size:0.9rem;">
-                        <i class="fab fa-discord" style="color:#5865f2;font-size:1.5rem;display:block;margin-bottom:0.3rem;"></i>
-                        <strong style="color:var(--text);">Entre no Discord Oficial da Xcore</strong>
-                    </p>
-                    <a href="https://discord.gg/4tw7kE7rxU" target="_blank" style="display:inline-block;margin-top:0.5rem;padding:0.6rem 2rem;background:#5865f2;color:#fff;border-radius:10px;text-decoration:none;font-weight:700;transition:0.3s;font-size:0.9rem;">
-                        <i class="fab fa-discord"></i> Entrar no Discord
-                    </a>
-                </div>
-
-                <div style="max-width:700px;margin:0 auto 1.5rem;text-align:center;background:var(--bg-card);border:2px solid var(--secondary);border-radius:var(--radius);padding:1.5rem;position:relative;overflow:hidden;">
-                    <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary),var(--secondary),var(--primary));"></div>
-                    <div style="display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;">
-                        <img src="https://yt3.ggpht.com/0hUMsOaawQjXvahFpmTn_w1NlRiBPdLzbqxzQJ26v9AaP1xPmxHj-ct9kYOzDXcRhebLWSL4-m_z=s746-rw-nd-v1" alt="Xcore Logo" style="width:60px;height:60px;border-radius:50%;border:3px solid var(--secondary);object-fit:cover;" />
-                        <div>
-                            <h3 style="font-size:2rem;font-weight:900;background:linear-gradient(135deg,#fff,var(--secondary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">XCORE EXECUTOR</h3>
-                            <p style="color:var(--text-muted);font-size:0.9rem;letter-spacing:1px;">⚡ Executor de Scripts para Graal</p>
-                        </div>
-                    </div>
-                    <p style="color:var(--text-muted);font-size:0.8rem;margin-top:0.5rem;border-top:1px solid var(--border);padding-top:0.6rem;">
-                        <i class="fas fa-rocket" style="color:var(--secondary);"></i>
-                        Escolha o plano ideal para você e maximize sua experiência no GraalOnline!
-                    </p>
-                </div>
-
-                <div class="xcore-plans">
-                    <div class="xcore-plan free">
-                        <div class="plan-icon">🎯</div>
-                        <div class="plan-name">FREE</div>
-                        <div class="plan-sub">Grátis • Ideal para começar</div>
-                        <div class="plan-price" style="color:var(--success);">R$ 0,00</div>
-                        <ul class="plan-features">
-                            <li><i class="fas fa-check"></i> Scripts no mapa principal</li>
-                            <li><i class="fas fa-check"></i> Acesso básico ao runtime</li>
-                            <li><i class="fas fa-check"></i> Permissões limitadas de execução</li>
-                            <li><i class="fas fa-check"></i> 5 horas de uso por dia</li>
-                        </ul>
-                        <button class="plan-btn free" onclick="alert('🎯 Plano FREE selecionado! Aproveite!')">Começar Agora</button>
-                    </div>
-
-                    <div class="xcore-plan silver">
-                        <div class="plan-icon">🥈</div>
-                        <div class="plan-name">SILVER</div>
-                        <div class="plan-sub">R$ 35/Mês • Para quem quer ir além</div>
-                        <div class="plan-price" style="color:#94a3b8;">R$ 35,00 <small>/mês</small></div>
-                        <div style="font-size:0.6rem;color:var(--text-muted);margin-bottom:0.5rem;">🔄 Renovação mensal</div>
-                        <ul class="plan-features">
-                            <li><i class="fas fa-check"></i> <strong>Tudo do FREE +</strong></li>
-                            <li><i class="fas fa-check"></i> Scripts em casas e bases de batalha</li>
-                            <li><i class="fas fa-check"></i> Permissões de runtime estendidas</li>
-                        </ul>
-                        <button class="plan-btn silver" onclick="abrirModalPixXcore(); document.getElementById('planInfoXcore').textContent = 'SILVER - R$ 35,00';">Assinar R$ 35,00</button>
-                        <button class="btn-add-cart" onclick="adicionarAoCarrinho('Xcore SILVER - Mensal', 35)"><i class="fas fa-cart-plus"></i> Adicionar</button>
-                    </div>
-
-                    <div class="xcore-plan gold">
-                        <div class="plan-icon">🥇</div>
-                        <div class="plan-name">GOLD</div>
-                        <div class="plan-sub">R$ 90/Mês • Experiência completa</div>
-                        <div class="plan-price" style="color:var(--warning);">R$ 90,00 <small>/mês</small></div>
-                        <div style="font-size:0.6rem;color:var(--text-muted);margin-bottom:0.5rem;">🔄 Renovação mensal</div>
-                        <ul class="plan-features">
-                            <li><i class="fas fa-check"></i> <strong>Tudo do SILVER +</strong></li>
-                            <li><i class="fas fa-check"></i> Scripts em níveis de trabalho</li>
-                            <li><i class="fas fa-check"></i> Scripts em eventos e áreas de spar</li>
-                            <li><i class="fas fa-check"></i> <strong>Acesso TOTAL ao runtime</strong></li>
-                        </ul>
-                        <button class="plan-btn gold" onclick="abrirModalPixXcore(); document.getElementById('planInfoXcore').textContent = 'GOLD - R$ 90,00';">Assinar R$ 90,00</button>
-                        <button class="btn-add-cart" onclick="adicionarAoCarrinho('Xcore GOLD - Mensal', 90)"><i class="fas fa-cart-plus"></i> Adicionar</button>
-                    </div>
-                </div>
-
-                <div class="xcore-restrictions">
-                    <h3><i class="fas fa-exclamation-triangle"></i> Restrições de Runtime</h3>
-                    <p style="text-align:center;color:var(--text-muted);font-size:0.85rem;margin-bottom:1rem;">Algumas áreas exigem um nível de execução mais alto.</p>
-                    <div class="xcore-restrictions-grid">
-                        <div class="xcore-restriction-item">
-                            <span class="area">🗺️ Mapa principal</span>
-                            <span class="level level-free">FREE</span>
-                        </div>
-                        <div class="xcore-restriction-item">
-                            <span class="area">🏠 Casas / Bases</span>
-                            <span class="level level-silver">SILVER</span>
-                        </div>
-                        <div class="xcore-restriction-item">
-                            <span class="area">💼 Trabalho / Eventos / Spar</span>
-                            <span class="level level-gold">GOLD</span>
-                        </div>
-                    </div>
-                    <div class="restriction-note">
-                        <i class="fas fa-arrow-up"></i> Atualize seu plano para desbloquear mais zonas de execução.
-                    </div>
-                </div>
-
-                <div class="xcore-obrigatorio">
-                    <p><i class="fas fa-exclamation-circle"></i> ⚠️ É obrigatório baixar o <strong>XCORE EXECUTOR</strong> para usar os mods do KZN MENU!</p>
-                    <a href="https://discord.gg/4tw7kE7rxU" target="_blank" class="discord-link">
-                        <i class="fab fa-discord"></i> Baixar no Discord
-                    </a>
-                </div>
-
-                <div style="max-width:600px;margin:1.5rem auto 0;background:rgba(124,58,237,0.08);border:2px solid var(--secondary);border-radius:var(--radius);padding:1rem;text-align:center;">
-                    <p style="color:var(--secondary-light);font-weight:700;font-size:0.85rem;">
-                        <i class="fas fa-qrcode"></i> Chave PIX Xcore: <strong style="color:var(--success);font-family:monospace;font-size:0.9rem;">7d23dda5-ef7e-430a-b7a3-ed28504e515d</strong>
-                    </p>
-                    <p style="color:var(--text-muted);font-size:0.7rem;margin-top:0.2rem;">Envie o comprovante no Discord para ativação</p>
-                </div>
-
-                <div style="max-width:600px;margin:2.5rem auto 0;" id="formXcore">
-                    <div style="text-align:center;margin-bottom:1.5rem;">
-                        <h3 style="color:var(--secondary);font-size:1.3rem;"><i class="fas fa-paper-plane"></i> Comprar Xcore Executor</h3>
-                        <p style="color:var(--text-muted);font-size:0.85rem;">Preencha o formulário abaixo para adquirir seu plano Xcore</p>
-                    </div>
-
-                    <div class="form-container">
-                        <form id="formXcore" action="https://formsubmit.co/xcoreexecute@gmail.com" method="POST" enctype="multipart/form-data">
-                            <input type="hidden" name="_captcha" value="false">
-                            <input type="hidden" name="_template" value="table">
-                            <input type="hidden" name="_subject" value="🔥 COMPRA XCORE EXECUTOR - NOVO PEDIDO!">
-
-                            <div class="form-group">
-                                <label><i class="fas fa-user"></i> Seu Nome <span style="color:var(--primary);">*</span></label>
-                                <input type="text" name="Nome" placeholder="Digite seu nome completo..." required>
-                            </div>
-
-                            <div class="form-group">
-                                <label><i class="fas fa-envelope"></i> Seu E-mail <span style="color:var(--primary);">*</span></label>
-                                <input type="email" name="Email" placeholder="Digite seu e-mail..." required>
-                                <small style="color:var(--text-muted);font-size:0.7rem;">Você receberá sua key neste e-mail</small>
-                            </div>
-
-                            <div class="form-group">
-                                <label><i class="fab fa-whatsapp"></i> WhatsApp <span style="color:var(--primary);">*</span></label>
-                                <input type="text" name="WhatsApp" placeholder="(DDD) 9 9999-9999" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label><i class="fas fa-crown"></i> Plano Escolhido <span style="color:var(--primary);">*</span></label>
-                                <select name="Plano" required>
-                                    <option value="">Selecione um plano...</option>
-                                    <option value="Xcore SILVER - R$ 35,00/mês">🥈 SILVER - R$ 35,00/mês</option>
-                                    <option value="Xcore GOLD - R$ 90,00/mês">🥇 GOLD - R$ 90,00/mês</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label><i class="fas fa-image"></i> 📸 Comprovante PIX <span style="color:var(--primary);">*</span></label>
-                                <input type="file" name="Comprovante" accept="image/*,.pdf" required>
-                                <p style="font-size:0.65rem;color:var(--text-muted);margin-top:0.3rem;">Envie uma foto do comprovante PIX (PNG, JPG, PDF - até 5MB)</p>
-                            </div>
-
-                            <div class="form-group">
-                                <label><i class="fas fa-pencil-alt"></i> Mensagem (opcional)</label>
-                                <textarea name="Mensagem" rows="3" placeholder="Digite sua mensagem aqui..."></textarea>
-                            </div>
-
-                            <button type="submit" class="btn-submit" id="formXcoreBtn">
-                                <i class="fas fa-paper-plane"></i> Enviar Pedido Xcore
-                            </button>
-                            <div class="form-status" id="formXcoreStatus"></div>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -3225,7 +2858,7 @@
         <div class="container">
             <div class="section-header">
                 <h2><i class="fas fa-question-circle"></i> Perguntas Frequentes</h2>
-                <p>Dúvidas comuns sobre o KZN Menu e Xcore Executor</p>
+                <p>Dúvidas comuns sobre o KZN Menu</p>
             </div>
             <div style="max-width:800px;margin:0 auto;">
                 <div class="faq-item" onclick="toggleFaq(this)">
@@ -3234,7 +2867,7 @@
                 </div>
                 <div class="faq-item" onclick="toggleFaq(this)">
                     <div class="question"><span>📱 Funciona no celular?</span><span class="faq-icon"><i class="fas fa-chevron-down"></i></span></div>
-                    <div class="answer">Sim! O KZN Menu é 100% compatível com Graal Mobile (Android e iOS), usando a Xcore Execute.</div>
+                    <div class="answer">Sim! O KZN Menu é 100% compatível com Graal Mobile (Android e iOS).</div>
                 </div>
                 <div class="faq-item" onclick="toggleFaq(this)">
                     <div class="question"><span>🔄 O que acontece após a compra?</span><span class="faq-icon"><i class="fas fa-chevron-down"></i></span></div>
@@ -3247,18 +2880,6 @@
                 <div class="faq-item" onclick="toggleFaq(this)">
                     <div class="question"><span>💳 Quais formas de pagamento?</span><span class="faq-icon"><i class="fas fa-chevron-down"></i></span></div>
                     <div class="answer">Aceitamos PIX (chave: <code style="color:var(--success);">6c80021c-957b-49c0-9a5d-98371bf67120</code>). Parcelamento em 2x R$ 100,00.</div>
-                </div>
-                <div class="faq-item" onclick="toggleFaq(this)">
-                    <div class="question"><span>⚡ O que é Xcore Execute?</span><span class="faq-icon"><i class="fas fa-chevron-down"></i></span></div>
-                    <div class="answer">A Xcore Execute é a ferramenta oficial para executar os mods KZN MENU. Você precisa baixá-la no Discord da Xcore para usar.</div>
-                </div>
-                <div class="faq-item" onclick="toggleFaq(this)">
-                    <div class="question"><span>💰 Quanto custa o Xcore?</span><span class="faq-icon"><i class="fas fa-chevron-down"></i></span></div>
-                    <div class="answer">O Xcore tem 3 planos: FREE (Grátis), SILVER (R$ 35/mês) e GOLD (R$ 90/mês).</div>
-                </div>
-                <div class="faq-item" onclick="toggleFaq(this)">
-                    <div class="question"><span>🔑 Qual a chave PIX do Xcore?</span><span class="faq-icon"><i class="fas fa-chevron-down"></i></span></div>
-                    <div class="answer">A chave PIX do Xcore é: <code style="color:var(--secondary-light);">7d23dda5-ef7e-430a-b7a3-ed28504e515d</code></div>
                 </div>
             </div>
         </div>
@@ -3316,16 +2937,15 @@
                 </div>
                 <div class="footer-social">
                     <a href="https://discord.gg/99HDeQsE73" target="_blank" class="discord" title="Discord KZN"><i class="fab fa-discord"></i></a>
-                    <a href="https://discord.gg/4tw7kE7rxU" target="_blank" class="xcore" title="Discord Xcore"><i class="fas fa-bolt"></i></a>
+                    <a href="https://discord.gg/4tw7kE7rxU" target="_blank" class="xcore" title="Discord Xcore" style="border-color:var(--secondary);"><i class="fas fa-bolt" style="color:var(--secondary-light);"></i></a>
                     <a href="#" class="pix-kzn" onclick="abrirModalPix()" title="PIX KZN"><i class="fas fa-qrcode"></i></a>
-                    <a href="#" class="pix-xcore" onclick="abrirModalPixXcore()" title="PIX Xcore" style="border-color:var(--secondary);"><i class="fas fa-bolt" style="color:var(--secondary-light);"></i></a>
                 </div>
             </div>
             <div class="footer-bottom"><p>&copy; 2026 KZN MENU - Todos os direitos reservados</p></div>
         </div>
     </footer>
 
-    <!-- ===== MODAIS PIX ===== -->
+    <!-- ===== MODAL PIX KZN ===== -->
     <div class="modal-pix" id="modalPix">
         <div class="modal-content">
             <button class="modal-close-btn" onclick="fecharModalPix()">✕</button>
@@ -3335,19 +2955,6 @@
             <button class="btn-copy" onclick="copiarPix()"><i class="fas fa-copy"></i> Copiar Chave PIX</button>
             <div class="plan-info" id="planInfo">Plano: - | Valor: -</div>
             <div style="margin-top:0.8rem;"><a href="https://discord.gg/99HDeQsE73" target="_blank" class="discord-link"><i class="fab fa-discord"></i> Entrar em contato no Discord</a></div>
-            <div style="margin-top:0.6rem;font-size:0.75rem;color:var(--text-muted);"><p>Após o pagamento, envie o comprovante no Discord para ativação.</p></div>
-        </div>
-    </div>
-
-    <div class="modal-pix-xcore" id="modalPixXcore">
-        <div class="modal-content">
-            <button class="modal-close-btn" onclick="fecharModalPixXcore()">✕</button>
-            <h2>⚡ Pagamento PIX - Xcore</h2>
-            <p style="color:var(--text-muted);margin-bottom:0.5rem;font-size:0.85rem;">Copie a chave abaixo e realize o pagamento</p>
-            <div class="pix-key" id="pixKeyXcore">7d23dda5-ef7e-430a-b7a3-ed28504e515d</div>
-            <button class="btn-copy" onclick="copiarPixXcore()"><i class="fas fa-copy"></i> Copiar Chave PIX</button>
-            <div class="plan-info" id="planInfoXcore">Plano: - | Valor: -</div>
-            <div style="margin-top:0.8rem;"><a href="https://discord.gg/4tw7kE7rxU" target="_blank" class="discord-link"><i class="fab fa-discord"></i> Entrar em contato no Discord</a></div>
             <div style="margin-top:0.6rem;font-size:0.75rem;color:var(--text-muted);"><p>Após o pagamento, envie o comprovante no Discord para ativação.</p></div>
         </div>
     </div>
@@ -5237,7 +4844,7 @@
             renderizarNotificacoes();
         };
 
-        // ====== MODAIS PIX ======
+        // ====== MODAL PIX ======
         window.abrirModalPix = function() {
             document.getElementById('modalPix').classList.add('open');
         };
@@ -5250,23 +4857,6 @@
             const key = document.getElementById('pixKey').textContent;
             navigator.clipboard.writeText(key).then(() => {
                 const btn = document.querySelector('#modalPix .btn-copy');
-                btn.innerHTML = '<i class="fas fa-check"></i> Copiado!';
-                setTimeout(() => { btn.innerHTML = '<i class="fas fa-copy"></i> Copiar Chave PIX'; }, 2000);
-            });
-        };
-
-        window.abrirModalPixXcore = function() {
-            document.getElementById('modalPixXcore').classList.add('open');
-        };
-
-        window.fecharModalPixXcore = function() {
-            document.getElementById('modalPixXcore').classList.remove('open');
-        };
-
-        window.copiarPixXcore = function() {
-            const key = document.getElementById('pixKeyXcore').textContent;
-            navigator.clipboard.writeText(key).then(() => {
-                const btn = document.querySelector('#modalPixXcore .btn-copy');
                 btn.innerHTML = '<i class="fas fa-check"></i> Copiado!';
                 setTimeout(() => { btn.innerHTML = '<i class="fas fa-copy"></i> Copiar Chave PIX'; }, 2000);
             });
@@ -5410,7 +5000,6 @@
                     document.getElementById('notifDropdown').classList.remove('open');
                     document.getElementById('cartDropdown').classList.remove('open');
                     document.getElementById('modalPix').classList.remove('open');
-                    document.getElementById('modalPixXcore').classList.remove('open');
                     document.getElementById('userMenuOverlay').classList.remove('open');
                     document.getElementById('modalOverlay').classList.remove('open');
                 }
@@ -5446,7 +5035,6 @@
 
             if (notificacoes.length === 0) {
                 adicionarNotificacao('🔥 Bem-vindo ao KZN MENU! Confira nossos mods.', 'info');
-                adicionarNotificacao('⚡ Conheça o Xcore Executor!', 'alerta');
             }
 
             console.log('✅ KZN MENU carregado com sucesso!');
