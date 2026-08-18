@@ -3327,6 +3327,68 @@
 .mobile-notif-help{font-size:.68rem;color:#94a3b8;line-height:1.35;margin:4px 2px 0;text-align:center;}
 </style>
 
+<style>
+
+/* ===== KZN V12 — FINAL HEADER + PROFILE FIX ===== */
+/* Header: keep KZN MENU + XCORE text visible without overlap on narrow phones. */
+.nav-container{display:flex!important;align-items:center!important;min-width:0!important;overflow:visible!important;}
+.nav-logo-wrapper{display:flex!important;align-items:center!important;gap:5px!important;flex:1 1 auto!important;min-width:0!important;overflow:visible!important;}
+.nav-logo{display:flex!important;align-items:center!important;flex:0 1 auto!important;min-width:0!important;overflow:visible!important;}
+.nav-logo .logo-text{flex:0 0 auto!important;min-width:max-content!important;overflow:visible!important;}
+.nav-xcore{flex:0 0 auto!important;min-width:0!important;max-width:none!important;overflow:visible!important;}
+.nav-actions{display:flex!important;align-items:center!important;gap:5px!important;flex:0 0 auto!important;min-width:0!important;}
+
+/* Notification: clean circular red button. */
+#notifBtn.nav-icon-btn{width:46px!important;height:46px!important;min-width:46px!important;padding:0!important;border-radius:50%!important;border:2px solid rgba(255,72,72,.72)!important;background:radial-gradient(circle at 35% 30%,#ff5555 0%,#e31d3f 58%,#a90e2c 100%)!important;color:#fff!important;box-shadow:0 5px 18px rgba(239,68,68,.30),inset 0 1px 2px rgba(255,255,255,.25)!important;display:flex!important;align-items:center!important;justify-content:center!important;}
+#notifBtn.nav-icon-btn:hover{transform:scale(1.05)!important;box-shadow:0 7px 22px rgba(239,68,68,.42)!important;}
+#notifBtn.nav-icon-btn:active{transform:scale(.96)!important;}
+#notifBtn.nav-icon-btn i{font-size:1.05rem!important;color:#fff!important;}
+#notifBtn .badge{background:#fff!important;color:#c1122f!important;border:2px solid #e31d3f!important;box-shadow:0 2px 7px rgba(0,0,0,.25)!important;}
+
+/* Profile is hidden while browsing the store; it opens only from the Profile control. */
+#perfil.profile-collapsed{display:none!important;}
+.profile-section{position:relative!important;}
+.profile-section .profile-header{position:relative!important;padding-right:120px!important;}
+.profile-minimize-btn{position:absolute;right:0;top:0;display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(168,85,247,.45);background:rgba(124,58,237,.10);color:#c4b5fd;border-radius:10px;padding:8px 11px;font-size:.75rem;font-weight:800;cursor:pointer;transition:.2s;}
+.profile-minimize-btn:hover{background:rgba(124,58,237,.2);border-color:#a855f7;transform:translateY(-1px);}
+
+@media(max-width:768px){
+  .nav-container{height:60px!important;padding:0 4px!important;gap:4px!important;}
+  .nav-logo-wrapper{flex:1 1 auto!important;width:auto!important;max-width:none!important;gap:4px!important;}
+  .nav-logo{gap:3px!important;}
+  .nav-logo img{width:25px!important;height:25px!important;flex:0 0 25px!important;}
+  .nav-logo .logo-text span{font-size:.68rem!important;letter-spacing:.2px!important;}
+  .nav-logo .logo-text small{display:none!important;}
+  .nav-divider{display:none!important;}
+  .nav-xcore{gap:3px!important;min-width:0!important;max-width:none!important;}
+  .nav-xcore img{width:25px!important;height:25px!important;flex:0 0 25px!important;}
+  .nav-xcore .xcore-text{min-width:0!important;}
+  .nav-xcore .xcore-text .name{font-size:.54rem!important;letter-spacing:.3px!important;}
+  .nav-xcore .xcore-text .team{font-size:.45rem!important;letter-spacing:.2px!important;}
+  .nav-actions{gap:3px!important;}
+  #notifBtn.nav-icon-btn{width:38px!important;height:38px!important;min-width:38px!important;border-radius:50%!important;font-size:.7rem!important;}
+  #notifBtn.nav-icon-btn i{font-size:.82rem!important;}
+  .profile-btn{max-width:48px!important;padding:2px!important;gap:2px!important;border-radius:22px!important;}
+  .profile-btn .avatar{width:24px!important;height:24px!important;}
+  .profile-btn .cart-icon-wrap{padding:1px 2px!important;font-size:.8rem!important;}
+  .profile-btn .cart-count{width:12px!important;height:12px!important;font-size:.4rem!important;}
+  .nav-toggle{width:34px!important;height:34px!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:0!important;flex:0 0 34px!important;}
+  .profile-section .profile-header{padding-right:0!important;}
+  .profile-minimize-btn{position:static;margin-left:auto;align-self:flex-start;padding:7px 9px;font-size:.68rem;}
+}
+@media(max-width:390px){
+  .nav-logo img{width:23px!important;height:23px!important;flex-basis:23px!important;}
+  .nav-logo .logo-text span{font-size:.60rem!important;}
+  .nav-xcore img{width:23px!important;height:23px!important;flex-basis:23px!important;}
+  .nav-xcore .xcore-text .name{font-size:.48rem!important;}
+  .nav-xcore .xcore-text .team{font-size:.40rem!important;}
+  #notifBtn.nav-icon-btn{width:36px!important;height:36px!important;min-width:36px!important;}
+  .profile-btn{max-width:44px!important;}
+  .profile-btn .avatar{width:22px!important;height:22px!important;}
+  .nav-toggle{width:32px!important;height:32px!important;flex-basis:32px!important;}
+}
+
+</style>
 </head>
 <body>
 <!-- ===== WHATSAPP FIXO ===== -->
@@ -3453,7 +3515,7 @@
 <li><a href="#regras"><i class="fas fa-gavel"></i> Regras</a></li>
 <li><a href="#contato"><i class="fas fa-envelope"></i> Contato</a></li>
 <li><a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
-<li><a href="#perfil"><i class="fas fa-user"></i> Perfil</a></li>
+<li><a href="#perfil" onclick="abrirPerfil(); return false;"><i class="fas fa-user"></i> Perfil</a></li>
 </ul>
 <div class="nav-actions">
 <div class="dropdown-container">
@@ -3916,6 +3978,7 @@
 <p id="profileEmail">usuario@kzn.com</p>
 <a class="edit-link" href="#" onclick="editarPerfil(event)"><i class="fas fa-edit"></i> Editar perfil</a>
 </div>
+<button class="profile-minimize-btn" type="button" onclick="minimizarPerfil()" title="Minimizar perfil" aria-label="Minimizar perfil"><i class="fas fa-chevron-up"></i><span>Minimizar</span></button>
 </div>
 <div class="profile-stats">
 <div class="stat">
@@ -6787,5 +6850,94 @@ window.copiarPixEra = function() {
 /* ===== KZN MOBILE NOTIFICATION SERVICE WORKER BOOTSTRAP ===== */
 if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('./kzn-notification-sw.js').catch(()=>{});});}
 </script>
+
+<script>
+/* ===== KZN V12 — PROFILE VISIBILITY + NAME PERSISTENCE ===== */
+(function(){
+  const OWNER='gabriel6061yt@gmail.com';
+  const safe=v=>String(v||'').toLowerCase().replace(/[.#$\[\]\/]/g,'_');
+  function hideProfile(){
+    const sec=document.getElementById('perfil');
+    if(sec){sec.classList.add('profile-collapsed');}
+  }
+  function showProfile(){
+    const sec=document.getElementById('perfil');
+    if(!sec)return;
+    sec.classList.remove('profile-collapsed');
+    setTimeout(()=>sec.scrollIntoView({behavior:'smooth',block:'start'}),30);
+    if(typeof carregarPerfil==='function') carregarPerfil();
+  }
+  window.abrirPerfil=function(){
+    const dados=localStorage.getItem('kzn_usuario_logado');
+    if(!dados){document.getElementById('welcomeOverlay')?.classList.remove('hidden');return;}
+    showProfile();
+  };
+  window.minimizarPerfil=function(){
+    hideProfile();
+    document.getElementById('editProfileArea')?.style && (document.getElementById('editProfileArea').style.display='none');
+    const mods=document.getElementById('mods');
+    if(mods)setTimeout(()=>mods.scrollIntoView({behavior:'smooth',block:'start'}),20);
+  };
+
+  /* The profile should not occupy the store page by default. */
+  document.addEventListener('DOMContentLoaded',()=>{
+    hideProfile();
+    const profileLink=document.querySelector('#navMenuMobile a[href="#perfil"]');
+    if(profileLink) profileLink.onclick=function(e){e.preventDefault();window.abrirPerfil();return false;};
+  });
+
+  /* Persist edited name locally AND in the existing Firebase chat user record. */
+  const oldSave=window.salvarEdicaoPerfil;
+  window.salvarEdicaoPerfil=function(){
+    const input=document.getElementById('editNome');
+    const nome=String(input?.value||'').trim();
+    if(!nome){alert('⚠️ Digite um nome válido.');return;}
+    let u=null;
+    try{u=JSON.parse(localStorage.getItem('kzn_usuario_logado')||'null');}catch(e){}
+    if(!u?.email){alert('🔒 Nenhum usuário logado.');return;}
+    const email=u.email;
+    const avatar=u.avatar||'';
+    const senha=document.getElementById('editSenha')?.value||'';
+    u.nome=nome;
+    localStorage.setItem('kzn_usuario_logado',JSON.stringify(u));
+    try{
+      const list=JSON.parse(localStorage.getItem('kzn_usuarios')||'[]');
+      const idx=list.findIndex(x=>String(x.email||'').toLowerCase()===String(email).toLowerCase());
+      if(idx>=0){list[idx].nome=nome;if(senha&&senha.length>=6)list[idx].senha=senha;localStorage.setItem('kzn_usuarios',JSON.stringify(list));}
+    }catch(e){}
+    try{
+      if(typeof db!=='undefined'){
+        const ref=db.ref('chat/usuarios/'+safe(email));
+        ref.update({nome,avatar,email,updatedAt:new Date().toISOString()}).catch(()=>{});
+      }
+    }catch(e){}
+    try{usuarioLogado=u;}catch(e){}
+    document.getElementById('userDisplay')&&(document.getElementById('userDisplay').textContent=nome);
+    document.getElementById('profileName')&&(document.getElementById('profileName').textContent=nome);
+    const letra=nome.charAt(0).toUpperCase();
+    const avatarImg=document.getElementById('avatarProfileImage');
+    const avatarText=document.getElementById('avatarProfileText');
+    if(avatarText&&!avatarImg?.src){avatarText.textContent=letra;}
+    if(!avatar){
+      const a=document.querySelector('.profile-btn .avatar');
+      if(a)a.innerHTML='<span class="avatar-letter" id="avatarText">'+letra+'</span>';
+    }
+    const edit=document.getElementById('editProfileArea');if(edit)edit.style.display='none';
+    const senhaEl=document.getElementById('editSenha');if(senhaEl)senhaEl.value='';
+    alert('✅ Nome atualizado com sucesso!');
+    /* Refresh chat identity without requiring a reload. */
+    try{
+      if(typeof carregarPerfil==='function') carregarPerfil();
+      if(typeof atualizarStatusOnline==='function') atualizarStatusOnline();
+    }catch(e){}
+  };
+
+  /* If a profile section is opened through a direct hash, reveal it. */
+  window.addEventListener('hashchange',()=>{
+    if(location.hash==='#perfil') showProfile();
+  });
+})();
+</script>
+
 </body>
 </html>
