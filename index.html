@@ -4496,6 +4496,11 @@
         };
 
         firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        // Mantém a sessão do Google após atualizar/reabrir a página.
+        auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).catch(err => {
+            console.warn('Firebase Auth persistence:', err);
+        });
         const db = firebase.database();
         const mensagensRef = db.ref('chat/mensagens');
         const usuariosRef = db.ref('chat/usuarios');
@@ -6208,13 +6213,30 @@
 
         window.handleWelcomeLogin = function(response) {
             try {
-                const payload = parseJwt(response.credential);
-                const usuario = { nome: payload.name, email: payload.email, avatar: payload.picture };
-                usuarioLogado = usuario;
-                localStorage.setItem('kzn_usuario_logado', JSON.stringify(usuario));
-                setLoggedIn();
+                if (!response || !response.credential) throw new Error('Credencial Google ausente');
+                const credential = firebase.auth.GoogleAuthProvider.credential(response.credential);
+                auth.signInWithCredential(credential)
+                    .then(result => {
+                        const user = result.user;
+                        const usuario = {
+                            nome: user.displayName || 'KZN Usuário',
+                            email: user.email || '',
+                            avatar: user.photoURL || null,
+                            uid: user.uid,
+                            authProvider: 'firebase-google'
+                        };
+                        usuarioLogado = usuario;
+                        localStorage.setItem('kzn_usuario_logado', JSON.stringify(usuario));
+                        setLoggedIn();
+                        carregarPerfil();
+                    })
+                    .catch(err => {
+                        console.error('Firebase Google Auth:', err);
+                        alert('❌ Não foi possível concluir o login seguro com o Google.');
+                    });
             } catch (e) {
-                alert('❌ Erro ao fazer login com Google.');
+                console.error('Google login:', e);
+                alert('❌ Erro ao iniciar o login com Google.');
             }
         };
 
@@ -6670,18 +6692,47 @@ window.copiarPixEra = function() {
             carregarUsuariosOnline();
             carregarAdmins();
 
-            const usuario = localStorage.getItem('kzn_usuario_logado');
-            if (usuario) {
-                usuarioLogado = JSON.parse(usuario);
-                setLoggedIn();
-                carregarPerfil();
-            } else {
-                loginProcessed = false;
-                isLoggingIn = false;
-                document.getElementById('welcomeOverlay').classList.remove('hidden');
-                document.getElementById('chatWindow').classList.remove('open');
-                document.getElementById('chatToggleBtn').style.display = 'none';
-            }
+            // Restaura primeiro a sessão persistente do Firebase.
+            // Não usamos timeout para decidir se a sessão morreu: o Firebase informa
+            // explicitamente quando terminou de restaurar a autenticação.
+            auth.onAuthStateChanged(function(user) {
+                if (user) {
+                    usuarioLogado = {
+                        nome: user.displayName || 'KZN Usuário',
+                        email: user.email || '',
+                        avatar: user.photoURL || null,
+                        uid: user.uid,
+                        authProvider: 'firebase-google'
+                    };
+                    localStorage.setItem('kzn_usuario_logado', JSON.stringify(usuarioLogado));
+                    setLoggedIn();
+                    carregarPerfil();
+                    return;
+                }
+
+                // Compatibilidade: contas locais continuam funcionando.
+                let usuarioLocal = null;
+                try {
+                    const salvo = localStorage.getItem('kzn_usuario_logado');
+                    usuarioLocal = salvo ? JSON.parse(salvo) : null;
+                } catch (e) {
+                    usuarioLocal = null;
+                }
+
+                if (usuarioLocal && usuarioLocal.authProvider !== 'firebase-google') {
+                    usuarioLogado = usuarioLocal;
+                    setLoggedIn();
+                    carregarPerfil();
+                } else {
+                    localStorage.removeItem('kzn_usuario_logado');
+                    usuarioLogado = null;
+                    loginProcessed = false;
+                    isLoggingIn = false;
+                    document.getElementById('welcomeOverlay').classList.remove('hidden');
+                    document.getElementById('chatWindow').classList.remove('open');
+                    document.getElementById('chatToggleBtn').style.display = 'none';
+                }
+            });
 
             if (notificacoes.length === 0) {
                 adicionarNotificacao('🔥 Bem-vindo ao KZN MENU! Confira nossos novos planos.', 'info');
@@ -6778,15 +6829,18 @@ window.copiarPixEra = function() {
  const oldLogout=window.logout;
  window.logout=function(){
    if(!confirm('Tem certeza que deseja sair?'))return;
+   if (typeof auth !== 'undefined' && auth.currentUser) {
+     auth.signOut().catch(err => console.warn('Firebase logout:', err));
+   }
    localStorage.removeItem('kzn_usuario_logado'); usuarioLogado=null;
    document.getElementById('welcomeOverlay')?.classList.remove('hidden');
    document.getElementById('chatToggleBtn')?.style && (document.getElementById('chatToggleBtn').style.display='none');
    document.getElementById('chatWindow')?.classList.remove('open'); chatAberto=false; resetarPerfilPadrao();
    alert('👋 Você saiu da sua conta.');
  };
- // Google: guardar sub como UID, sem expor segredo.
- const oldGoogle=window.handleWelcomeLogin;
- window.handleWelcomeLogin=function(response){try{const payload=parseJwt(response.credential);const usuario={nome:payload.name,email:payload.email,avatar:payload.picture,uid:payload.sub};usuarioLogado=usuario;localStorage.setItem('kzn_usuario_logado',JSON.stringify(usuario));setLoggedIn();}catch(e){alert('❌ Erro ao fazer login com Google.');}};
+ // Google usa Firebase Authentication; não substitua o handler por localStorage.
+ // O handler principal acima cria a sessão persistente e o onAuthStateChanged a restaura.
+
  // Compatibilidade com login local.
  const oldLogin=window.fazerLogin;
  window.fazerLogin=function(){const email=document.getElementById('loginEmail')?.value.trim(); if(email){siteBansRef.child(sanitize(email)).once('value').then(s=>{const b=s.val();if(b&&b.active!==false){document.getElementById('loginStatus').textContent='🚫 Esta conta está bloqueada.';return;} if(typeof oldLogin==='function')oldLogin();});}else if(typeof oldLogin==='function')oldLogin();};
@@ -7557,251 +7611,6 @@ header #notifBtn.nav-icon-btn,
   window.addEventListener('load', enforceProductImages);
   setTimeout(enforceProductImages, 300);
   setTimeout(enforceProductImages, 1200);
-})();
-</script>
-
-
-<!-- ===== KZN SECURITY HARDENING V1 ===== -->
-<script id="kzn-security-hardening-v1">
-(function(){
-  'use strict';
-
-  const OWNER_EMAIL = 'gabriel6061yt@gmail.com';
-  const ADMIN_REF = db.ref('chat/admins');
-  const ADMIN_UID_REF = db.ref('chat/adminsByUid');
-  const USERS_REF = db.ref('chat/usuarios');
-
-  function currentAuthUser(){
-    try { return (window.firebase && firebase.auth) ? firebase.auth().currentUser : null; }
-    catch(e){ return null; }
-  }
-
-  function currentUid(){
-    const u = currentAuthUser();
-    return u && u.uid ? String(u.uid) : '';
-  }
-
-  function currentEmail(){
-    const u = currentAuthUser();
-    return u && u.email ? String(u.email).trim().toLowerCase() : '';
-  }
-
-  function isAuthenticated(){
-    return !!currentAuthUser();
-  }
-
-  async function secureAccess(){
-    const au = currentAuthUser();
-    if(!au) return {ok:false, owner:false};
-    const email = String(au.email || '').trim().toLowerCase();
-
-    if(email === OWNER_EMAIL) return {ok:true, owner:true};
-
-    const uid = String(au.uid || '');
-    if(!uid) return {ok:false, owner:false};
-
-    try{
-      const snap = await ADMIN_UID_REF.child(uid).once('value');
-      const a = snap.val();
-      return {ok:!!(a && a.ativo === true), owner:false};
-    }catch(e){
-      return {ok:false, owner:false};
-    }
-  }
-
-  window.kznSecurity = { secureAccess, currentAuthUser, currentUid, currentEmail, isAuthenticated };
-
-  // Firebase Authentication state is now the security source for administrative access.
-  firebase.auth().onAuthStateChanged(function(user){
-    if(user){
-      // Keep the existing site profile, but bind the authenticated Google identity to
-      // the existing Firebase user record. This is not used as a permission grant.
-      try{
-        const emailKey = String(user.email || '').toLowerCase().replace(/[.#$\[\]\/]/g,'_');
-        if(emailKey){
-          USERS_REF.child(emailKey).update({
-            uid: user.uid,
-            authProvider: (user.providerData && user.providerData[0] && user.providerData[0].providerId) || 'firebase'
-          }).catch(()=>{});
-        }
-      }catch(e){}
-    }
-
-    // Re-evaluate the admin button only from Firebase Auth + server-side admin record.
-    if(typeof window.atualizarBotaoAdminV6 === 'function'){
-      window.atualizarBotaoAdminV6();
-    }
-  });
-
-  // Replace the Google welcome login wrapper so the Google ID token is also exchanged
-  // for a real Firebase Auth session. Existing UI behavior remains intact.
-  const previousGoogleLogin = window.handleWelcomeLogin;
-  window.handleWelcomeLogin = async function(response){
-    try{
-      if(!response || !response.credential) throw new Error('Credencial Google ausente');
-
-      const credential = firebase.auth.GoogleAuthProvider.credential(response.credential);
-      const result = await firebase.auth().signInWithCredential(credential);
-      const user = result.user;
-
-      const usuario = {
-        nome: user.displayName || user.email || 'KZN Usuário',
-        email: user.email || '',
-        avatar: user.photoURL || '',
-        uid: user.uid
-      };
-
-      usuarioLogado = usuario;
-      localStorage.setItem('kzn_usuario_logado', JSON.stringify(usuario));
-      if(typeof setLoggedIn === 'function') setLoggedIn();
-
-      // Persist only non-sensitive profile metadata in the existing chat record.
-      try{
-        const key = String(user.email || '').toLowerCase().replace(/[.#$\[\]\/]/g,'_');
-        await USERS_REF.child(key).update({
-          uid: user.uid,
-          email: user.email || '',
-          nome: usuario.nome,
-          avatar: usuario.avatar,
-          authProvider: 'google.com',
-          updatedAt: new Date().toISOString()
-        });
-      }catch(e){}
-
-    }catch(err){
-      console.error('[KZN SECURITY] Google/Firebase authentication failed:', err);
-      // Preserve the existing login path only for non-admin site functionality.
-      // Administrative access remains unavailable without Firebase Auth.
-      try{
-        if(typeof previousGoogleLogin === 'function'){
-          previousGoogleLogin(response);
-        }
-      }catch(e){}
-      alert('⚠️ Login realizado, mas a autenticação segura do painel não foi concluída. O acesso administrativo ficará bloqueado até a sessão segura estar ativa.');
-    }
-  };
-
-  // Make owner/admin panel access require a real Firebase Auth session.
-  const originalCheckAccess = window.checkAccess;
-  window.checkAccess = function(cb){
-    secureAccess().then(function(r){
-      if(r.ok){
-        // Keep legacy flags synchronized for existing UI.
-        try{
-          ownerAccess = !!r.owner;
-          adminAccess = !!r.ok;
-        }catch(e){}
-      }else{
-        try{
-          ownerAccess = false;
-          adminAccess = false;
-        }catch(e){}
-      }
-      if(typeof cb === 'function') cb(!!r.ok, !!r.owner);
-    });
-  };
-
-  // Owner-only admin management now also creates a UID-bound authorization record.
-  window.kznGrantAdminSecure = async function(email){
-    const access = await secureAccess();
-    if(!access.owner) throw new Error('Somente o proprietário pode conceder administrador.');
-
-    const targetEmail = String(email || '').trim().toLowerCase();
-    if(!targetEmail) throw new Error('E-mail inválido.');
-
-    const userSnap = await USERS_REF.child(targetEmail.replace(/[.#$\[\]\/]/g,'_')).once('value');
-    const target = userSnap.val() || {};
-    if(!target.uid) throw new Error('O usuário precisa entrar pelo Google pelo menos uma vez antes de receber o cargo.');
-
-    const record = {
-      email: targetEmail,
-      uid: String(target.uid),
-      ativo: true,
-      data: new Date().toISOString(),
-      concedido_por: OWNER_EMAIL,
-      concedido_por_uid: currentUid()
-    };
-
-    await ADMIN_UID_REF.child(String(target.uid)).set(record);
-    return record;
-  };
-
-  window.kznRemoveAdminSecure = async function(email){
-    const access = await secureAccess();
-    if(!access.owner) throw new Error('Somente o proprietário pode remover administrador.');
-
-    const targetEmail = String(email || '').trim().toLowerCase();
-    const snap = await ADMIN_REF.once('value');
-    const admins = snap.val() || {};
-    const updates = {};
-    let uid = '';
-
-    Object.entries(admins).forEach(function(pair){
-      const key = pair[0], a = pair[1] || {};
-      if(String(a.email || '').trim().toLowerCase() === targetEmail){
-        updates[key + '/ativo'] = false;
-        if(a.uid) uid = String(a.uid);
-      }
-    });
-
-    if(Object.keys(updates).length) await ADMIN_REF.update(updates);
-
-    // Prefer UID found in the old admin record; otherwise resolve through user record.
-    if(!uid){
-      const u = await USERS_REF.child(targetEmail.replace(/[.#$\[\]\/]/g,'_')).once('value');
-      uid = String((u.val() || {}).uid || '');
-    }
-    if(uid) await ADMIN_UID_REF.child(uid).update({ativo:false, removedAt:new Date().toISOString(), removedBy:OWNER_EMAIL});
-    return true;
-  };
-
-  // Replace the legacy add/remove operations where possible, while preserving their UI.
-  const legacyAdd = window.adicionarAdmin;
-  window.adicionarAdmin = async function(email){
-    try{
-      await window.kznGrantAdminSecure(email);
-      alert('✅ Administrador concedido com autenticação segura.');
-      if(typeof carregarPainelProprietario === 'function') carregarPainelProprietario();
-    }catch(e){
-      alert('❌ ' + (e.message || 'Não foi possível conceder administrador.'));
-    }
-  };
-
-  const legacyRemove = window.removerAdmin;
-  window.removerAdmin = async function(email){
-    if(String(email || '').trim().toLowerCase() === OWNER_EMAIL) {
-      alert('👑 O proprietário não pode ser removido.');
-      return;
-    }
-    if(!confirm('Remover o cargo de administrador de ' + email + '?')) return;
-    try{
-      await window.kznRemoveAdminSecure(email);
-      alert('✅ Administrador removido.');
-      if(typeof carregarPainelProprietario === 'function') carregarPainelProprietario();
-    }catch(e){
-      alert('❌ ' + (e.message || 'Não foi possível remover o administrador.'));
-    }
-  };
-
-  // Prevent the client from treating a forged localStorage identity as an admin.
-  window.kznClearForgedAdminState = function(){
-    try{
-      const u = JSON.parse(localStorage.getItem('kzn_usuario_logado') || 'null');
-      const auth = currentAuthUser();
-      if(!auth || !u || String(u.uid || '') !== String(auth.uid || '')){
-        // Do not delete the user's profile; only remove the forged session marker.
-        localStorage.removeItem('kzn_usuario_logado');
-        try{ usuarioLogado = null; }catch(e){}
-      }
-    }catch(e){}
-  };
-
-  document.addEventListener('DOMContentLoaded', function(){
-    setTimeout(function(){
-      if(typeof window.kznClearForgedAdminState === 'function') window.kznClearForgedAdminState();
-      if(typeof window.atualizarBotaoAdminV6 === 'function') window.atualizarBotaoAdminV6();
-    }, 400);
-  });
 })();
 </script>
 
