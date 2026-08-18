@@ -3212,6 +3212,65 @@
   .chat-messages .chat-msg{backdrop-filter:none;}
 }
 </style>
+
+<!-- ===== KZN V10 — XCORE HEADER + TRANSPARENT CHAT WALLPAPER + RED NOTIFICATION BUTTON ===== -->
+<style>
+/* XCORE: force the brand text to remain visible, especially on mobile. */
+.nav-xcore{display:flex!important;align-items:center!important;flex:0 0 auto!important;min-width:125px!important;max-width:150px!important;overflow:visible!important;gap:6px!important;}
+.nav-xcore .xcore-text{display:flex!important;flex-direction:column!important;justify-content:center!important;min-width:0!important;visibility:visible!important;opacity:1!important;overflow:visible!important;}
+.nav-xcore .xcore-text .name{display:block!important;color:#a855f7!important;font-weight:900!important;font-size:.72rem!important;line-height:1.05!important;white-space:nowrap!important;text-shadow:0 0 7px rgba(168,85,247,.22)!important;}
+.nav-xcore .xcore-text .team{display:block!important;color:#fff!important;font-weight:800!important;font-size:.58rem!important;line-height:1.05!important;white-space:nowrap!important;}
+@media(max-width:560px){
+  .nav-logo-wrapper{max-width:44%!important;flex:0 1 44%!important;}
+  .nav-logo .logo-text small{display:none!important;}
+  .nav-xcore{min-width:118px!important;max-width:132px!important;}
+  .nav-xcore img{width:28px!important;height:28px!important;flex:0 0 28px!important;}
+  .nav-xcore .xcore-text{display:flex!important;}
+  .nav-xcore .xcore-text .name{font-size:.60rem!important;}
+  .nav-xcore .xcore-text .team{font-size:.50rem!important;}
+}
+@media(max-width:400px){
+  .nav-logo-wrapper{max-width:42%!important;flex-basis:42%!important;}
+  .nav-xcore{min-width:108px!important;max-width:116px!important;gap:4px!important;}
+  .nav-xcore img{width:25px!important;height:25px!important;flex-basis:25px!important;}
+  .nav-xcore .xcore-text .name{font-size:.53rem!important;}
+  .nav-xcore .xcore-text .team{font-size:.45rem!important;}
+}
+
+/* Notification button: compact red control, not an oversized outline. */
+#notifBtn.nav-icon-btn{
+  width:42px!important;height:42px!important;min-width:42px!important;
+  border-radius:50%!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  padding:0!important;
+  background:linear-gradient(145deg,#ef4444,#b91c1c)!important;
+  border:1px solid rgba(255,255,255,.22)!important;
+  color:#fff!important;
+  box-shadow:0 4px 16px rgba(239,68,68,.32)!important;
+}
+#notifBtn.nav-icon-btn i{color:#fff!important;font-size:1rem!important;}
+#notifBtn.nav-icon-btn:hover{background:linear-gradient(145deg,#f87171,#dc2626)!important;transform:translateY(-1px);}
+#notifBtn .badge{top:-3px!important;right:-3px!important;background:#111!important;color:#fff!important;border:2px solid #ef4444!important;min-width:18px!important;height:18px!important;font-size:.60rem!important;}
+@media(max-width:560px){#notifBtn.nav-icon-btn{width:38px!important;height:38px!important;min-width:38px!important;}#notifBtn.nav-icon-btn i{font-size:.9rem!important;}}
+
+/* Chat wallpaper: apply it to the actual scrolling message area and keep message cards transparent. */
+.chat-messages{
+  background-image:linear-gradient(rgba(0,0,0,.16),rgba(0,0,0,.16)),url("https://encrypted-tbn0.gstatic.com/images?q=ANd9GcQ6xkvFPJj68-vJ0uDDoJL6sLuw4snBUMr8evEq4kvFAg&s=10")!important;
+  background-size:cover!important;
+  background-position:center!important;
+  background-repeat:no-repeat!important;
+  background-attachment:scroll!important;
+  background-color:transparent!important;
+}
+.chat-messages .chat-msg{
+  background:rgba(0,0,0,.18)!important;
+  border-left-color:rgba(168,85,247,.9)!important;
+  box-shadow:0 2px 8px rgba(0,0,0,.16)!important;
+  backdrop-filter:blur(1px)!important;
+}
+.chat-messages .chat-msg:hover{background:rgba(0,0,0,.24)!important;}
+</style>
+
 </head>
 <body>
 <!-- ===== WHATSAPP FIXO ===== -->
