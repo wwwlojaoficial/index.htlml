@@ -58,6 +58,7 @@
             border-radius: 10px;
         }
 
+        /* ===== TEMA CLARO ===== */
         body.tema-claro {
             --bg: #f1f5f9;
             --bg-card: #ffffff;
@@ -2344,370 +2345,6 @@
             font-weight: 400;
         }
 
-        /* ===== ADMIN CSS (NOVO) ===== */
-        .central-container {
-            display: flex;
-            min-height: 100vh;
-            background: var(--bg);
-            color: var(--text);
-        }
-        .admin-sidebar {
-            width: 260px;
-            background: var(--bg-card);
-            border-right: 1px solid var(--border);
-            padding: 1.5rem 0;
-            flex-shrink: 0;
-            position: sticky;
-            top: 0;
-            height: 100vh;
-            overflow-y: auto;
-        }
-        .admin-sidebar .brand {
-            padding: 0 1.5rem 1.5rem;
-            border-bottom: 1px solid var(--border);
-            text-align: center;
-        }
-        .admin-sidebar .brand h2 {
-            font-size: 1.2rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .admin-sidebar .brand small {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-        }
-        .admin-nav {
-            list-style: none;
-            padding: 1rem 0;
-            margin: 0;
-        }
-        .admin-nav li {
-            padding: 0.6rem 1.5rem;
-            cursor: pointer;
-            transition: 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: var(--text-muted);
-            border-left: 3px solid transparent;
-            font-size: 0.9rem;
-        }
-        .admin-nav li:hover {
-            background: var(--glass);
-            color: var(--text);
-        }
-        .admin-nav li.active {
-            background: rgba(124,58,237,0.08);
-            color: var(--secondary-light);
-            border-left-color: var(--secondary);
-        }
-        .admin-nav li i {
-            width: 20px;
-            text-align: center;
-        }
-        .admin-content {
-            flex: 1;
-            padding: 2rem;
-            overflow-y: auto;
-        }
-        .admin-content h2 {
-            margin-bottom: 1.5rem;
-            color: var(--text);
-            font-size: 1.5rem;
-        }
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-        .stat-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 1.5rem;
-            text-align: center;
-            transition: 0.3s;
-        }
-        .stat-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--primary);
-        }
-        .stat-card .stat-icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-        .stat-card .stat-number {
-            font-size: 2rem;
-            font-weight: 900;
-            color: var(--text);
-        }
-        .stat-card .stat-label {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-        .table-responsive {
-            overflow-x: auto;
-            margin-top: 1rem;
-        }
-        .table-responsive table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.9rem;
-        }
-        .table-responsive th {
-            text-align: left;
-            padding: 0.8rem 1rem;
-            background: var(--bg);
-            border-bottom: 2px solid var(--border);
-            color: var(--text-muted);
-            font-weight: 600;
-        }
-        .table-responsive td {
-            padding: 0.8rem 1rem;
-            border-bottom: 1px solid var(--border);
-        }
-        .table-responsive tr:hover {
-            background: var(--glass);
-        }
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .avatar-mini {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            color: #fff;
-            font-size: 0.7rem;
-            flex-shrink: 0;
-            overflow: hidden;
-        }
-        .avatar-mini img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .status-badge {
-            padding: 0.2rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-weight: 600;
-        }
-        .status-badge.active {
-            background: rgba(34,197,94,0.15);
-            color: var(--success);
-        }
-        .status-badge.banned {
-            background: rgba(239,68,68,0.15);
-            color: var(--danger);
-        }
-        .btn-sm {
-            padding: 0.2rem 0.6rem;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            background: var(--bg);
-            color: var(--text-muted);
-            cursor: pointer;
-            transition: 0.3s;
-            font-size: 0.7rem;
-        }
-        .btn-sm:hover {
-            border-color: var(--primary);
-            color: var(--text);
-        }
-        .btn-sm.btn-danger {
-            border-color: var(--danger);
-            color: var(--danger);
-        }
-        .btn-sm.btn-danger:hover {
-            background: rgba(239,68,68,0.1);
-        }
-        .btn-sm.btn-success {
-            border-color: var(--success);
-            color: var(--success);
-        }
-        .btn-sm.btn-success:hover {
-            background: rgba(34,197,94,0.1);
-        }
-        .search-bar {
-            display: flex;
-            gap: 0.8rem;
-            flex-wrap: wrap;
-            margin-bottom: 1rem;
-        }
-        .search-bar input {
-            flex: 1;
-            min-width: 200px;
-            padding: 0.6rem 1rem;
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            color: var(--text);
-            font-size: 0.9rem;
-            outline: none;
-            transition: 0.3s;
-        }
-        .search-bar input:focus {
-            border-color: var(--secondary);
-        }
-        .search-bar select {
-            padding: 0.6rem 1rem;
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            color: var(--text);
-            font-size: 0.9rem;
-            outline: none;
-        }
-        .log-item {
-            display: flex;
-            gap: 1rem;
-            padding: 0.5rem 1rem;
-            border-bottom: 1px solid var(--border);
-            align-items: center;
-        }
-        .log-item .log-time {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            min-width: 140px;
-        }
-        .log-item .log-action {
-            font-weight: 600;
-            color: var(--text);
-            min-width: 120px;
-        }
-        .log-item .log-details {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-        }
-        .notificacao-form .form-group {
-            margin-bottom: 1rem;
-        }
-        .notificacao-form label {
-            display: block;
-            color: var(--text);
-            font-weight: 600;
-            font-size: 0.85rem;
-            margin-bottom: 0.2rem;
-        }
-        .notificacao-form input,
-        .notificacao-form textarea {
-            width: 100%;
-            padding: 0.7rem 1rem;
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            color: var(--text);
-            font-size: 0.9rem;
-            outline: none;
-            transition: 0.3s;
-            font-family: inherit;
-        }
-        .notificacao-form input:focus,
-        .notificacao-form textarea:focus {
-            border-color: var(--secondary);
-        }
-        .modal-ban {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            backdrop-filter: blur(4px);
-            z-index: 9999;
-            align-items: center;
-            justify-content: center;
-            padding: 16px;
-        }
-        .modal-ban.open {
-            display: flex;
-        }
-        .modal-ban .modal-content {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 2rem;
-            max-width: 440px;
-            width: 100%;
-            animation: fadeIn 0.3s ease;
-        }
-        .modal-ban h3 {
-            color: var(--text);
-            margin-bottom: 0.5rem;
-        }
-        .modal-ban p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
-        }
-        .modal-ban .form-group {
-            margin-bottom: 1rem;
-        }
-        .modal-ban label {
-            display: block;
-            color: var(--text);
-            font-weight: 600;
-            font-size: 0.85rem;
-            margin-bottom: 0.2rem;
-        }
-        .modal-ban textarea,
-        .modal-ban select {
-            width: 100%;
-            padding: 0.6rem 1rem;
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            color: var(--text);
-            font-size: 0.9rem;
-            outline: none;
-            transition: 0.3s;
-        }
-        .modal-ban textarea:focus,
-        .modal-ban select:focus {
-            border-color: var(--secondary);
-        }
-        .modal-ban .modal-actions {
-            display: flex;
-            gap: 0.8rem;
-            margin-top: 1.5rem;
-        }
-        .modal-ban .modal-actions button {
-            flex: 1;
-            padding: 0.6rem;
-            border: none;
-            border-radius: 8px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .modal-ban .modal-actions .btn-confirm {
-            background: var(--danger);
-            color: #fff;
-        }
-        .modal-ban .modal-actions .btn-confirm:hover {
-            background: var(--primary-dark);
-        }
-        .modal-ban .modal-actions .btn-cancel {
-            background: var(--bg);
-            color: var(--text-muted);
-            border: 1px solid var(--border);
-        }
-        .modal-ban .modal-actions .btn-cancel:hover {
-            border-color: var(--text);
-            color: var(--text);
-        }
-
-        /* ===== RESPONSIVO ===== */
         @media (max-width: 1024px) {
             .hero { flex-direction: column; text-align: center; padding-top: 7rem; }
             .hero-content { max-width: 100%; }
@@ -2716,35 +2353,6 @@
             .hero-image { max-width: 100%; margin-left: 0; margin-top: 2rem; }
             .profile-section .profile-header { flex-direction: column; text-align: center; }
             .dropdown { width: 300px; right: -20px; }
-            .central-container { flex-direction: column; }
-            .admin-sidebar {
-                width: 100%;
-                height: auto;
-                position: relative;
-                padding: 0.5rem 0;
-            }
-            .admin-sidebar .brand { padding: 0.5rem 1rem; }
-            .admin-nav {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 0.2rem;
-                padding: 0.5rem;
-            }
-            .admin-nav li {
-                padding: 0.4rem 0.8rem;
-                border-left: none;
-                border-bottom: 2px solid transparent;
-                font-size: 0.7rem;
-            }
-            .admin-nav li.active {
-                border-left: none;
-                border-bottom-color: var(--secondary);
-            }
-            .admin-content { padding: 1rem; }
-            .stats-grid { grid-template-columns: repeat(2, 1fr); }
-            .search-bar { flex-direction: column; }
-            .search-bar input { min-width: unset; }
-            .modal-ban .modal-content { padding: 1.5rem; }
         }
         @media (max-width: 768px) {
             .navbar { padding: 0 0.5rem; }
@@ -2884,11 +2492,48 @@
             .welcome-content {
                 padding: 1.2rem;
             }
-            .stats-grid { grid-template-columns: 1fr; }
-            .table-responsive table { font-size: 0.7rem; }
-            .table-responsive th,
-            .table-responsive td { padding: 0.4rem 0.6rem; }
         }
+
+        /* ===== MEGA UPDATE 2026 ===== */
+        .mega-admin { display:none; padding:2rem 0 5rem; background:var(--bg); min-height:70vh; }
+        .mega-admin.show { display:block; }
+        .admin-shell { display:grid; grid-template-columns:240px 1fr; gap:1.25rem; }
+        .admin-sidebar { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:1rem; position:sticky; top:90px; height:max-content; }
+        .admin-brand { padding:.75rem .8rem 1rem; border-bottom:1px solid var(--border); margin-bottom:.7rem; font-weight:800; }
+        .admin-nav button { width:100%; text-align:left; border:0; background:transparent; color:var(--text); padding:.75rem .8rem; border-radius:10px; cursor:pointer; margin:.12rem 0; }
+        .admin-nav button:hover,.admin-nav button.active { background:rgba(139,92,246,.14); color:var(--primary); }
+        .admin-main { min-width:0; }
+        .admin-top { display:flex; justify-content:space-between; gap:1rem; align-items:center; margin-bottom:1rem; }
+        .admin-top h2 { margin:0; }
+        .admin-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1rem; margin-bottom:1rem; }
+        .admin-stat { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:1rem; }
+        .admin-stat .value { font-size:1.65rem; font-weight:900; margin-top:.3rem; }
+        .admin-stat .label { color:var(--text-muted); font-size:.78rem; }
+        .admin-panel { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:1.15rem; }
+        .admin-panel h3 { margin:0 0 1rem; }
+        .admin-toolbar { display:flex; gap:.65rem; flex-wrap:wrap; margin-bottom:1rem; }
+        .admin-toolbar input,.admin-toolbar select,.admin-form input,.admin-form textarea,.admin-form select { flex:1; min-width:180px; background:var(--bg); border:1px solid var(--border); color:var(--text); border-radius:10px; padding:.75rem; outline:none; }
+        .admin-form { display:grid; gap:.75rem; }
+        .admin-form textarea { min-height:130px; resize:vertical; }
+        .admin-btn { border:0; border-radius:10px; padding:.75rem 1rem; cursor:pointer; font-weight:700; }
+        .admin-btn.primary { background:linear-gradient(135deg,var(--primary),var(--secondary)); color:#fff; }
+        .admin-btn.danger { background:var(--danger); color:#fff; }
+        .admin-btn.success { background:var(--success); color:#07110a; }
+        .admin-table-wrap { overflow:auto; }
+        .admin-table { width:100%; border-collapse:collapse; min-width:650px; }
+        .admin-table th,.admin-table td { padding:.75rem; border-bottom:1px solid var(--border); text-align:left; font-size:.82rem; }
+        .admin-table th { color:var(--text-muted); font-size:.72rem; text-transform:uppercase; }
+        .admin-badge { display:inline-flex; padding:.25rem .5rem; border-radius:999px; font-size:.68rem; font-weight:800; }
+        .admin-badge.ok { background:rgba(34,197,94,.15); color:var(--success); }
+        .admin-badge.ban { background:rgba(239,68,68,.15); color:var(--danger); }
+        .admin-empty { color:var(--text-muted); padding:1.5rem; text-align:center; }
+        .owner-only-link { display:none !important; }
+        .owner-only-link.show { display:list-item !important; }
+        .product-category-title { margin:2rem 0 1rem; text-align:center; }
+        .auto-trash-section .plan-card { max-width:520px; margin:0 auto; }
+        @media(max-width:900px){ .admin-shell{grid-template-columns:1fr}.admin-sidebar{position:static}.admin-grid{grid-template-columns:repeat(2,minmax(0,1fr));} }
+        @media(max-width:520px){ .admin-grid{grid-template-columns:1fr}.admin-top{align-items:flex-start;flex-direction:column}.admin-toolbar{flex-direction:column}.admin-toolbar input,.admin-toolbar select,.admin-form input,.admin-form textarea,.admin-form select{width:100%;box-sizing:border-box} }
+
     </style>
 </head>
 <body>
@@ -3010,11 +2655,12 @@
             <ul class="nav-menu" id="navMenuDesktop">
                 <li><a href="#inicio" class="active"><i class="fas fa-home"></i> Início</a></li>
                 <li><a href="#mods"><i class="fas fa-cubes"></i> Mods</a></li>
+                <li><a href="#auto-trash"><i class="fas fa-trash"></i> Auto Trash</a></li>
+                <li><a href="#auto-trash"><i class="fas fa-trash"></i> Auto Trash</a></li>
                 <li><a href="#regras"><i class="fas fa-gavel"></i> Regras</a></li>
                 <li><a href="#contato"><i class="fas fa-envelope"></i> Contato</a></li>
                 <li><a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
-                <li><a href="#perfil"><i class="fas fa-user"></i> Perfil</a></li>
-                <li id="navCentralAdmin" style="display:none;"><a href="#central"><i class="fas fa-crown"></i> Central</a></li>
+                <li id="ownerNavDesktop" class="owner-only-link"><a href="#proprietario"><i class="fas fa-crown"></i> Proprietário</a></li>
             </ul>
 
             <ul class="nav-menu mobile-menu" id="navMenuMobile">
@@ -3024,7 +2670,7 @@
                 <li><a href="#contato"><i class="fas fa-envelope"></i> Contato</a></li>
                 <li><a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
                 <li><a href="#perfil"><i class="fas fa-user"></i> Perfil</a></li>
-                <li id="navCentralAdminMobile" style="display:none;"><a href="#central"><i class="fas fa-crown"></i> Central Admin</a></li>
+                <li id="ownerNavMobile" class="owner-only-link"><a href="#proprietario"><i class="fas fa-crown"></i> Proprietário</a></li>
             </ul>
 
             <div class="nav-actions">
@@ -3123,7 +2769,7 @@
                 <button class="tab-btn era" onclick="trocarAba('era')">
                     <i class="fas fa-city"></i> Graal Era
                 </button>
-                <button class="tab-btn" onclick="trocarAba('autotrash')">
+                <button class="tab-btn classic" onclick="trocarAba('auto-trash')">
                     <i class="fas fa-trash"></i> Auto Trash
                 </button>
             </div>
@@ -3346,7 +2992,6 @@
                         <button class="btn-buy" style="background:linear-gradient(135deg,var(--era),#d97706);" onclick="adicionarAoCarrinho('MOD MENU GRAAL ERA', 65, 'era')">COMPRAR AGORA</button>
                         <button class="btn-add-cart" onclick="adicionarAoCarrinho('MOD MENU GRAAL ERA', 65, 'era')"><i class="fas fa-cart-plus"></i> Adicionar ao Carrinho</button>
                     </div>
-                </div>
 
                 <!-- AVISO IMPORTANTE ERA -->
                 <div class="aviso-plano" style="border-color:var(--era);background:rgba(245,158,11,0.08);">
@@ -3368,13 +3013,13 @@
             </div>
 
             <!-- ===== TAB AUTO TRASH ===== -->
-            <div class="tab-content" id="tab-autotrash">
+            <div class="tab-content auto-trash-section" id="tab-auto-trash">
                 <div class="plans-header">
-                    <h3><i class="fas fa-trash"></i> AUTO TRASH AUTOMATIC</h3>
-                    <p style="font-size:0.9rem;color:var(--text-muted);">FARM AUTOMÁTICO DE LIXO PARA GRAAL ERA</p>
+                    <h3><i class="fas fa-trash"></i> AUTO TRASH</h3>
+                    <p>Script automático separado dos produtos do Graal Classic e Graal Era.</p>
                 </div>
-
-                <div class="plans-grid" style="max-width:600px;margin:0 auto;">
+                <div class="plans-grid">
+                    <!-- AUTO TRASH (GRAAL ERA) -->
                     <div class="plan-card popular" style="border-color:var(--era);">
                         <span class="badge era-badge">🔥 Exclusivo Era</span>
                         <div style="text-align:center;margin:0.5rem 0;">
@@ -3398,19 +3043,6 @@
                         <button class="btn-add-cart" onclick="adicionarAoCarrinho('Auto Trash Automatic', 200, 'classic')"><i class="fas fa-cart-plus"></i> Adicionar</button>
                     </div>
                 </div>
-
-                <div class="aviso-plano" style="border-color:var(--era);background:rgba(245,158,11,0.08);">
-                    <h4 style="color:var(--era);"><i class="fas fa-info-circle"></i> INFORMAÇÕES DE PAGAMENTO</h4>
-                    <p>
-                        <strong>PIX KZN MENU</strong><br>
-                        Chave PIX: <span style="color:var(--success);font-family:monospace;font-weight:700;">6c80021c-957b-49c0-9a5d-98371bf67120</span>
-                    </p>
-                    <p style="margin-top:0.5rem;font-size:0.85rem;">
-                        <i class="fas fa-user" style="color:var(--primary);"></i>
-                        <strong>Vendedor:</strong> KZN MENU<br>
-                        <i class="fas fa-envelope" style="color:var(--primary);"></i>
-                        <strong>E-mail:</strong> gabriel6061yt@gmail.com
-                    </p>
                 </div>
             </div>
 
@@ -3502,6 +3134,81 @@
     </section>
 
     <!-- ===== REGRAS ===== -->
+
+    <!-- ===== CENTRAL DO PROPRIETÁRIO ===== -->
+    <section id="proprietario" class="mega-admin">
+        <div class="container">
+            <div class="admin-shell">
+                <aside class="admin-sidebar">
+                    <div class="admin-brand">👑 KZN ADMIN</div>
+                    <div class="admin-nav">
+                        <button class="active" onclick="adminAba('dashboard',this)">📊 Dashboard</button>
+                        <button onclick="adminAba('usuarios',this)">👥 Usuários</button>
+                        <button onclick="adminAba('banimentos',this)">🔨 Banimentos</button>
+                        <button onclick="adminAba('notificacoes',this)">🔔 Notificações</button>
+                        <button onclick="adminAba('logs',this)">📜 Logs</button>
+                    </div>
+                </aside>
+                <main class="admin-main">
+                    <div class="admin-top">
+                        <div><h2>Central do Proprietário</h2><p style="color:var(--text-muted);margin:.25rem 0 0;">Ferramentas administrativas do KZN MENU</p></div>
+                        <button class="admin-btn" onclick="fecharPainelProprietario()">Fechar</button>
+                    </div>
+
+                    <div id="admin-dashboard" class="admin-view">
+                        <div class="admin-grid">
+                            <div class="admin-stat"><div class="label">Usuários cadastrados</div><div class="value" id="admUsers">0</div></div>
+                            <div class="admin-stat"><div class="label">Banidos</div><div class="value" id="admBans">0</div></div>
+                            <div class="admin-stat"><div class="label">Notificações</div><div class="value" id="admNotifs">0</div></div>
+                            <div class="admin-stat"><div class="label">Online no chat</div><div class="value" id="admOnline">0</div></div>
+                        </div>
+                        <div class="admin-panel"><h3>Resumo</h3><div id="adminSummary" class="admin-empty">Carregando...</div></div>
+                    </div>
+
+                    <div id="admin-usuarios" class="admin-view" style="display:none">
+                        <div class="admin-panel">
+                            <h3>👥 Gerenciar usuários</h3>
+                            <div class="admin-toolbar"><input id="adminUserSearch" placeholder="Pesquisar por nome ou e-mail" oninput="renderAdminUsers()"></div>
+                            <div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>Usuário</th><th>E-mail</th><th>Status</th><th>Ações</th></tr></thead><tbody id="adminUsersTable"></tbody></table></div>
+                        </div>
+                    </div>
+
+                    <div id="admin-banimentos" class="admin-view" style="display:none">
+                        <div class="admin-panel">
+                            <h3>🔨 Banir conta</h3>
+                            <div class="admin-form">
+                                <input id="banEmailInput" type="email" placeholder="E-mail do usuário">
+                                <input id="banReasonInput" placeholder="Motivo do banimento">
+                                <select id="banDurationInput"><option value="1h">1 hora</option><option value="1d">1 dia</option><option value="7d">7 dias</option><option value="30d">30 dias</option><option value="permanent">Permanente</option></select>
+                                <button class="admin-btn danger" onclick="adminBanirConta()">🔨 Confirmar banimento</button>
+                            </div>
+                            <hr style="border-color:var(--border);margin:1.25rem 0">
+                            <div class="admin-toolbar"><input id="adminBanSearch" placeholder="Pesquisar banimento" oninput="renderAdminBans()"></div>
+                            <div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>Usuário</th><th>Motivo</th><th>Expiração</th><th>Status</th><th>Ação</th></tr></thead><tbody id="adminBansTable"></tbody></table></div>
+                        </div>
+                    </div>
+
+                    <div id="admin-notificacoes" class="admin-view" style="display:none">
+                        <div class="admin-panel">
+                            <h3>🔔 Enviar notificação</h3>
+                            <div class="admin-form">
+                                <input id="adminNotifEmail" type="email" placeholder="E-mail do usuário">
+                                <input id="adminNotifTitle" placeholder="Título">
+                                <textarea id="adminNotifMessage" placeholder="Escreva a mensagem..."></textarea>
+                                <button class="admin-btn primary" onclick="adminEnviarNotificacao()">📨 Enviar notificação</button>
+                            </div>
+                        </div>
+                        <div class="admin-panel" style="margin-top:1rem"><h3>Histórico</h3><div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>Destinatário</th><th>Título</th><th>Mensagem</th><th>Data</th></tr></thead><tbody id="adminNotifTable"></tbody></table></div></div>
+                    </div>
+
+                    <div id="admin-logs" class="admin-view" style="display:none">
+                        <div class="admin-panel"><h3>📜 Logs administrativos</h3><div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>Ação</th><th>Alvo</th><th>Administrador</th><th>Data</th></tr></thead><tbody id="adminLogsTable"></tbody></table></div></div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </section>
+
     <section id="regras" class="section dark">
         <div class="container">
             <div class="section-header">
@@ -3568,66 +3275,66 @@
         </div>
     </section>
 
-    <!-- ===== CONTATO GRAAL ERA ===== -->
-    <section id="contato-era" class="section dark">
-        <div class="container">
-            <div class="section-header">
-                <h2><i class="fas fa-city" style="color:var(--era);"></i> MOD MENU GRAAL ERA</h2>
-                <p>Formulário exclusivo para compra do MOD MENU GRAAL ERA</p>
-            </div>
-            <div class="form-container" style="border-color:var(--era);">
-                <form id="formContatoEra" action="https://formsubmit.co/xitadobr5x@gmail.com" method="POST" enctype="multipart/form-data">
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_template" value="table">
-                    <input type="hidden" name="_subject" value="🔥 NOVO PEDIDO - MOD MENU GRAAL ERA">
-
-                    <div style="text-align:center;margin-bottom:1.2rem;">
-                        <img src="https://yt3.ggpht.com/OBlIy0WjA_eBxMQz4Z1pRx7IiuRkNjQSxoGeMpUV8vROPggmrRcM0wxoqY5jGV3uXy0vxkMpHMhHc8o=s720-rw-nd-v1" alt="MOD MENU GRAAL ERA" style="max-width:180px;border-radius:12px;border:2px solid var(--era);" />
-                        <p style="color:var(--text-muted);font-size:0.85rem;margin-top:0.3rem;">
-                            <strong style="color:var(--era);">Vendedor:</strong> Xitado
-                        </p>
-                    </div>
-
-                    <div class="form-group">
-                        <label><i class="fas fa-envelope"></i> Seu E-mail <span style="color:var(--primary);">*</span></label>
-                        <input type="email" name="Email" placeholder="Digite seu e-mail..." required>
-                        <small style="color:var(--text-muted);font-size:0.7rem;">Você receberá as instruções neste e-mail</small>
-                    </div>
-
-                    <div class="form-group"><label><i class="fas fa-user"></i> Seu Nome</label><input type="text" name="Nome" placeholder="Digite seu nome completo..." required></div>
-                    <div class="form-group"><label><i class="fab fa-whatsapp"></i> WhatsApp</label><input type="text" name="WhatsApp" placeholder="(DDD) 9 9999-9999" required></div>
-                    
-                    <div class="form-group">
-                        <label><i class="fas fa-crown"></i> Produto</label>
-                        <select name="Produto" required>
-                            <option value="MOD MENU GRAAL ERA - R$ 65,00">🎯 MOD MENU GRAAL ERA - R$ 65,00</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label><i class="fas fa-qrcode"></i> Chave PIX</label>
-                        <div style="background:var(--bg);padding:0.8rem;border-radius:8px;border:1px solid var(--success);font-family:monospace;font-size:0.9rem;color:var(--success);word-break:break-all;text-align:center;">
-                            bc662963-1a5a-4fb0-af5e-5c7e4a82e590
-                        </div>
-                        <small style="color:var(--text-muted);font-size:0.65rem;">Esta chave PIX é exclusiva para o MOD MENU GRAAL ERA</small>
-                    </div>
-
-                    <div class="form-group"><label><i class="fas fa-image"></i> 📸 Comprovante PIX <span style="color:var(--primary);">*</span></label><input type="file" name="Comprovante" accept="image/*,.pdf" required><p style="font-size:0.65rem;color:var(--text-muted);margin-top:0.3rem;">Envie uma foto do comprovante PIX (PNG, JPG, PDF - até 5MB)</p></div>
-                    <div class="form-group"><label><i class="fas fa-pencil-alt"></i> Mensagem (opcional)</label><textarea name="Mensagem" rows="3" placeholder="Digite sua mensagem aqui..."></textarea></div>
-                    
-                    <div style="text-align:center;margin-bottom:0.8rem;font-size:0.8rem;color:var(--text-muted);">
-                        <i class="fas fa-shield-alt" style="color:var(--era);"></i>
-                        Vendedor: <strong style="color:var(--era);">Xitado</strong> | 
-                        <i class="fas fa-envelope" style="color:var(--era);"></i>
-                        <strong>xitadobr5x@gmail.com</strong>
-                    </div>
-
-                    <button type="submit" class="btn-submit" style="background:linear-gradient(135deg,var(--era),#d97706);"><i class="fas fa-paper-plane"></i> Enviar Pedido - Graal Era</button>
-                    <div class="form-status" id="formStatusEra"></div>
-                </form>
-            </div>
+ <!-- ===== CONTATO GRAAL ERA ===== -->
+<section id="contato-era" class="section dark">
+    <div class="container">
+        <div class="section-header">
+            <h2><i class="fas fa-city" style="color:var(--era);"></i> MOD MENU GRAAL ERA</h2>
+            <p>Formulário exclusivo para compra do MOD MENU GRAAL ERA</p>
         </div>
-    </section>
+        <div class="form-container" style="border-color:var(--era);">
+            <form id="formContatoEra" action="https://formsubmit.co/xitadobr5x@gmail.com" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_subject" value="🔥 NOVO PEDIDO - MOD MENU GRAAL ERA">
+
+                <div style="text-align:center;margin-bottom:1.2rem;">
+                    <img src="https://yt3.ggpht.com/OBlIy0WjA_eBxMQz4Z1pRx7IiuRkNjQSxoGeMpUV8vROPggmrRcM0wxoqY5jGV3uXy0vxkMpHMhHc8o=s720-rw-nd-v1" alt="MOD MENU GRAAL ERA" style="max-width:180px;border-radius:12px;border:2px solid var(--era);" />
+                    <p style="color:var(--text-muted);font-size:0.85rem;margin-top:0.3rem;">
+                        <strong style="color:var(--era);">Vendedor:</strong> Xitado
+                    </p>
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fas fa-envelope"></i> Seu E-mail <span style="color:var(--primary);">*</span></label>
+                    <input type="email" name="Email" placeholder="Digite seu e-mail..." required>
+                    <small style="color:var(--text-muted);font-size:0.7rem;">Você receberá as instruções neste e-mail</small>
+                </div>
+
+                <div class="form-group"><label><i class="fas fa-user"></i> Seu Nome</label><input type="text" name="Nome" placeholder="Digite seu nome completo..." required></div>
+                <div class="form-group"><label><i class="fab fa-whatsapp"></i> WhatsApp</label><input type="text" name="WhatsApp" placeholder="(DDD) 9 9999-9999" required></div>
+                
+                <div class="form-group">
+                    <label><i class="fas fa-crown"></i> Produto</label>
+                    <select name="Produto" required>
+                        <option value="MOD MENU GRAAL ERA - R$ 65,00">🎯 MOD MENU GRAAL ERA - R$ 65,00</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fas fa-qrcode"></i> Chave PIX</label>
+                    <div style="background:var(--bg);padding:0.8rem;border-radius:8px;border:1px solid var(--success);font-family:monospace;font-size:0.9rem;color:var(--success);word-break:break-all;text-align:center;">
+                        bc662963-1a5a-4fb0-af5e-5c7e4a82e590
+                    </div>
+                    <small style="color:var(--text-muted);font-size:0.65rem;">Esta chave PIX é exclusiva para o MOD MENU GRAAL ERA</small>
+                </div>
+
+                <div class="form-group"><label><i class="fas fa-image"></i> 📸 Comprovante PIX <span style="color:var(--primary);">*</span></label><input type="file" name="Comprovante" accept="image/*,.pdf" required><p style="font-size:0.65rem;color:var(--text-muted);margin-top:0.3rem;">Envie uma foto do comprovante PIX (PNG, JPG, PDF - até 5MB)</p></div>
+                <div class="form-group"><label><i class="fas fa-pencil-alt"></i> Mensagem (opcional)</label><textarea name="Mensagem" rows="3" placeholder="Digite sua mensagem aqui..."></textarea></div>
+                
+                <div style="text-align:center;margin-bottom:0.8rem;font-size:0.8rem;color:var(--text-muted);">
+                    <i class="fas fa-shield-alt" style="color:var(--era);"></i>
+                    Vendedor: <strong style="color:var(--era);">Xitado</strong> | 
+                    <i class="fas fa-envelope" style="color:var(--era);"></i>
+                    <strong>xitadobr5x@gmail.com</strong>
+                </div>
+
+                <button type="submit" class="btn-submit" style="background:linear-gradient(135deg,var(--era),#d97706);"><i class="fas fa-paper-plane"></i> Enviar Pedido - Graal Era</button>
+                <div class="form-status" id="formStatusEra"></div>
+            </form>
+        </div>
+    </div>
+</section>
 
     <!-- ===== FAQ ===== -->
     <section id="faq" class="section">
@@ -3711,84 +3418,29 @@
         </div>
     </div>
 
-    <!-- ===== CENTRAL DO PROPRIETÁRIO ===== -->
-    <div id="centralProprietario" style="display:none;">
-        <div class="central-container">
-            <div class="admin-sidebar">
-                <div class="brand">
-                    <h2>👑 KZN ADMIN</h2>
-                    <small>Central do Proprietário</small>
-                </div>
-                <ul class="admin-nav">
-                    <li class="active" data-section="dashboard"><i class="fas fa-chart-pie"></i> Dashboard</li>
-                    <li data-section="usuarios"><i class="fas fa-users"></i> Usuários</li>
-                    <li data-section="banimentos"><i class="fas fa-gavel"></i> Banimentos</li>
-                    <li data-section="compras"><i class="fas fa-shopping-bag"></i> Compras</li>
-                    <li data-section="keys"><i class="fas fa-key"></i> Keys</li>
-                    <li data-section="notificacoes"><i class="fas fa-bell"></i> Notificações</li>
-                    <li data-section="produtos"><i class="fas fa-cubes"></i> Produtos</li>
-                    <li data-section="logs"><i class="fas fa-history"></i> Logs</li>
-                </ul>
-            </div>
-
-            <div class="admin-content" id="adminContent">
-                <div style="text-align:center;padding:3rem;">
-                    <i class="fas fa-spinner fa-spin" style="font-size:2rem;"></i>
-                    <p>Carregando...</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ===== MODAL BAN ===== -->
-    <div class="modal-ban" id="modalBan">
-        <div class="modal-content">
-            <h3>🔨 Banir Usuário</h3>
-            <p>Informe o motivo e a duração do banimento.</p>
-            <div class="form-group">
-                <label>Motivo do Banimento</label>
-                <textarea id="motivoBan" rows="3" placeholder="Descreva o motivo..."></textarea>
-            </div>
-            <div class="form-group">
-                <label>Duração</label>
-                <select id="duracaoBan">
-                    <option value="5">5 minutos</option>
-                    <option value="15">15 minutos</option>
-                    <option value="60">1 hora</option>
-                    <option value="1440">24 horas</option>
-                    <option value="10080">7 dias</option>
-                    <option value="43200">30 dias</option>
-                    <option value="permanente">Permanente</option>
-                </select>
-            </div>
-            <div class="modal-actions">
-                <button class="btn-cancel" onclick="document.getElementById('modalBan').classList.remove('open')">Cancelar</button>
-                <button class="btn-confirm" onclick="adminSystem.confirmarBan()">Confirmar Banimento</button>
-            </div>
-        </div>
-    </div>
-
     <!-- ===== FOOTER ===== -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <span>KZN MENU</span>
-                    <p>O melhor Mod Menu para Graal Classic &amp; Era</p>
-                </div>
-                <div class="footer-social">
-                    <a href="https://discord.gg/tuwnDbWc2" target="_blank" class="discord" title="Discord KZN MENU (Classic + Auto Trash)">
-                        <img src="https://cdn.discordapp.com/attachments/1331352415026352199/1342539178553057372/discord-logo.gif?ex=67d0e2b6&is=67cf9136&hm=f2add38a9a75b4b17844c6c24aed3125ed9eb795125ef9ecdc80b5e52c629b9c&" alt="Discord KZN" style="width:32px; height:32px; border-radius:8px; object-fit:cover;" />
-                    </a>
-                    <a href="https://discord.gg/EUUjS7Vvs" target="_blank" class="xcore" title="Discord Xitado (Graal Era)" style="border-color:var(--era);">
-                        <i class="fas fa-bolt" style="color:var(--era);"></i>
-                    </a>
-                    <a href="#" class="pix-kzn" onclick="abrirModalPix()" title="PIX KZN"><i class="fas fa-qrcode"></i></a>
-                </div>
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span>KZN MENU</span>
+                <p>O melhor Mod Menu para Graal Classic &amp; Era</p>
             </div>
-            <div class="footer-bottom"><p>&copy; 2026 KZN MENU - Todos os direitos reservados</p></div>
+            <div class="footer-social">
+                <!-- SERVIDOR KZN MENU - COM GIF (apenas Classic + Auto Trash) -->
+                <a href="https://discord.gg/tuwnDbWc2" target="_blank" class="discord" title="Discord KZN MENU (Classic + Auto Trash)">
+                    <img src="https://cdn.discordapp.com/attachments/1331352415026352199/1342539178553057372/discord-logo.gif?ex=67d0e2b6&is=67cf9136&hm=f2add38a9a75b4b17844c6c24aed3125ed9eb795125ef9ecdc80b5e52c629b9c&" alt="Discord KZN" style="width:32px; height:32px; border-radius:8px; object-fit:cover;" />
+                </a>
+                <!-- SERVIDOR XITADO - SEM LOGO (apenas ícone) -->
+                <a href="https://discord.gg/EUUjS7Vvs" target="_blank" class="xcore" title="Discord Xitado (Graal Era)" style="border-color:var(--era);">
+                    <i class="fas fa-bolt" style="color:var(--era);"></i>
+                </a>
+                <a href="#" class="pix-kzn" onclick="abrirModalPix()" title="PIX KZN"><i class="fas fa-qrcode"></i></a>
+            </div>
         </div>
-    </footer>
+        <div class="footer-bottom"><p>&copy; 2026 KZN MENU - Todos os direitos reservados</p></div>
+    </div>
+</footer>
 
     <!-- ===== MODAL PIX KZN ===== -->
     <div class="modal-pix" id="modalPix">
@@ -5394,17 +5046,6 @@
             iniciarBot();
             registrarServiceWorker();
             carregarAdmins();
-            
-            // Verifica se é proprietário para mostrar central
-            if (usuarioLogado && usuarioLogado.email === PROPRIETARIO_EMAIL) {
-                document.getElementById('navCentralAdmin').style.display = 'block';
-                document.getElementById('navCentralAdminMobile').style.display = 'block';
-                document.getElementById('centralProprietario').style.display = 'block';
-                if (typeof adminSystem !== 'undefined' && adminSystem) {
-                    adminSystem.isAdmin = true;
-                    adminSystem.mostrarCentralAdmin();
-                }
-            }
         }
 
         window.fazerLogin = function() {
@@ -5508,14 +5149,22 @@
             }
         };
 
-        window.handleWelcomeLogin = function(response) {
+        window.handleWelcomeLogin = async function(response) {
             try {
                 const payload = parseJwt(response.credential);
-                const usuario = { nome: payload.name, email: payload.email, avatar: payload.picture };
+                const email = (payload.email || '').toLowerCase();
+                if (email && await verificarBanimentoContaAntesDeEntrar(email)) {
+                    alert('🚫 Esta conta está bloqueada. Entre em contato com o proprietário.');
+                    return;
+                }
+                const usuario = { nome: payload.name, email, avatar: payload.picture, googleSub: payload.sub };
                 usuarioLogado = usuario;
                 localStorage.setItem('kzn_usuario_logado', JSON.stringify(usuario));
                 setLoggedIn();
+                showOwnerTools();
+                carregarNotificacoesRemotas();
             } catch (e) {
+                console.error(e);
                 alert('❌ Erro ao fazer login com Google.');
             }
         };
@@ -5531,10 +5180,7 @@
 
         window.logout = function() {
             if (!confirm('Tem certeza que deseja sair?')) return;
-            if (usuarioLogado) {
-                const userRef = usuariosRef.child(usuarioLogado.email.replace(/[.#$\/\[\]]/g, '_'));
-                userRef.remove();
-            }
+            // Logout encerra apenas a sessão local. NÃO apaga o cadastro do usuário do banco.
             localStorage.removeItem('kzn_usuario_logado');
             usuarioLogado = null;
             document.getElementById('welcomeOverlay').classList.remove('hidden');
@@ -5542,9 +5188,6 @@
             document.getElementById('chatWindow').classList.remove('open');
             chatAberto = false;
             resetarPerfilPadrao();
-            document.getElementById('navCentralAdmin').style.display = 'none';
-            document.getElementById('navCentralAdminMobile').style.display = 'none';
-            document.getElementById('centralProprietario').style.display = 'none';
             alert('👋 Você saiu da sua conta.');
         };
 
@@ -5564,6 +5207,7 @@
             atualizarCarrinho();
         }
 
+        // ====== FUNÇÃO PRINCIPAL PARA ADICIONAR AO CARRINHO ======
         window.adicionarAoCarrinho = function(nome, preco, tipo = 'classic') {
             const item = carrinho.find(i => i.nome === nome);
             if (item) {
@@ -5573,7 +5217,7 @@
                     nome, 
                     preco, 
                     quantidade: 1, 
-                    tipo: tipo
+                    tipo: tipo // 'classic' para KZN/AutoTrash, 'era' para Graal Era
                 });
             }
             salvarCarrinho();
@@ -5623,6 +5267,7 @@
                 return;
             }
             
+            // Verifica se há produtos do tipo 'era' e 'classic' misturados
             const temEra = carrinho.some(item => item.tipo === 'era');
             const temClassic = carrinho.some(item => item.tipo === 'classic');
             
@@ -5633,6 +5278,7 @@
             
             const total = carrinho.reduce((sum, item) => sum + (item.preco * item.quantidade), 0);
             
+            // Define os dados de pagamento com base no tipo do produto
             const primeiroItem = carrinho[0];
             let pixKey, emailVendedor, vendedorNome;
             
@@ -5646,12 +5292,15 @@
                 vendedorNome = 'KZN MENU';
             }
             
+            // Abre modal com a chave correta
             document.getElementById('pixKey').textContent = pixKey;
             document.getElementById('planInfo').textContent = `Vendedor: ${vendedorNome} | Total: R$ ${total.toFixed(2)}`;
             abrirModalPix();
             
+            // Fecha o dropdown do carrinho
             document.getElementById('cartDropdown').classList.remove('open');
             
+            // Limpa o carrinho após gerar o pagamento
             carrinho = [];
             salvarCarrinho();
         };
@@ -5756,8 +5405,7 @@
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
             document.getElementById('tab-' + aba).classList.add('active');
-            const btn = document.querySelector(`.tab-btn.${aba}`);
-            if (btn) btn.classList.add('active');
+            document.querySelector('.tab-btn.' + aba).classList.add('active');
         };
 
         window.toggleFaq = function(el) {
@@ -5775,871 +5423,83 @@
         };
 
         // ====== EVENTO DE MENÇÃO (@) ======
-        function setupMention() {
-            const input = document.getElementById('chatInput');
+function setupMention() {
+    const input = document.getElementById('chatInput');
+    
+    input.addEventListener('keydown', function(e) {
+        if (e.key === '@') {
+            e.preventDefault();
             
-            input.addEventListener('keydown', function(e) {
-                if (e.key === '@') {
-                    e.preventDefault();
-                    
-                    usuariosRef.once('value', (snapshot) => {
-                        const dados = snapshot.val() || {};
-                        const usuarios = Object.values(dados).filter(u => u.online === true && u.email !== usuarioLogado?.email);
-                        
-                        if (usuarios.length === 0) {
-                            input.value += '@';
-                            return;
-                        }
-                        
-                        const oldMenu = document.querySelector('.mention-menu');
-                        if (oldMenu) oldMenu.remove();
-                        
-                        const menu = document.createElement('div');
-                        menu.className = 'mention-menu';
-                        
-                        usuarios.forEach(u => {
-                            const item = document.createElement('div');
-                            item.className = 'mention-item';
-                            item.textContent = `@${u.nome}`;
-                            item.onmouseover = () => item.style.background = 'var(--glass)';
-                            item.onmouseout = () => item.style.background = 'none';
-                            item.onclick = () => {
-                                input.value = input.value.slice(0, -1) + `@${u.nome} `;
-                                menu.remove();
-                                input.focus();
-                            };
-                            menu.appendChild(item);
-                        });
-                        
-                        document.querySelector('.chat-input-area').appendChild(menu);
-                        
-                        setTimeout(() => {
-                            document.addEventListener('click', function closeMention(e) {
-                                if (!menu.contains(e.target) && e.target !== input) {
-                                    menu.remove();
-                                    document.removeEventListener('click', closeMention);
-                                }
-                            });
-                        }, 100);
-                    });
-                    return;
-                }
-            });
-        }
-
-        // ====== COPIAR PIX ERA ======
-        window.copiarPixEra = function() {
-            const key = 'bc662963-1a5a-4fb0-af5e-5c7e4a82e590';
-            navigator.clipboard.writeText(key).then(() => {
-                const btn = document.querySelector('#contato-era .btn-copy');
-                if (btn) {
-                    const originalText = btn.innerHTML;
-                    btn.innerHTML = '<i class="fas fa-check"></i> Copiado! ✅';
-                    setTimeout(() => { btn.innerHTML = originalText; }, 2000);
-                }
-            }).catch(() => {
-                alert('📋 Chave PIX: ' + key);
-                const textArea = document.createElement('textarea');
-                textArea.value = key;
-                document.body.appendChild(textArea);
-                textArea.select();
-                try {
-                    document.execCommand('copy');
-                    alert('✅ Chave PIX copiada!');
-                } catch (err) {
-                    alert('📋 Chave PIX: ' + key);
-                }
-                document.body.removeChild(textArea);
-            });
-        };
-
-        // ====== ADMIN SYSTEM ======
-        class AdminSystem {
-            constructor() {
-                this.proprietarioEmail = 'gabriel6061yt@gmail.com';
-                this.isAdmin = false;
-                this.currentSection = 'dashboard';
-                this.init();
-            }
-
-            init() {
-                const usuario = JSON.parse(localStorage.getItem('kzn_usuario_logado'));
-                if (usuario && usuario.email === this.proprietarioEmail) {
-                    this.isAdmin = true;
-                    this.mostrarCentralAdmin();
-                } else {
-                    this.isAdmin = false;
-                    const centralElement = document.getElementById('centralProprietario');
-                    if (centralElement) centralElement.style.display = 'none';
-                }
-            }
-
-            mostrarCentralAdmin() {
-                const centralElement = document.getElementById('centralProprietario');
-                if (centralElement) {
-                    centralElement.style.display = 'block';
-                    this.carregarConteudo('dashboard');
-                }
-                this.setupEventListeners();
-            }
-
-            setupEventListeners() {
-                document.querySelectorAll('.admin-nav li').forEach(item => {
-                    item.addEventListener('click', (e) => {
-                        const section = e.currentTarget.dataset.section;
-                        document.querySelectorAll('.admin-nav li').forEach(el => el.classList.remove('active'));
-                        e.currentTarget.classList.add('active');
-                        this.carregarConteudo(section);
-                    });
-                });
-            }
-
-            carregarConteudo(section) {
-                this.currentSection = section;
-                const content = document.getElementById('adminContent');
-                if (!content) return;
-
-                switch(section) {
-                    case 'dashboard':
-                        this.carregarDashboard(content);
-                        break;
-                    case 'usuarios':
-                        this.carregarUsuarios(content);
-                        break;
-                    case 'banimentos':
-                        this.carregarBanimentos(content);
-                        break;
-                    case 'compras':
-                        this.carregarCompras(content);
-                        break;
-                    case 'keys':
-                        this.carregarKeys(content);
-                        break;
-                    case 'notificacoes':
-                        this.carregarNotificacoesAdmin(content);
-                        break;
-                    case 'produtos':
-                        this.carregarProdutos(content);
-                        break;
-                    case 'logs':
-                        this.carregarLogs(content);
-                        break;
-                }
-            }
-
-            async carregarDashboard(container) {
-                const stats = await this.obterEstatisticas();
+            usuariosRef.once('value', (snapshot) => {
+                const dados = snapshot.val() || {};
+                const usuarios = Object.values(dados).filter(u => u.online === true && u.email !== usuarioLogado?.email);
                 
-                container.innerHTML = `
-                    <div class="admin-dashboard">
-                        <h2>📊 Dashboard</h2>
-                        <div class="stats-grid">
-                            <div class="stat-card">
-                                <div class="stat-icon">👥</div>
-                                <div class="stat-number">${stats.totalUsuarios}</div>
-                                <div class="stat-label">Total de Usuários</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-icon">🟢</div>
-                                <div class="stat-number">${stats.usuariosOnline}</div>
-                                <div class="stat-label">Usuários Online</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-icon">🛒</div>
-                                <div class="stat-number">${stats.totalCompras}</div>
-                                <div class="stat-label">Total de Compras</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-icon">🔑</div>
-                                <div class="stat-number">${stats.keysAtivas}</div>
-                                <div class="stat-label">Keys Ativas</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-icon">🔔</div>
-                                <div class="stat-number">${stats.totalNotificacoes}</div>
-                                <div class="stat-label">Notificações Enviadas</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-icon">🚫</div>
-                                <div class="stat-number">${stats.usuariosBanidos}</div>
-                                <div class="stat-label">Usuários Banidos</div>
-                            </div>
-                        </div>
-                        <div class="recent-activity">
-                            <h3>📋 Últimas Atividades</h3>
-                            <div id="recentLogs"></div>
-                        </div>
-                    </div>
-                `;
-
-                this.carregarLogsRecentes();
-            }
-
-            async obterEstatisticas() {
-                try {
-                    const db = firebase.database();
-                    const [
-                        usuariosSnap,
-                        comprasSnap,
-                        keysSnap,
-                        bansSnap,
-                        notificacoesSnap,
-                        usuariosRef
-                    ] = await Promise.all([
-                        db.ref('usuarios').once('value'),
-                        db.ref('compras').once('value'),
-                        db.ref('keys').once('value'),
-                        db.ref('bans').once('value'),
-                        db.ref('notificacoes').once('value'),
-                        db.ref('chat/usuarios').once('value')
-                    ]);
-
-                    const usuarios = usuariosSnap.val() || {};
-                    const compras = comprasSnap.val() || {};
-                    const keys = keysSnap.val() || {};
-                    const bans = bansSnap.val() || {};
-                    const notificacoes = notificacoesSnap.val() || {};
-                    const usuariosOnline = usuariosRef.val() || {};
-
-                    const keysAtivas = Object.values(keys).filter(k => k.ativo !== false && (k.expiracao > Date.now() || k.expiracao === null));
-
-                    return {
-                        totalUsuarios: Object.keys(usuarios).length,
-                        usuariosOnline: Object.keys(usuariosOnline).length,
-                        totalCompras: Object.keys(compras).length,
-                        keysAtivas: keysAtivas.length,
-                        totalNotificacoes: Object.keys(notificacoes).length,
-                        usuariosBanidos: Object.values(bans).filter(b => b.ativo === true).length
-                    };
-                } catch (error) {
-                    console.error('Erro ao obter estatísticas:', error);
-                    return {
-                        totalUsuarios: 0,
-                        usuariosOnline: 0,
-                        totalCompras: 0,
-                        keysAtivas: 0,
-                        totalNotificacoes: 0,
-                        usuariosBanidos: 0
-                    };
-                }
-            }
-
-            // ===== GERENCIAR USUÁRIOS =====
-            carregarUsuarios(container) {
-                container.innerHTML = `
-                    <div class="admin-section">
-                        <h2>👥 Gerenciar Usuários</h2>
-                        <div class="search-bar">
-                            <input type="text" id="searchUser" placeholder="🔍 Pesquisar por nome ou e-mail..." />
-                            <select id="filterUserStatus">
-                                <option value="all">Todos</option>
-                                <option value="active">Ativos</option>
-                                <option value="banned">Banidos</option>
-                            </select>
-                            <button onclick="adminSystem.pesquisarUsuarios()" class="btn btn-primary">Pesquisar</button>
-                        </div>
-                        <div id="userList" class="table-responsive">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Usuário</th>
-                                        <th>E-mail</th>
-                                        <th>Status</th>
-                                        <th>Cadastro</th>
-                                        <th>Ações</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="userTableBody">
-                                    <tr><td colspan="5" class="text-center">Carregando...</td></tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                `;
-
-                this.carregarListaUsuarios();
-            }
-
-            async carregarListaUsuarios(filtro = 'all', search = '') {
-                try {
-                    const db = firebase.database();
-                    const snapshot = await db.ref('usuarios').once('value');
-                    const usuarios = snapshot.val() || {};
-                    
-                    const bansSnap = await db.ref('bans').once('value');
-                    const bans = bansSnap.val() || {};
-
-                    let usuariosArray = Object.entries(usuarios).map(([uid, data]) => {
-                        const isBanned = Object.values(bans).some(b => b.uid === uid && b.ativo === true);
-                        return {
-                            uid,
-                            ...data,
-                            isBanned
-                        };
-                    });
-
-                    if (filtro === 'active') {
-                        usuariosArray = usuariosArray.filter(u => !u.isBanned);
-                    } else if (filtro === 'banned') {
-                        usuariosArray = usuariosArray.filter(u => u.isBanned);
-                    }
-
-                    if (search) {
-                        const searchLower = search.toLowerCase();
-                        usuariosArray = usuariosArray.filter(u => 
-                            u.nome?.toLowerCase().includes(searchLower) || 
-                            u.email?.toLowerCase().includes(searchLower)
-                        );
-                    }
-
-                    const tbody = document.getElementById('userTableBody');
-                    if (usuariosArray.length === 0) {
-                        tbody.innerHTML = `<tr><td colspan="5" class="text-center">Nenhum usuário encontrado</td></tr>`;
-                        return;
-                    }
-
-                    tbody.innerHTML = usuariosArray.map(u => `
-                        <tr>
-                            <td>
-                                <div class="user-info">
-                                    ${u.avatar ? `<img src="${u.avatar}" class="avatar-mini" />` : `<div class="avatar-mini">${(u.nome || 'U')[0]}</div>`}
-                                    <span>${u.nome || 'Sem nome'}</span>
-                                </div>
-                            </td>
-                            <td>${u.email}</td>
-                            <td><span class="status-badge ${u.isBanned ? 'banned' : 'active'}">${u.isBanned ? '🔴 Banido' : '🟢 Ativo'}</span></td>
-                            <td>${u.dataCadastro ? new Date(u.dataCadastro).toLocaleDateString() : '-'}</td>
-                            <td>
-                                <button onclick="adminSystem.verUsuario('${u.uid}')" class="btn-sm">👁️</button>
-                                ${u.isBanned ? 
-                                    `<button onclick="adminSystem.desbanirUsuario('${u.uid}')" class="btn-sm btn-success">🔓</button>` :
-                                    `<button onclick="adminSystem.abrirModalBan('${u.uid}')" class="btn-sm btn-danger">🔨</button>`
-                                }
-                            </td>
-                        </tr>
-                    `).join('');
-
-                } catch (error) {
-                    console.error('Erro ao carregar usuários:', error);
-                    document.getElementById('userTableBody').innerHTML = `<tr><td colspan="5" class="text-center">❌ Erro ao carregar usuários</td></tr>`;
-                }
-            }
-
-            // ===== BANIMENTO =====
-            abrirModalBan(uid) {
-                const modal = document.getElementById('modalBan');
-                if (!modal) return;
-                modal.dataset.uid = uid;
-                modal.classList.add('open');
-            }
-
-            async confirmarBan() {
-                const modal = document.getElementById('modalBan');
-                const uid = modal.dataset.uid;
-                const motivo = document.getElementById('motivoBan').value;
-                const duracao = document.getElementById('duracaoBan').value;
-
-                if (!motivo) {
-                    alert('⚠️ Informe um motivo para o banimento.');
+                if (usuarios.length === 0) {
+                    input.value += '@';
                     return;
                 }
-
-                try {
-                    const db = firebase.database();
-                    
-                    const userSnap = await db.ref(`usuarios/${uid}`).once('value');
-                    const userData = userSnap.val();
-                    if (!userData) {
-                        alert('❌ Usuário não encontrado.');
-                        return;
-                    }
-
-                    let expiresAt = null;
-                    let duracaoLabel = 'Permanente';
-                    if (duracao !== 'permanente') {
-                        const minutos = parseInt(duracao);
-                        expiresAt = Date.now() + (minutos * 60 * 1000);
-                        duracaoLabel = `${minutos} minutos`;
-                    }
-
-                    const banRef = db.ref('bans').push();
-                    await banRef.set({
-                        uid: uid,
-                        email: userData.email,
-                        nome: userData.nome || 'Usuário',
-                        motivo: motivo,
-                        duracao: duracaoLabel,
-                        expiresAt: expiresAt,
-                        data: new Date().toISOString(),
-                        admin: 'gabriel6061yt@gmail.com',
-                        adminNome: 'Proprietário',
-                        ativo: true
-                    });
-
-                    await db.ref(`usuarios/${uid}`).update({
-                        banned: true,
-                        banMotivo: motivo,
-                        banData: new Date().toISOString(),
-                        banExpira: expiresAt,
-                        banDuracao: duracaoLabel
-                    });
-
-                    await this.registrarLog('BAN', {
-                        targetUid: uid,
-                        targetEmail: userData.email,
-                        motivo: motivo,
-                        duracao: duracaoLabel
-                    });
-
-                    alert('✅ Usuário banido com sucesso!');
-                    modal.classList.remove('open');
-                    this.carregarListaUsuarios();
-
-                } catch (error) {
-                    console.error('Erro ao banir:', error);
-                    alert('❌ Erro ao banir usuário.');
-                }
-            }
-
-            async desbanirUsuario(uid) {
-                if (!confirm('⚠️ Deseja realmente desbanir este usuário?')) return;
-
-                try {
-                    const db = firebase.database();
-                    
-                    const userSnap = await db.ref(`usuarios/${uid}`).once('value');
-                    const userData = userSnap.val();
-                    if (!userData) {
-                        alert('❌ Usuário não encontrado.');
-                        return;
-                    }
-
-                    const bansSnap = await db.ref('bans').orderByChild('uid').equalTo(uid).once('value');
-                    const bans = bansSnap.val() || {};
-                    
-                    const updates = {};
-                    Object.keys(bans).forEach(key => {
-                        if (bans[key].ativo === true) {
-                            updates[`${key}/ativo`] = false;
+                
+                const oldMenu = document.querySelector('.mention-menu');
+                if (oldMenu) oldMenu.remove();
+                
+                const menu = document.createElement('div');
+                menu.className = 'mention-menu';
+                
+                usuarios.forEach(u => {
+                    const item = document.createElement('div');
+                    item.className = 'mention-item';
+                    item.textContent = `@${u.nome}`;
+                    item.onmouseover = () => item.style.background = 'var(--glass)';
+                    item.onmouseout = () => item.style.background = 'none';
+                    item.onclick = () => {
+                        input.value = input.value.slice(0, -1) + `@${u.nome} `;
+                        menu.remove();
+                        input.focus();
+                    };
+                    menu.appendChild(item);
+                });
+                
+                document.querySelector('.chat-input-area').appendChild(menu);
+                
+                setTimeout(() => {
+                    document.addEventListener('click', function closeMention(e) {
+                        if (!menu.contains(e.target) && e.target !== input) {
+                            menu.remove();
+                            document.removeEventListener('click', closeMention);
                         }
                     });
-
-                    if (Object.keys(updates).length > 0) {
-                        await db.ref('bans').update(updates);
-                    }
-
-                    await db.ref(`usuarios/${uid}`).update({
-                        banned: false,
-                        banMotivo: null,
-                        banData: null,
-                        banExpira: null,
-                        banDuracao: null
-                    });
-
-                    await this.registrarLog('UNBAN', {
-                        targetUid: uid,
-                        targetEmail: userData.email
-                    });
-
-                    alert('✅ Usuário desbanido com sucesso!');
-                    this.carregarListaUsuarios();
-
-                } catch (error) {
-                    console.error('Erro ao desbanir:', error);
-                    alert('❌ Erro ao desbanir usuário.');
-                }
-            }
-
-            // ===== ENVIAR NOTIFICAÇÃO =====
-            async enviarNotificacaoAdmin() {
-                const email = document.getElementById('notifEmail')?.value;
-                const titulo = document.getElementById('notifTitulo')?.value;
-                const mensagem = document.getElementById('notifMensagem')?.value;
-
-                if (!email || !titulo || !mensagem) {
-                    alert('⚠️ Preencha todos os campos.');
-                    return;
-                }
-
-                try {
-                    const db = firebase.database();
-                    
-                    const usersSnap = await db.ref('usuarios').orderByChild('email').equalTo(email).once('value');
-                    const users = usersSnap.val() || {};
-                    
-                    let uid = null;
-                    let userData = null;
-                    
-                    Object.entries(users).forEach(([key, data]) => {
-                        if (data.email === email) {
-                            uid = key;
-                            userData = data;
-                        }
-                    });
-
-                    if (!uid) {
-                        alert('❌ Usuário não encontrado.');
-                        return;
-                    }
-
-                    const notifRef = db.ref('notificacoes').push();
-                    await notifRef.set({
-                        uid: uid,
-                        email: email,
-                        titulo: titulo,
-                        mensagem: mensagem,
-                        data: new Date().toISOString(),
-                        lida: false,
-                        tipo: 'admin'
-                    });
-
-                    await this.registrarLog('NOTIFICATION', {
-                        targetUid: uid,
-                        targetEmail: email,
-                        titulo: titulo,
-                        mensagem: mensagem
-                    });
-
-                    alert('✅ Notificação enviada com sucesso!');
-                    
-                    document.getElementById('notifEmail').value = '';
-                    document.getElementById('notifTitulo').value = '';
-                    document.getElementById('notifMensagem').value = '';
-
-                } catch (error) {
-                    console.error('Erro ao enviar notificação:', error);
-                    alert('❌ Erro ao enviar notificação.');
-                }
-            }
-
-            // ===== REGISTRAR LOG =====
-            async registrarLog(action, details) {
-                try {
-                    const db = firebase.database();
-                    const logRef = db.ref('logs').push();
-                    await logRef.set({
-                        action: action,
-                        admin: 'gabriel6061yt@gmail.com',
-                        adminNome: 'Proprietário',
-                        timestamp: new Date().toISOString(),
-                        details: details || {}
-                    });
-                } catch (error) {
-                    console.error('Erro ao registrar log:', error);
-                }
-            }
-
-            // ===== CARREGAR LOGS =====
-            async carregarLogsRecentes() {
-                try {
-                    const db = firebase.database();
-                    const logsSnap = await db.ref('logs').orderByChild('timestamp').limitToLast(10).once('value');
-                    const logs = logsSnap.val() || {};
-                    
-                    const container = document.getElementById('recentLogs');
-                    if (!container) return;
-
-                    const logsArray = Object.values(logs).reverse();
-                    
-                    if (logsArray.length === 0) {
-                        container.innerHTML = '<p class="text-muted">Nenhum log recente.</p>';
-                        return;
-                    }
-
-                    container.innerHTML = logsArray.map(log => `
-                        <div class="log-item">
-                            <span class="log-time">${new Date(log.timestamp).toLocaleString()}</span>
-                            <span class="log-action">${log.action}</span>
-                            <span class="log-details">${log.details?.targetEmail || ''}</span>
-                        </div>
-                    `).join('');
-
-                } catch (error) {
-                    console.error('Erro ao carregar logs:', error);
-                }
-            }
-
-            // ===== CARREGAR LOGS COMPLETOS =====
-            async carregarLogs(container) {
-                try {
-                    const db = firebase.database();
-                    const logsSnap = await db.ref('logs').orderByChild('timestamp').limitToLast(50).once('value');
-                    const logs = logsSnap.val() || {};
-
-                    container.innerHTML = `
-                        <div class="admin-section">
-                            <h2>📜 Logs Administrativos</h2>
-                            <div class="table-responsive">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Data/Hora</th>
-                                            <th>Ação</th>
-                                            <th>Alvo</th>
-                                            <th>Administrador</th>
-                                            <th>Detalhes</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="logsTableBody">
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    `;
-
-                    const tbody = document.getElementById('logsTableBody');
-                    const logsArray = Object.values(logs).reverse();
-
-                    if (logsArray.length === 0) {
-                        tbody.innerHTML = `<tr><td colspan="5" class="text-center">Nenhum log encontrado</td></tr>`;
-                        return;
-                    }
-
-                    tbody.innerHTML = logsArray.map(log => `
-                        <tr>
-                            <td>${new Date(log.timestamp).toLocaleString()}</td>
-                            <td><span class="log-action-badge">${log.action}</span></td>
-                            <td>${log.details?.targetEmail || '-'}</td>
-                            <td>${log.adminNome || 'Sistema'}</td>
-                            <td>${this.formatarDetalhesLog(log.details)}</td>
-                        </tr>
-                    `).join('');
-
-                } catch (error) {
-                    console.error('Erro ao carregar logs:', error);
-                    container.innerHTML = '<p class="text-center text-danger">❌ Erro ao carregar logs</p>';
-                }
-            }
-
-            formatarDetalhesLog(details) {
-                if (!details) return '-';
-                const parts = [];
-                if (details.motivo) parts.push(`Motivo: ${details.motivo}`);
-                if (details.duracao) parts.push(`Duração: ${details.duracao}`);
-                if (details.titulo) parts.push(`Título: ${details.titulo}`);
-                return parts.join(' | ') || '-';
-            }
-
-            // ===== CARREGAR COMPRAS =====
-            async carregarCompras(container) {
-                try {
-                    const db = firebase.database();
-                    const comprasSnap = await db.ref('compras').orderByChild('data').once('value');
-                    const compras = comprasSnap.val() || {};
-
-                    container.innerHTML = `
-                        <div class="admin-section">
-                            <h2>🛒 Gerenciar Compras</h2>
-                            <div class="search-bar">
-                                <input type="text" id="searchCompra" placeholder="🔍 Pesquisar por cliente ou produto..." />
-                                <button onclick="adminSystem.pesquisarCompras()" class="btn btn-primary">Pesquisar</button>
-                            </div>
-                            <div class="table-responsive">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Pedido</th>
-                                            <th>Cliente</th>
-                                            <th>Produto</th>
-                                            <th>Valor</th>
-                                            <th>Data</th>
-                                            <th>Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="comprasTableBody">
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    `;
-
-                    const tbody = document.getElementById('comprasTableBody');
-                    const comprasArray = Object.values(compras).reverse();
-
-                    if (comprasArray.length === 0) {
-                        tbody.innerHTML = `<tr><td colspan="6" class="text-center">Nenhuma compra encontrada</td></tr>`;
-                        return;
-                    }
-
-                    tbody.innerHTML = comprasArray.map(compra => `
-                        <tr>
-                            <td>#${compra.id || 'N/A'}</td>
-                            <td>${compra.cliente || '-'}</td>
-                            <td>${compra.produto || '-'}</td>
-                            <td>R$ ${compra.valor?.toFixed(2) || '0,00'}</td>
-                            <td>${compra.data ? new Date(compra.data).toLocaleString() : '-'}</td>
-                            <td><span class="status-badge ${compra.status === 'pago' ? 'active' : 'banned'}">${compra.status || 'Pendente'}</span></td>
-                        </tr>
-                    `).join('');
-
-                } catch (error) {
-                    console.error('Erro ao carregar compras:', error);
-                    container.innerHTML = '<p class="text-center text-danger">❌ Erro ao carregar compras</p>';
-                }
-            }
-
-            // ===== CARREGAR KEYS =====
-            async carregarKeys(container) {
-                try {
-                    const db = firebase.database();
-                    const keysSnap = await db.ref('keys').once('value');
-                    const keys = keysSnap.val() || {};
-
-                    container.innerHTML = `
-                        <div class="admin-section">
-                            <h2>🔑 Gerenciar Keys</h2>
-                            <div class="search-bar">
-                                <input type="text" id="searchKey" placeholder="🔍 Pesquisar por key ou usuário..." />
-                                <button onclick="adminSystem.pesquisarKeys()" class="btn btn-primary">Pesquisar</button>
-                            </div>
-                            <div class="table-responsive">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Key</th>
-                                            <th>Usuário</th>
-                                            <th>Produto</th>
-                                            <th>Ativação</th>
-                                            <th>Expiração</th>
-                                            <th>Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="keysTableBody">
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    `;
-
-                    const tbody = document.getElementById('keysTableBody');
-                    const keysArray = Object.values(keys);
-
-                    if (keysArray.length === 0) {
-                        tbody.innerHTML = `<tr><td colspan="6" class="text-center">Nenhuma key encontrada</td></tr>`;
-                        return;
-                    }
-
-                    const now = Date.now();
-                    tbody.innerHTML = keysArray.map(key => {
-                        const status = this.getKeyStatus(key, now);
-                        return `
-                            <tr>
-                                <td><code>${key.key || 'N/A'}</code></td>
-                                <td>${key.usuario || '-'}</td>
-                                <td>${key.produto || '-'}</td>
-                                <td>${key.ativacao ? new Date(key.ativacao).toLocaleDateString() : '-'}</td>
-                                <td>${key.expiracao ? new Date(key.expiracao).toLocaleDateString() : 'Vitalício'}</td>
-                                <td><span class="status-badge ${status.class}">${status.label}</span></td>
-                            </tr>
-                        `;
-                    }).join('');
-
-                } catch (error) {
-                    console.error('Erro ao carregar keys:', error);
-                    container.innerHTML = '<p class="text-center text-danger">❌ Erro ao carregar keys</p>';
-                }
-            }
-
-            getKeyStatus(key, now) {
-                if (key.ativo === false) {
-                    return { label: '🔴 Bloqueada', class: 'banned' };
-                }
-                if (key.expiracao && key.expiracao < now) {
-                    return { label: '🟡 Expirada', class: 'banned' };
-                }
-                return { label: '🟢 Ativa', class: 'active' };
-            }
-
-            // ===== CARREGAR NOTIFICAÇÕES ADMIN =====
-            carregarNotificacoesAdmin(container) {
-                container.innerHTML = `
-                    <div class="admin-section">
-                        <h2>🔔 Enviar Notificação</h2>
-                        <div class="notificacao-form">
-                            <div class="form-group">
-                                <label>E-mail do Usuário</label>
-                                <input type="email" id="notifEmail" placeholder="Digite o e-mail do usuário..." />
-                            </div>
-                            <div class="form-group">
-                                <label>Título</label>
-                                <input type="text" id="notifTitulo" placeholder="Digite o título da notificação..." />
-                            </div>
-                            <div class="form-group">
-                                <label>Mensagem</label>
-                                <textarea id="notifMensagem" rows="4" placeholder="Digite a mensagem da notificação..."></textarea>
-                            </div>
-                            <button onclick="adminSystem.enviarNotificacaoAdmin()" class="btn btn-primary">
-                                <i class="fas fa-paper-plane"></i> Enviar Notificação
-                            </button>
-                        </div>
-                    </div>
-                `;
-            }
-
-            // ===== CARREGAR PRODUTOS =====
-            carregarProdutos(container) {
-                const produtos = [
-                    { nome: 'SIMPLE', categoria: 'Classic', preco: 'R$ 30,00', vendedor: 'KZN MENU', status: 'Ativo' },
-                    { nome: 'BASIC', categoria: 'Classic', preco: 'R$ 50,00', vendedor: 'KZN MENU', status: 'Ativo' },
-                    { nome: 'PLUS', categoria: 'Classic', preco: 'R$ 100,00', vendedor: 'KZN MENU', status: 'Ativo' },
-                    { nome: 'PRO', categoria: 'Classic', preco: 'R$ 150,00', vendedor: 'KZN MENU', status: 'Ativo' },
-                    { nome: 'PREMIUM', categoria: 'Classic', preco: 'R$ 200,00', vendedor: 'KZN MENU', status: 'Ativo' },
-                    { nome: 'ULTIMATE', categoria: 'Classic', preco: 'R$ 250,00', vendedor: 'KZN MENU', status: 'Ativo' },
-                    { nome: 'ELITE', categoria: 'Classic', preco: 'R$ 300,00', vendedor: 'KZN MENU', status: 'Ativo' },
-                    { nome: 'MOD MENU GRAAL ERA', categoria: 'Era', preco: 'R$ 65,00', vendedor: 'Xitado', status: 'Ativo' },
-                    { nome: 'AUTO TRASH', categoria: 'Auto Trash', preco: 'R$ 200,00', vendedor: 'KZN MENU', status: 'Ativo' },
-                ];
-
-                container.innerHTML = `
-                    <div class="admin-section">
-                        <h2>📦 Produtos</h2>
-                        <div class="table-responsive">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Nome</th>
-                                        <th>Categoria</th>
-                                        <th>Preço</th>
-                                        <th>Vendedor</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    ${produtos.map(p => `
-                                        <tr>
-                                            <td>${p.nome}</td>
-                                            <td><span class="category-badge">${p.categoria}</span></td>
-                                            <td>${p.preco}</td>
-                                            <td>${p.vendedor}</td>
-                                            <td><span class="status-badge active">🟢 ${p.status}</span></td>
-                                        </tr>
-                                    `).join('')}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                `;
-            }
-
-            // ===== UTILITÁRIOS =====
-            pesquisarUsuarios() {
-                const search = document.getElementById('searchUser')?.value || '';
-                const filter = document.getElementById('filterUserStatus')?.value || 'all';
-                this.carregarListaUsuarios(filter, search);
-            }
-
-            pesquisarCompras() {
-                this.carregarCompras(document.getElementById('adminContent'));
-            }
-
-            pesquisarKeys() {
-                this.carregarKeys(document.getElementById('adminContent'));
-            }
-
-            verUsuario(uid) {
-                alert(`👤 Visualizar usuário: ${uid}`);
-            }
+                }, 100);
+            });
+            return;
         }
+    });
+}
+
+// ====== COPIAR PIX ERA ======
+window.copiarPixEra = function() {
+    const key = 'bc662963-1a5a-4fb0-af5e-5c7e4a82e590';
+    navigator.clipboard.writeText(key).then(() => {
+        const btn = document.querySelector('#contato-era .btn-copy');
+        if (btn) {
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check"></i> Copiado! ✅';
+            setTimeout(() => { btn.innerHTML = originalText; }, 2000);
+        }
+    }).catch(() => {
+        alert('📋 Chave PIX: ' + key);
+        const textArea = document.createElement('textarea');
+        textArea.value = key;
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+            document.execCommand('copy');
+            alert('✅ Chave PIX copiada!');
+        } catch (err) {
+            alert('📋 Chave PIX: ' + key);
+        }
+        document.body.removeChild(textArea);
+    });
+};
 
         // ====== INICIALIZAÇÃO ======
         document.addEventListener('DOMContentLoaded', function() {
@@ -6706,7 +5566,6 @@
                     document.getElementById('modalPix').classList.remove('open');
                     document.getElementById('userMenuOverlay').classList.remove('open');
                     document.getElementById('modalOverlay').classList.remove('open');
-                    document.getElementById('modalBan').classList.remove('open');
                 }
             });
 
@@ -6716,11 +5575,6 @@
                 }
                 if (!e.target.closest('#profileBtn') && !e.target.closest('#cartDropdown') && !e.target.closest('.cart-icon-wrap')) {
                     document.getElementById('cartDropdown').classList.remove('open');
-                }
-                if (!e.target.closest('#modalBan') && !e.target.closest('.modal-ban .modal-content')) {
-                    if (document.getElementById('modalBan').classList.contains('open')) {
-                        document.getElementById('modalBan').classList.remove('open');
-                    }
                 }
             });
 
@@ -6735,6 +5589,8 @@
                 usuarioLogado = JSON.parse(usuario);
                 setLoggedIn();
                 carregarPerfil();
+                showOwnerTools();
+                carregarNotificacoesRemotas();
             } else {
                 loginProcessed = false;
                 isLoggingIn = false;
@@ -6742,9 +5598,6 @@
                 document.getElementById('chatWindow').classList.remove('open');
                 document.getElementById('chatToggleBtn').style.display = 'none';
             }
-
-            // Inicializa Admin System
-            window.adminSystem = new AdminSystem();
 
             if (notificacoes.length === 0) {
                 adicionarNotificacao('🔥 Bem-vindo ao KZN MENU! Confira nossos novos planos.', 'info');
@@ -6763,9 +5616,133 @@
             console.log('📌 Fixar: administradores podem fixar mensagens');
             console.log('📦 Novos planos: BASIC, PLUS, PRO, PREMIUM, ULTIMATE, ELITE');
             console.log('🌆 NOVO: MOD MENU GRAAL ERA - Vendedor Xitado - PIX exclusivo');
-            console.log('👑 Central do Proprietário disponível para o proprietário');
-            console.log('🔨 Sistema de banimento completo ativo');
         });
+
+        // ====== MEGA UPDATE: ADMIN + CONTA ======
+        const accountBansRef = db.ref('kzn/account_bans');
+        const adminNotificationsRef = db.ref('kzn/notifications');
+        const adminLogsRef = db.ref('kzn/admin_logs');
+
+        function isOwnerCurrent() {
+            return !!usuarioLogado && isProprietario(usuarioLogado.email);
+        }
+
+        function showOwnerTools() {
+            const d=document.getElementById('ownerNavDesktop'), m=document.getElementById('ownerNavMobile');
+            if (isOwnerCurrent()) { d?.classList.add('show'); m?.classList.add('show'); }
+            else { d?.classList.remove('show'); m?.classList.remove('show'); document.getElementById('proprietario')?.classList.remove('show'); }
+        }
+
+        window.abrirPainelProprietario = function(){
+            if(!isOwnerCurrent()){ alert('Acesso restrito ao proprietário.'); return; }
+            document.getElementById('proprietario').classList.add('show');
+            document.getElementById('proprietario').scrollIntoView({behavior:'smooth'});
+            carregarAdminTudo();
+        };
+        window.fecharPainelProprietario = function(){ document.getElementById('proprietario').classList.remove('show'); };
+        window.adminAba = function(nome, btn){
+            if(!isOwnerCurrent()) return;
+            document.querySelectorAll('.admin-view').forEach(v=>v.style.display='none');
+            const el=document.getElementById('admin-'+nome); if(el) el.style.display='block';
+            document.querySelectorAll('.admin-nav button').forEach(b=>b.classList.remove('active')); btn?.classList.add('active');
+            if(nome==='usuarios') renderAdminUsers();
+            if(nome==='banimentos') renderAdminBans();
+            if(nome==='notificacoes') renderAdminNotifications();
+            if(nome==='logs') renderAdminLogs();
+        };
+
+        async function carregarAdminTudo(){
+            if(!isOwnerCurrent()) return;
+            renderAdminUsers(); renderAdminBans(); renderAdminNotifications(); renderAdminLogs();
+            const bans=await accountBansRef.once('value');
+            const b=bans.val()||{}; const ativos=Object.values(b).filter(x=>x.ativo!==false && (!x.expiresAt || x.expiresAt>Date.now()));
+            document.getElementById('admUsers').textContent=usuariosCadastrados.length;
+            document.getElementById('admBans').textContent=ativos.length;
+            const ns=await adminNotificationsRef.once('value'); document.getElementById('admNotifs').textContent=Object.keys(ns.val()||{}).length;
+            document.getElementById('admOnline').textContent=Object.keys(usuariosOnline||{}).length;
+            document.getElementById('adminSummary').innerHTML=`<strong>Central ativa.</strong><br><span style="color:var(--text-muted)">As ferramentas administrativas estão disponíveis somente para a conta proprietária nesta interface.</span>`;
+        }
+
+        function getAllAdminUsers(){
+            const map={};
+            (usuariosCadastrados||[]).forEach(u=>{if(u?.email) map[u.email]=u;});
+            Object.values(usuariosOnline||{}).forEach(u=>{if(u?.email) map[u.email]=Object.assign(map[u.email]||{},u);});
+            if(usuarioLogado?.email) map[usuarioLogado.email]=Object.assign(map[usuarioLogado.email]||{},usuarioLogado);
+            return Object.values(map);
+        }
+        window.renderAdminUsers = async function(){
+            if(!isOwnerCurrent()) return;
+            const q=(document.getElementById('adminUserSearch')?.value||'').toLowerCase();
+            const bansSnap=await accountBansRef.once('value'); const bans=Object.values(bansSnap.val()||{});
+            const tbody=document.getElementById('adminUsersTable'); if(!tbody)return;
+            const users=getAllAdminUsers().filter(u=>(u.nome||'').toLowerCase().includes(q)||(u.email||'').toLowerCase().includes(q));
+            tbody.innerHTML=users.map(u=>{
+                const ban=bans.find(b=>b.email===u.email && b.ativo!==false && (!b.expiresAt||b.expiresAt>Date.now()));
+                return `<tr><td>${escapeHtmlAdmin(u.nome||'Usuário')}</td><td>${escapeHtmlAdmin(u.email||'')}</td><td>${ban?'<span class="admin-badge ban">BANIDO</span>':'<span class="admin-badge ok">ATIVO</span>'}</td><td>${ban?`<button class="admin-btn success" onclick="adminDesbanirConta('${encodeURIComponent(u.email)}')">Desbanir</button>`:`<button class="admin-btn danger" onclick="adminPreencherBan('${encodeURIComponent(u.email)}')">Banir</button>`}</td></tr>`;
+            }).join('') || '<tr><td colspan="4" class="admin-empty">Nenhum usuário encontrado.</td></tr>';
+        };
+        window.adminPreencherBan=function(e){ document.getElementById('banEmailInput').value=decodeURIComponent(e); adminAba('banimentos',document.querySelector('.admin-nav button:nth-child(3)')); };
+        window.adminBanirConta=async function(){
+            if(!isOwnerCurrent()) return;
+            const email=document.getElementById('banEmailInput').value.trim().toLowerCase();
+            const reason=document.getElementById('banReasonInput').value.trim()||'Banido pelo proprietário';
+            const duration=document.getElementById('banDurationInput').value;
+            if(!email) return alert('Informe o e-mail do usuário.');
+            if(isProprietario(email)) return alert('Não é permitido banir o proprietário.');
+            const ms={ '1h':3600000,'1d':86400000,'7d':604800000,'30d':2592000000 };
+            const expiresAt=duration==='permanent'?null:Date.now()+ms[duration];
+            await accountBansRef.push({email,reason,ativo:true,banType:duration==='permanent'?'permanent':'temporary',bannedAt:firebase.database.ServerValue.TIMESTAMP,expiresAt,bannedBy:usuarioLogado.email});
+            await adminLogsRef.push({action:'ACCOUNT_BAN',targetEmail:email,adminEmail:usuarioLogado.email,reason,createdAt:firebase.database.ServerValue.TIMESTAMP});
+            alert('Usuário banido com sucesso.');
+            document.getElementById('banReasonInput').value=''; carregarAdminTudo();
+        };
+        window.adminDesbanirConta=async function(encoded){
+            if(!isOwnerCurrent()) return;
+            const email=decodeURIComponent(encoded); if(!confirm('Desbanir '+email+'?'))return;
+            const snap=await accountBansRef.once('value'); const data=snap.val()||{};
+            for(const [key,b] of Object.entries(data)){if(b.email===email&&b.ativo!==false) await accountBansRef.child(key).update({ativo:false,unbannedAt:firebase.database.ServerValue.TIMESTAMP});}
+            await adminLogsRef.push({action:'ACCOUNT_UNBAN',targetEmail:email,adminEmail:usuarioLogado.email,createdAt:firebase.database.ServerValue.TIMESTAMP});
+            carregarAdminTudo();
+        };
+        window.renderAdminBans=async function(){
+            if(!isOwnerCurrent()) return;
+            const q=(document.getElementById('adminBanSearch')?.value||'').toLowerCase(); const snap=await accountBansRef.once('value'); const data=snap.val()||{};
+            const rows=Object.entries(data).filter(([k,b])=>(b.email||'').toLowerCase().includes(q));
+            const tbody=document.getElementById('adminBansTable'); if(!tbody)return;
+            tbody.innerHTML=rows.reverse().map(([k,b])=>{const active=b.ativo!==false&&(!b.expiresAt||b.expiresAt>Date.now());return `<tr><td>${escapeHtmlAdmin(b.email||'')}</td><td>${escapeHtmlAdmin(b.reason||'')}</td><td>${b.expiresAt?new Date(b.expiresAt).toLocaleString('pt-BR'):'Permanente'}</td><td>${active?'<span class="admin-badge ban">ATIVO</span>':'<span class="admin-badge ok">INATIVO</span>'}</td><td>${active?`<button class="admin-btn success" onclick="adminDesbanirConta('${encodeURIComponent(b.email)}')">Desbanir</button>`:''}</td></tr>`}).join('')||'<tr><td colspan="5" class="admin-empty">Nenhum banimento encontrado.</td></tr>';
+        };
+        window.adminEnviarNotificacao=async function(){
+            if(!isOwnerCurrent()) return;
+            const email=document.getElementById('adminNotifEmail').value.trim().toLowerCase(); const title=document.getElementById('adminNotifTitle').value.trim(); const message=document.getElementById('adminNotifMessage').value.trim();
+            if(!email||!title||!message)return alert('Preencha e-mail, título e mensagem.');
+            await adminNotificationsRef.push({userEmail:email,title,message,createdAt:firebase.database.ServerValue.TIMESTAMP,read:false,senderEmail:usuarioLogado.email});
+            await adminLogsRef.push({action:'SEND_NOTIFICATION',targetEmail:email,adminEmail:usuarioLogado.email,title,createdAt:firebase.database.ServerValue.TIMESTAMP});
+            alert('Notificação enviada.'); document.getElementById('adminNotifTitle').value=''; document.getElementById('adminNotifMessage').value=''; renderAdminNotifications();
+        };
+        window.renderAdminNotifications=async function(){
+            if(!isOwnerCurrent())return; const snap=await adminNotificationsRef.once('value'); const data=Object.values(snap.val()||{}).reverse(); const tbody=document.getElementById('adminNotifTable'); if(!tbody)return;
+            tbody.innerHTML=data.map(n=>`<tr><td>${escapeHtmlAdmin(n.userEmail||'')}</td><td>${escapeHtmlAdmin(n.title||'')}</td><td>${escapeHtmlAdmin(n.message||'')}</td><td>${n.createdAt?new Date(n.createdAt).toLocaleString('pt-BR'):'-'}</td></tr>`).join('')||'<tr><td colspan="4" class="admin-empty">Nenhuma notificação enviada.</td></tr>';
+        };
+        window.renderAdminLogs=async function(){
+            if(!isOwnerCurrent())return; const snap=await adminLogsRef.once('value'); const data=Object.values(snap.val()||{}).reverse(); const tbody=document.getElementById('adminLogsTable'); if(!tbody)return;
+            tbody.innerHTML=data.map(l=>`<tr><td>${escapeHtmlAdmin(l.action||'')}</td><td>${escapeHtmlAdmin(l.targetEmail||'-')}</td><td>${escapeHtmlAdmin(l.adminEmail||'-')}</td><td>${l.createdAt?new Date(l.createdAt).toLocaleString('pt-BR'):'-'}</td></tr>`).join('')||'<tr><td colspan="4" class="admin-empty">Nenhum log.</td></tr>';
+        };
+        function escapeHtmlAdmin(v){return String(v??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
+
+        async function verificarBanimentoContaAntesDeEntrar(email){
+            try{const snap=await accountBansRef.once('value'); const bans=Object.values(snap.val()||{}); return bans.some(b=>b.email===email&&b.ativo!==false&&(!b.expiresAt||b.expiresAt>Date.now()));}catch(e){console.warn('Não foi possível verificar banimento de conta:',e); return false;}
+        }
+
+        // Atualiza notificações remotas destinadas ao usuário logado.
+        function carregarNotificacoesRemotas(){
+            if(!usuarioLogado?.email)return;
+            adminNotificationsRef.orderByChild('userEmail').equalTo(usuarioLogado.email).on('value',snap=>{
+                const data=Object.values(snap.val()||{}).sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
+                data.forEach(n=>{ if(!notificacoes.some(x=>x.remoteId===n.createdAt&&x.mensagem===n.message)){ notificacoes.unshift({remoteId:n.createdAt,mensagem:n.message,titulo:n.title,tipo:'info',lida:!!n.read,data:n.createdAt}); }});
+                salvarNotificacoes(); if(typeof renderNotificacoes==='function')renderNotificacoes();
+            });
+        }
+
     </script>
 </body>
 </html>
