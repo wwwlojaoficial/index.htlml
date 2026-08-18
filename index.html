@@ -3549,6 +3549,46 @@
 #notifDropdown{width:min(390px,calc(100vw - 28px))!important;max-width:390px!important;}
 @media(max-width:560px){#notifDropdown{width:calc(100vw - 28px)!important;right:14px!important;left:auto!important;}}
 </style>
+
+<style id="kzn-v16-professional-layer">
+#adminPanelToggle,#chatToggleBtn{width:42px!important;height:42px!important;min-width:42px!important;min-height:42px!important;border-radius:50%!important;padding:0!important;align-items:center!important;justify-content:center!important}
+#adminPanelToggle span{display:none!important}
+#adminPanelToggle{left:12px!important;bottom:122px!important;background:linear-gradient(145deg,#fff2a6,#ffc400 45%,#c47b00)!important;color:#fff!important}
+#chatToggleBtn{left:12px!important;bottom:70px!important;background:linear-gradient(145deg,#b8ecff,#63c8f5 45%,#2089cf)!important}
+#adminPanelToggle i,#chatToggleBtn i{font-size:.9rem!important}
+@media(max-width:560px){#adminPanelToggle,#chatToggleBtn{width:42px!important;height:42px!important}#adminPanelToggle{left:9px!important;bottom:118px!important}#chatToggleBtn{left:9px!important;bottom:68px!important}}
+#notifDropdown{width:min(360px,calc(100vw - 40px))!important;max-width:360px!important}
+#notifDropdown .dropdown-body{max-height:min(56vh,360px)!important}
+@media(max-width:560px){#notifDropdown{width:calc(100vw - 40px)!important;right:20px!important;left:auto!important}}
+.kzn-product-tools{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:0 0 18px}
+.kzn-product-search{flex:1 1 220px;position:relative}
+.kzn-product-search i{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:#9aa8bd}
+.kzn-product-search input{width:100%;box-sizing:border-box;background:rgba(12,12,16,.8);border:1px solid rgba(124,58,237,.35);border-radius:12px;padding:11px 12px 11px 38px;color:#fff;outline:none}
+.kzn-product-search input:focus{border-color:#8b5cf6;box-shadow:0 0 0 3px rgba(139,92,246,.12)}
+.kzn-product-filters{display:flex;gap:6px;overflow:auto}
+.kzn-filter{border:1px solid rgba(255,255,255,.1);background:#121217;color:#b8c1d1;border-radius:999px;padding:9px 12px;font-size:.72rem;font-weight:800;white-space:nowrap;cursor:pointer}
+.kzn-filter.active{background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;border-color:#a855f7}
+.kzn-profile-tabs{display:flex;gap:7px;overflow:auto;margin:0 auto 14px;max-width:980px;padding-bottom:3px}
+.kzn-profile-tabs button{border:1px solid rgba(255,255,255,.08);background:#111116;color:#aeb8c8;border-radius:10px;padding:9px 12px;white-space:nowrap;font-weight:800;font-size:.72rem;cursor:pointer}
+.kzn-profile-tabs button.active{background:rgba(124,58,237,.18);color:#d8b4fe;border-color:rgba(139,92,246,.5)}
+.kzn-profile-tab-hidden{display:none!important}
+.owner-section .admin-shell{max-width:1120px!important;margin:18px auto!important;border-radius:18px!important}
+.admin-nav{display:flex!important;gap:7px!important;overflow:auto!important;padding-bottom:5px!important}
+.admin-nav-btn{white-space:nowrap!important;font-size:.72rem!important;padding:9px 11px!important;border-radius:10px!important}
+.admin-toolbar{display:flex;gap:8px;margin:10px 0 12px}
+.admin-toolbar input{width:100%;background:#0f1014;border:1px solid rgba(139,92,246,.35);color:#fff;border-radius:10px;padding:10px 12px;outline:none}
+.admin-table-wrap{overflow:auto;border:1px solid rgba(255,255,255,.06);border-radius:12px}
+.admin-table{width:100%;border-collapse:collapse;min-width:650px}
+.admin-table th,.admin-table td{padding:10px;border-bottom:1px solid rgba(255,255,255,.06);text-align:left;font-size:.72rem}
+.admin-table th{color:#bda2ff;background:#111118;position:sticky;top:0}
+.admin-table td{color:#d5d9e2}
+.admin-product-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}
+.admin-product-card{background:#101116;border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:12px}
+.admin-product-card strong{display:block;color:#fff;margin-bottom:5px}.admin-product-card small{color:#9aa4b5;display:block;line-height:1.5}
+.admin-product-card .tag{display:inline-block;margin-top:8px;padding:4px 7px;border-radius:999px;background:rgba(124,58,237,.14);color:#cdb0ff;font-size:.62rem;font-weight:800}
+@media(max-width:560px){.kzn-product-tools{display:block}.kzn-product-filters{margin-top:8px}.owner-section .admin-shell{margin:10px!important;border-radius:14px!important}.admin-head h2{font-size:1.1rem!important}.admin-stats{grid-template-columns:repeat(2,1fr)!important}.admin-nav-btn{font-size:.65rem!important;padding:8px 9px!important}}
+</style>
+
 </head>
 <body>
 <!-- ===== WHATSAPP FIXO ===== -->
@@ -3756,6 +3796,15 @@
 <div class="section-header">
 <h2><i class="fas fa-cubes"></i> Nossos Mods</h2>
 <p>Escolha seu jogo</p>
+</div>
+<div class="kzn-product-tools" id="kzn-product-tools">
+  <div class="kzn-product-search"><i class="fas fa-search"></i><input id="kznProductSearch" type="search" placeholder="Pesquisar produto..." autocomplete="off"></div>
+  <div class="kzn-product-filters">
+    <button type="button" class="kzn-filter active" data-filter="all">Todos</button>
+    <button type="button" class="kzn-filter" data-filter="classic">Classic</button>
+    <button type="button" class="kzn-filter" data-filter="era">Era</button>
+    <button type="button" class="kzn-filter" data-filter="auto-trash">Auto Trash</button>
+  </div>
 </div>
 <div class="tabs-nav">
 <button class="tab-btn classic active" onclick="trocarAba('classic')">
@@ -4087,34 +4136,7 @@
 <p style="font-size:.85rem;color:var(--text-muted);margin-top:.5rem;">O Auto Trash possui uma área própria e não é misturado com Graal Classic ou Graal Era.</p>
 </div>
 <div class="plans-grid" style="max-width:600px;margin:0 auto;">
-<!-- AUTO TRASH (GRAAL ERA) -->
-<div class="plan-card popular" style="border-color:var(--era);">
-<span class="badge era-badge">🔥 Exclusivo Era</span>
-<div style="text-align:center;margin:0.5rem 0;">
-<img alt="Auto Trash" class="script-image" src="https://yt3.ggpht.com/5nAR2gmp0Do_KMoGwr9_kPhA2uO4eJtX4QBVaG-9mmMU_KU8LHri7Tn1116x6tCDBcS4Toi2fYm0=s900-rw-nd-v1"/>
-</div>
-<h3>AUTO TRASH AUTOMATIC</h3>
-<div class="sub-plano">Graal Era</div>
-<div class="price">R$ 200,00 <small>/ vitalício</small><span class="parcelamento">ou 2x R$ 100,00</span></div>
-<ul class="script-features">
-<li><i class="fas fa-check"></i> 100% AUTOMATIZADO</li>
-<li><i class="fas fa-check"></i> Farm de lixo 24/7</li>
-<li><i class="fas fa-check"></i> Movimento inteligente</li>
-<li><i class="fas fa-check"></i> Coleta automática</li>
-<li><i class="fas fa-check"></i> Compatível com Graal Era</li>
-<li><i class="fas fa-check"></i> Suporte dedicado</li>
-</ul>
-<div style="text-align:center;margin:0.6rem 0;padding:0.4rem;background:rgba(245,158,11,0.1);border-radius:8px;border:1px solid var(--era);">
-<p style="font-size:0.7rem;color:var(--text-muted);"><strong style="color:var(--era);">📊 Exemplo:</strong> 2.000 trash em ~2h40</p>
-</div>
-<button class="btn-buy" onclick="adicionarAoCarrinho('Auto Trash Automatic', 200, 'auto-trash')">Comprar R$ 200,00</button>
-<button class="btn-add-cart" onclick="adicionarAoCarrinho('Auto Trash Automatic', 200, 'auto-trash')"><i class="fas fa-cart-plus"></i> Adicionar</button>
-</div>
-</div>
-<div class="aviso-plano auto-trash-notice">
-<h4><i class="fas fa-info-circle"></i> AUTO TRASH SEPARADO</h4>
-<p>Este produto pertence exclusivamente à categoria <strong>Auto Trash</strong>. O carrinho identifica a categoria para evitar mistura indevida de produtos.</p>
-</div>
+
 </div>
 <div class="purchase-form-card purchase-form-auto-trash"><div class="container"><div class="section-header"><h2><i class="fas fa-shopping-cart"></i> Formulário de compra — Auto Trash</h2><p>Formulário exclusivo do Auto Trash. Ele não aparece nas abas Classic ou Era.</p></div><div class="form-container"><form action="https://formsubmit.co/gabriel6061yt@gmail.com" enctype="multipart/form-data" id="formContatoAutoTrash" method="POST"><input name="_captcha" type="hidden" value="false"/><input name="_template" type="hidden" value="table"/><input name="_subject" type="hidden" value="🔥 NOVO PEDIDO - AUTO TRASH"/><div class="form-group"><label><i class="fas fa-envelope"></i> Seu E-mail <span style="color:var(--primary);">*</span></label><input name="Email" placeholder="Digite seu e-mail..." required="True" type="email"/></div><div class="form-group"><label><i class="fas fa-user"></i> Seu Nome</label><input name="Nome" placeholder="Digite seu nome completo..." required="True" type="text"/></div><div class="form-group"><label><i class="fab fa-whatsapp"></i> WhatsApp</label><input name="WhatsApp" placeholder="(DDD) 9 9999-9999" required="True" type="text"/></div><div class="form-group"><label><i class="fas fa-trash-alt"></i> Produto</label><input class="auto-product-readonly" name="Produto" readonly="True" type="text" value="Auto Trash Automatic - R$ 200,00"/></div><div class="form-group"><label><i class="fas fa-image"></i> Comprovante PIX <span style="color:var(--primary);">*</span></label><input accept="image/*,.pdf" name="Comprovante" required="True" type="file"/></div><div class="form-group"><label><i class="fas fa-pencil-alt"></i> Mensagem (opcional)</label><textarea name="Mensagem" placeholder="Digite sua mensagem aqui..." rows="3"></textarea></div><button class="btn-submit" type="submit"><i class="fas fa-paper-plane"></i> Enviar Pedido - Auto Trash</button><div class="form-status" id="formStatusAutoTrash"></div></form></div></div></div></div>
 </div></section>
@@ -4124,6 +4146,12 @@
 <div class="section-header">
 <h2><i class="fas fa-user"></i> Meu Perfil</h2>
 <p>Gerencie suas informações e personalize sua foto</p>
+</div>
+<div class="kzn-profile-tabs">
+  <button type="button" class="active" data-profile-tab="overview"><i class="fas fa-user"></i> Visão geral</button>
+  <button type="button" data-profile-tab="purchases"><i class="fas fa-shopping-bag"></i> Compras</button>
+  <button type="button" data-profile-tab="keys"><i class="fas fa-key"></i> Keys</button>
+  <button type="button" data-profile-tab="notifications"><i class="fas fa-bell"></i> Notificações</button>
 </div>
 <div class="profile-section" id="profileSection">
 <div class="profile-header">
@@ -4242,6 +4270,9 @@
 <button class="admin-nav-btn" data-admin-view="notificacoes" onclick="mudarAbaAdmin('notificacoes')"><i class="fas fa-paper-plane"></i> Notificações</button>
 <button class="admin-nav-btn" data-admin-view="logs" onclick="mudarAbaAdmin('logs')"><i class="fas fa-list-alt"></i> Logs</button>
 <button class="admin-nav-btn" data-admin-view="admins" onclick="mudarAbaAdmin('admins')"><i class="fas fa-user-shield"></i> Administradores</button>
+<button class="admin-nav-btn" data-admin-view="compras" onclick="mudarAbaAdmin('compras')"><i class="fas fa-shopping-cart"></i> Compras</button>
+<button class="admin-nav-btn" data-admin-view="keys" onclick="mudarAbaAdmin('keys')"><i class="fas fa-key"></i> Keys</button>
+<button class="admin-nav-btn" data-admin-view="produtos" onclick="mudarAbaAdmin('produtos')"><i class="fas fa-box"></i> Produtos</button>
 </div>
 <div class="admin-view active" id="adminViewDashboard">
 <div class="admin-overview-grid">
@@ -4286,6 +4317,27 @@
 <div class="admin-toolbar"><div class="admin-search"><i class="fas fa-search"></i><input id="admBuscaAdmin" oninput="renderAdminsPanel()" placeholder="Pesquisar administrador por e-mail..." type="search"/></div><button class="admin-action-btn primary" onclick="abrirConcederAdmin()"><i class="fas fa-user-plus"></i> Dar Admin</button></div>
 <div class="admin-table-wrap"><table class="owner-table"><thead><tr><th>E-mail</th><th>Status</th><th>Concedido por</th><th>Ações</th></tr></thead><tbody id="admAdminsTabela"></tbody></table></div>
 </div>
+</div>
+<div class="admin-view" id="adminViewCompras">
+  <div class="admin-card">
+    <div class="admin-card-title"><i class="fas fa-shopping-cart"></i><span>Compras registradas</span></div>
+    <div class="admin-toolbar"><input id="admBuscaCompra" type="search" placeholder="Pesquisar pedido, e-mail ou produto..." oninput="renderAdminCompras()"></div>
+    <div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>Pedido</th><th>Cliente</th><th>Produto</th><th>Valor</th><th>Data</th><th>Status</th></tr></thead><tbody id="admComprasTabela"></tbody></table></div>
+  </div>
+</div>
+<div class="admin-view" id="adminViewKeys">
+  <div class="admin-card">
+    <div class="admin-card-title"><i class="fas fa-key"></i><span>Keys</span></div>
+    <div class="admin-toolbar"><input id="admBuscaKey" type="search" placeholder="Pesquisar key, usuário ou produto..." oninput="renderAdminKeys()"></div>
+    <div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>Key</th><th>Usuário</th><th>Produto</th><th>Expiração</th><th>Status</th></tr></thead><tbody id="admKeysTabela"></tbody></table></div>
+  </div>
+</div>
+<div class="admin-view" id="adminViewProdutos">
+  <div class="admin-card">
+    <div class="admin-card-title"><i class="fas fa-box"></i><span>Produtos da loja</span></div>
+    <p class="admin-help">Visão consolidada dos produtos existentes. Esta tela não altera preços, vendedores ou PIX.</p>
+    <div class="admin-product-grid" id="admProdutosGrid"></div>
+  </div>
 </div>
 <div class="admin-view" id="adminViewLogs">
 <div class="admin-card"><div class="admin-card-title"><i class="fas fa-list-alt"></i><span>Logs administrativos</span></div><div class="owner-log-list" id="admLogs"></div></div>
@@ -7195,5 +7247,85 @@ if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.s
   }
 })();
 </script>
+
+<script id="kzn-v16-js">
+(function(){
+  function safe(v){return String(v??'').replace(/[<>&"]/g,m=>({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[m]))}
+  function arr(key){try{return JSON.parse(localStorage.getItem(key)||'[]')||[]}catch(_){return[]}}
+
+  function setupProductTools(){
+    const input=document.getElementById('kznProductSearch'), filters=[...document.querySelectorAll('.kzn-filter')];
+    if(!input)return;
+    let category='all';
+    const apply=()=>{
+      const q=(input.value||'').toLowerCase();
+      document.querySelectorAll('#mods .plan-card').forEach(card=>{
+        const tab=card.closest('.tab-content'), cat=tab?.id==='tab-classic'?'classic':tab?.id==='tab-era'?'era':tab?.id==='tab-auto-trash'?'auto-trash':'all';
+        card.style.display=((category==='all'||category===cat)&&(!q||(card.innerText||'').toLowerCase().includes(q)))?'':'none';
+      });
+    };
+    input.addEventListener('input',apply);
+    filters.forEach(btn=>btn.addEventListener('click',()=>{
+      filters.forEach(x=>x.classList.remove('active'));btn.classList.add('active');category=btn.dataset.filter||'all';apply();
+      if(category!=='all'&&typeof window.trocarAba==='function')window.trocarAba(category);
+    }));
+  }
+
+  function setupProfileTabs(){
+    const tabs=[...document.querySelectorAll('.kzn-profile-tabs button')]; if(!tabs.length)return;
+    tabs.forEach(btn=>btn.addEventListener('click',()=>{
+      tabs.forEach(x=>x.classList.remove('active'));btn.classList.add('active');
+      const tab=btn.dataset.profileTab, profile=document.getElementById('profileSection');
+      if(!profile)return;
+      if(tab==='overview'){profile.querySelector('.profile-actions')?.classList.remove('kzn-profile-tab-hidden');profile.querySelector('#editProfileArea')?.classList.remove('kzn-profile-tab-hidden')}
+      else{profile.querySelector('.profile-actions')?.classList.add('kzn-profile-tab-hidden');profile.querySelector('#editProfileArea')?.classList.add('kzn-profile-tab-hidden');if(tab==='notifications')document.getElementById('notifBtn')?.click()}
+    }));
+  }
+
+  function renderAdminCompras(){
+    const t=document.getElementById('admComprasTabela');if(!t)return;const q=(document.getElementById('admBuscaCompra')?.value||'').toLowerCase();
+    const a=arr('kzn_compras').filter(x=>JSON.stringify(x).toLowerCase().includes(q));
+    t.innerHTML=a.length?a.map((x,i)=>`<tr><td>${safe(x.id||x.pedido||('#'+(i+1)))}</td><td>${safe(x.email||x.cliente||'-')}</td><td>${safe(x.produto||x.nome||'-')}</td><td>${safe(x.valor!=null?'R$ '+x.valor:'-')}</td><td>${safe(x.data||x.timestamp||'-')}</td><td>${safe(x.status||'Pendente')}</td></tr>`).join(''):'<tr><td colspan="6">Nenhuma compra encontrada.</td></tr>';
+  }
+  function renderAdminKeys(){
+    const t=document.getElementById('admKeysTabela');if(!t)return;const q=(document.getElementById('admBuscaKey')?.value||'').toLowerCase();
+    const a=arr('kzn_keys').filter(x=>JSON.stringify(x).toLowerCase().includes(q));
+    t.innerHTML=a.length?a.map(x=>`<tr><td>${safe(x.key||x.codigo||'-')}</td><td>${safe(x.email||x.usuario||'-')}</td><td>${safe(x.produto||'-')}</td><td>${safe(x.expiracao||x.expira||'-')}</td><td>${safe(x.status||'Ativa')}</td></tr>`).join(''):'<tr><td colspan="5">Nenhuma key encontrada.</td></tr>';
+  }
+  function renderAdminProdutos(){
+    const g=document.getElementById('admProdutosGrid');if(!g)return;
+    const a=[['KZN MENU — Graal Classic','Classic','Key / planos'],['MOD MENU GRAAL ERA','Era','Vendedor: Xitado'],['AUTO TRASH AUTOMATIC','Auto Trash','Graal Era']];
+    g.innerHTML=a.map(x=>`<div class="admin-product-card"><strong>${safe(x[0])}</strong><small>Categoria: ${safe(x[1])}</small><small>${safe(x[2])}</small><span class="tag">ATIVO</span></div>`).join('');
+  }
+  window.renderAdminCompras=renderAdminCompras;window.renderAdminKeys=renderAdminKeys;
+  const oldAdmin=window.mudarAbaAdmin;
+  window.mudarAbaAdmin=function(view){if(typeof oldAdmin==='function')oldAdmin(view);setTimeout(()=>{if(view==='compras')renderAdminCompras();if(view==='keys')renderAdminKeys();if(view==='produtos')renderAdminProdutos()},40)};
+
+  // Single Push activation path; avoids the V15 duplicate handlers.
+  window.ativarNotificacoesCelular=async function(){
+    const btn=document.getElementById('mobileNotifBtn');
+    try{
+      if(!window.isSecureContext)throw new Error('HTTPS_REQUIRED');
+      if(!('Notification'in window))throw new Error('NO_NOTIFICATION');
+      if(!('serviceWorker'in navigator)||!('PushManager'in window))throw new Error('NO_PUSH');
+      let p=Notification.permission;if(p==='denied')throw new Error('PERMISSION_DENIED');if(p!=='granted')p=await Notification.requestPermission();if(p!=='granted')throw new Error('PERMISSION_NOT_GRANTED');
+      const reg=await navigator.serviceWorker.register('./kzn-notification-sw.js',{scope:'./'});await navigator.serviceWorker.ready;
+      const key=(typeof PUBLIC_VAPID_KEY!=='undefined')?PUBLIC_VAPID_KEY:'BKkLDp3zTSicLCK9FUf1rBnFa5bLBXIQgCgQDu3GL4QOp5SvtVPQH172Al5sxMyX1qGFBk765PV3s13HY-C15xw';
+      let sub=await reg.pushManager.getSubscription();
+      if(!sub){const conv=(typeof urlBase64ToUint8Array==='function')?urlBase64ToUint8Array:null;if(!conv)throw new Error('VAPID_HELPER');sub=await reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:conv(key)})}
+      if(typeof usuarioLogado!=='undefined'&&usuarioLogado?.email&&typeof db!=='undefined'){
+        const k=typeof SAN==='function'?SAN(usuarioLogado.email):usuarioLogado.email.replace(/[.#$[\]]/g,'_');
+        await db.ref('push_inscricoes/'+k).set({endpoint:sub.endpoint,keys:sub.toJSON().keys||{},data:new Date().toISOString(),email:usuarioLogado.email,ativo:true});
+      }
+      localStorage.setItem('kzn_mobile_notifications','enabled');if(btn){btn.classList.add('enabled');btn.innerHTML='<i class="fas fa-check"></i> Notificações fora do site ativadas'}
+      await reg.showNotification('KZN MENU',{body:'Notificações do celular ativadas com sucesso.',icon:'https://yt3.ggpht.com/pCQ6XhcUzMYgxDHA4Z2WZzHIN9B8O3HqCB_nfbqMYymlQqQ1cDvZc-kszyjePyEjV13qgqvwDbJK=s800-rw-nd-v1'});
+      return true;
+    }catch(e){console.error(e);const m={HTTPS_REQUIRED:'Abra o site usando HTTPS.',NO_NOTIFICATION:'Seu navegador não oferece notificações web.',NO_PUSH:'Seu navegador não suporta Push.',PERMISSION_DENIED:'As notificações estão bloqueadas para este site.',PERMISSION_NOT_GRANTED:'A permissão não foi concedida.',VAPID_HELPER:'A configuração de Push está incompleta.'}[e.message]||'Não foi possível ativar as notificações. Verifique as permissões do navegador.';alert('❌ '+m);return false}
+  };
+
+  window.addEventListener('load',()=>{setupProductTools();setupProfileTabs();renderAdminCompras();renderAdminKeys();renderAdminProdutos()});
+})();
+</script>
+
 </body>
 </html>
