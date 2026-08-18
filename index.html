@@ -3271,6 +3271,62 @@
 .chat-messages .chat-msg:hover{background:rgba(0,0,0,.24)!important;}
 </style>
 
+
+<!-- ===== KZN V11 — HEADER + CHAT WALLPAPER + NOTIFICATIONS + BOT ===== -->
+<style>
+/* Header: never hide the KZN MENU or XCORE brand text on mobile. */
+.nav-logo-wrapper{overflow:visible!important;}
+.nav-logo{overflow:visible!important;}
+.nav-logo .logo-text{display:flex!important;visibility:visible!important;opacity:1!important;min-width:max-content!important;}
+.nav-logo .logo-text span{display:block!important;visibility:visible!important;opacity:1!important;white-space:nowrap!important;overflow:visible!important;text-overflow:clip!important;}
+.nav-logo .logo-text small{display:block!important;}
+.nav-xcore{overflow:visible!important;}
+.nav-xcore .xcore-text{display:flex!important;visibility:visible!important;opacity:1!important;}
+@media(max-width:768px){
+  .nav-logo-wrapper{flex:0 1 auto!important;max-width:46%!important;}
+  .nav-logo .logo-text span{font-size:.78rem!important;}
+  .nav-logo .logo-text small{display:none!important;}
+  .nav-xcore{min-width:118px!important;max-width:138px!important;}
+  .nav-xcore .xcore-text .name{font-size:.58rem!important;}
+  .nav-xcore .xcore-text .team{font-size:.50rem!important;}
+}
+
+/* Notification button: compact, premium red glass style. */
+#notifBtn.nav-icon-btn{width:46px!important;height:46px!important;min-width:46px!important;border-radius:14px!important;border:1px solid rgba(255,100,100,.55)!important;background:linear-gradient(145deg,#ff3b3b,#b5122d)!important;color:#fff!important;box-shadow:0 6px 20px rgba(239,68,68,.28),inset 0 1px 0 rgba(255,255,255,.18)!important;transition:transform .18s ease,box-shadow .18s ease!important;}
+#notifBtn.nav-icon-btn:hover{transform:translateY(-2px) scale(1.03)!important;box-shadow:0 9px 24px rgba(239,68,68,.4)!important;}
+#notifBtn.nav-icon-btn i{font-size:1.08rem!important;color:#fff!important;filter:drop-shadow(0 1px 2px rgba(0,0,0,.25));}
+#notifBtn .badge{background:#fff!important;color:#c1122f!important;border:2px solid #b5122d!important;font-weight:900!important;}
+@media(max-width:560px){#notifBtn.nav-icon-btn{width:42px!important;height:42px!important;min-width:42px!important;border-radius:13px!important;}}
+
+/* Chat wallpaper: apply to the complete message viewport, not just a child layer. */
+#chatWindow .chat-messages,
+#chatMessages.chat-messages{
+  background-image:linear-gradient(rgba(0,0,0,.28),rgba(0,0,0,.28)),url("https://encrypted-tbn0.gstatic.com/images?q=ANd9GcQ6xkvFPJj68-vJ0uDDoJL6sLuw4snBUMr8evEq4kvFAg&s=10")!important;
+  background-size:cover!important;
+  background-position:center center!important;
+  background-repeat:no-repeat!important;
+  background-attachment:scroll!important;
+  background-color:#111!important;
+}
+#chatWindow .chat-messages .chat-msg{
+  background:rgba(0,0,0,.10)!important;
+  border:1px solid rgba(255,255,255,.07)!important;
+  border-left:3px solid rgba(124,58,237,.88)!important;
+  box-shadow:0 3px 12px rgba(0,0,0,.14)!important;
+  backdrop-filter:blur(1px)!important;
+}
+#chatWindow .chat-messages .chat-msg:hover{background:rgba(0,0,0,.16)!important;}
+
+/* Notification center: keep the phone activation option visible and compact. */
+#notifDropdown .mobile-notif-btn{display:flex!important;width:100%!important;align-items:center!important;justify-content:center!important;gap:7px!important;margin:8px 0 2px!important;padding:9px 10px!important;border-radius:10px!important;border:1px solid rgba(124,58,237,.45)!important;background:rgba(124,58,237,.12)!important;color:#ddd!important;font-weight:800!important;font-size:.76rem!important;cursor:pointer!important;}
+#notifDropdown .mobile-notif-btn.enabled{background:rgba(34,197,94,.12)!important;border-color:rgba(34,197,94,.5)!important;color:#4ade80!important;}
+
+/* Professional BOT identity. */
+.chat-messages .chat-msg .msg-nome.bot{color:#38bdf8!important;font-weight:900!important;}
+.chat-messages .chat-msg .msg-badge.bot-badge{color:#38bdf8!important;background:rgba(14,165,233,.14)!important;border:1px solid rgba(56,189,248,.35)!important;font-weight:800!important;}
+.mobile-notif-help{font-size:.68rem;color:#94a3b8;line-height:1.35;margin:4px 2px 0;text-align:center;}
+</style>
+
 </head>
 <body>
 <!-- ===== WHATSAPP FIXO ===== -->
@@ -3408,7 +3464,7 @@
 <div class="dropdown" id="notifDropdown">
 <div class="dropdown-header">
 <span><i class="fas fa-bell"></i> Notificações</span>
-<button class="btn-clear" onclick="marcarTodasNotificacoesLidas()">Marcar lidas</button><button class="notif-delete-all" onclick="apagarTodasNotificacoes()">Apagar todas</button><button class="mobile-notif-btn" id="mobileNotifBtn" onclick="ativarNotificacoesCelular()"><i class="fas fa-mobile-alt"></i> Ativar notificações no celular</button>
+<button class="btn-clear" onclick="marcarTodasNotificacoesLidas()">Marcar lidas</button><button class="notif-delete-all" onclick="apagarTodasNotificacoes()">Apagar todas</button><button class="mobile-notif-btn" id="mobileNotifBtn" onclick="ativarNotificacoesCelular()"><i class="fas fa-mobile-alt"></i> Ativar notificações no celular</button><div class="mobile-notif-help">Receba avisos do KZN MENU no celular quando o navegador permitir notificações em segundo plano.</div>
 </div>
 <div class="dropdown-body" id="notifList">
 <div class="empty-state">
@@ -5238,6 +5294,34 @@
             });
         };
 
+        // ====== KZN BOT V11 — respostas automáticas profissionais ======
+        function responderBotAutomaticamente(texto, usuario) {
+            const original = String(texto || '').trim();
+            if (!original || original.startsWith('/')) return;
+            const s = original.toLowerCase();
+            let resposta = null;
+            if (/\b(oi|olá|ola|hello|hey|eai|e aí)\b/.test(s)) {
+                resposta = `👋 Olá, ${usuario.nome || 'jogador'}! Sou o BOT oficial da KZN MENU. Posso ajudar com produtos, compras, suporte e informações do site.`;
+            } else if (s.includes('preço') || s.includes('preco') || s.includes('valor') || s.includes('plano')) {
+                resposta = '💰 Quer consultar os planos? Abra a aba de compras e escolha Classic, Era ou Auto Trash para ver os valores e validades disponíveis.';
+            } else if (s.includes('comprar') || s.includes('compra') || s.includes('pix')) {
+                resposta = '🛒 Para comprar, abra o produto desejado, adicione ao carrinho ou use o formulário da própria categoria. Em caso de dúvida, fale com o suporte.';
+            } else if (s.includes('suporte') || s.includes('ajuda') || s.includes('problema') || s.includes('erro')) {
+                resposta = '🛠️ Para suporte, descreva o problema no chat ou use o WhatsApp oficial. Um administrador poderá continuar o atendimento.';
+            } else if (s.includes('classic')) {
+                resposta = '🏛️ O GRAAL CLASSIC possui sua própria aba de compras. Abra a seção Classic para conferir os planos disponíveis.';
+            } else if (s.includes('era')) {
+                resposta = '🌆 O GRAAL ERA possui uma aba própria. Abra a seção Era para consultar o produto e as informações disponíveis.';
+            } else if (s.includes('auto trash') || s.includes('autotrash')) {
+                resposta = '🗑️ O AUTO TRASH está separado em uma aba própria para facilitar a compra e evitar mistura com Classic e Era.';
+            } else if (s.includes('notificação') || s.includes('notificacao')) {
+                resposta = '🔔 Você pode ativar as notificações do celular na central de notificações para receber avisos do KZN MENU quando o navegador oferecer suporte.';
+            }
+            if (resposta) {
+                setTimeout(() => enviarMensagemBot(resposta), 700);
+            }
+        }
+
         // ====== ENVIAR MENSAGEM ======
         window.enviarMensagem = function() {
             const input = document.getElementById('chatInput');
@@ -5282,6 +5366,8 @@
 
                     if (texto.startsWith('/')) {
                         processarComando(texto, usuarioLogado);
+                    } else {
+                        responderBotAutomaticamente(texto, usuarioLogado);
                     }
                 });
             });
@@ -6646,11 +6732,38 @@ window.copiarPixEra = function() {
       new Notification('KZN MENU',{body:'Notificações do celular ativadas com sucesso.',icon:'https://yt3.ggpht.com/pCQ6XhcUzMYgxDHA4Z2WZzHIN9B8O3HqCB_nfbqMYymlQqQ1cDvZc-kszyjePyEjV13qgqvwDbJK=s800-rw-nd-v1'});
     }else{alert('⚠️ Permissão de notificações não concedida.');}
   };
+
+  /* V11: restore real Push subscription option. A backend using the saved subscription is required to deliver while fully closed. */
+  window.ativarNotificacoesCelular=async function(){
+    const btn=document.getElementById('mobileNotifBtn');
+    if(!('Notification' in window)||!('serviceWorker' in navigator)||!('PushManager' in window)){alert('❌ Seu navegador não suporta notificações push.');return;}
+    try{
+      const permission=await Notification.requestPermission();
+      if(permission!=='granted'){alert('⚠️ Permissão de notificações não concedida.');return;}
+      const reg=await navigator.serviceWorker.register('./kzn-notification-sw.js',{scope:'./'});
+      let sub=await reg.pushManager.getSubscription();
+      if(!sub){sub=await reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:urlBase64ToUint8Array(PUBLIC_VAPID_KEY)});}
+      if(usuarioLogado){await db.ref('push_inscricoes/'+SAN(usuarioLogado.email)).set({endpoint:sub.endpoint,keys:sub.toJSON().keys||{},data:new Date().toISOString(),email:usuarioLogado.email,ativo:true});}
+      localStorage.setItem('kzn_mobile_notifications','enabled');
+      if(btn){btn.classList.add('enabled');btn.innerHTML='<i class="fas fa-check"></i> Notificações fora do site ativadas';}
+      await reg.showNotification('KZN MENU',{body:'Notificações do celular ativadas.',icon:'https://yt3.ggpht.com/pCQ6XhcUzMYgxDHA4Z2WZzHIN9B8O3HqCB_nfbqMYymlQqQ1cDvZc-kszyjePyEjV13qgqvwDbJK=s800-rw-nd-v1'});
+    }catch(e){console.error(e);alert('❌ Não foi possível ativar as notificações. Verifique as permissões do navegador e tente novamente.');}
+  };
+
   function atualizarBotaoNotif(){const b=document.getElementById('mobileNotifBtn');if(!b)return;if(localStorage.getItem('kzn_mobile_notifications')==='enabled'&&Notification.permission==='granted'){b.classList.add('enabled');b.innerHTML='<i class="fas fa-check"></i> Notificações do celular ativadas';}}
 
   /* Notify phone when a new site notification arrives. */
   const oldMonitor=window.monitorSiteNotifications;
-  window.kznNotifyPhone=function(n){if(localStorage.getItem('kzn_mobile_notifications')!=='enabled'||Notification.permission!=='granted')return;try{new Notification(n.title||'KZN MENU',{body:n.message||'',icon:'https://yt3.ggpht.com/pCQ6XhcUzMYgxDHA4Z2WZzHIN9B8O3HqCB_nfbqMYymlQqQ1cDvZc-kszyjePyEjV13qgqvwDbJK=s800-rw-nd-v1'});}catch(e){console.warn(e);}};
+  window.kznNotifyPhone=async function(n){
+    if(localStorage.getItem('kzn_mobile_notifications')!=='enabled'||Notification.permission!=='granted')return;
+    try{
+      if('serviceWorker' in navigator){
+        const reg=await navigator.serviceWorker.ready;
+        if(reg&&reg.showNotification){await reg.showNotification(n.title||'KZN MENU',{body:n.message||'',icon:'https://yt3.ggpht.com/pCQ6XhcUzMYgxDHA4Z2WZzHIN9B8O3HqCB_nfbqMYymlQqQ1cDvZc-kszyjePyEjV13qgqvwDbJK=s800-rw-nd-v1',badge:'https://yt3.ggpht.com/pCQ6XhcUzMYgxDHA4Z2WZzHIN9B8O3HqCB_nfbqMYymlQqQ1cDvZc-kszyjePyEjV13qgqvwDbJK=s800-rw-nd-v1'});return;}
+      }
+      new Notification(n.title||'KZN MENU',{body:n.message||'',icon:'https://yt3.ggpht.com/pCQ6XhcUzMYgxDHA4Z2WZzHIN9B8O3HqCB_nfbqMYymlQqQ1cDvZc-kszyjePyEjV13qgqvwDbJK=s800-rw-nd-v1'});
+    }catch(e){console.warn(e);}
+  };
   const originalNotif=window.monitorSiteNotifications;
   window.monitorSiteNotifications=function(){
     if(!currentEmail())return;
