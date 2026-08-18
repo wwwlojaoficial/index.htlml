@@ -1,23 +1,23 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>KZN MENU - Melhores Mods para Graal Classic &amp; Era</title>
-    <meta name="description" content="Compre o KZN MENU: mods exclusivos para farm, esp e muito mais no Graal Classic e Graal Era. Suporte VIP e atualizações vitalícias.">
-    <link rel="canonical" href="https://gabriel6061yt-cell.github.io/Kzn-site/" />
-    <meta property="og:title" content="KZN MENU - Mods para Graal" />
-    <meta property="og:description" content="⬇️ ACESSE O NOSSO SITE E GARANTA SEU MOD MENU ⬇️" />
-    <meta property="og:image" content="https://yt3.ggpht.com/Jn6QaxEthwP5GOcKdRxg38b_pJzUQdfJjmaGqFe0hqTaPQ3XOM8xqTFYCXhbkRynlX6uU4zcqCkuG1I=s800-rw-nd-v1" />
-    <meta property="og:url" content="https://gabriel6061yt-cell.github.io/Kzn-site/" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <link rel="manifest" href="/manifest.json">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <script src="https://accounts.google.com/gsi/client" async></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
-
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>KZN MENU - Melhores Mods para Graal Classic &amp; Era</title>
+<meta content="Compre o KZN MENU: mods exclusivos para farm, esp e muito mais no Graal Classic e Graal Era. Suporte VIP e atualizações vitalícias." name="description"/>
+<link href="https://gabriel6061yt-cell.github.io/Kzn-site/" rel="canonical"/>
+<meta content="KZN MENU - Mods para Graal" property="og:title"/>
+<meta content="⬇️ ACESSE O NOSSO SITE E GARANTA SEU MOD MENU ⬇️" property="og:description">
+<meta content="https://yt3.ggpht.com/Jn6QaxEthwP5GOcKdRxg38b_pJzUQdfJjmaGqFe0hqTaPQ3XOM8xqTFYCXhbkRynlX6uU4zcqCkuG1I=s800-rw-nd-v1" property="og:image"/>
+<meta content="https://gabriel6061yt-cell.github.io/Kzn-site/" property="og:url"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<link href="/manifest.json" rel="manifest"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<script async="" src="https://accounts.google.com/gsi/client"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+<style>
         /* ===== CSS COMPLETO ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
@@ -2784,893 +2784,935 @@
     }
 }
 
+
+/* ===== KZN V4 — CORREÇÃO DEFINITIVA DE HEADER / FORMULÁRIOS / ADMIN ===== */
+/* Admin floating controls: WhatsApp -> Chat -> Admin, fixed stack. */
+.admin-floating-toggle{
+    position:fixed!important;
+    left:18px!important;
+    bottom:142px!important;
+    width:auto!important;
+    min-width:56px;
+    height:48px;
+    z-index:10020!important;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:0 14px!important;
+    border:1px solid rgba(168,85,247,.75)!important;
+    border-radius:14px!important;
+    background:linear-gradient(135deg,#241238,#5b21b6)!important;
+    box-shadow:0 8px 30px rgba(0,0,0,.4),0 0 24px rgba(168,85,247,.18)!important;
+}
+.admin-floating-toggle.open{background:linear-gradient(135deg,#dc2626,#7c3aed)!important;border-color:rgba(255,255,255,.35)!important}
+.chat-toggle-btn{bottom:80px!important;left:18px!important;z-index:10019!important}
+.btn-whatsapp-fixo{bottom:18px!important;left:18px!important;z-index:10018!important}
+
+/* Header: never collapse notification/cart/profile controls. */
+.navbar{z-index:10000!important}
+.nav-container{display:flex;align-items:center;gap:10px;min-width:0}
+.nav-logo-wrapper{flex:1 1 auto;min-width:0}
+.nav-menu#navMenuDesktop{flex:0 1 auto}
+.nav-actions{flex:0 0 auto!important;display:flex!important;align-items:center;gap:6px;min-width:max-content!important;z-index:10010!important}
+.nav-actions>*{flex:0 0 auto!important}
+@media(max-width:1100px){.nav-menu#navMenuDesktop{display:none!important}.nav-toggle{display:flex!important}}
+@media(max-width:560px){
+  .nav-container{gap:5px;padding-left:8px!important;padding-right:8px!important}
+  .nav-logo-wrapper{max-width:45%}
+  .nav-xcore{display:none!important}
+  .nav-actions{gap:3px!important}
+  .nav-icon-btn{width:34px!important;height:34px!important}
+  .profile-btn{max-width:84px!important;overflow:hidden}
+  .profile-btn .profile-name{display:none!important}
+  .admin-floating-toggle{left:12px!important;bottom:142px!important;height:46px}
+  .chat-toggle-btn{left:12px!important;bottom:78px!important}
+  .btn-whatsapp-fixo{left:12px!important;bottom:16px!important}
+}
+
+/* Product tabs + purchase forms */
+.tabs-nav{position:relative;z-index:2}
+.tab-content{width:100%;box-sizing:border-box}
+.purchase-form-card{margin:26px auto 0;max-width:860px;padding:0 4px}
+.purchase-form-card .container{max-width:860px!important;padding:0!important}
+.purchase-form-card .section-header{margin-bottom:14px}
+.purchase-form-card .form-container{max-width:760px;margin:0 auto}
+.purchase-form-auto-trash .form-container{border-color:#a855f7!important}
+.purchase-form-card form{margin:0}
+
+/* Compact, professional owner console */
+.owner-section{display:none!important;position:relative!important;padding:24px 0 36px!important}
+.owner-section.admin-visible{display:block!important}
+.admin-shell{width:min(1120px,calc(100% - 24px));margin:0 auto;background:linear-gradient(145deg,rgba(15,23,42,.98),rgba(9,13,23,.98));border:1px solid rgba(255,255,255,.10);border-radius:22px;box-shadow:0 24px 80px rgba(0,0,0,.38);overflow:hidden}
+.admin-head{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:22px 24px;background:linear-gradient(135deg,rgba(124,58,237,.14),rgba(220,38,38,.08));border-bottom:1px solid rgba(255,255,255,.08)}
+.admin-kicker{font-size:.68rem;letter-spacing:.16em;color:#c4b5fd;font-weight:800;margin-bottom:5px}
+.admin-head h2{margin:0;font-size:1.35rem;color:#fff}.admin-head p{margin:5px 0 0;color:var(--text-muted);font-size:.78rem}
+.admin-head-close{width:40px;height:40px;border:1px solid rgba(255,255,255,.12);border-radius:11px;background:rgba(255,255,255,.05);color:#fff;cursor:pointer;font-size:1rem}
+.admin-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:14px 18px}
+.admin-stat{display:flex;align-items:center;gap:10px;padding:12px;border-radius:14px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07)}
+.admin-stat strong{display:block;font-size:1.25rem;color:#fff}.admin-stat small{display:block;color:var(--text-muted);font-size:.68rem;margin-top:1px}
+.admin-stat-icon{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;background:rgba(124,58,237,.16);color:#c4b5fd}.admin-stat-icon.active{background:rgba(34,197,94,.14);color:#4ade80}.admin-stat-icon.banned{background:rgba(239,68,68,.14);color:#f87171}.admin-stat-icon.notify{background:rgba(59,130,246,.14);color:#60a5fa}
+.admin-nav{display:flex;gap:6px;overflow:auto;padding:0 18px 14px;border-bottom:1px solid rgba(255,255,255,.07)}
+.admin-nav-btn{white-space:nowrap;border:1px solid rgba(255,255,255,.08);background:#111827;color:#9ca3af;padding:9px 12px;border-radius:10px;cursor:pointer;font-size:.76rem}.admin-nav-btn.active{background:linear-gradient(135deg,#7c3aed,#dc2626);color:#fff;border-color:transparent}
+.admin-view{display:none;padding:16px 18px 20px}.admin-view.active{display:block}
+.admin-overview-grid{display:grid;grid-template-columns:2fr 1fr;gap:12px}.admin-card{background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07);border-radius:15px;padding:16px}.admin-card-title{display:flex;align-items:center;gap:9px;color:#fff;font-weight:800;font-size:.86rem;margin-bottom:14px}.admin-card-title i{color:#c4b5fd}.admin-card-title small{margin-left:auto;color:var(--text-muted);font-weight:500}
+.admin-quick-actions{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.admin-quick-actions button{display:flex;flex-direction:column;align-items:flex-start;gap:3px;text-align:left;border:1px solid rgba(255,255,255,.07);background:#111827;color:#fff;border-radius:12px;padding:12px;cursor:pointer}.admin-quick-actions button:hover{border-color:rgba(168,85,247,.5);transform:translateY(-1px)}.admin-quick-actions button i{color:#c4b5fd}.admin-quick-actions button span{font-size:.78rem;font-weight:800}.admin-quick-actions button small{color:var(--text-muted);font-size:.65rem}
+.admin-mini-list{display:grid;gap:10px}.admin-mini-list>div{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:.76rem}.admin-mini-list>div:last-child{border-bottom:0}.admin-mini-list span{color:var(--text-muted)}.admin-mini-list strong{color:#fff}.admin-online{color:#4ade80!important}
+.admin-toolbar{display:flex;gap:8px;align-items:center;margin-bottom:12px}.admin-search{flex:1;display:flex;align-items:center;gap:8px;background:#0b1220;border:1px solid rgba(255,255,255,.09);border-radius:10px;padding:0 11px}.admin-search i{color:#64748b}.admin-search input{width:100%;border:0;outline:0;background:transparent;color:#fff;padding:11px 0}.admin-action-btn{border:1px solid rgba(255,255,255,.10);background:#111827;color:#fff;border-radius:10px;padding:10px 12px;cursor:pointer;white-space:nowrap;font-weight:700}.admin-action-btn.primary{border:0;background:linear-gradient(135deg,#7c3aed,#dc2626)}
+.admin-table-wrap{max-height:430px;overflow:auto;border:1px solid rgba(255,255,255,.06);border-radius:11px}.owner-table{min-width:620px}.owner-table th{position:sticky;top:0;background:#0d1421!important;z-index:3}.owner-table td,.owner-table th{padding:10px 9px!important}
+.admin-help{color:var(--text-muted);font-size:.78rem;line-height:1.6;margin:0 0 14px}.owner-log-list{max-height:420px;overflow:auto}
+@media(max-width:800px){.admin-stats{grid-template-columns:repeat(2,1fr)}.admin-overview-grid{grid-template-columns:1fr}.admin-toolbar{flex-wrap:wrap}.admin-search{min-width:100%}}
+@media(max-width:480px){.admin-shell{width:calc(100% - 12px);border-radius:16px}.admin-head{padding:16px}.admin-stats{padding:10px;gap:7px}.admin-view{padding:11px}.admin-nav{padding:0 10px 10px}.admin-quick-actions{grid-template-columns:1fr}.admin-stat{padding:10px}.admin-stat-icon{width:34px;height:34px}.admin-action-btn{flex:1}.admin-table-wrap{max-height:360px}}
 </style>
-</head>
+</meta></head>
 <body>
-
-    <!-- ===== WHATSAPP FIXO ===== -->
-    <a href="https://wa.me/5542988752654?text=Olá! Quero comprar o KZN MENU!" class="btn-whatsapp-fixo" target="_blank" title="Falar no WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <!-- ===== CHAT TOGGLE ===== -->
-    <button class="chat-toggle-btn" id="chatToggleBtn" onclick="toggleChat()" style="display:none;">
-        <i class="fas fa-comment-dots"></i>
-        <span class="chat-badge" id="chatBadge">0</span>
-    </button>
-
-    <!-- ===== OWNER PANEL TOGGLE ===== -->
-    <button class="admin-floating-toggle" id="adminPanelToggle" onclick="toggleCentralProprietario()" title="Abrir/fechar Central do Proprietário">
-        <i class="fas fa-crown"></i>
-        <span>Admin</span>
-    </button>
-
-    <!-- ===== CHAT WINDOW ===== -->
-    <div class="chat-window" id="chatWindow">
-        <div class="chat-header">
-            <div class="chat-title">
-                <i class="fas fa-comment-dots"></i>
-                <span>Chat Global 💬</span>
-                <span class="online-count" id="onlineCount">👤 0 online</span>
+<!-- ===== WHATSAPP FIXO ===== -->
+<a class="btn-whatsapp-fixo" href="https://wa.me/5542988752654?text=Olá! Quero comprar o KZN MENU!" target="_blank" title="Falar no WhatsApp">
+<i class="fab fa-whatsapp"></i>
+</a>
+<!-- ===== CHAT TOGGLE ===== -->
+<button class="chat-toggle-btn" id="chatToggleBtn" onclick="toggleChat()" style="display:none;">
+<i class="fas fa-comment-dots"></i>
+<span class="chat-badge" id="chatBadge">0</span>
+</button>
+<!-- ===== OWNER PANEL TOGGLE ===== -->
+<button class="admin-floating-toggle" id="adminPanelToggle" onclick="toggleCentralProprietario()" title="Abrir/fechar Central do Proprietário">
+<i class="fas fa-crown"></i>
+<span>Admin</span>
+</button>
+<!-- ===== CHAT WINDOW ===== -->
+<div class="chat-window" id="chatWindow">
+<div class="chat-header">
+<div class="chat-title">
+<i class="fas fa-comment-dots"></i>
+<span>Chat Global 💬</span>
+<span class="online-count" id="onlineCount">👤 0 online</span>
+</div>
+<div class="chat-actions">
+<button id="themeBtn" onclick="alternarTema()" style="background:none;border:none;color:var(--text-muted);font-size:1rem;cursor:pointer;transition:0.3s;padding:4px 6px;border-radius:4px;" title="Alternar tema">
+<i class="fas fa-moon" id="themeIcon"></i>
+</button>
+<button class="close-chat-btn" onclick="toggleChat()" title="Fechar">✕</button>
+</div>
+</div>
+<div class="chat-messages" id="chatMessages">
+<div style="text-align:center;color:var(--text-muted);padding:2rem;">
+<i class="fas fa-spinner fa-spin" style="font-size:1.5rem;"></i>
+<p>Carregando mensagens...</p>
+</div>
+<div class="typing-indicator" id="typingIndicator">
+<i class="fas fa-pen-fancy"></i> <strong id="typingUser">Alguém</strong> está digitando...
             </div>
-            <div class="chat-actions">
-                <button onclick="alternarTema()" title="Alternar tema" id="themeBtn" style="background:none;border:none;color:var(--text-muted);font-size:1rem;cursor:pointer;transition:0.3s;padding:4px 6px;border-radius:4px;">
-                    <i class="fas fa-moon" id="themeIcon"></i>
-                </button>
-                <button onclick="toggleChat()" title="Fechar" class="close-chat-btn">✕</button>
-            </div>
-        </div>
-
-        <div class="chat-messages" id="chatMessages">
-            <div style="text-align:center;color:var(--text-muted);padding:2rem;">
-                <i class="fas fa-spinner fa-spin" style="font-size:1.5rem;"></i>
-                <p>Carregando mensagens...</p>
-            </div>
-            <div class="typing-indicator" id="typingIndicator">
-                <i class="fas fa-pen-fancy"></i> <strong id="typingUser">Alguém</strong> está digitando...
-            </div>
-        </div>
-
-        <div class="chat-input-area">
-            <button onclick="iniciarGravacao()" title="Gravar áudio" id="audioBtn" class="audio-btn" style="background:var(--primary);color:#fff;border:none;border-radius:8px;padding:0.2rem 0.6rem;font-size:1rem;cursor:pointer;transition:0.3s;">
-                <i class="fas fa-microphone"></i>
-            </button>
-            <input type="text" id="chatInput" placeholder="Digite sua mensagem... use @ para mencionar" maxlength="500" />
-            <button onclick="enviarMensagem()" id="sendBtn">
-                <i class="fas fa-paper-plane"></i>
-            </button>
-        </div>
-    </div>
-
-    <!-- ===== USER MENU (MODERAÇÃO) ===== -->
-    <div class="user-menu-overlay" id="userMenuOverlay" onclick="fecharMenuUsuario(event)">
-        <div class="user-menu" onclick="event.stopPropagation()">
-            <div class="user-header">
-                <div class="user-avatar" id="menuAvatar">U</div>
-                <div class="user-info">
-                    <h4 id="menuNome">Usuário</h4>
-                    <p id="menuEmail">email@exemplo.com</p>
-                    <div class="user-status" id="menuStatus">👤 Usuário</div>
-                </div>
-            </div>
-            <div class="menu-actions" id="menuActions"></div>
-            <button class="close-menu" onclick="fecharMenuUsuario()"><i class="fas fa-times"></i> Fechar</button>
-        </div>
-    </div>
-
-    <!-- ===== MODAL DE MODERAÇÃO ===== -->
-    <div class="modal-overlay" id="modalOverlay" onclick="fecharModal(event)">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <button class="modal-close-btn" onclick="fecharModal()">✕</button>
-            <h3 id="modalTitle">Ação de Moderação</h3>
-            <p id="modalDescription">Confirmar ação para este usuário?</p>
-            <div id="modalForm" style="display:none;">
-                <div class="form-group">
-                    <label>Motivo (opcional)</label>
-                    <textarea id="modalReason" placeholder="Digite o motivo..."></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Duração</label>
-                    <select id="modalDuration">
-                        <option value="5">5 minutos</option>
-                        <option value="15">15 minutos</option>
-                        <option value="60">1 hora</option>
-                        <option value="1440">24 horas</option>
-                        <option value="0">Permanente</option>
-                    </select>
-                </div>
-            </div>
-            <div class="modal-actions" id="modalActions">
-                <button onclick="fecharModal()">Cancelar</button>
-                <button class="btn-danger" id="modalConfirmBtn" onclick="confirmarModal()">Confirmar</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- ===== MENU PRINCIPAL ===== -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <div class="nav-logo-wrapper">
-                <a href="#inicio" class="nav-logo">
-                    <img src="https://yt3.ggpht.com/pCQ6XhcUzMYgxDHA4Z2WZzHIN9B8O3HqCB_nfbqMYymlQqQ1cDvZc-kszyjePyEjV13qgqvwDbJK=s800-rw-nd-v1" alt="KZN Logo" />
-                    <div class="logo-text">
-                        <span>KZN MENU</span>
-                        <small>Classic • Era</small>
-                    </div>
-                </a>
-                <div class="nav-divider"></div>
-                <a href="https://discord.gg/4tw7kE7rxU" target="_blank" class="nav-xcore">
-                    <img src="https://yt3.ggpht.com/0hUMsOaawQjXvahFpmTn_w1NlRiBPdLzbqxzQJ26v9AaP1xPmxHj-ct9kYOzDXcRhebLWSL4-m_z=s746-rw-nd-v1" alt="Xcore Execute" />
-                    <div class="xcore-text">
-                        <span class="name">TEAM XCORE</span>
-                        <span class="team">EXECUTE</span>
-                    </div>
-                </a>
-            </div>
-
-            <ul class="nav-menu" id="navMenuDesktop">
-                <li><a href="#inicio" class="active"><i class="fas fa-home"></i> Início</a></li>
-                <li><a href="#mods"><i class="fas fa-cubes"></i> Mods</a></li>
-                <li><a href="#regras"><i class="fas fa-gavel"></i> Regras</a></li>
-                <li><a href="#contato"><i class="fas fa-envelope"></i> Contato</a></li>
-                <li><a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
-            </ul>
-
-            <ul class="nav-menu mobile-menu" id="navMenuMobile">
-                <li><a href="#inicio"><i class="fas fa-home"></i> Início</a></li>
-                <li><a href="#mods"><i class="fas fa-cubes"></i> Mods</a></li>
-                <li><a href="#regras"><i class="fas fa-gavel"></i> Regras</a></li>
-                <li><a href="#contato"><i class="fas fa-envelope"></i> Contato</a></li>
-                <li><a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
-                <li><a href="#perfil"><i class="fas fa-user"></i> Perfil</a></li>
-            </ul>
-
-            <div class="nav-actions">
-                <div class="dropdown-container">
-                    <button class="nav-icon-btn" id="notifBtn" onclick="toggleNotificacoes()" title="Notificações">
-                        <i class="fas fa-bell"></i>
-                        <span class="badge" id="notifBadge">0</span>
-                    </button>
-                    <div class="dropdown" id="notifDropdown">
-                        <div class="dropdown-header">
-                            <span><i class="fas fa-bell"></i> Notificações</span>
-                            <button class="btn-clear" onclick="marcarTodasNotificacoesLidas()">Marcar todas</button>
-                        </div>
-                        <div class="dropdown-body" id="notifList">
-                            <div class="empty-state">
-                                <i class="fas fa-bell-slash"></i>
+</div>
+<div class="chat-input-area">
+<button class="audio-btn" id="audioBtn" onclick="iniciarGravacao()" style="background:var(--primary);color:#fff;border:none;border-radius:8px;padding:0.2rem 0.6rem;font-size:1rem;cursor:pointer;transition:0.3s;" title="Gravar áudio">
+<i class="fas fa-microphone"></i>
+</button>
+<input id="chatInput" maxlength="500" placeholder="Digite sua mensagem... use @ para mencionar" type="text"/>
+<button id="sendBtn" onclick="enviarMensagem()">
+<i class="fas fa-paper-plane"></i>
+</button>
+</div>
+</div>
+<!-- ===== USER MENU (MODERAÇÃO) ===== -->
+<div class="user-menu-overlay" id="userMenuOverlay" onclick="fecharMenuUsuario(event)">
+<div class="user-menu" onclick="event.stopPropagation()">
+<div class="user-header">
+<div class="user-avatar" id="menuAvatar">U</div>
+<div class="user-info">
+<h4 id="menuNome">Usuário</h4>
+<p id="menuEmail">email@exemplo.com</p>
+<div class="user-status" id="menuStatus">👤 Usuário</div>
+</div>
+</div>
+<div class="menu-actions" id="menuActions"></div>
+<button class="close-menu" onclick="fecharMenuUsuario()"><i class="fas fa-times"></i> Fechar</button>
+</div>
+</div>
+<!-- ===== MODAL DE MODERAÇÃO ===== -->
+<div class="modal-overlay" id="modalOverlay" onclick="fecharModal(event)">
+<div class="modal-content" onclick="event.stopPropagation()">
+<button class="modal-close-btn" onclick="fecharModal()">✕</button>
+<h3 id="modalTitle">Ação de Moderação</h3>
+<p id="modalDescription">Confirmar ação para este usuário?</p>
+<div id="modalForm" style="display:none;">
+<div class="form-group">
+<label>Motivo (opcional)</label>
+<textarea id="modalReason" placeholder="Digite o motivo..."></textarea>
+</div>
+<div class="form-group">
+<label>Duração</label>
+<select id="modalDuration">
+<option value="5">5 minutos</option>
+<option value="15">15 minutos</option>
+<option value="60">1 hora</option>
+<option value="1440">24 horas</option>
+<option value="0">Permanente</option>
+</select>
+</div>
+</div>
+<div class="modal-actions" id="modalActions">
+<button onclick="fecharModal()">Cancelar</button>
+<button class="btn-danger" id="modalConfirmBtn" onclick="confirmarModal()">Confirmar</button>
+</div>
+</div>
+</div>
+<!-- ===== MENU PRINCIPAL ===== -->
+<nav class="navbar" id="navbar">
+<div class="nav-container">
+<div class="nav-logo-wrapper">
+<a class="nav-logo" href="#inicio">
+<img alt="KZN Logo" src="https://yt3.ggpht.com/pCQ6XhcUzMYgxDHA4Z2WZzHIN9B8O3HqCB_nfbqMYymlQqQ1cDvZc-kszyjePyEjV13qgqvwDbJK=s800-rw-nd-v1"/>
+<div class="logo-text">
+<span>KZN MENU</span>
+<small>Classic • Era</small>
+</div>
+</a>
+<div class="nav-divider"></div>
+<a class="nav-xcore" href="https://discord.gg/4tw7kE7rxU" target="_blank">
+<img alt="Xcore Execute" src="https://yt3.ggpht.com/0hUMsOaawQjXvahFpmTn_w1NlRiBPdLzbqxzQJ26v9AaP1xPmxHj-ct9kYOzDXcRhebLWSL4-m_z=s746-rw-nd-v1"/>
+<div class="xcore-text">
+<span class="name">TEAM XCORE</span>
+<span class="team">EXECUTE</span>
+</div>
+</a>
+</div>
+<ul class="nav-menu" id="navMenuDesktop">
+<li><a class="active" href="#inicio"><i class="fas fa-home"></i> Início</a></li>
+<li><a href="#mods"><i class="fas fa-cubes"></i> Mods</a></li>
+<li><a href="#regras"><i class="fas fa-gavel"></i> Regras</a></li>
+<li><a href="#contato"><i class="fas fa-envelope"></i> Contato</a></li>
+<li><a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
+</ul>
+<ul class="nav-menu mobile-menu" id="navMenuMobile">
+<li><a href="#inicio"><i class="fas fa-home"></i> Início</a></li>
+<li><a href="#mods"><i class="fas fa-cubes"></i> Mods</a></li>
+<li><a href="#regras"><i class="fas fa-gavel"></i> Regras</a></li>
+<li><a href="#contato"><i class="fas fa-envelope"></i> Contato</a></li>
+<li><a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
+<li><a href="#perfil"><i class="fas fa-user"></i> Perfil</a></li>
+</ul>
+<div class="nav-actions">
+<div class="dropdown-container">
+<button class="nav-icon-btn" id="notifBtn" onclick="toggleNotificacoes()" title="Notificações">
+<i class="fas fa-bell"></i>
+<span class="badge" id="notifBadge">0</span>
+</button>
+<div class="dropdown" id="notifDropdown">
+<div class="dropdown-header">
+<span><i class="fas fa-bell"></i> Notificações</span>
+<button class="btn-clear" onclick="marcarTodasNotificacoesLidas()">Marcar todas</button>
+</div>
+<div class="dropdown-body" id="notifList">
+<div class="empty-state">
+<i class="fas fa-bell-slash"></i>
                                 Nenhuma notificação
                             </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div style="position: relative;">
-                    <button class="profile-btn" id="profileBtn" onclick="abrirPerfil()">
-                        <span class="avatar" id="avatarLetter">
-                            <span class="avatar-letter" id="avatarText">K</span>
-                        </span>
-                        <span class="user-name" id="userDisplay">Entrar</span>
-                        <span class="cart-icon-wrap" onclick="event.stopPropagation(); toggleCarrinho();">
-                            <i class="fas fa-shopping-cart"></i>
-                            <span class="cart-count" id="cartCount">0</span>
-                        </span>
-                    </button>
-                    <div class="cart-dropdown" id="cartDropdown">
-                        <div id="cartItems"></div>
-                        <div class="cart-total">
-                            <span>Total:</span>
-                            <span id="cartTotal">R$ 0,00</span>
-                        </div>
-                        <button class="btn-checkout" onclick="finalizarCompra()">Finalizar Compra</button>
-                    </div>
-                </div>
-
-                <div class="nav-toggle" id="mobileMenu">
-                    <i class="fas fa-bars"></i>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- ===== HERO ===== -->
-    <section id="inicio" class="hero">
-        <div class="hero-content">
-            <div class="hero-badge"><i class="fas fa-crown"></i> Edição Premium</div>
-            <h1>
-                <span class="highlight-red">KZN</span>
-                <span class="highlight">MENU</span>
-                <br />
-                <span style="font-size: 2rem; color: var(--text-muted);">MELHORES MODS GRAAL CLASSIC &amp; GRAAL ERA</span>
-            </h1>
-            
-            <div style="text-align: center; margin: 1.5rem 0;">
-                <img src="https://yt3.ggpht.com/4i0EiFBJLbCQWK67Eqm736mDl5wgCSloJBas2C3nYjSTU3v-yYcv7o77hqSSCjxcgqDM9LkfLCAKKA=s800-nd-v1-rwa" 
-                     alt="KZN MENU - Mods para Graal" 
-                     style="max-width: 100%; border-radius: 16px; border: 2px solid var(--primary); box-shadow: 0 8px 40px rgba(220,38,38,0.3);" />
-            </div>
-            
-            <p class="hero-subtitle">
+</div>
+</div>
+</div>
+<div style="position: relative;">
+<button class="profile-btn" id="profileBtn" onclick="abrirPerfil()">
+<span class="avatar" id="avatarLetter">
+<span class="avatar-letter" id="avatarText">K</span>
+</span>
+<span class="user-name" id="userDisplay">Entrar</span>
+<span class="cart-icon-wrap" onclick="event.stopPropagation(); toggleCarrinho();">
+<i class="fas fa-shopping-cart"></i>
+<span class="cart-count" id="cartCount">0</span>
+</span>
+</button>
+<div class="cart-dropdown" id="cartDropdown">
+<div id="cartItems"></div>
+<div class="cart-total">
+<span>Total:</span>
+<span id="cartTotal">R$ 0,00</span>
+</div>
+<button class="btn-checkout" onclick="finalizarCompra()">Finalizar Compra</button>
+</div>
+</div>
+<div class="nav-toggle" id="mobileMenu">
+<i class="fas fa-bars"></i>
+</div>
+</div>
+</div>
+</nav>
+<!-- ===== HERO ===== -->
+<section class="hero" id="inicio">
+<div class="hero-content">
+<div class="hero-badge"><i class="fas fa-crown"></i> Edição Premium</div>
+<h1>
+<span class="highlight-red">KZN</span>
+<span class="highlight">MENU</span>
+<br/>
+<span style="font-size: 2rem; color: var(--text-muted);">MELHORES MODS GRAAL CLASSIC &amp; GRAAL ERA</span>
+</h1>
+<div style="text-align: center; margin: 1.5rem 0;">
+<img alt="KZN MENU - Mods para Graal" src="https://yt3.ggpht.com/4i0EiFBJLbCQWK67Eqm736mDl5wgCSloJBas2C3nYjSTU3v-yYcv7o77hqSSCjxcgqDM9LkfLCAKKA=s800-nd-v1-rwa" style="max-width: 100%; border-radius: 16px; border: 2px solid var(--primary); box-shadow: 0 8px 40px rgba(220,38,38,0.3);"/>
+</div>
+<p class="hero-subtitle">
                 Os melhores mods para <strong>Graal Classic</strong> e <strong>Graal Era</strong>.
-                <br /><strong style="color: var(--primary);">Scripts exclusivos</strong> para farm e gameplay!
+                <br/><strong style="color: var(--primary);">Scripts exclusivos</strong> para farm e gameplay!
             </p>
-            <div class="hero-buttons">
-                <a href="#mods" class="btn btn-primary"><i class="fas fa-cubes"></i> Ver Mods</a>
-            </div>
-        </div>
-        <div class="hero-image">
-            <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/K0CcU8x3WDM?autoplay=0&rel=0&modestbranding=1&showinfo=0&controls=1" title="KZN MENU - Demonstração" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            </div>
-            <div class="video-label">▶️ Clique no play para assistir à demonstração do KZN MENU</div>
-        </div>
-    </section>
-
-    <!-- ===== MODS ===== -->
-    <section id="mods" class="section dark">
-        <div class="container">
-            <div class="section-header">
-                <h2><i class="fas fa-cubes"></i> Nossos Mods</h2>
-                <p>Escolha seu jogo</p>
-            </div>
-
-            <div class="tabs-nav">
-                <button class="tab-btn classic active" onclick="trocarAba('classic')">
-                    <i class="fas fa-sword"></i> Graal Classic
+<div class="hero-buttons">
+<a class="btn btn-primary" href="#mods"><i class="fas fa-cubes"></i> Ver Mods</a>
+</div>
+</div>
+<div class="hero-image">
+<div class="video-wrapper">
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/K0CcU8x3WDM?autoplay=0&amp;rel=0&amp;modestbranding=1&amp;showinfo=0&amp;controls=1" title="KZN MENU - Demonstração"></iframe>
+</div>
+<div class="video-label">▶️ Clique no play para assistir à demonstração do KZN MENU</div>
+</div>
+</section>
+<!-- ===== MODS ===== -->
+<section class="section dark" id="mods">
+<div class="container">
+<div class="section-header">
+<h2><i class="fas fa-cubes"></i> Nossos Mods</h2>
+<p>Escolha seu jogo</p>
+</div>
+<div class="tabs-nav">
+<button class="tab-btn classic active" onclick="trocarAba('classic')">
+<i class="fas fa-sword"></i> Graal Classic
                 </button>
-                <button class="tab-btn era" onclick="trocarAba('era')">
-                    <i class="fas fa-city"></i> Graal Era
+<button class="tab-btn era" onclick="trocarAba('era')">
+<i class="fas fa-city"></i> Graal Era
                 </button>
-                <button class="tab-btn auto-trash" onclick="trocarAba('auto-trash')">
-                    <i class="fas fa-trash-alt"></i> Auto Trash
+<button class="tab-btn auto-trash" onclick="trocarAba('auto-trash')">
+<i class="fas fa-trash-alt"></i> Auto Trash
                 </button>
-            </div>
-
-            <!-- ===== TAB CLASSIC (GRAAL CLASSIC) ===== -->
-            <div class="tab-content active" id="tab-classic">
-                <div class="plans-header">
-                    <h3><i class="fas fa-bolt"></i> KZN MENU</h3>
-                    <p>MOD MENU • GRAAL ONLINE CLASSIC</p>
-                    <p style="font-size:0.85rem;color:var(--text-muted);margin-top:0.5rem;">
+</div>
+<!-- ===== TAB CLASSIC (GRAAL CLASSIC) ===== -->
+<div class="tab-content active" id="tab-classic">
+<div class="plans-header">
+<h3><i class="fas fa-bolt"></i> KZN MENU</h3>
+<p>MOD MENU • GRAAL ONLINE CLASSIC</p>
+<p style="font-size:0.85rem;color:var(--text-muted);margin-top:0.5rem;">
                         Escolha seu plano de acesso
                     </p>
-                    <p style="font-size:0.8rem;color:var(--text-muted);">
+<p style="font-size:0.8rem;color:var(--text-muted);">
                         Acesso ao KZN Menu através de uma Key com validade definida. Escolha o período que melhor atende às suas necessidades.
                     </p>
-                </div>
-
-                <div class="plans-grid">
-                    <!-- SIMPLE -->
-                    <div class="plan-card">
-                        <span class="badge" style="background:var(--warning);color:#000;">🟡 SIMPLE</span>
-                        <div style="text-align:center;margin:0.5rem 0;">
-                            <img src="https://yt3.ggpht.com/oYAWnZbDYE_qwmC3hZLpA3dOlsPfzlJxALD3WrRyXItZCw5oUOfuFH4zwt-lc-VNElQHN9UO5ugLyQ=s800-rw-nd-v1" alt="KZN MENU Classic" class="mod-image" style="max-width:180px;" />
-                        </div>
-                        <div class="price">R$ 30,00</div>
-                        <div class="sub-plano" style="font-size:0.8rem;color:var(--text-muted);">20 DIAS DE ACESSO</div>
-                        <ul class="features">
-                            <li><i class="fas fa-check"></i> Acesso ao Mod Menu</li>
-                            <li><i class="fas fa-check"></i> Key de ativação</li>
-                            <li><i class="fas fa-check"></i> Suporte ao cliente</li>
-                            <li><i class="fas fa-check"></i> 20 dias de acesso</li>
-                        </ul>
-                        <button class="btn-buy" onclick="adicionarAoCarrinho('KZN MENU Classic - SIMPLE (20 dias)', 30, 'classic')">COMPRAR AGORA</button>
-                        <button class="btn-add-cart" onclick="adicionarAoCarrinho('KZN MENU Classic - SIMPLE (20 dias)', 30, 'classic')"><i class="fas fa-cart-plus"></i> Adicionar</button>
-                    </div>
-
-                    <!-- BASIC -->
-                    <div class="plan-card">
-                        <span class="badge" style="background:var(--success);">🟢 BASIC</span>
-                        <div style="text-align:center;margin:0.5rem 0;">
-                            <img src="https://yt3.ggpht.com/oYAWnZbDYE_qwmC3hZLpA3dOlsPfzlJxALD3WrRyXItZCw5oUOfuFH4zwt-lc-VNElQHN9UO5ugLyQ=s800-rw-nd-v1" alt="KZN MENU Classic" class="mod-image" style="max-width:180px;" />
-                        </div>
-                        <div class="price">R$ 50,00</div>
-                        <div class="sub-plano" style="font-size:0.8rem;color:var(--text-muted);">35 DIAS DE ACESSO</div>
-                        <ul class="features">
-                            <li><i class="fas fa-check"></i> Acesso ao Mod Menu</li>
-                            <li><i class="fas fa-check"></i> Key de ativação</li>
-                            <li><i class="fas fa-check"></i> Suporte ao cliente</li>
-                        </ul>
-                        <button class="btn-buy" onclick="adicionarAoCarrinho('KZN MENU Classic - BASIC (35 dias)', 50, 'classic')">COMPRAR AGORA</button>
-                        <button class="btn-add-cart" onclick="adicionarAoCarrinho('KZN MENU Classic - BASIC (35 dias)', 50, 'classic')"><i class="fas fa-cart-plus"></i> Adicionar</button>
-                    </div>
-
-                    <!-- PLUS -->
-                    <div class="plan-card">
-                        <span class="badge" style="background:var(--classic);">🔵 PLUS</span>
-                        <div style="text-align:center;margin:0.5rem 0;">
-                            <img src="https://yt3.ggpht.com/oYAWnZbDYE_qwmC3hZLpA3dOlsPfzlJxALD3WrRyXItZCw5oUOfuFH4zwt-lc-VNElQHN9UO5ugLyQ=s800-rw-nd-v1" alt="KZN MENU Classic" class="mod-image" style="max-width:180px;" />
-                        </div>
-                        <div class="price">R$ 100,00</div>
-                        <div class="sub-plano" style="font-size:0.8rem;color:var(--text-muted);">70 DIAS DE ACESSO</div>
-                        <ul class="features">
-                            <li><i class="fas fa-check"></i> Acesso ao Mod Menu</li>
-                            <li><i class="fas fa-check"></i> Key de ativação</li>
-                            <li><i class="fas fa-check"></i> Suporte ao cliente</li>
-                            <li><i class="fas fa-check"></i> 70 dias de acesso</li>
-                        </ul>
-                        <button class="btn-buy" onclick="adicionarAoCarrinho('KZN MENU Classic - PLUS (70 dias)', 100, 'classic')">COMPRAR AGORA</button>
-                        <button class="btn-add-cart" onclick="adicionarAoCarrinho('KZN MENU Classic - PLUS (70 dias)', 100, 'classic')"><i class="fas fa-cart-plus"></i> Adicionar</button>
-                    </div>
-
-                    <!-- PRO -->
-                    <div class="plan-card">
-                        <span class="badge" style="background:var(--secondary);">🟣 PRO</span>
-                        <div style="text-align:center;margin:0.5rem 0;">
-                            <img src="https://yt3.ggpht.com/oYAWnZbDYE_qwmC3hZLpA3dOlsPfzlJxALD3WrRyXItZCw5oUOfuFH4zwt-lc-VNElQHN9UO5ugLyQ=s800-rw-nd-v1" alt="KZN MENU Classic" class="mod-image" style="max-width:180px;" />
-                        </div>
-                        <div class="price">R$ 150,00</div>
-                        <div class="sub-plano" style="font-size:0.8rem;color:var(--text-muted);">105 DIAS DE ACESSO</div>
-                        <ul class="features">
-                            <li><i class="fas fa-check"></i> Acesso ao Mod Menu</li>
-                            <li><i class="fas fa-check"></i> Key de ativação</li>
-                            <li><i class="fas fa-check"></i> Suporte prioritário</li>
-                            <li><i class="fas fa-check"></i> 105 dias de acesso</li>
-                        </ul>
-                        <button class="btn-buy" onclick="adicionarAoCarrinho('KZN MENU Classic - PRO (105 dias)', 150, 'classic')">COMPRAR AGORA</button>
-                        <button class="btn-add-cart" onclick="adicionarAoCarrinho('KZN MENU Classic - PRO (105 dias)', 150, 'classic')"><i class="fas fa-cart-plus"></i> Adicionar</button>
-                    </div>
-
-                    <!-- PREMIUM -->
-                    <div class="plan-card popular">
-                        <span class="badge" style="background:var(--warning);color:#000;">🔥 PREMIUM</span>
-                        <div style="text-align:center;margin:0.5rem 0;">
-                            <img src="https://yt3.ggpht.com/oYAWnZbDYE_qwmC3hZLpA3dOlsPfzlJxALD3WrRyXItZCw5oUOfuFH4zwt-lc-VNElQHN9UO5ugLyQ=s800-rw-nd-v1" alt="KZN MENU Classic" class="mod-image" style="max-width:180px;" />
-                        </div>
-                        <div class="price">R$ 200,00</div>
-                        <div class="sub-plano" style="font-size:0.8rem;color:var(--text-muted);">140 DIAS DE ACESSO</div>
-                        <ul class="features">
-                            <li><i class="fas fa-check"></i> Acesso ao Mod Menu</li>
-                            <li><i class="fas fa-check"></i> Key de ativação</li>
-                            <li><i class="fas fa-check"></i> Suporte prioritário</li>
-                            <li><i class="fas fa-check"></i> Recursos premium</li>
-                            <li><i class="fas fa-check"></i> 140 dias de acesso</li>
-                        </ul>
-                        <button class="btn-buy" onclick="adicionarAoCarrinho('KZN MENU Classic - PREMIUM (140 dias)', 200, 'classic')">COMPRAR AGORA</button>
-                        <button class="btn-add-cart" onclick="adicionarAoCarrinho('KZN MENU Classic - PREMIUM (140 dias)', 200, 'classic')"><i class="fas fa-cart-plus"></i> Adicionar</button>
-                    </div>
-
-                    <!-- ULTIMATE -->
-                    <div class="plan-card">
-                        <span class="badge" style="background:var(--primary);">👑 ULTIMATE</span>
-                        <div style="text-align:center;margin:0.5rem 0;">
-                            <img src="https://yt3.ggpht.com/oYAWnZbDYE_qwmC3hZLpA3dOlsPfzlJxALD3WrRyXItZCw5oUOfuFH4zwt-lc-VNElQHN9UO5ugLyQ=s800-rw-nd-v1" alt="KZN MENU Classic" class="mod-image" style="max-width:180px;" />
-                        </div>
-                        <div class="price">R$ 250,00</div>
-                        <div class="sub-plano" style="font-size:0.8rem;color:var(--text-muted);">175 DIAS DE ACESSO</div>
-                        <ul class="features">
-                            <li><i class="fas fa-check"></i> Acesso ao Mod Menu</li>
-                            <li><i class="fas fa-check"></i> Key de ativação</li>
-                            <li><i class="fas fa-check"></i> Suporte VIP</li>
-                            <li><i class="fas fa-check"></i> Recursos premium</li>
-                            <li><i class="fas fa-check"></i> 175 dias de acesso</li>
-                        </ul>
-                        <button class="btn-buy" onclick="adicionarAoCarrinho('KZN MENU Classic - ULTIMATE (175 dias)', 250, 'classic')">COMPRAR AGORA</button>
-                        <button class="btn-add-cart" onclick="adicionarAoCarrinho('KZN MENU Classic - ULTIMATE (175 dias)', 250, 'classic')"><i class="fas fa-cart-plus"></i> Adicionar</button>
-                    </div>
-
-                    <!-- ELITE -->
-                    <div class="plan-card">
-                        <span class="badge" style="background:linear-gradient(135deg,var(--primary),var(--secondary));">💎 ELITE</span>
-                        <div style="text-align:center;margin:0.5rem 0;">
-                            <img src="https://yt3.ggpht.com/oYAWnZbDYE_qwmC3hZLpA3dOlsPfzlJxALD3WrRyXItZCw5oUOfuFH4zwt-lc-VNElQHN9UO5ugLyQ=s800-rw-nd-v1" alt="KZN MENU Classic" class="mod-image" style="max-width:180px;" />
-                        </div>
-                        <div class="price">R$ 300,00</div>
-                        <div class="sub-plano" style="font-size:0.8rem;color:var(--text-muted);">210 DIAS DE ACESSO</div>
-                        <ul class="features">
-                            <li><i class="fas fa-check"></i> Acesso ao Mod Menu</li>
-                            <li><i class="fas fa-check"></i> Key de ativação</li>
-                            <li><i class="fas fa-check"></i> Suporte VIP</li>
-                            <li><i class="fas fa-check"></i> Todos os recursos disponíveis</li>
-                            <li><i class="fas fa-check"></i> 210 dias de acesso</li>
-                        </ul>
-                        <button class="btn-buy" onclick="adicionarAoCarrinho('KZN MENU Classic - ELITE (210 dias)', 300, 'classic')">COMPRAR AGORA</button>
-                        <button class="btn-add-cart" onclick="adicionarAoCarrinho('KZN MENU Classic - ELITE (210 dias)', 300, 'classic')"><i class="fas fa-cart-plus"></i> Adicionar</button>
-                    </div>
-
-                    <!-- PLANO PERMANENTE DESABILITADO -->
-                    <div class="plan-card disabled">
-                        <span class="badge" style="background:var(--danger);">❌ INDISPONÍVEL</span>
-                        <div style="text-align:center;margin:0.5rem 0;">
-                            <img src="https://yt3.ggpht.com/oYAWnZbDYE_qwmC3hZLpA3dOlsPfzlJxALD3WrRyXItZCw5oUOfuFH4zwt-lc-VNElQHN9UO5ugLyQ=s800-rw-nd-v1" alt="KZN MENU Classic" class="mod-image" style="max-width:180px;filter:grayscale(1);opacity:0.5;" />
-                        </div>
-                        <h3 style="color:var(--text-muted);">PLANO PERMANENTE</h3>
-                        <div class="price" style="color:var(--text-muted);">R$ 200,00</div>
-                        <div class="sub-plano" style="font-size:0.8rem;color:var(--text-muted);">❌ DESABILITADO</div>
-                        <ul class="features">
-                            <li><i class="fas fa-times" style="color:var(--danger);"></i> Não disponível para novas compras</li>
-                            <li><i class="fas fa-times" style="color:var(--danger);"></i> Plano removido</li>
-                        </ul>
-                        <button class="btn-buy" style="background:var(--border);color:var(--text-muted);cursor:not-allowed;opacity:0.5;" disabled>INDISPONÍVEL</button>
-                    </div>
-                </div>
-
-                <!-- AVISO IMPORTANTE -->
-                <div class="aviso-plano">
-                    <h4><i class="fas fa-exclamation-triangle"></i> AVISO IMPORTANTE</h4>
-                    <p>
-                        <strong>O PLANO PERMANENTE DE R$200 FOI DESABILITADO.</strong><br>
+</div>
+<div class="plans-grid">
+<!-- SIMPLE -->
+<div class="plan-card">
+<span class="badge" style="background:var(--warning);color:#000;">🟡 SIMPLE</span>
+<div style="text-align:center;margin:0.5rem 0;">
+<img alt="KZN MENU Classic" class="mod-image" src="https://yt3.ggpht.com/oYAWnZbDYE_qwmC3hZLpA3dOlsPfzlJxALD3WrRyXItZCw5oUOfuFH4zwt-lc-VNElQHN9UO5ugLyQ=s800-rw-nd-v1" style="max-width:180px;"/>
+</div>
+<div class="price">R$ 30,00</div>
+<div class="sub-plano" style="font-size:0.8rem;color:var(--text-muted);">20 DIAS DE ACESSO</div>
+<ul class="features">
+<li><i class="fas fa-check"></i> Acesso ao Mod Menu</li>
+<li><i class="fas fa-check"></i> Key de ativação</li>
+<li><i class="fas fa-check"></i> Suporte ao cliente</li>
+<li><i class="fas fa-check"></i> 20 dias de acesso</li>
+</ul>
+<button class="btn-buy" onclick="adicionarAoCarrinho('KZN MENU Classic - SIMPLE (20 dias)', 30, 'classic')">COMPRAR AGORA</button>
+<button class="btn-add-cart" onclick="adicionarAoCarrinho('KZN MENU Classic - SIMPLE (20 dias)', 30, 'classic')"><i class="fas fa-cart-plus"></i> Adicionar</button>
+</div>
+<!-- BASIC -->
+<div class="plan-card">
+<span class="badge" style="background:var(--success);">🟢 BASIC</span>
+<div style="text-align:center;margin:0.5rem 0;">
+<img alt="KZN MENU Classic" class="mod-image" src="https://yt3.ggpht.com/oYAWnZbDYE_qwmC3hZLpA3dOlsPfzlJxALD3WrRyXItZCw5oUOfuFH4zwt-lc-VNElQHN9UO5ugLyQ=s800-rw-nd-v1" style="max-width:180px;"/>
+</div>
+<div class="price">R$ 50,00</div>
+<div class="sub-plano" style="font-size:0.8rem;color:var(--text-muted);">35 DIAS DE ACESSO</div>
+<ul class="features">
+<li><i class="fas fa-check"></i> Acesso ao Mod Menu</li>
+<li><i class="fas fa-check"></i> Key de ativação</li>
+<li><i class="fas fa-check"></i> Suporte ao cliente</li>
+</ul>
+<button class="btn-buy" onclick="adicionarAoCarrinho('KZN MENU Classic - BASIC (35 dias)', 50, 'classic')">COMPRAR AGORA</button>
+<button class="btn-add-cart" onclick="adicionarAoCarrinho('KZN MENU Classic - BASIC (35 dias)', 50, 'classic')"><i class="fas fa-cart-plus"></i> Adicionar</button>
+</div>
+<!-- PLUS -->
+<div class="plan-card">
+<span class="badge" style="background:var(--classic);">🔵 PLUS</span>
+<div style="text-align:center;margin:0.5rem 0;">
+<img alt="KZN MENU Classic" class="mod-image" src="https://yt3.ggpht.com/oYAWnZbDYE_qwmC3hZLpA3dOlsPfzlJxALD3WrRyXItZCw5oUOfuFH4zwt-lc-VNElQHN9UO5ugLyQ=s800-rw-nd-v1" style="max-width:180px;"/>
+</div>
+<div class="price">R$ 100,00</div>
+<div class="sub-plano" style="font-size:0.8rem;color:var(--text-muted);">70 DIAS DE ACESSO</div>
+<ul class="features">
+<li><i class="fas fa-check"></i> Acesso ao Mod Menu</li>
+<li><i class="fas fa-check"></i> Key de ativação</li>
+<li><i class="fas fa-check"></i> Suporte ao cliente</li>
+<li><i class="fas fa-check"></i> 70 dias de acesso</li>
+</ul>
+<button class="btn-buy" onclick="adicionarAoCarrinho('KZN MENU Classic - PLUS (70 dias)', 100, 'classic')">COMPRAR AGORA</button>
+<button class="btn-add-cart" onclick="adicionarAoCarrinho('KZN MENU Classic - PLUS (70 dias)', 100, 'classic')"><i class="fas fa-cart-plus"></i> Adicionar</button>
+</div>
+<!-- PRO -->
+<div class="plan-card">
+<span class="badge" style="background:var(--secondary);">🟣 PRO</span>
+<div style="text-align:center;margin:0.5rem 0;">
+<img alt="KZN MENU Classic" class="mod-image" src="https://yt3.ggpht.com/oYAWnZbDYE_qwmC3hZLpA3dOlsPfzlJxALD3WrRyXItZCw5oUOfuFH4zwt-lc-VNElQHN9UO5ugLyQ=s800-rw-nd-v1" style="max-width:180px;"/>
+</div>
+<div class="price">R$ 150,00</div>
+<div class="sub-plano" style="font-size:0.8rem;color:var(--text-muted);">105 DIAS DE ACESSO</div>
+<ul class="features">
+<li><i class="fas fa-check"></i> Acesso ao Mod Menu</li>
+<li><i class="fas fa-check"></i> Key de ativação</li>
+<li><i class="fas fa-check"></i> Suporte prioritário</li>
+<li><i class="fas fa-check"></i> 105 dias de acesso</li>
+</ul>
+<button class="btn-buy" onclick="adicionarAoCarrinho('KZN MENU Classic - PRO (105 dias)', 150, 'classic')">COMPRAR AGORA</button>
+<button class="btn-add-cart" onclick="adicionarAoCarrinho('KZN MENU Classic - PRO (105 dias)', 150, 'classic')"><i class="fas fa-cart-plus"></i> Adicionar</button>
+</div>
+<!-- PREMIUM -->
+<div class="plan-card popular">
+<span class="badge" style="background:var(--warning);color:#000;">🔥 PREMIUM</span>
+<div style="text-align:center;margin:0.5rem 0;">
+<img alt="KZN MENU Classic" class="mod-image" src="https://yt3.ggpht.com/oYAWnZbDYE_qwmC3hZLpA3dOlsPfzlJxALD3WrRyXItZCw5oUOfuFH4zwt-lc-VNElQHN9UO5ugLyQ=s800-rw-nd-v1" style="max-width:180px;"/>
+</div>
+<div class="price">R$ 200,00</div>
+<div class="sub-plano" style="font-size:0.8rem;color:var(--text-muted);">140 DIAS DE ACESSO</div>
+<ul class="features">
+<li><i class="fas fa-check"></i> Acesso ao Mod Menu</li>
+<li><i class="fas fa-check"></i> Key de ativação</li>
+<li><i class="fas fa-check"></i> Suporte prioritário</li>
+<li><i class="fas fa-check"></i> Recursos premium</li>
+<li><i class="fas fa-check"></i> 140 dias de acesso</li>
+</ul>
+<button class="btn-buy" onclick="adicionarAoCarrinho('KZN MENU Classic - PREMIUM (140 dias)', 200, 'classic')">COMPRAR AGORA</button>
+<button class="btn-add-cart" onclick="adicionarAoCarrinho('KZN MENU Classic - PREMIUM (140 dias)', 200, 'classic')"><i class="fas fa-cart-plus"></i> Adicionar</button>
+</div>
+<!-- ULTIMATE -->
+<div class="plan-card">
+<span class="badge" style="background:var(--primary);">👑 ULTIMATE</span>
+<div style="text-align:center;margin:0.5rem 0;">
+<img alt="KZN MENU Classic" class="mod-image" src="https://yt3.ggpht.com/oYAWnZbDYE_qwmC3hZLpA3dOlsPfzlJxALD3WrRyXItZCw5oUOfuFH4zwt-lc-VNElQHN9UO5ugLyQ=s800-rw-nd-v1" style="max-width:180px;"/>
+</div>
+<div class="price">R$ 250,00</div>
+<div class="sub-plano" style="font-size:0.8rem;color:var(--text-muted);">175 DIAS DE ACESSO</div>
+<ul class="features">
+<li><i class="fas fa-check"></i> Acesso ao Mod Menu</li>
+<li><i class="fas fa-check"></i> Key de ativação</li>
+<li><i class="fas fa-check"></i> Suporte VIP</li>
+<li><i class="fas fa-check"></i> Recursos premium</li>
+<li><i class="fas fa-check"></i> 175 dias de acesso</li>
+</ul>
+<button class="btn-buy" onclick="adicionarAoCarrinho('KZN MENU Classic - ULTIMATE (175 dias)', 250, 'classic')">COMPRAR AGORA</button>
+<button class="btn-add-cart" onclick="adicionarAoCarrinho('KZN MENU Classic - ULTIMATE (175 dias)', 250, 'classic')"><i class="fas fa-cart-plus"></i> Adicionar</button>
+</div>
+<!-- ELITE -->
+<div class="plan-card">
+<span class="badge" style="background:linear-gradient(135deg,var(--primary),var(--secondary));">💎 ELITE</span>
+<div style="text-align:center;margin:0.5rem 0;">
+<img alt="KZN MENU Classic" class="mod-image" src="https://yt3.ggpht.com/oYAWnZbDYE_qwmC3hZLpA3dOlsPfzlJxALD3WrRyXItZCw5oUOfuFH4zwt-lc-VNElQHN9UO5ugLyQ=s800-rw-nd-v1" style="max-width:180px;"/>
+</div>
+<div class="price">R$ 300,00</div>
+<div class="sub-plano" style="font-size:0.8rem;color:var(--text-muted);">210 DIAS DE ACESSO</div>
+<ul class="features">
+<li><i class="fas fa-check"></i> Acesso ao Mod Menu</li>
+<li><i class="fas fa-check"></i> Key de ativação</li>
+<li><i class="fas fa-check"></i> Suporte VIP</li>
+<li><i class="fas fa-check"></i> Todos os recursos disponíveis</li>
+<li><i class="fas fa-check"></i> 210 dias de acesso</li>
+</ul>
+<button class="btn-buy" onclick="adicionarAoCarrinho('KZN MENU Classic - ELITE (210 dias)', 300, 'classic')">COMPRAR AGORA</button>
+<button class="btn-add-cart" onclick="adicionarAoCarrinho('KZN MENU Classic - ELITE (210 dias)', 300, 'classic')"><i class="fas fa-cart-plus"></i> Adicionar</button>
+</div>
+<!-- PLANO PERMANENTE DESABILITADO -->
+<div class="plan-card disabled">
+<span class="badge" style="background:var(--danger);">❌ INDISPONÍVEL</span>
+<div style="text-align:center;margin:0.5rem 0;">
+<img alt="KZN MENU Classic" class="mod-image" src="https://yt3.ggpht.com/oYAWnZbDYE_qwmC3hZLpA3dOlsPfzlJxALD3WrRyXItZCw5oUOfuFH4zwt-lc-VNElQHN9UO5ugLyQ=s800-rw-nd-v1" style="max-width:180px;filter:grayscale(1);opacity:0.5;"/>
+</div>
+<h3 style="color:var(--text-muted);">PLANO PERMANENTE</h3>
+<div class="price" style="color:var(--text-muted);">R$ 200,00</div>
+<div class="sub-plano" style="font-size:0.8rem;color:var(--text-muted);">❌ DESABILITADO</div>
+<ul class="features">
+<li><i class="fas fa-times" style="color:var(--danger);"></i> Não disponível para novas compras</li>
+<li><i class="fas fa-times" style="color:var(--danger);"></i> Plano removido</li>
+</ul>
+<button class="btn-buy" disabled="" style="background:var(--border);color:var(--text-muted);cursor:not-allowed;opacity:0.5;">INDISPONÍVEL</button>
+</div>
+</div>
+<!-- AVISO IMPORTANTE -->
+<div class="aviso-plano">
+<h4><i class="fas fa-exclamation-triangle"></i> AVISO IMPORTANTE</h4>
+<p>
+<strong>O PLANO PERMANENTE DE R$200 FOI DESABILITADO.</strong><br/>
                         O antigo plano permanente não está mais disponível para novas compras. Os novos planos possuem validade definida, conforme indicado acima.
                     </p>
-                    <p style="margin-top:0.8rem;font-size:0.85rem;">
-                        <i class="fas fa-key" style="color:var(--secondary);"></i>
-                        <strong>🔐 ATIVAÇÃO POR KEY</strong><br>
+<p style="margin-top:0.8rem;font-size:0.85rem;">
+<i class="fas fa-key" style="color:var(--secondary);"></i>
+<strong>🔐 ATIVAÇÃO POR KEY</strong><br/>
                         Após a confirmação do pagamento, sua Key será disponibilizada para ativação.
                     </p>
-                    <p style="margin-top:0.5rem;font-size:0.8rem;color:var(--text-muted);">
+<p style="margin-top:0.5rem;font-size:0.8rem;color:var(--text-muted);">
                         KZN MENU • GRAAL ONLINE CLASSIC
                     </p>
-                </div>
-            </div>
-
-            <!-- ===== TAB ERA (GRAAL ERA) ===== -->
-            <div class="tab-content" id="tab-era">
-                <div class="plans-header">
-                    <h3><i class="fas fa-city"></i> MOD MENU GRAAL ERA</h3>
-                    <p style="font-size:0.9rem;color:var(--text-muted);">MOD MENU EXCLUSIVO PARA GRAAL ONLINE ERA</p>
-                </div>
-
-                <!-- ===== VÍDEO DE DEMONSTRAÇÃO ===== -->
-                <div style="max-width:700px;margin:0 auto 2rem;">
-                    <div class="video-wrapper-responsive">
-                        <iframe src="https://www.youtube.com/embed/AZDJxHKOEp8?autoplay=0&rel=0&modestbranding=1&showinfo=0&controls=1" title="MOD MENU GRAAL ERA - Demonstração" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
-                    <div class="video-label-era">▶️ Assista à demonstração do MOD MENU GRAAL ERA</div>
-                </div>
-
-                <div class="plans-grid" style="max-width:600px;margin:0 auto;">
-                    <!-- MOD MENU GRAAL ERA -->
-                    <div class="plan-card" style="border-color:var(--era);">
-                        <span class="badge" style="background:var(--era);color:#000;">🔥 EXCLUSIVO</span>
-                        <div style="text-align:center;margin:0.5rem 0;">
-                            <img src="https://yt3.ggpht.com/OBlIy0WjA_eBxMQz4Z1pRx7IiuRkNjQSxoGeMpUV8vROPggmrRcM0wxoqY5jGV3uXy0vxkMpHMhHc8o=s720-rw-nd-v1" alt="MOD MENU GRAAL ERA" class="era-product-image" />
+</div>
+<div class="purchase-form-card purchase-form-classic"><div class="container">
+<div class="section-header">
+<h2><i class="fas fa-envelope"></i> Entre em Contato - KZN MENU</h2>
+<p>Preencha o formulário para comprar os mods KZN MENU</p>
+</div>
+<div class="form-container">
+<form action="https://formsubmit.co/gabriel6061yt@gmail.com" enctype="multipart/form-data" id="formContato" method="POST">
+<input name="_captcha" type="hidden" value="false"/>
+<input name="_template" type="hidden" value="table"/>
+<input name="_subject" type="hidden" value="🔥 NOVO PEDIDO DO SITE KZN MENU!"/>
+<div class="form-group">
+<label><i class="fas fa-envelope"></i> Seu E-mail <span style="color:var(--primary);">*</span></label>
+<input name="Email" placeholder="Digite seu e-mail..." required="" type="email"/>
+<small style="color:var(--text-muted);font-size:0.7rem;">Você receberá sua key neste e-mail</small>
+</div>
+<div class="form-group"><label><i class="fas fa-user"></i> Seu Nome</label><input name="Nome" placeholder="Digite seu nome completo..." required="" type="text"/></div>
+<div class="form-group"><label><i class="fab fa-whatsapp"></i> WhatsApp</label><input name="WhatsApp" placeholder="(DDD) 9 9999-9999" required="" type="text"/></div>
+<div class="form-group"><label><i class="fas fa-crown"></i> Plano Escolhido</label>
+<select name="Plano" required="">
+<option value="">Selecione um plano...</option>
+<option value="KZN MENU Classic - SIMPLE (20 dias) R$ 30,00">🟡 SIMPLE - R$ 30,00 (20 dias)</option>
+<option value="KZN MENU Classic - BASIC (35 dias) R$ 50,00">🟢 BASIC - R$ 50,00 (35 dias)</option>
+<option value="KZN MENU Classic - PLUS (70 dias) R$ 100,00">🔵 PLUS - R$ 100,00 (70 dias)</option>
+<option value="KZN MENU Classic - PRO (105 dias) R$ 150,00">🟣 PRO - R$ 150,00 (105 dias)</option>
+<option value="KZN MENU Classic - PREMIUM (140 dias) R$ 200,00">🔥 PREMIUM - R$ 200,00 (140 dias)</option>
+<option value="KZN MENU Classic - ULTIMATE (175 dias) R$ 250,00">👑 ULTIMATE - R$ 250,00 (175 dias)</option>
+<option value="KZN MENU Classic - ELITE (210 dias) R$ 300,00">💎 ELITE - R$ 300,00 (210 dias)</option>
+</select>
+</div>
+<div class="form-group"><label><i class="fas fa-image"></i> 📸 Comprovante PIX <span style="color:var(--primary);">*</span></label><input accept="image/*,.pdf" name="Comprovante" required="" type="file"/><p style="font-size:0.65rem;color:var(--text-muted);margin-top:0.3rem;">Envie uma foto do comprovante PIX (PNG, JPG, PDF - até 5MB)</p></div>
+<div class="form-group"><label><i class="fas fa-pencil-alt"></i> Mensagem (opcional)</label><textarea name="Mensagem" placeholder="Digite sua mensagem aqui..." rows="3"></textarea></div>
+<button class="btn-submit" id="formSubmitBtn" type="submit"><i class="fas fa-paper-plane"></i> Enviar Pedido KZN</button>
+<div class="form-status" id="formStatus"></div>
+</form>
+</div>
+</div></div></div>
+<!-- ===== TAB ERA (GRAAL ERA) ===== -->
+<div class="tab-content" id="tab-era">
+<div class="plans-header">
+<h3><i class="fas fa-city"></i> MOD MENU GRAAL ERA</h3>
+<p style="font-size:0.9rem;color:var(--text-muted);">MOD MENU EXCLUSIVO PARA GRAAL ONLINE ERA</p>
+</div>
+<!-- ===== VÍDEO DE DEMONSTRAÇÃO ===== -->
+<div style="max-width:700px;margin:0 auto 2rem;">
+<div class="video-wrapper-responsive">
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/AZDJxHKOEp8?autoplay=0&amp;rel=0&amp;modestbranding=1&amp;showinfo=0&amp;controls=1" title="MOD MENU GRAAL ERA - Demonstração"></iframe>
+</div>
+<div class="video-label-era">▶️ Assista à demonstração do MOD MENU GRAAL ERA</div>
+</div>
+<div class="plans-grid" style="max-width:600px;margin:0 auto;">
+<!-- MOD MENU GRAAL ERA -->
+<div class="plan-card" style="border-color:var(--era);">
+<span class="badge" style="background:var(--era);color:#000;">🔥 EXCLUSIVO</span>
+<div style="text-align:center;margin:0.5rem 0;">
+<img alt="MOD MENU GRAAL ERA" class="era-product-image" src="https://yt3.ggpht.com/OBlIy0WjA_eBxMQz4Z1pRx7IiuRkNjQSxoGeMpUV8vROPggmrRcM0wxoqY5jGV3uXy0vxkMpHMhHc8o=s720-rw-nd-v1"/>
+</div>
+<div class="seller-info">
+<strong>Vendedor:</strong> Xitado
                         </div>
-                        <div class="seller-info">
-                            <strong>Vendedor:</strong> Xitado
-                        </div>
-                        <div class="price">
+<div class="price">
                             R$ 65,00
                             <small class="price-usd">| US$ 20,00</small>
-                        </div>
-                        <div class="sub-plano" style="font-size:0.8rem;color:var(--text-muted);">MOD MENU • GRAAL ONLINE ERA</div>
-                        <ul class="features">
-                            <li><i class="fas fa-check"></i> ESP e Auto Coleta</li>
-                            <li><i class="fas fa-check"></i> ESP Lixo (linha verde)</li>
-                            <li><i class="fas fa-check"></i> ESP Cogumelo (linha amarela)</li>
-                            <li><i class="fas fa-check"></i> Auto Coletar</li>
-                            <li><i class="fas fa-check"></i> Visual personalizado</li>
-                            <li><i class="fas fa-check"></i> Suporte ao cliente</li>
-                        </ul>
-                        <button class="btn-buy" style="background:linear-gradient(135deg,var(--era),#d97706);" onclick="adicionarAoCarrinho('MOD MENU GRAAL ERA', 65, 'era')">COMPRAR AGORA</button>
-                        <button class="btn-add-cart" onclick="adicionarAoCarrinho('MOD MENU GRAAL ERA', 65, 'era')"><i class="fas fa-cart-plus"></i> Adicionar ao Carrinho</button>
-                    </div>
-
-                <!-- AVISO IMPORTANTE ERA -->
-                <div class="aviso-plano" style="border-color:var(--era);background:rgba(245,158,11,0.08);">
-                    <h4 style="color:var(--era);"><i class="fas fa-info-circle"></i> INFORMAÇÕES DE PAGAMENTO</h4>
-                    <p>
-                        <strong>PIX EXCLUSIVO DO GRAAL ERA</strong><br>
+</div>
+<div class="sub-plano" style="font-size:0.8rem;color:var(--text-muted);">MOD MENU • GRAAL ONLINE ERA</div>
+<ul class="features">
+<li><i class="fas fa-check"></i> ESP e Auto Coleta</li>
+<li><i class="fas fa-check"></i> ESP Lixo (linha verde)</li>
+<li><i class="fas fa-check"></i> ESP Cogumelo (linha amarela)</li>
+<li><i class="fas fa-check"></i> Auto Coletar</li>
+<li><i class="fas fa-check"></i> Visual personalizado</li>
+<li><i class="fas fa-check"></i> Suporte ao cliente</li>
+</ul>
+<button class="btn-buy" onclick="adicionarAoCarrinho('MOD MENU GRAAL ERA', 65, 'era')" style="background:linear-gradient(135deg,var(--era),#d97706);">COMPRAR AGORA</button>
+<button class="btn-add-cart" onclick="adicionarAoCarrinho('MOD MENU GRAAL ERA', 65, 'era')"><i class="fas fa-cart-plus"></i> Adicionar ao Carrinho</button>
+</div>
+<!-- AVISO IMPORTANTE ERA -->
+<div class="aviso-plano" style="border-color:var(--era);background:rgba(245,158,11,0.08);">
+<h4 style="color:var(--era);"><i class="fas fa-info-circle"></i> INFORMAÇÕES DE PAGAMENTO</h4>
+<p>
+<strong>PIX EXCLUSIVO DO GRAAL ERA</strong><br/>
                         Chave PIX: <span style="color:var(--success);font-family:monospace;font-weight:700;">bc662963-1a5a-4fb0-af5e-5c7e4a82e590</span>
+</p>
+<p style="margin-top:0.5rem;font-size:0.85rem;">
+<i class="fas fa-user" style="color:var(--era);"></i>
+<strong>Vendedor:</strong> Xitado<br/>
+<i class="fas fa-envelope" style="color:var(--era);"></i>
+<strong>E-mail:</strong> xitadobr5x@gmail.com
                     </p>
-                    <p style="margin-top:0.5rem;font-size:0.85rem;">
-                        <i class="fas fa-user" style="color:var(--era);"></i>
-                        <strong>Vendedor:</strong> Xitado<br>
-                        <i class="fas fa-envelope" style="color:var(--era);"></i>
-                        <strong>E-mail:</strong> xitadobr5x@gmail.com
-                    </p>
-                    <p style="margin-top:0.8rem;font-size:0.8rem;color:var(--text-muted);">
+<p style="margin-top:0.8rem;font-size:0.8rem;color:var(--text-muted);">
                         ⚠️ Esta chave PIX é exclusiva para o MOD MENU GRAAL ERA.
                     </p>
-                </div>
-            </div>
-
-            <div class="cupom-area">
-                <input type="text" id="cupomInput" placeholder="Código promocional" />
-                <button class="btn-cupom" onclick="aplicarCupom()">Aplicar</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== PERFIL ===== -->
-    <section id="perfil" class="section dark">
-        <div class="container">
-            <div class="section-header">
-                <h2><i class="fas fa-user"></i> Meu Perfil</h2>
-                <p>Gerencie suas informações e personalize sua foto</p>
-            </div>
-
-            <div class="profile-section" id="profileSection">
-                <div class="profile-header">
-                    <div class="profile-avatar" id="profileAvatar" onclick="document.getElementById('avatarUpload').click()">
-                        <span class="avatar-letter" id="avatarProfileText">K</span>
-                        <img id="avatarProfileImage" style="display:none;width:100%;height:100%;object-fit:cover;" />
-                        <div class="avatar-overlay">📷 Trocar</div>
-                    </div>
-                    <input type="file" id="avatarUpload" class="hidden-file-input" accept="image/*" onchange="uploadAvatar(event)" />
-
-                    <div class="profile-info">
-                        <h3 id="profileName">KZN Usuário</h3>
-                        <p id="profileEmail">usuario@kzn.com</p>
-                        <a href="#" class="edit-link" onclick="editarPerfil(event)"><i class="fas fa-edit"></i> Editar perfil</a>
-                    </div>
-                </div>
-
-                <div class="profile-stats">
-                    <div class="stat">
-                        <div class="number" id="profileOrders">0</div>
-                        <div class="label">Compras</div>
-                    </div>
-                    <div class="stat">
-                        <div class="number" id="profileKeys">0</div>
-                        <div class="label">Keys Ativas</div>
-                    </div>
-                    <div class="stat">
-                        <div class="number" id="profileSince">2026</div>
-                        <div class="label">Membro desde</div>
-                    </div>
-                </div>
-
-                <div class="profile-actions">
-                    <button class="btn-action primary" onclick="window.location.href='#mods'">
-                        <i class="fas fa-shopping-cart"></i> Comprar Mods
-                    </button>
-                    <button class="btn-action" onclick="window.location.href='#contato'">
-                        <i class="fas fa-headset"></i> Suporte
-                    </button>
-                    <button class="btn-action" onclick="inscreverNotificacoes()" style="border-color: var(--secondary);">
-                        <i class="fas fa-bell"></i> Ativar Notificações
-                    </button>
-                    <button class="btn-action" onclick="logout()">
-                        <i class="fas fa-sign-out-alt"></i> Sair
-                    </button>
-                </div>
-
-                <div id="editProfileArea" style="display:none;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--border);">
-                    <h4 style="margin-bottom:0.8rem;color:var(--text);font-size:1rem;">✏️ Editar Perfil</h4>
-                    <p style="color:var(--text-muted);font-size:0.75rem;margin-bottom:0.8rem;">Altere apenas o nome. O e-mail não pode ser alterado.</p>
-                    <div class="form-group">
-                        <label>Nome</label>
-                        <input type="text" id="editNome" placeholder="Digite seu novo nome" />
-                    </div>
-                    <div class="form-group">
-                        <label>E-mail (fixo)</label>
-                        <input type="email" id="editEmail" disabled style="opacity:0.6;cursor:not-allowed;" />
-                        <small style="color:var(--text-muted);font-size:0.65rem;">O e-mail não pode ser alterado</small>
-                    </div>
-                    <div class="form-group">
-                        <label>Nova senha (opcional)</label>
-                        <input type="password" id="editSenha" placeholder="Digite para alterar" />
-                        <small style="color:var(--text-muted);font-size:0.65rem;">Deixe em branco para manter a atual</small>
-                    </div>
-                    <div style="display:flex;gap:0.8rem;flex-wrap:wrap;margin-top:0.8rem;">
-                        <button class="btn-action primary" onclick="salvarEdicaoPerfil()"><i class="fas fa-save"></i> Salvar</button>
-                        <button class="btn-action" onclick="cancelarEdicaoPerfil()"><i class="fas fa-times"></i> Cancelar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== REGRAS ===== -->
-    <section id="regras" class="section dark">
-        <div class="container">
-            <div class="section-header">
-                <h2><i class="fas fa-gavel"></i> Regras do KZN MENU</h2>
-                <p>Leia atentamente antes de adquirir</p>
-            </div>
-            <div style="max-width:800px;margin:0 auto;">
-                <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:0.8rem 1rem;margin-bottom:0.6rem;display:flex;align-items:flex-start;gap:10px;transition:0.3s;">
-                    <div style="background:var(--primary);color:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;flex-shrink:0;">1</div>
-                    <div style="color:var(--text-muted);font-size:0.8rem;"><strong style="color:var(--text);">🔄 Renovação / Reset de Key</strong><br />Em caso de perda, solicitação de reset ou emissão de nova Key, será cobrada uma taxa de <span style="color:var(--primary);font-weight:700;">R$ 30,00</span> por solicitação. Não nos responsabilizamos por Keys perdidas, excluídas, compartilhadas ou extraviadas. O cliente é totalmente responsável por manter sua Key em segurança.</div>
-                </div>
-                <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:0.8rem 1rem;margin-bottom:0.6rem;display:flex;align-items:flex-start;gap:10px;transition:0.3s;">
-                    <div style="background:var(--primary);color:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;flex-shrink:0;">2</div>
-                    <div style="color:var(--text-muted);font-size:0.8rem;"><strong style="color:var(--text);">⚠️ Responsabilidade do Usuário</strong><br />Não nos responsabilizamos por banimentos, punições ou qualquer outra penalidade aplicada à sua conta decorrente do uso do Mod Menu. Se você utilizar o Mod Menu de forma irresponsável, abusar das funções ou utilizá-las para prejudicar outros jogadores, a responsabilidade será exclusivamente do cliente. Recomendamos utilizar as funções com bom senso e evitar comportamentos que possam chamar atenção da administração do jogo.</div>
-                </div>
-                <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:0.8rem 1rem;margin-bottom:0.6rem;display:flex;align-items:flex-start;gap:10px;transition:0.3s;">
-                    <div style="background:var(--primary);color:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;flex-shrink:0;">3</div>
-                    <div style="color:var(--text-muted);font-size:0.8rem;"><strong style="color:var(--text);">🎯 Objetivo do Mod Menu</strong><br />O Mod Menu foi desenvolvido principalmente para auxiliar o jogador em atividades dentro do jogo, como: <strong>🐞 Farm de insetos, 🏠 Upar Houses, ⚔️ Upar GH, 🥊 Spar, 🎯 Eventos, 📊 Outras atividades de farm e gameplay</strong>. O objetivo principal é proporcionar mais praticidade e recursos ao jogador, e não garantir que sua conta esteja protegida contra punições.</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== CONTATO ===== -->
-    <section id="contato" class="section dark">
-        <div class="container">
-            <div class="section-header">
-                <h2><i class="fas fa-envelope"></i> Entre em Contato - KZN MENU</h2>
-                <p>Preencha o formulário para comprar os mods KZN MENU</p>
-            </div>
-            <div class="form-container">
-                <form id="formContato" action="https://formsubmit.co/gabriel6061yt@gmail.com" method="POST" enctype="multipart/form-data">
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_template" value="table">
-                    <input type="hidden" name="_subject" value="🔥 NOVO PEDIDO DO SITE KZN MENU!">
-
-                    <div class="form-group">
-                        <label><i class="fas fa-envelope"></i> Seu E-mail <span style="color:var(--primary);">*</span></label>
-                        <input type="email" name="Email" placeholder="Digite seu e-mail..." required>
-                        <small style="color:var(--text-muted);font-size:0.7rem;">Você receberá sua key neste e-mail</small>
-                    </div>
-
-                    <div class="form-group"><label><i class="fas fa-user"></i> Seu Nome</label><input type="text" name="Nome" placeholder="Digite seu nome completo..." required></div>
-                    <div class="form-group"><label><i class="fab fa-whatsapp"></i> WhatsApp</label><input type="text" name="WhatsApp" placeholder="(DDD) 9 9999-9999" required></div>
-                    <div class="form-group"><label><i class="fas fa-crown"></i> Plano Escolhido</label>
-                        <select name="Plano" required>
-                            <option value="">Selecione um plano...</option>
-                            <option value="KZN MENU Classic - SIMPLE (20 dias) R$ 30,00">🟡 SIMPLE - R$ 30,00 (20 dias)</option>
-                            <option value="KZN MENU Classic - BASIC (35 dias) R$ 50,00">🟢 BASIC - R$ 50,00 (35 dias)</option>
-                            <option value="KZN MENU Classic - PLUS (70 dias) R$ 100,00">🔵 PLUS - R$ 100,00 (70 dias)</option>
-                            <option value="KZN MENU Classic - PRO (105 dias) R$ 150,00">🟣 PRO - R$ 150,00 (105 dias)</option>
-                            <option value="KZN MENU Classic - PREMIUM (140 dias) R$ 200,00">🔥 PREMIUM - R$ 200,00 (140 dias)</option>
-                            <option value="KZN MENU Classic - ULTIMATE (175 dias) R$ 250,00">👑 ULTIMATE - R$ 250,00 (175 dias)</option>
-                            <option value="KZN MENU Classic - ELITE (210 dias) R$ 300,00">💎 ELITE - R$ 300,00 (210 dias)</option>
-                        </select>
-                    </div>
-                    <div class="form-group"><label><i class="fas fa-image"></i> 📸 Comprovante PIX <span style="color:var(--primary);">*</span></label><input type="file" name="Comprovante" accept="image/*,.pdf" required><p style="font-size:0.65rem;color:var(--text-muted);margin-top:0.3rem;">Envie uma foto do comprovante PIX (PNG, JPG, PDF - até 5MB)</p></div>
-                    <div class="form-group"><label><i class="fas fa-pencil-alt"></i> Mensagem (opcional)</label><textarea name="Mensagem" rows="3" placeholder="Digite sua mensagem aqui..."></textarea></div>
-                    <button type="submit" class="btn-submit" id="formSubmitBtn"><i class="fas fa-paper-plane"></i> Enviar Pedido KZN</button>
-                    <div class="form-status" id="formStatus"></div>
-                </form>
-            </div>
-        </div>
-    </section>
-
- <!-- ===== CONTATO GRAAL ERA ===== -->
-<section id="contato-era" class="section dark">
-    <div class="container">
-        <div class="section-header">
-            <h2><i class="fas fa-city" style="color:var(--era);"></i> MOD MENU GRAAL ERA</h2>
-            <p>Formulário exclusivo para compra do MOD MENU GRAAL ERA</p>
-        </div>
-        <div class="form-container" style="border-color:var(--era);">
-            <form id="formContatoEra" action="https://formsubmit.co/xitadobr5x@gmail.com" method="POST" enctype="multipart/form-data">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_subject" value="🔥 NOVO PEDIDO - MOD MENU GRAAL ERA">
-
-                <div style="text-align:center;margin-bottom:1.2rem;">
-                    <img src="https://yt3.ggpht.com/OBlIy0WjA_eBxMQz4Z1pRx7IiuRkNjQSxoGeMpUV8vROPggmrRcM0wxoqY5jGV3uXy0vxkMpHMhHc8o=s720-rw-nd-v1" alt="MOD MENU GRAAL ERA" style="max-width:180px;border-radius:12px;border:2px solid var(--era);" />
-                    <p style="color:var(--text-muted);font-size:0.85rem;margin-top:0.3rem;">
-                        <strong style="color:var(--era);">Vendedor:</strong> Xitado
+</div>
+</div>
+<div class="cupom-area">
+<input id="cupomInput" placeholder="Código promocional" type="text"/>
+<button class="btn-cupom" onclick="aplicarCupom()">Aplicar</button>
+</div>
+<div class="purchase-form-card purchase-form-era"><div class="container">
+<div class="section-header">
+<h2><i class="fas fa-city" style="color:var(--era);"></i> MOD MENU GRAAL ERA</h2>
+<p>Formulário exclusivo para compra do MOD MENU GRAAL ERA</p>
+</div>
+<div class="form-container" style="border-color:var(--era);">
+<form action="https://formsubmit.co/xitadobr5x@gmail.com" enctype="multipart/form-data" id="formContatoEra" method="POST">
+<input name="_captcha" type="hidden" value="false"/>
+<input name="_template" type="hidden" value="table"/>
+<input name="_subject" type="hidden" value="🔥 NOVO PEDIDO - MOD MENU GRAAL ERA"/>
+<div style="text-align:center;margin-bottom:1.2rem;">
+<img alt="MOD MENU GRAAL ERA" src="https://yt3.ggpht.com/OBlIy0WjA_eBxMQz4Z1pRx7IiuRkNjQSxoGeMpUV8vROPggmrRcM0wxoqY5jGV3uXy0vxkMpHMhHc8o=s720-rw-nd-v1" style="max-width:180px;border-radius:12px;border:2px solid var(--era);"/>
+<p style="color:var(--text-muted);font-size:0.85rem;margin-top:0.3rem;">
+<strong style="color:var(--era);">Vendedor:</strong> Xitado
                     </p>
-                </div>
-
-                <div class="form-group">
-                    <label><i class="fas fa-envelope"></i> Seu E-mail <span style="color:var(--primary);">*</span></label>
-                    <input type="email" name="Email" placeholder="Digite seu e-mail..." required>
-                    <small style="color:var(--text-muted);font-size:0.7rem;">Você receberá as instruções neste e-mail</small>
-                </div>
-
-                <div class="form-group"><label><i class="fas fa-user"></i> Seu Nome</label><input type="text" name="Nome" placeholder="Digite seu nome completo..." required></div>
-                <div class="form-group"><label><i class="fab fa-whatsapp"></i> WhatsApp</label><input type="text" name="WhatsApp" placeholder="(DDD) 9 9999-9999" required></div>
-                
-                <div class="form-group">
-                    <label><i class="fas fa-crown"></i> Produto</label>
-                    <select name="Produto" required>
-                        <option value="MOD MENU GRAAL ERA - R$ 65,00">🎯 MOD MENU GRAAL ERA - R$ 65,00</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label><i class="fas fa-qrcode"></i> Chave PIX</label>
-                    <div style="background:var(--bg);padding:0.8rem;border-radius:8px;border:1px solid var(--success);font-family:monospace;font-size:0.9rem;color:var(--success);word-break:break-all;text-align:center;">
+</div>
+<div class="form-group">
+<label><i class="fas fa-envelope"></i> Seu E-mail <span style="color:var(--primary);">*</span></label>
+<input name="Email" placeholder="Digite seu e-mail..." required="" type="email"/>
+<small style="color:var(--text-muted);font-size:0.7rem;">Você receberá as instruções neste e-mail</small>
+</div>
+<div class="form-group"><label><i class="fas fa-user"></i> Seu Nome</label><input name="Nome" placeholder="Digite seu nome completo..." required="" type="text"/></div>
+<div class="form-group"><label><i class="fab fa-whatsapp"></i> WhatsApp</label><input name="WhatsApp" placeholder="(DDD) 9 9999-9999" required="" type="text"/></div>
+<div class="form-group">
+<label><i class="fas fa-crown"></i> Produto</label>
+<select name="Produto" required="">
+<option value="MOD MENU GRAAL ERA - R$ 65,00">🎯 MOD MENU GRAAL ERA - R$ 65,00</option>
+</select>
+</div>
+<div class="form-group">
+<label><i class="fas fa-qrcode"></i> Chave PIX</label>
+<div style="background:var(--bg);padding:0.8rem;border-radius:8px;border:1px solid var(--success);font-family:monospace;font-size:0.9rem;color:var(--success);word-break:break-all;text-align:center;">
                         bc662963-1a5a-4fb0-af5e-5c7e4a82e590
                     </div>
-                    <small style="color:var(--text-muted);font-size:0.65rem;">Esta chave PIX é exclusiva para o MOD MENU GRAAL ERA</small>
-                </div>
-
-                <div class="form-group"><label><i class="fas fa-image"></i> 📸 Comprovante PIX <span style="color:var(--primary);">*</span></label><input type="file" name="Comprovante" accept="image/*,.pdf" required><p style="font-size:0.65rem;color:var(--text-muted);margin-top:0.3rem;">Envie uma foto do comprovante PIX (PNG, JPG, PDF - até 5MB)</p></div>
-                <div class="form-group"><label><i class="fas fa-pencil-alt"></i> Mensagem (opcional)</label><textarea name="Mensagem" rows="3" placeholder="Digite sua mensagem aqui..."></textarea></div>
-                
-                <div style="text-align:center;margin-bottom:0.8rem;font-size:0.8rem;color:var(--text-muted);">
-                    <i class="fas fa-shield-alt" style="color:var(--era);"></i>
+<small style="color:var(--text-muted);font-size:0.65rem;">Esta chave PIX é exclusiva para o MOD MENU GRAAL ERA</small>
+</div>
+<div class="form-group"><label><i class="fas fa-image"></i> 📸 Comprovante PIX <span style="color:var(--primary);">*</span></label><input accept="image/*,.pdf" name="Comprovante" required="" type="file"/><p style="font-size:0.65rem;color:var(--text-muted);margin-top:0.3rem;">Envie uma foto do comprovante PIX (PNG, JPG, PDF - até 5MB)</p></div>
+<div class="form-group"><label><i class="fas fa-pencil-alt"></i> Mensagem (opcional)</label><textarea name="Mensagem" placeholder="Digite sua mensagem aqui..." rows="3"></textarea></div>
+<div style="text-align:center;margin-bottom:0.8rem;font-size:0.8rem;color:var(--text-muted);">
+<i class="fas fa-shield-alt" style="color:var(--era);"></i>
                     Vendedor: <strong style="color:var(--era);">Xitado</strong> | 
                     <i class="fas fa-envelope" style="color:var(--era);"></i>
-                    <strong>xitadobr5x@gmail.com</strong>
-                </div>
-
-                <button type="submit" class="btn-submit" style="background:linear-gradient(135deg,var(--era),#d97706);"><i class="fas fa-paper-plane"></i> Enviar Pedido - Graal Era</button>
-                <div class="form-status" id="formStatusEra"></div>
-            </form>
-        </div>
-    </div>
-
-    <!-- ===== TAB AUTO TRASH (SEPARADA) ===== -->
-    <div class="tab-content" id="tab-auto-trash">
-        <div class="auto-trash-shell">
-
-        <div class="plans-header">
-            <h3><i class="fas fa-trash-alt"></i> AUTO TRASH</h3>
-            <p>SCRIPT AUTOMÁTICO • ÁREA EXCLUSIVA</p>
-            <p style="font-size:.85rem;color:var(--text-muted);margin-top:.5rem;">O Auto Trash possui uma área própria e não é misturado com Graal Classic ou Graal Era.</p>
-        </div>
-        <div class="plans-grid" style="max-width:600px;margin:0 auto;">
-                    <!-- AUTO TRASH (GRAAL ERA) -->
-                    <div class="plan-card popular" style="border-color:var(--era);">
-                        <span class="badge era-badge">🔥 Exclusivo Era</span>
-                        <div style="text-align:center;margin:0.5rem 0;">
-                            <img src="https://yt3.ggpht.com/5nAR2gmp0Do_KMoGwr9_kPhA2uO4eJtX4QBVaG-9mmMU_KU8LHri7Tn1116x6tCDBcS4Toi2fYm0=s900-rw-nd-v1" alt="Auto Trash" class="script-image" />
-                        </div>
-                        <h3>AUTO TRASH AUTOMATIC</h3>
-                        <div class="sub-plano">Graal Era</div>
-                        <div class="price">R$ 200,00 <small>/ vitalício</small><span class="parcelamento">ou 2x R$ 100,00</span></div>
-                        <ul class="script-features">
-                            <li><i class="fas fa-check"></i> 100% AUTOMATIZADO</li>
-                            <li><i class="fas fa-check"></i> Farm de lixo 24/7</li>
-                            <li><i class="fas fa-check"></i> Movimento inteligente</li>
-                            <li><i class="fas fa-check"></i> Coleta automática</li>
-                            <li><i class="fas fa-check"></i> Compatível com Graal Era</li>
-                            <li><i class="fas fa-check"></i> Suporte dedicado</li>
-                        </ul>
-                        <div style="text-align:center;margin:0.6rem 0;padding:0.4rem;background:rgba(245,158,11,0.1);border-radius:8px;border:1px solid var(--era);">
-                            <p style="font-size:0.7rem;color:var(--text-muted);"><strong style="color:var(--era);">📊 Exemplo:</strong> 2.000 trash em ~2h40</p>
-                        </div>
-                        <button class="btn-buy" onclick="adicionarAoCarrinho('Auto Trash Automatic', 200, 'auto-trash')">Comprar R$ 200,00</button>
-                        <button class="btn-add-cart" onclick="adicionarAoCarrinho('Auto Trash Automatic', 200, 'auto-trash')"><i class="fas fa-cart-plus"></i> Adicionar</button>
-                    </div>
-                </div>
-        <div class="aviso-plano auto-trash-notice">
-            <h4><i class="fas fa-info-circle"></i> AUTO TRASH SEPARADO</h4>
-            <p>Este produto pertence exclusivamente à categoria <strong>Auto Trash</strong>. O carrinho identifica a categoria para evitar mistura indevida de produtos.</p>
-        </div>
-        </div>
-    </div>
-
+<strong>xitadobr5x@gmail.com</strong>
+</div>
+<button class="btn-submit" style="background:linear-gradient(135deg,var(--era),#d97706);" type="submit"><i class="fas fa-paper-plane"></i> Enviar Pedido - Graal Era</button>
+<div class="form-status" id="formStatusEra"></div>
+</form>
+</div>
+</div></div></div><div class="tab-content" id="tab-auto-trash">
+<div class="auto-trash-shell">
+<div class="plans-header">
+<h3><i class="fas fa-trash-alt"></i> AUTO TRASH</h3>
+<p>SCRIPT AUTOMÁTICO • ÁREA EXCLUSIVA</p>
+<p style="font-size:.85rem;color:var(--text-muted);margin-top:.5rem;">O Auto Trash possui uma área própria e não é misturado com Graal Classic ou Graal Era.</p>
+</div>
+<div class="plans-grid" style="max-width:600px;margin:0 auto;">
+<!-- AUTO TRASH (GRAAL ERA) -->
+<div class="plan-card popular" style="border-color:var(--era);">
+<span class="badge era-badge">🔥 Exclusivo Era</span>
+<div style="text-align:center;margin:0.5rem 0;">
+<img alt="Auto Trash" class="script-image" src="https://yt3.ggpht.com/5nAR2gmp0Do_KMoGwr9_kPhA2uO4eJtX4QBVaG-9mmMU_KU8LHri7Tn1116x6tCDBcS4Toi2fYm0=s900-rw-nd-v1"/>
+</div>
+<h3>AUTO TRASH AUTOMATIC</h3>
+<div class="sub-plano">Graal Era</div>
+<div class="price">R$ 200,00 <small>/ vitalício</small><span class="parcelamento">ou 2x R$ 100,00</span></div>
+<ul class="script-features">
+<li><i class="fas fa-check"></i> 100% AUTOMATIZADO</li>
+<li><i class="fas fa-check"></i> Farm de lixo 24/7</li>
+<li><i class="fas fa-check"></i> Movimento inteligente</li>
+<li><i class="fas fa-check"></i> Coleta automática</li>
+<li><i class="fas fa-check"></i> Compatível com Graal Era</li>
+<li><i class="fas fa-check"></i> Suporte dedicado</li>
+</ul>
+<div style="text-align:center;margin:0.6rem 0;padding:0.4rem;background:rgba(245,158,11,0.1);border-radius:8px;border:1px solid var(--era);">
+<p style="font-size:0.7rem;color:var(--text-muted);"><strong style="color:var(--era);">📊 Exemplo:</strong> 2.000 trash em ~2h40</p>
+</div>
+<button class="btn-buy" onclick="adicionarAoCarrinho('Auto Trash Automatic', 200, 'auto-trash')">Comprar R$ 200,00</button>
+<button class="btn-add-cart" onclick="adicionarAoCarrinho('Auto Trash Automatic', 200, 'auto-trash')"><i class="fas fa-cart-plus"></i> Adicionar</button>
+</div>
+</div>
+<div class="aviso-plano auto-trash-notice">
+<h4><i class="fas fa-info-circle"></i> AUTO TRASH SEPARADO</h4>
+<p>Este produto pertence exclusivamente à categoria <strong>Auto Trash</strong>. O carrinho identifica a categoria para evitar mistura indevida de produtos.</p>
+</div>
+</div>
+<div class="purchase-form-card purchase-form-auto-trash"><div class="container"><div class="section-header"><h2><i class="fas fa-shopping-cart"></i> Formulário de compra — Auto Trash</h2><p>Formulário exclusivo do Auto Trash. Ele não aparece nas abas Classic ou Era.</p></div><form action="https://formsubmit.co/gabriel6061yt@gmail.com" enctype="multipart/form-data" id="formContatoAutoTrash" method="POST"><input name="_captcha" type="hidden" value="false"/><input name="_template" type="hidden" value="table"/><input name="_subject" type="hidden" value="🔥 NOVO PEDIDO - AUTO TRASH"/><div class="form-group"><label><i class="fas fa-envelope"></i> Seu E-mail <span style="color:var(--primary);">*</span></label><input name="Email" placeholder="Digite seu e-mail..." required="True" type="email"/></div><div class="form-group"><label><i class="fas fa-user"></i> Seu Nome</label><input name="Nome" placeholder="Digite seu nome completo..." required="True" type="text"/></div><div class="form-group"><label><i class="fab fa-whatsapp"></i> WhatsApp</label><input name="WhatsApp" placeholder="(DDD) 9 9999-9999" required="True" type="text"/></div><div class="form-group"><label><i class="fas fa-trash-alt"></i> Produto</label><input name="Produto" readonly="True" type="text" value="Auto Trash Automatic - R$ 200,00"/></div><div class="form-group"><label><i class="fas fa-image"></i> Comprovante PIX <span style="color:var(--primary);">*</span></label><input accept="image/*,.pdf" name="Comprovante" required="True" type="file"/></div><div class="form-group"><label><i class="fas fa-pencil-alt"></i> Mensagem (opcional)</label><textarea name="Mensagem" placeholder="Digite sua mensagem aqui..." rows="3"></textarea></div><button class="btn-submit" type="submit"><i class="fas fa-paper-plane"></i> Enviar Pedido - Auto Trash</button><div class="form-status" id="formStatusAutoTrash"></div></form></div></div></div>
+</div></section>
+<!-- ===== PERFIL ===== -->
+<section class="section dark" id="perfil">
+<div class="container">
+<div class="section-header">
+<h2><i class="fas fa-user"></i> Meu Perfil</h2>
+<p>Gerencie suas informações e personalize sua foto</p>
+</div>
+<div class="profile-section" id="profileSection">
+<div class="profile-header">
+<div class="profile-avatar" id="profileAvatar" onclick="document.getElementById('avatarUpload').click()">
+<span class="avatar-letter" id="avatarProfileText">K</span>
+<img id="avatarProfileImage" style="display:none;width:100%;height:100%;object-fit:cover;"/>
+<div class="avatar-overlay">📷 Trocar</div>
+</div>
+<input accept="image/*" class="hidden-file-input" id="avatarUpload" onchange="uploadAvatar(event)" type="file"/>
+<div class="profile-info">
+<h3 id="profileName">KZN Usuário</h3>
+<p id="profileEmail">usuario@kzn.com</p>
+<a class="edit-link" href="#" onclick="editarPerfil(event)"><i class="fas fa-edit"></i> Editar perfil</a>
+</div>
+</div>
+<div class="profile-stats">
+<div class="stat">
+<div class="number" id="profileOrders">0</div>
+<div class="label">Compras</div>
+</div>
+<div class="stat">
+<div class="number" id="profileKeys">0</div>
+<div class="label">Keys Ativas</div>
+</div>
+<div class="stat">
+<div class="number" id="profileSince">2026</div>
+<div class="label">Membro desde</div>
+</div>
+</div>
+<div class="profile-actions">
+<button class="btn-action primary" onclick="window.location.href='#mods'">
+<i class="fas fa-shopping-cart"></i> Comprar Mods
+                    </button>
+<button class="btn-action" onclick="window.location.href='#contato'">
+<i class="fas fa-headset"></i> Suporte
+                    </button>
+<button class="btn-action" onclick="inscreverNotificacoes()" style="border-color: var(--secondary);">
+<i class="fas fa-bell"></i> Ativar Notificações
+                    </button>
+<button class="btn-action" onclick="logout()">
+<i class="fas fa-sign-out-alt"></i> Sair
+                    </button>
+</div>
+<div id="editProfileArea" style="display:none;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--border);">
+<h4 style="margin-bottom:0.8rem;color:var(--text);font-size:1rem;">✏️ Editar Perfil</h4>
+<p style="color:var(--text-muted);font-size:0.75rem;margin-bottom:0.8rem;">Altere apenas o nome. O e-mail não pode ser alterado.</p>
+<div class="form-group">
+<label>Nome</label>
+<input id="editNome" placeholder="Digite seu novo nome" type="text"/>
+</div>
+<div class="form-group">
+<label>E-mail (fixo)</label>
+<input disabled="" id="editEmail" style="opacity:0.6;cursor:not-allowed;" type="email"/>
+<small style="color:var(--text-muted);font-size:0.65rem;">O e-mail não pode ser alterado</small>
+</div>
+<div class="form-group">
+<label>Nova senha (opcional)</label>
+<input id="editSenha" placeholder="Digite para alterar" type="password"/>
+<small style="color:var(--text-muted);font-size:0.65rem;">Deixe em branco para manter a atual</small>
+</div>
+<div style="display:flex;gap:0.8rem;flex-wrap:wrap;margin-top:0.8rem;">
+<button class="btn-action primary" onclick="salvarEdicaoPerfil()"><i class="fas fa-save"></i> Salvar</button>
+<button class="btn-action" onclick="cancelarEdicaoPerfil()"><i class="fas fa-times"></i> Cancelar</button>
+</div>
+</div>
+</div>
+</div>
 </section>
-
-
-    <!-- ===== CENTRAL DO PROPRIETÁRIO ===== -->
-    <section id="central-proprietario" class="section owner-section" style="display:none;">
-      <div class="container">
-        <div class="section-header"><h2><i class="fas fa-crown"></i> Central do Proprietário</h2><p>Ferramentas administrativas do KZN MENU</p></div>
-        <div class="owner-grid">
-          <div class="owner-stat"><span>👥</span><strong id="admTotalUsuarios">0</strong><small>Usuários</small></div>
-          <div class="owner-stat"><span>🟢</span><strong id="admAtivos">0</strong><small>Ativos</small></div>
-          <div class="owner-stat"><span>🔴</span><strong id="admBanidos">0</strong><small>Banidos</small></div>
-          <div class="owner-stat"><span>🛒</span><strong id="admCompras">0</strong><small>Compras</small></div>
-          <div class="owner-stat"><span>🔑</span><strong id="admKeys">0</strong><small>Keys</small></div>
-          <div class="owner-stat"><span>🔔</span><strong id="admNotificacoes">0</strong><small>Notificações</small></div>
-        </div>
-        <div class="owner-toolbar">
-          <input id="admBuscaUsuario" type="search" placeholder="Pesquisar usuário por nome, e-mail ou UID..." oninput="filtrarUsuariosAdmin()">
-          <button class="owner-btn" onclick="carregarPainelProprietario()"><i class="fas fa-sync"></i> Atualizar</button>
-          <button class="owner-btn danger" onclick="abrirEnviarNotificacaoAdmin()"><i class="fas fa-paper-plane"></i> Enviar notificação</button>
-        </div>
-        <div class="owner-panels">
-          <div class="owner-panel"><div class="owner-panel-head"><h3><i class="fas fa-users"></i> Usuários</h3><span id="admUserStatus"></span></div><div class="owner-table-wrap"><table class="owner-table"><thead><tr><th>Usuário</th><th>E-mail</th><th>Status</th><th>Ações</th></tr></thead><tbody id="admUsuariosTabela"></tbody></table></div></div>
-          <div class="owner-panel"><div class="owner-panel-head"><h3><i class="fas fa-history"></i> Logs administrativos</h3></div><div id="admLogs" class="owner-log-list"></div></div>
-        </div>
-      </div>
-    </section>
-
-    <div class="admin-modal" id="adminActionModal" aria-hidden="true">
-      <div class="admin-modal-card"><button class="admin-close" onclick="fecharAdminModal()">✕</button><div id="adminModalBody"></div></div>
-    </div>
-
-    <!-- ===== FAQ ===== -->
-    <section id="faq" class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2><i class="fas fa-question-circle"></i> Perguntas Frequentes</h2>
-                <p>Dúvidas comuns sobre o KZN Menu</p>
-            </div>
-            <div style="max-width:800px;margin:0 auto;">
-                <div class="faq-item" onclick="toggleFaq(this)">
-                    <div class="question"><span>🔒 O KZN Menu é seguro?</span><span class="faq-icon"><i class="fas fa-chevron-down"></i></span></div>
-                    <div class="answer">Sim! O KZN Menu é desenvolvido com códigos otimizados e testados. Milhares de jogadores já utilizam sem problemas.</div>
-                </div>
-                <div class="faq-item" onclick="toggleFaq(this)">
-                    <div class="question"><span>📱 Funciona no celular?</span><span class="faq-icon"><i class="fas fa-chevron-down"></i></span></div>
-                    <div class="answer">Sim! O KZN Menu é 100% compatível com Graal Mobile (Android e iOS).</div>
-                </div>
-                <div class="faq-item" onclick="toggleFaq(this)">
-                    <div class="question"><span>🔄 Como funciona a ativação por Key?</span><span class="faq-icon"><i class="fas fa-chevron-down"></i></span></div>
-                    <div class="answer">Após a confirmação do pagamento, você receberá uma Key de ativação com validade conforme o plano escolhido. A Key é ativada no próprio KZN Menu.</div>
-                </div>
-                <div class="faq-item" onclick="toggleFaq(this)">
-                    <div class="question"><span>📦 Como recebo o mod após o pagamento?</span><span class="faq-icon"><i class="fas fa-chevron-down"></i></span></div>
-                    <div class="answer">Após confirmar o pagamento, você receberá a key e instruções de ativação via Discord e/ou e-mail.</div>
-                </div>
-                <div class="faq-item" onclick="toggleFaq(this)">
-                    <div class="question"><span>💳 Quais formas de pagamento?</span><span class="faq-icon"><i class="fas fa-chevron-down"></i></span></div>
-                    <div class="answer">Aceitamos PIX (chave: <code style="color:var(--success);">6c80021c-957b-49c0-9a5d-98371bf67120</code>).</div>
-                </div>
-                <div class="faq-item" onclick="toggleFaq(this)">
-                    <div class="question"><span>❌ O plano permanente acabou?</span><span class="faq-icon"><i class="fas fa-chevron-down"></i></span></div>
-                    <div class="answer">Sim! O plano permanente de R$200 não está mais disponível para novas compras. Agora oferecemos planos com validade definida de 35 a 210 dias.</div>
-                </div>
-                <div class="faq-item" onclick="toggleFaq(this)">
-                    <div class="question"><span>🌆 O MOD MENU GRAAL ERA tem suporte?</span><span class="faq-icon"><i class="fas fa-chevron-down"></i></span></div>
-                    <div class="answer">Sim! O MOD MENU GRAAL ERA é vendido pelo vendedor Xitado. O suporte é feito através do e-mail xitadobr5x@gmail.com.</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== WELCOME / LOGIN ===== -->
-    <div class="welcome-overlay" id="welcomeOverlay">
-        <div class="welcome-content">
-            <div class="welcome-brand">
-                <img src="https://yt3.ggpht.com/pCQ6XhcUzMYgxDHA4Z2WZzHIN9B8O3HqCB_nfbqMYymlQqQ1cDvZc-kszyjePyEjV13qgqvwDbJK=s800-rw-nd-v1" alt="KZN MENU" />
-                <h1>KZN MENU</h1>
-                <p>O melhor Mod Menu para Graal</p>
-            </div>
-            <div class="welcome-divider"></div>
-            <p class="welcome-subtitle">Entre para acessar todos os recursos</p>
-
-            <div class="login-tabs">
-                <button class="login-tab-btn active" onclick="trocarLoginTab('login')" id="loginTabBtn">Login</button>
-                <button class="login-tab-btn" onclick="trocarLoginTab('registro')" id="registroTabBtn">Registrar</button>
-            </div>
-
-            <div class="login-form" id="loginForm">
-                <div class="form-group"><label>E-mail</label><input type="email" id="loginEmail" placeholder="Digite seu e-mail" /></div>
-                <div class="form-group"><label>Senha</label><input type="password" id="loginSenha" placeholder="Digite sua senha" /></div>
-                <button class="btn-login" onclick="fazerLogin()"><i class="fas fa-sign-in-alt"></i> Entrar</button>
-                <div class="form-status" id="loginStatus"></div>
-            </div>
-
-            <div class="login-form" id="registroForm" style="display:none;">
-                <div class="form-group"><label>Nome</label><input type="text" id="registroNome" placeholder="Digite seu nome" /></div>
-                <div class="form-group"><label>E-mail</label><input type="email" id="registroEmail" placeholder="Digite seu e-mail" /></div>
-                <div class="form-group"><label>Senha</label><input type="password" id="registroSenha" placeholder="Digite sua senha (mínimo 6 caracteres)" /></div>
-                <div class="form-group"><label>Confirmar Senha</label><input type="password" id="registroConfirmarSenha" placeholder="Confirme sua senha" /></div>
-                <button class="btn-login btn-register" onclick="fazerRegistro()"><i class="fas fa-user-plus"></i> Criar Conta</button>
-                <div class="form-status" id="registroStatus"></div>
-            </div>
-
-            <div class="welcome-or"><span>ou</span></div>
-
-            <div id="g_id_onload" data-client_id="642206758344-ma2e07eu08dokkui9d28cfiqfnrss50v.apps.googleusercontent.com" data-callback="handleWelcomeLogin" data-auto_prompt="false"></div>
-            <div class="google-btn-wrapper">
-                <div class="g_id_signin" data-type="standard" data-shape="rectangular" data-theme="outline" data-text="signin_with" data-size="large" data-logo_alignment="left"></div>
-            </div>
-            <p class="welcome-footer">Ao entrar, você concorda com nossos Termos de Serviço</p>
-        </div>
-    </div>
-
-    <!-- ===== FOOTER ===== -->
+<!-- ===== REGRAS ===== -->
+<section class="section dark" id="regras">
+<div class="container">
+<div class="section-header">
+<h2><i class="fas fa-gavel"></i> Regras do KZN MENU</h2>
+<p>Leia atentamente antes de adquirir</p>
+</div>
+<div style="max-width:800px;margin:0 auto;">
+<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:0.8rem 1rem;margin-bottom:0.6rem;display:flex;align-items:flex-start;gap:10px;transition:0.3s;">
+<div style="background:var(--primary);color:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;flex-shrink:0;">1</div>
+<div style="color:var(--text-muted);font-size:0.8rem;"><strong style="color:var(--text);">🔄 Renovação / Reset de Key</strong><br/>Em caso de perda, solicitação de reset ou emissão de nova Key, será cobrada uma taxa de <span style="color:var(--primary);font-weight:700;">R$ 30,00</span> por solicitação. Não nos responsabilizamos por Keys perdidas, excluídas, compartilhadas ou extraviadas. O cliente é totalmente responsável por manter sua Key em segurança.</div>
+</div>
+<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:0.8rem 1rem;margin-bottom:0.6rem;display:flex;align-items:flex-start;gap:10px;transition:0.3s;">
+<div style="background:var(--primary);color:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;flex-shrink:0;">2</div>
+<div style="color:var(--text-muted);font-size:0.8rem;"><strong style="color:var(--text);">⚠️ Responsabilidade do Usuário</strong><br/>Não nos responsabilizamos por banimentos, punições ou qualquer outra penalidade aplicada à sua conta decorrente do uso do Mod Menu. Se você utilizar o Mod Menu de forma irresponsável, abusar das funções ou utilizá-las para prejudicar outros jogadores, a responsabilidade será exclusivamente do cliente. Recomendamos utilizar as funções com bom senso e evitar comportamentos que possam chamar atenção da administração do jogo.</div>
+</div>
+<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:0.8rem 1rem;margin-bottom:0.6rem;display:flex;align-items:flex-start;gap:10px;transition:0.3s;">
+<div style="background:var(--primary);color:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;flex-shrink:0;">3</div>
+<div style="color:var(--text-muted);font-size:0.8rem;"><strong style="color:var(--text);">🎯 Objetivo do Mod Menu</strong><br/>O Mod Menu foi desenvolvido principalmente para auxiliar o jogador em atividades dentro do jogo, como: <strong>🐞 Farm de insetos, 🏠 Upar Houses, ⚔️ Upar GH, 🥊 Spar, 🎯 Eventos, 📊 Outras atividades de farm e gameplay</strong>. O objetivo principal é proporcionar mais praticidade e recursos ao jogador, e não garantir que sua conta esteja protegida contra punições.</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ===== CONTATO ===== -->
+<!-- ===== CONTATO GRAAL ERA ===== -->
+<!-- ===== CENTRAL DO PROPRIETÁRIO ===== -->
+<section aria-hidden="true" class="section owner-section" id="central-proprietario">
+<div class="admin-shell">
+<div class="admin-head">
+<div>
+<div class="admin-kicker"><i class="fas fa-shield-alt"></i> KZN CONTROL CENTER</div>
+<h2><i class="fas fa-crown"></i> Central do Proprietário</h2>
+<p>Controle de usuários, banimentos, notificações e operações do site.</p>
+</div>
+<button aria-label="Fechar painel" class="admin-head-close" onclick="toggleCentralProprietario()" type="button"><i class="fas fa-times"></i></button>
+</div>
+<div class="admin-stats">
+<div class="admin-stat"><span class="admin-stat-icon users"><i class="fas fa-users"></i></span><div><strong id="admTotalUsuarios">0</strong><small>Usuários</small></div></div>
+<div class="admin-stat"><span class="admin-stat-icon active"><i class="fas fa-user-check"></i></span><div><strong id="admAtivos">0</strong><small>Ativos</small></div></div>
+<div class="admin-stat"><span class="admin-stat-icon banned"><i class="fas fa-user-slash"></i></span><div><strong id="admBanidos">0</strong><small>Banidos</small></div></div>
+<div class="admin-stat"><span class="admin-stat-icon notify"><i class="fas fa-bell"></i></span><div><strong id="admNotificacoes">0</strong><small>Notificações</small></div></div>
+</div>
+<div class="admin-nav" role="tablist">
+<button class="admin-nav-btn active" data-admin-view="dashboard" onclick="mudarAbaAdmin('dashboard')"><i class="fas fa-chart-line"></i> Dashboard</button>
+<button class="admin-nav-btn" data-admin-view="usuarios" onclick="mudarAbaAdmin('usuarios')"><i class="fas fa-users"></i> Usuários</button>
+<button class="admin-nav-btn" data-admin-view="banimentos" onclick="mudarAbaAdmin('banimentos')"><i class="fas fa-ban"></i> Banimentos</button>
+<button class="admin-nav-btn" data-admin-view="notificacoes" onclick="mudarAbaAdmin('notificacoes')"><i class="fas fa-paper-plane"></i> Notificações</button>
+<button class="admin-nav-btn" data-admin-view="logs" onclick="mudarAbaAdmin('logs')"><i class="fas fa-list-alt"></i> Logs</button>
+</div>
+<div class="admin-view active" id="adminViewDashboard">
+<div class="admin-overview-grid">
+<div class="admin-card admin-card-main"><div class="admin-card-title"><i class="fas fa-bolt"></i><span>Ações rápidas</span></div>
+<div class="admin-quick-actions">
+<button onclick="mudarAbaAdmin('usuarios')"><i class="fas fa-users"></i><span>Gerenciar usuários</span><small>Pesquisar, banir e desbanir</small></button>
+<button onclick="abrirEnviarNotificacaoAdmin()"><i class="fas fa-paper-plane"></i><span>Enviar notificação</span><small>Enviar mensagem para um cliente</small></button>
+<button onclick="mudarAbaAdmin('banimentos')"><i class="fas fa-user-shield"></i><span>Banimentos</span><small>Contas bloqueadas</small></button>
+<button onclick="mudarAbaAdmin('logs')"><i class="fas fa-history"></i><span>Atividade</span><small>Histórico administrativo</small></button>
+</div>
+</div>
+<div class="admin-card"><div class="admin-card-title"><i class="fas fa-store"></i><span>Resumo da loja</span></div>
+<div class="admin-mini-list">
+<div><span>Compras registradas</span><strong id="admCompras">0</strong></div>
+<div><span>Keys cadastradas</span><strong id="admKeys">0</strong></div>
+<div><span>Status</span><strong class="admin-online">ONLINE</strong></div>
+</div>
+</div>
+</div>
+</div>
+<div class="admin-view" id="adminViewUsuarios">
+<div class="admin-card">
+<div class="admin-card-title"><i class="fas fa-users"></i><span>Gerenciar usuários</span><small id="admUserStatus"></small></div>
+<div class="admin-toolbar">
+<div class="admin-search"><i class="fas fa-search"></i><input id="admBuscaUsuario" oninput="filtrarUsuariosAdmin()" placeholder="Nome, e-mail ou UID..." type="search"/></div>
+<button class="admin-action-btn" onclick="carregarPainelProprietario()"><i class="fas fa-sync-alt"></i> Atualizar</button>
+<button class="admin-action-btn primary" onclick="abrirEnviarNotificacaoAdmin()"><i class="fas fa-paper-plane"></i> Notificar</button>
+</div>
+<div class="admin-table-wrap"><table class="owner-table"><thead><tr><th>Usuário</th><th>E-mail</th><th>Status</th><th>Ações</th></tr></thead><tbody id="admUsuariosTabela"></tbody></table></div>
+</div>
+</div>
+<div class="admin-view" id="adminViewBanimentos">
+<div class="admin-card"><div class="admin-card-title"><i class="fas fa-ban"></i><span>Controle de banimentos</span></div><p class="admin-help">Use a aba Usuários para selecionar uma conta. O banimento pode ser temporário ou permanente e fica registrado nos logs.</p><button class="admin-action-btn primary" onclick="mudarAbaAdmin('usuarios')"><i class="fas fa-user-shield"></i> Abrir gerenciamento de usuários</button></div>
+</div>
+<div class="admin-view" id="adminViewNotificacoes">
+<div class="admin-card"><div class="admin-card-title"><i class="fas fa-paper-plane"></i><span>Central de notificações</span></div><p class="admin-help">Envie uma mensagem diretamente para a central de notificações de um cliente.</p><button class="admin-action-btn primary" onclick="abrirEnviarNotificacaoAdmin()"><i class="fas fa-plus"></i> Nova notificação</button></div>
+</div>
+<div class="admin-view" id="adminViewLogs">
+<div class="admin-card"><div class="admin-card-title"><i class="fas fa-list-alt"></i><span>Logs administrativos</span></div><div class="owner-log-list" id="admLogs"></div></div>
+</div>
+</div>
+</section>
+<div aria-hidden="true" class="admin-modal" id="adminActionModal">
+<div class="admin-modal-card"><button class="admin-close" onclick="fecharAdminModal()">✕</button><div id="adminModalBody"></div></div>
+</div>
+<!-- ===== FAQ ===== -->
+<section class="section" id="faq">
+<div class="container">
+<div class="section-header">
+<h2><i class="fas fa-question-circle"></i> Perguntas Frequentes</h2>
+<p>Dúvidas comuns sobre o KZN Menu</p>
+</div>
+<div style="max-width:800px;margin:0 auto;">
+<div class="faq-item" onclick="toggleFaq(this)">
+<div class="question"><span>🔒 O KZN Menu é seguro?</span><span class="faq-icon"><i class="fas fa-chevron-down"></i></span></div>
+<div class="answer">Sim! O KZN Menu é desenvolvido com códigos otimizados e testados. Milhares de jogadores já utilizam sem problemas.</div>
+</div>
+<div class="faq-item" onclick="toggleFaq(this)">
+<div class="question"><span>📱 Funciona no celular?</span><span class="faq-icon"><i class="fas fa-chevron-down"></i></span></div>
+<div class="answer">Sim! O KZN Menu é 100% compatível com Graal Mobile (Android e iOS).</div>
+</div>
+<div class="faq-item" onclick="toggleFaq(this)">
+<div class="question"><span>🔄 Como funciona a ativação por Key?</span><span class="faq-icon"><i class="fas fa-chevron-down"></i></span></div>
+<div class="answer">Após a confirmação do pagamento, você receberá uma Key de ativação com validade conforme o plano escolhido. A Key é ativada no próprio KZN Menu.</div>
+</div>
+<div class="faq-item" onclick="toggleFaq(this)">
+<div class="question"><span>📦 Como recebo o mod após o pagamento?</span><span class="faq-icon"><i class="fas fa-chevron-down"></i></span></div>
+<div class="answer">Após confirmar o pagamento, você receberá a key e instruções de ativação via Discord e/ou e-mail.</div>
+</div>
+<div class="faq-item" onclick="toggleFaq(this)">
+<div class="question"><span>💳 Quais formas de pagamento?</span><span class="faq-icon"><i class="fas fa-chevron-down"></i></span></div>
+<div class="answer">Aceitamos PIX (chave: <code style="color:var(--success);">6c80021c-957b-49c0-9a5d-98371bf67120</code>).</div>
+</div>
+<div class="faq-item" onclick="toggleFaq(this)">
+<div class="question"><span>❌ O plano permanente acabou?</span><span class="faq-icon"><i class="fas fa-chevron-down"></i></span></div>
+<div class="answer">Sim! O plano permanente de R$200 não está mais disponível para novas compras. Agora oferecemos planos com validade definida de 35 a 210 dias.</div>
+</div>
+<div class="faq-item" onclick="toggleFaq(this)">
+<div class="question"><span>🌆 O MOD MENU GRAAL ERA tem suporte?</span><span class="faq-icon"><i class="fas fa-chevron-down"></i></span></div>
+<div class="answer">Sim! O MOD MENU GRAAL ERA é vendido pelo vendedor Xitado. O suporte é feito através do e-mail xitadobr5x@gmail.com.</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ===== WELCOME / LOGIN ===== -->
+<div class="welcome-overlay" id="welcomeOverlay">
+<div class="welcome-content">
+<div class="welcome-brand">
+<img alt="KZN MENU" src="https://yt3.ggpht.com/pCQ6XhcUzMYgxDHA4Z2WZzHIN9B8O3HqCB_nfbqMYymlQqQ1cDvZc-kszyjePyEjV13qgqvwDbJK=s800-rw-nd-v1"/>
+<h1>KZN MENU</h1>
+<p>O melhor Mod Menu para Graal</p>
+</div>
+<div class="welcome-divider"></div>
+<p class="welcome-subtitle">Entre para acessar todos os recursos</p>
+<div class="login-tabs">
+<button class="login-tab-btn active" id="loginTabBtn" onclick="trocarLoginTab('login')">Login</button>
+<button class="login-tab-btn" id="registroTabBtn" onclick="trocarLoginTab('registro')">Registrar</button>
+</div>
+<div class="login-form" id="loginForm">
+<div class="form-group"><label>E-mail</label><input id="loginEmail" placeholder="Digite seu e-mail" type="email"/></div>
+<div class="form-group"><label>Senha</label><input id="loginSenha" placeholder="Digite sua senha" type="password"/></div>
+<button class="btn-login" onclick="fazerLogin()"><i class="fas fa-sign-in-alt"></i> Entrar</button>
+<div class="form-status" id="loginStatus"></div>
+</div>
+<div class="login-form" id="registroForm" style="display:none;">
+<div class="form-group"><label>Nome</label><input id="registroNome" placeholder="Digite seu nome" type="text"/></div>
+<div class="form-group"><label>E-mail</label><input id="registroEmail" placeholder="Digite seu e-mail" type="email"/></div>
+<div class="form-group"><label>Senha</label><input id="registroSenha" placeholder="Digite sua senha (mínimo 6 caracteres)" type="password"/></div>
+<div class="form-group"><label>Confirmar Senha</label><input id="registroConfirmarSenha" placeholder="Confirme sua senha" type="password"/></div>
+<button class="btn-login btn-register" onclick="fazerRegistro()"><i class="fas fa-user-plus"></i> Criar Conta</button>
+<div class="form-status" id="registroStatus"></div>
+</div>
+<div class="welcome-or"><span>ou</span></div>
+<div data-auto_prompt="false" data-callback="handleWelcomeLogin" data-client_id="642206758344-ma2e07eu08dokkui9d28cfiqfnrss50v.apps.googleusercontent.com" id="g_id_onload"></div>
+<div class="google-btn-wrapper">
+<div class="g_id_signin" data-logo_alignment="left" data-shape="rectangular" data-size="large" data-text="signin_with" data-theme="outline" data-type="standard"></div>
+</div>
+<p class="welcome-footer">Ao entrar, você concorda com nossos Termos de Serviço</p>
+</div>
+</div>
+<!-- ===== FOOTER ===== -->
 <footer class="footer">
-    <div class="container">
-        <div class="footer-content">
-            <div class="footer-brand">
-                <span>KZN MENU</span>
-                <p>O melhor Mod Menu para Graal Classic &amp; Era</p>
-            </div>
-            <div class="footer-social">
-                <!-- SERVIDOR KZN MENU - COM GIF (apenas Classic + Auto Trash) -->
-                <a href="https://discord.gg/tuwnDbWc2" target="_blank" class="discord" title="Discord KZN MENU (Classic + Auto Trash)">
-                    <img src="https://cdn.discordapp.com/attachments/1331352415026352199/1342539178553057372/discord-logo.gif?ex=67d0e2b6&is=67cf9136&hm=f2add38a9a75b4b17844c6c24aed3125ed9eb795125ef9ecdc80b5e52c629b9c&" alt="Discord KZN" style="width:32px; height:32px; border-radius:8px; object-fit:cover;" />
-                </a>
-                <!-- SERVIDOR XITADO - SEM LOGO (apenas ícone) -->
-                <a href="https://discord.gg/EUUjS7Vvs" target="_blank" class="xcore" title="Discord Xitado (Graal Era)" style="border-color:var(--era);">
-                    <i class="fas fa-bolt" style="color:var(--era);"></i>
-                </a>
-                <a href="#" class="pix-kzn" onclick="abrirModalPix()" title="PIX KZN"><i class="fas fa-qrcode"></i></a>
-            </div>
-        </div>
-        <div class="footer-bottom"><p>&copy; 2026 KZN MENU - Todos os direitos reservados</p></div>
-    </div>
+<div class="container">
+<div class="footer-content">
+<div class="footer-brand">
+<span>KZN MENU</span>
+<p>O melhor Mod Menu para Graal Classic &amp; Era</p>
+</div>
+<div class="footer-social">
+<!-- SERVIDOR KZN MENU - COM GIF (apenas Classic + Auto Trash) -->
+<a class="discord" href="https://discord.gg/tuwnDbWc2" target="_blank" title="Discord KZN MENU (Classic + Auto Trash)">
+<img alt="Discord KZN" src="https://cdn.discordapp.com/attachments/1331352415026352199/1342539178553057372/discord-logo.gif?ex=67d0e2b6&amp;is=67cf9136&amp;hm=f2add38a9a75b4b17844c6c24aed3125ed9eb795125ef9ecdc80b5e52c629b9c&amp;" style="width:32px; height:32px; border-radius:8px; object-fit:cover;"/>
+</a>
+<!-- SERVIDOR XITADO - SEM LOGO (apenas ícone) -->
+<a class="xcore" href="https://discord.gg/EUUjS7Vvs" style="border-color:var(--era);" target="_blank" title="Discord Xitado (Graal Era)">
+<i class="fas fa-bolt" style="color:var(--era);"></i>
+</a>
+<a class="pix-kzn" href="#" onclick="abrirModalPix()" title="PIX KZN"><i class="fas fa-qrcode"></i></a>
+</div>
+</div>
+<div class="footer-bottom"><p>© 2026 KZN MENU - Todos os direitos reservados</p></div>
+</div>
 </footer>
-
-    <!-- ===== MODAL PIX KZN ===== -->
-    <div class="modal-pix" id="modalPix">
-        <div class="modal-content">
-            <button class="modal-close-btn" onclick="fecharModalPix()">✕</button>
-            <h2>💰 Pagamento PIX - KZN</h2>
-            <p style="color:var(--text-muted);margin-bottom:0.5rem;font-size:0.85rem;">Copie a chave abaixo e realize o pagamento</p>
-            <div class="pix-key" id="pixKey">6c80021c-957b-49c0-9a5d-98371bf67120</div>
-            <button class="btn-copy" onclick="copiarPix()"><i class="fas fa-copy"></i> Copiar Chave PIX</button>
-            <div class="plan-info" id="planInfo">Plano: - | Valor: -</div>
-            <div style="margin-top:0.8rem;"><a href="https://discord.gg/tuwnDbWc2" target="_blank" class="discord-link"><i class="fab fa-discord"></i> Entrar em contato no Discord</a></div>
-            <div style="margin-top:0.6rem;font-size:0.75rem;color:var(--text-muted);"><p>Após o pagamento, envie o comprovante no Discord para ativação.</p></div>
-        </div>
-    </div>
-
-    <!-- ===== SCRIPTS ===== -->
-    <script>
+<!-- ===== MODAL PIX KZN ===== -->
+<div class="modal-pix" id="modalPix">
+<div class="modal-content">
+<button class="modal-close-btn" onclick="fecharModalPix()">✕</button>
+<h2>💰 Pagamento PIX - KZN</h2>
+<p style="color:var(--text-muted);margin-bottom:0.5rem;font-size:0.85rem;">Copie a chave abaixo e realize o pagamento</p>
+<div class="pix-key" id="pixKey">6c80021c-957b-49c0-9a5d-98371bf67120</div>
+<button class="btn-copy" onclick="copiarPix()"><i class="fas fa-copy"></i> Copiar Chave PIX</button>
+<div class="plan-info" id="planInfo">Plano: - | Valor: -</div>
+<div style="margin-top:0.8rem;"><a class="discord-link" href="https://discord.gg/tuwnDbWc2" target="_blank"><i class="fab fa-discord"></i> Entrar em contato no Discord</a></div>
+<div style="margin-top:0.6rem;font-size:0.75rem;color:var(--text-muted);"><p>Após o pagamento, envie o comprovante no Discord para ativação.</p></div>
+</div>
+</div>
+<!-- ===== SCRIPTS ===== -->
+<script>
         // ====== FIREBASE CONFIG ======
         const firebaseConfig = {
             apiKey: "AIzaSyA-3mN_h8XQMis4vqfoPm2RkwOKJ-p7k2Q",
@@ -5883,7 +5925,7 @@ window.copiarPixEra = function() {
    if(!isOwnerAccount()||document.getElementById('ownerNavLink'))return;
    const nav=document.getElementById('navMenuDesktop'); if(nav){const li=document.createElement('li');li.innerHTML='<a href="#central-proprietario" id="ownerNavLink"><i class="fas fa-crown"></i> Proprietário</a>';li.onclick=()=>abrirCentralProprietario();nav.appendChild(li);}
    const mob=document.getElementById('navMenuMobile');if(mob){const li=document.createElement('li');li.innerHTML='<a href="#central-proprietario"><i class="fas fa-crown"></i> Central do Proprietário</a>';li.onclick=()=>abrirCentralProprietario();mob.appendChild(li);}
-   const sec=document.getElementById('central-proprietario');if(sec)sec.style.display='block';
+   const sec=document.getElementById('central-proprietario');if(sec){sec.classList.remove('admin-visible');sec.setAttribute('aria-hidden','true');}
  }
  function monitorAccountBan(){
    if(!usuarioLogado?.email)return;
@@ -5914,77 +5956,110 @@ window.copiarPixEra = function() {
 })();
 </script>
 <script>
-
-/* ===== KZN V3 — OWNER TOGGLE + CHAT INITIAL STATE ===== */
+/* ===== KZN V4 — OWNER PANEL + HEADER + CHAT FINAL FIX ===== */
 (function(){
     const OWNER_EMAIL = 'gabriel6061yt@gmail.com';
 
     function ownerLogged(){
-        return !!window.usuarioLogado &&
-          String(window.usuarioLogado.email || '').toLowerCase() === OWNER_EMAIL;
+        const u = window.usuarioLogado;
+        return !!u && String(u.email || '').trim().toLowerCase() === OWNER_EMAIL;
     }
 
+    window.mudarAbaAdmin = function(view){
+        if (!ownerLogged()) return;
+        document.querySelectorAll('.admin-nav-btn').forEach(b => b.classList.toggle('active', b.dataset.adminView === view));
+        document.querySelectorAll('.admin-view').forEach(v => v.classList.remove('active'));
+        const target = document.getElementById('adminView' + String(view).charAt(0).toUpperCase() + String(view).slice(1));
+        if (target) target.classList.add('active');
+        if (view === 'usuarios' && typeof carregarPainelProprietario === 'function') carregarPainelProprietario();
+        if (view === 'logs' && typeof carregarPainelProprietario === 'function') carregarPainelProprietario();
+    };
+
     window.toggleCentralProprietario = function(){
-        if (!ownerLogged()){
+        if (!ownerLogged()) {
             if (typeof ensureOwner === 'function') ensureOwner();
             return;
         }
         const section = document.getElementById('central-proprietario');
         const btn = document.getElementById('adminPanelToggle');
         if (!section) return;
-
-        const isOpen = section.style.display !== 'none' && section.style.display !== '';
-        if (isOpen){
-            section.style.display = 'none';
+        const open = section.classList.contains('admin-visible');
+        if (open) {
+            section.classList.remove('admin-visible');
+            section.setAttribute('aria-hidden','true');
             btn?.classList.remove('open');
             return;
         }
-
-        section.style.display = 'block';
+        section.classList.add('admin-visible');
+        section.setAttribute('aria-hidden','false');
         btn?.classList.add('open');
+        window.mudarAbaAdmin('dashboard');
         if (typeof carregarPainelProprietario === 'function') carregarPainelProprietario();
-        section.scrollIntoView({behavior:'smooth', block:'start'});
+        setTimeout(() => section.scrollIntoView({behavior:'smooth', block:'start'}), 20);
     };
 
     window.atualizarBotaoAdmin = function(){
         const btn = document.getElementById('adminPanelToggle');
+        const section = document.getElementById('central-proprietario');
         if (!btn) return;
         const show = ownerLogged();
         btn.style.display = show ? 'flex' : 'none';
         if (!show) {
-            const sec = document.getElementById('central-proprietario');
-            if (sec) sec.style.display = 'none';
             btn.classList.remove('open');
+            section?.classList.remove('admin-visible');
+            section?.setAttribute('aria-hidden','true');
         }
     };
 
-    // Never auto-open Chat Global.
-    window.fecharChatInicialmente = function(){
-        const chat = document.getElementById('chatWindow');
-        if (chat) chat.classList.remove('open');
-        window.chatAberto = false;
-    };
+    // IMPORTANT: do not auto-open the admin section after login.
+    // Also remove any old dynamically-created owner nav links to keep the header clean.
+    function limparOwnerNavAntigo(){
+        document.getElementById('ownerNavLink')?.closest('li')?.remove();
+        document.querySelectorAll('#navMenuMobile a').forEach(a => {
+            if ((a.textContent || '').toLowerCase().includes('central do proprietário')) a.closest('li')?.remove();
+        });
+    }
 
-    const originalSetLoggedIn = window.setLoggedIn;
-    if (typeof originalSetLoggedIn === 'function') {
-        window.setLoggedIn = function(){
-            originalSetLoggedIn.apply(this, arguments);
+    function fecharChatInicialmente(){
+        const chat = document.getElementById('chatWindow');
+        if (chat) {
+            chat.classList.remove('open');
+            chat.style.display = '';
+        }
+        window.chatAberto = false;
+    }
+
+    const oldSetLoggedIn = window.setLoggedIn;
+    if (typeof oldSetLoggedIn === 'function' && !oldSetLoggedIn.__kznV4Wrapped) {
+        const wrapped = function(){
+            oldSetLoggedIn.apply(this, arguments);
             fecharChatInicialmente();
-            setTimeout(atualizarBotaoAdmin, 50);
+            limparOwnerNavAntigo();
+            setTimeout(atualizarBotaoAdmin, 80);
         };
+        wrapped.__kznV4Wrapped = true;
+        window.setLoggedIn = wrapped;
     }
 
     document.addEventListener('DOMContentLoaded', function(){
-        setTimeout(function(){
-            fecharChatInicialmente();
-            atualizarBotaoAdmin();
-        }, 80);
+        fecharChatInicialmente();
+        limparOwnerNavAntigo();
+        setTimeout(atualizarBotaoAdmin, 120);
+        // Guard against legacy code reopening the chat on initial page load.
+        setTimeout(fecharChatInicialmente, 250);
+        setTimeout(fecharChatInicialmente, 1000);
     });
 
-    // Keep owner control synchronized when profile/login state changes.
-    setInterval(atualizarBotaoAdmin, 1500);
-})();
+    // Do not let the old installOwnerNav make the panel visible automatically.
+    // The final visibility source is the .admin-visible class only.
+    const originalInstall = window.installOwnerNav;
+    if (typeof originalInstall === 'function') {
+        // Keep reference only; visibility is controlled by the final toggle.
+    }
 
+    // Keep owner button synchronized without opening the panel.
+    setInterval(atualizarBotaoAdmin, 1200);
+})();
 </script>
 </body>
 </html>
