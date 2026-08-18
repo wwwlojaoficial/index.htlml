@@ -2819,8 +2819,11 @@
 @media(max-width:1100px){.nav-menu#navMenuDesktop{display:none!important}.nav-toggle{display:flex!important}}
 @media(max-width:560px){
   .nav-container{gap:5px;padding-left:8px!important;padding-right:8px!important}
-  .nav-logo-wrapper{max-width:45%}
-  .nav-xcore{display:none!important}
+  .nav-logo-wrapper{max-width:58%}
+  .nav-xcore{display:flex!important;align-items:center;gap:5px;min-width:78px;max-width:112px;overflow:hidden}
+  .nav-xcore img{width:24px!important;height:24px!important;flex:0 0 24px!important}
+  .nav-xcore .xcore-text .name{font-size:.55rem!important;white-space:nowrap}
+  .nav-xcore .xcore-text .team{font-size:.43rem!important;white-space:nowrap}
   .nav-actions{gap:3px!important}
   .nav-icon-btn{width:34px!important;height:34px!important}
   .profile-btn{max-width:84px!important;overflow:hidden}
@@ -2970,6 +2973,27 @@
     .purchase-form-auto-trash{padding:0 8px!important}
     .purchase-form-auto-trash .form-container{padding:16px!important;border-radius:16px!important}
 }
+
+/* ===== KZN V6 — ADMIN ROLES + MOBILE NOTIFICATIONS + XCORE HEADER + YELLOW CHAT ===== */
+.chat-messages{background:linear-gradient(180deg,#fff7bf 0%,#fff2a3 100%)!important;color:#111!important;}
+.chat-messages .chat-msg{background:rgba(255,255,255,.86)!important;color:#111!important;border-left-color:#d4a900!important;box-shadow:0 2px 8px rgba(0,0,0,.08)!important;}
+.chat-messages .chat-msg .msg-text,.chat-messages .chat-msg .msg-nome,.chat-messages .chat-msg .msg-data{color:#111!important;}
+.chat-messages .chat-msg .msg-nome.admin{color:#7c3aed!important;}
+.admin-floating-toggle{left:18px!important;bottom:142px!important;}
+.chat-toggle-btn{left:18px!important;bottom:80px!important;}
+.btn-whatsapp-fixo{left:18px!important;bottom:18px!important;}
+.mobile-notif-btn{width:100%;border:1px solid rgba(124,58,237,.35);background:linear-gradient(135deg,rgba(124,58,237,.12),rgba(220,38,38,.08));color:#c4b5fd;border-radius:10px;padding:9px 10px;margin-top:8px;cursor:pointer;font-weight:700;font-size:.76rem;}
+.mobile-notif-btn.enabled{border-color:rgba(34,197,94,.4);color:#4ade80;background:rgba(34,197,94,.08);}
+.admin-role-pill{display:inline-flex;align-items:center;gap:5px;padding:4px 8px;border-radius:999px;font-size:.65rem;font-weight:800;background:rgba(124,58,237,.14);color:#c4b5fd;border:1px solid rgba(124,58,237,.3);}
+.admin-role-pill.owner{background:rgba(245,158,11,.12);color:#fbbf24;border-color:rgba(245,158,11,.3);}
+.admin-role-actions{display:flex;gap:6px;flex-wrap:wrap;}
+@media(max-width:560px){
+ .admin-floating-toggle{left:12px!important;bottom:142px!important;width:52px!important;height:46px!important;}
+ .chat-toggle-btn{left:12px!important;bottom:78px!important;}
+ .btn-whatsapp-fixo{left:12px!important;bottom:16px!important;}
+ .nav-xcore{display:flex!important;max-width:108px!important;}
+ .nav-xcore .xcore-text .name{font-size:.5rem!important}.nav-xcore .xcore-text .team{font-size:.4rem!important}
+}
 </style>
 </meta></head>
 <body>
@@ -3108,7 +3132,7 @@
 <div class="dropdown" id="notifDropdown">
 <div class="dropdown-header">
 <span><i class="fas fa-bell"></i> Notificações</span>
-<button class="btn-clear" onclick="marcarTodasNotificacoesLidas()">Marcar todas</button>
+<button class="btn-clear" onclick="marcarTodasNotificacoesLidas()">Marcar todas</button><button class="mobile-notif-btn" id="mobileNotifBtn" onclick="ativarNotificacoesCelular()"><i class="fas fa-mobile-alt"></i> Ativar notificações no celular</button>
 </div>
 <div class="dropdown-body" id="notifList">
 <div class="empty-state">
@@ -3662,6 +3686,7 @@
 <button class="admin-nav-btn" data-admin-view="banimentos" onclick="mudarAbaAdmin('banimentos')"><i class="fas fa-ban"></i> Banimentos</button>
 <button class="admin-nav-btn" data-admin-view="notificacoes" onclick="mudarAbaAdmin('notificacoes')"><i class="fas fa-paper-plane"></i> Notificações</button>
 <button class="admin-nav-btn" data-admin-view="logs" onclick="mudarAbaAdmin('logs')"><i class="fas fa-list-alt"></i> Logs</button>
+<button class="admin-nav-btn" data-admin-view="admins" onclick="mudarAbaAdmin('admins')"><i class="fas fa-user-shield"></i> Administradores</button>
 </div>
 <div class="admin-view active" id="adminViewDashboard">
 <div class="admin-overview-grid">
@@ -3698,6 +3723,14 @@
 </div>
 <div class="admin-view" id="adminViewNotificacoes">
 <div class="admin-card"><div class="admin-card-title"><i class="fas fa-paper-plane"></i><span>Central de notificações</span></div><p class="admin-help">Envie uma mensagem diretamente para a central de notificações de um cliente.</p><button class="admin-action-btn primary" onclick="abrirEnviarNotificacaoAdmin()"><i class="fas fa-plus"></i> Nova notificação</button></div>
+</div>
+<div class="admin-view" id="adminViewAdmins">
+<div class="admin-card">
+<div class="admin-card-title"><i class="fas fa-user-shield"></i><span>Gerenciar administradores</span><small>Somente o proprietário pode conceder/remover cargos</small></div>
+<p class="admin-help">Admins ativos podem abrir a Central do Proprietário e utilizar as ferramentas administrativas permitidas. O proprietário continua sendo o único responsável por conceder ou remover o cargo.</p>
+<div class="admin-toolbar"><div class="admin-search"><i class="fas fa-search"></i><input id="admBuscaAdmin" oninput="renderAdminsPanel()" placeholder="Pesquisar administrador por e-mail..." type="search"/></div><button class="admin-action-btn primary" onclick="abrirConcederAdmin()"><i class="fas fa-user-plus"></i> Dar Admin</button></div>
+<div class="admin-table-wrap"><table class="owner-table"><thead><tr><th>E-mail</th><th>Status</th><th>Concedido por</th><th>Ações</th></tr></thead><tbody id="admAdminsTabela"></tbody></table></div>
+</div>
 </div>
 <div class="admin-view" id="adminViewLogs">
 <div class="admin-card"><div class="admin-card-title"><i class="fas fa-list-alt"></i><span>Logs administrativos</span></div><div class="owner-log-list" id="admLogs"></div></div>
@@ -6176,6 +6209,170 @@ window.copiarPixEra = function() {
     // Keep owner button synchronized without opening the panel.
     setInterval(atualizarBotaoAdmin, 1200);
 })();
+</script>
+<script>
+/* ===== KZN V6 — ADMIN ROLE ACCESS + MOBILE NOTIFICATIONS + XCORE + CHAT THEME ===== */
+(function(){
+  const OWNER_EMAIL='gabriel6061yt@gmail.com';
+  const ADMIN_REF=db.ref('chat/admins');
+  const NOTIF_REF=db.ref('site/notificacoes');
+  const LOG_REF=db.ref('site/admin_logs');
+  const SAN=e=>String(e||'').toLowerCase().replace(/[.#$\[\]\/]/g,'_');
+  let adminAccess=false, ownerAccess=false;
+
+  function currentEmail(){return String(window.usuarioLogado?.email||usuarioLogado?.email||'').trim().toLowerCase();}
+  function isOwner(){return currentEmail()===OWNER_EMAIL;}
+  function checkAccess(cb){
+    if(isOwner()){ownerAccess=true;adminAccess=true;cb(true,true);return;}
+    const email=currentEmail();
+    if(!email){ownerAccess=false;adminAccess=false;cb(false,false);return;}
+    ADMIN_REF.once('value').then(s=>{
+      const list=Object.values(s.val()||{});
+      const ok=list.some(a=>String(a?.email||'').toLowerCase()===email && a?.ativo===true);
+      ownerAccess=false;adminAccess=ok;cb(ok,false);
+    }).catch(()=>{adminAccess=false;ownerAccess=false;cb(false,false);});
+  }
+  window.kznCanAccessAdmin=function(){return adminAccess||ownerAccess;};
+  window.kznIsOwner=function(){return ownerAccess;};
+  window.ensureAdminAccess=function(){
+    if(adminAccess||ownerAccess)return true;
+    alert('🚫 Acesso restrito a administradores.');
+    return false;
+  };
+  function adminLogV6(action,target,details){
+    if(!adminAccess&&!ownerAccess)return;
+    LOG_REF.push({action,targetEmail:target||'',adminEmail:currentEmail(),adminRole:ownerAccess?'owner':'admin',timestamp:new Date().toISOString(),details:details||''});
+  }
+
+  /* Admin button: owner OR active admin. */
+  window.atualizarBotaoAdminV6=function(){
+    checkAccess((ok)=>{
+      const b=document.getElementById('adminPanelToggle');
+      if(!b)return;
+      b.style.setProperty('display',ok?'flex':'none','important');
+      b.title=ownerAccess?'Central do Proprietário':'Central do Administrador';
+      b.setAttribute('aria-label',ownerAccess?'Abrir Central do Proprietário':'Abrir Central do Administrador');
+    });
+  };
+
+  /* Override panel toggle: does not auto-open and supports admins. */
+  window.toggleCentralProprietario=function(){
+    checkAccess((ok)=>{
+      if(!ok){alert('🚫 Você não possui cargo administrativo.');return;}
+      const sec=document.getElementById('central-proprietario'),btn=document.getElementById('adminPanelToggle');
+      if(!sec)return;
+      const open=sec.classList.contains('admin-visible');
+      if(open){sec.classList.remove('admin-visible');sec.setAttribute('aria-hidden','true');btn?.classList.remove('open');return;}
+      sec.classList.add('admin-visible');sec.setAttribute('aria-hidden','false');btn?.classList.add('open');
+      window.mudarAbaAdmin('dashboard');
+      if(typeof window.carregarPainelProprietario==='function')window.carregarPainelProprietario();
+      setTimeout(()=>sec.scrollIntoView({behavior:'smooth',block:'start'}),20);
+    });
+  };
+
+  /* Admin panel data: admins and owner can open it. */
+  const oldLoad=window.carregarPainelProprietario;
+  window.carregarPainelProprietario=function(){
+    checkAccess((ok)=>{
+      if(!ok)return;
+      if(typeof oldLoad==='function'){
+        /* old loader uses owner-only guard, so render our own stats/users below */
+      }
+      Promise.all([db.ref('chat/usuarios').once('value'),db.ref('site/bans').once('value'),LOG_REF.once('value')]).then(([us,bs,ls])=>{
+        const users=Object.values(us.val()||{}),bans=Object.values(bs.val()||{});
+        const activeBans=bans.filter(b=>b.active!==false && (!b.expiresAt||new Date(b.expiresAt)>new Date()));
+        document.getElementById('admTotalUsuarios')&&(document.getElementById('admTotalUsuarios').textContent=users.length);
+        document.getElementById('admBanidos')&&(document.getElementById('admBanidos').textContent=activeBans.length);
+        document.getElementById('admAtivos')&&(document.getElementById('admAtivos').textContent=Math.max(0,users.length-activeBans.length));
+        document.getElementById('admCompras')&&(document.getElementById('admCompras').textContent=(JSON.parse(localStorage.getItem('kzn_compras')||'[]')).length);
+        document.getElementById('admKeys')&&(document.getElementById('admKeys').textContent=(JSON.parse(localStorage.getItem('kzn_keys')||'[]')).length);
+        document.getElementById('admNotificacoes')&&(document.getElementById('admNotificacoes').textContent=(JSON.parse(localStorage.getItem('kzn_notificacoes')||'[]')).length);
+        if(typeof window.renderUsersV6==='function')window.renderUsersV6(users,activeBans);
+        const logs=Object.values(ls.val()||{}).sort((a,b)=>String(b.timestamp).localeCompare(String(a.timestamp))).slice(0,80);
+        const el=document.getElementById('admLogs');if(el)el.innerHTML=logs.length?logs.map(l=>`<div class="owner-log"><strong>${escV6(l.action)}</strong> — ${escV6(l.targetEmail||'')}</div><small>${escV6(l.timestamp||'')} · ${escV6(l.details||'')}</small>`).join(''):'<div class="empty-state">Nenhum log administrativo.</div>';
+        window.renderAdminsPanel();
+      });
+    });
+  };
+  function escV6(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+  function attrV6(v){return String(v??'').replace(/\\/g,'\\\\').replace(/'/g,"\\'");}
+  window.renderUsersV6=function(users,bans){
+    const q=(document.getElementById('admBuscaUsuario')?.value||'').toLowerCase();
+    const rows=users.filter(u=>!q||[u.nome,u.email,u.uid].some(v=>String(v||'').toLowerCase().includes(q))).slice(0,300);
+    const tbody=document.getElementById('admUsuariosTabela');if(!tbody)return;
+    tbody.innerHTML=rows.map(u=>{const ban=bans.find(b=>String(b.email||'').toLowerCase()===String(u.email||'').toLowerCase());const status=ban?'Banido':'Ativo';return `<tr><td>${escV6(u.nome||'Sem nome')}</td><td>${escV6(u.email||'')}</td><td><span class="status-pill ${ban?'status-ban':'status-active'}">${status}</span></td><td>${ban?`<button class="mini-action unban" onclick="desbanirContaV6('${attrV6(u.email)}')">Desbanir</button>`:`<button class="mini-action ban" onclick="abrirBanirContaV6('${attrV6(u.email)}')">Banir</button>`}<button class="mini-action" onclick="abrirEnviarNotificacaoAdminV6('${attrV6(u.email)}')">Notificar</button></td></tr>`}).join('')||'<tr><td colspan="4">Nenhum usuário encontrado.</td></tr>';
+  };
+  window.filtrarUsuariosAdmin=function(){if(kznCanAccessAdmin())window.carregarPainelProprietario();};
+
+  window.abrirBanirContaV6=function(email){if(!ensureAdminAccess())return;document.getElementById('adminModalBody').innerHTML=`<h3>🔨 Banir conta</h3><form class="admin-form" onsubmit="confirmarBanirContaV6(event,'${attrV6(email)}')"><label>Usuário</label><input value="${escV6(email)}" disabled><label>Motivo</label><textarea id="banMotivoV6" required placeholder="Motivo do banimento"></textarea><label>Duração</label><select id="banDuracaoV6"><option value="3600000">1 hora</option><option value="86400000">1 dia</option><option value="604800000">7 dias</option><option value="2592000000">30 dias</option><option value="permanent">Permanente</option></select><button>Confirmar banimento</button></form>`;document.getElementById('adminActionModal').classList.add('open');};
+  window.confirmarBanirContaV6=function(ev,email){ev.preventDefault();if(!ensureAdminAccess()||email===OWNER_EMAIL)return;const motivo=document.getElementById('banMotivoV6').value.trim()||'Banido por administrador';const d=document.getElementById('banDuracaoV6').value;const expires=d==='permanent'?null:new Date(Date.now()+Number(d)).toISOString();db.ref('site/bans').child(SAN(email)).set({email,banned:true,active:true,reason:motivo,banType:expires?'temporary':'permanent',bannedAt:new Date().toISOString(),expiresAt:expires,bannedBy:currentEmail(),bannedByRole:ownerAccess?'owner':'admin'}).then(()=>{adminLogV6('BAN_ACCOUNT',email,motivo);window.fecharAdminModal();window.carregarPainelProprietario();alert('🔨 Conta banida com sucesso.');});};
+  window.desbanirContaV6=function(email){if(!ensureAdminAccess()||!confirm('Desbanir '+email+'?'))return;db.ref('site/bans').child(SAN(email)).update({active:false,banned:false,unbannedAt:new Date().toISOString(),unbannedBy:currentEmail()}).then(()=>{adminLogV6('UNBAN_ACCOUNT',email,'Conta desbanida');window.carregarPainelProprietario();});};
+  window.abrirEnviarNotificacaoAdminV6=function(email=''){if(!ensureAdminAccess())return;document.getElementById('adminModalBody').innerHTML=`<h3>🔔 Enviar notificação</h3><form class="admin-form" onsubmit="enviarNotificacaoAdminV6(event)"><label>E-mail do usuário</label><input id="notifEmailAdminV6" type="email" required value="${escV6(email)}" placeholder="cliente@email.com"><label>Título</label><input id="notifTituloAdminV6" required placeholder="Título da notificação"><label>Mensagem</label><textarea id="notifMensagemAdminV6" required rows="5" placeholder="Escreva a mensagem..."></textarea><button>Enviar notificação</button></form>`;document.getElementById('adminActionModal').classList.add('open');};
+  window.enviarNotificacaoAdminV6=function(ev){ev.preventDefault();if(!ensureAdminAccess())return;const email=document.getElementById('notifEmailAdminV6').value.trim().toLowerCase(),title=document.getElementById('notifTituloAdminV6').value.trim(),message=document.getElementById('notifMensagemAdminV6').value.trim();if(!email||!title||!message)return;NOTIF_REF.child(SAN(email)).push({title,message,email,lida:false,createdAt:new Date().toISOString(),sentBy:currentEmail(),sentByRole:ownerAccess?'owner':'admin'}).then(()=>{adminLogV6('SEND_NOTIFICATION',email,title);window.fecharAdminModal();alert('🔔 Notificação enviada.');});};
+
+  /* Admin management: owner only. */
+  window.renderAdminsPanel=function(){
+    const tbody=document.getElementById('admAdminsTabela');if(!tbody)return;
+    ADMIN_REF.once('value').then(s=>{
+      const q=(document.getElementById('admBuscaAdmin')?.value||'').toLowerCase();
+      const list=Object.entries(s.val()||{}).map(([key,a])=>({key,...a})).filter(a=>!q||String(a.email||'').toLowerCase().includes(q));
+      tbody.innerHTML=list.length?list.map(a=>`<tr><td>${escV6(a.email||'')}</td><td><span class="admin-role-pill">🛡️ ADMIN</span></td><td>${escV6(a.concedido_por||'')}</td><td><div class="admin-role-actions">${ownerAccess?`<button class="mini-action ban" onclick="removerAdminV6('${attrV6(a.email)}')">Remover</button>`:'<span class="admin-role-pill">Somente leitura</span>'}</div></td></tr>`).join(''):'<tr><td colspan="4">Nenhum administrador cadastrado.</td></tr>';
+    });
+  };
+  window.abrirConcederAdmin=function(){if(!isOwner()){alert('👑 Apenas o proprietário pode conceder Admin.');return;}document.getElementById('adminModalBody').innerHTML=`<h3>🛡️ Conceder cargo Admin</h3><form class="admin-form" onsubmit="concederAdminV6(event)"><label>E-mail do usuário</label><input id="novoAdminEmailV6" type="email" required placeholder="cliente@email.com"><button>Conceder Admin</button></form>`;document.getElementById('adminActionModal').classList.add('open');};
+  window.concederAdminV6=function(ev){ev.preventDefault();if(!isOwner())return;const email=document.getElementById('novoAdminEmailV6').value.trim().toLowerCase();if(!email||email===OWNER_EMAIL)return;ADMIN_REF.once('value').then(s=>{const list=Object.values(s.val()||{});if(list.some(a=>String(a.email||'').toLowerCase()===email&&a.ativo===true)){alert('⚠️ Esse usuário já é Admin.');return;}return ADMIN_REF.push({email,ativo:true,data:new Date().toISOString(),concedido_por:OWNER_EMAIL,concedido_por_nome:usuarioLogado?.nome||'Proprietário'});}).then(r=>{if(!r)return;adminLogV6('GRANT_ADMIN',email,'Cargo Admin concedido');window.fecharAdminModal();window.renderAdminsPanel();alert('🛡️ Admin concedido com sucesso.');});};
+  window.removerAdminV6=function(email){if(!isOwner()||email===OWNER_EMAIL)return;if(!confirm('Remover o cargo Admin de '+email+'?'))return;ADMIN_REF.once('value').then(s=>{const list=s.val()||{};return Promise.all(Object.entries(list).filter(([,a])=>String(a.email||'').toLowerCase()===email&&a.ativo===true).map(([k])=>ADMIN_REF.child(k).update({ativo:false})));}).then(()=>{adminLogV6('REMOVE_ADMIN',email,'Cargo Admin removido');window.renderAdminsPanel();alert('🛡️ Cargo Admin removido.');});};
+
+  /* Admin tab navigation: allow admins; keep admin management visible only to owner. */
+  const oldMudar=window.mudarAbaAdmin;
+  window.mudarAbaAdmin=function(view){
+    if(!kznCanAccessAdmin())return;
+    document.querySelectorAll('.admin-nav-btn').forEach(b=>b.classList.toggle('active',b.dataset.adminView===view));
+    document.querySelectorAll('.admin-view').forEach(v=>v.classList.remove('active'));
+    const target=document.getElementById('adminView'+String(view).charAt(0).toUpperCase()+String(view).slice(1));if(target)target.classList.add('active');
+    const adminsBtn=document.querySelector('.admin-nav-btn[data-admin-view="admins"]');if(adminsBtn)adminsBtn.style.display=ownerAccess?'inline-flex':'none';
+    if(view==='usuarios'||view==='logs'||view==='admins')window.carregarPainelProprietario();
+  };
+
+  /* Mobile/browser notification permission. Works while the site is open; true background push requires a push backend/VAPID/FCM. */
+  window.ativarNotificacoesCelular=async function(){
+    if(!('Notification' in window)){alert('❌ Seu navegador não oferece notificações web neste dispositivo.');return;}
+    const permission=await Notification.requestPermission();
+    const btn=document.getElementById('mobileNotifBtn');
+    if(permission==='granted'){
+      localStorage.setItem('kzn_mobile_notifications','enabled');
+      if(btn){btn.classList.add('enabled');btn.innerHTML='<i class="fas fa-check"></i> Notificações do celular ativadas';}
+      try{if('serviceWorker' in navigator){await navigator.serviceWorker.register('./kzn-notification-sw.js');}}catch(e){console.warn('Service Worker não registrado:',e);}
+      new Notification('KZN MENU',{body:'Notificações do celular ativadas com sucesso.',icon:'https://yt3.ggpht.com/pCQ6XhcUzMYgxDHA4Z2WZzHIN9B8O3HqCB_nfbqMYymlQqQ1cDvZc-kszyjePyEjV13qgqvwDbJK=s800-rw-nd-v1'});
+    }else{alert('⚠️ Permissão de notificações não concedida.');}
+  };
+  function atualizarBotaoNotif(){const b=document.getElementById('mobileNotifBtn');if(!b)return;if(localStorage.getItem('kzn_mobile_notifications')==='enabled'&&Notification.permission==='granted'){b.classList.add('enabled');b.innerHTML='<i class="fas fa-check"></i> Notificações do celular ativadas';}}
+
+  /* Notify phone when a new site notification arrives. */
+  const oldMonitor=window.monitorSiteNotifications;
+  window.kznNotifyPhone=function(n){if(localStorage.getItem('kzn_mobile_notifications')!=='enabled'||Notification.permission!=='granted')return;try{new Notification(n.title||'KZN MENU',{body:n.message||'',icon:'https://yt3.ggpht.com/pCQ6XhcUzMYgxDHA4Z2WZzHIN9B8O3HqCB_nfbqMYymlQqQ1cDvZc-kszyjePyEjV13qgqvwDbJK=s800-rw-nd-v1'});}catch(e){console.warn(e);}};
+  const originalNotif=window.monitorSiteNotifications;
+  window.monitorSiteNotifications=function(){
+    if(!currentEmail())return;
+    NOTIF_REF.child(SAN(currentEmail())).limitToLast(50).on('child_added',snap=>{const n=snap.val();if(n)window.kznNotifyPhone(n);});
+    if(typeof originalNotif==='function')originalNotif();
+  };
+
+  /* Make header Xcore visible on mobile and sync admin access after auth/load. */
+  document.addEventListener('DOMContentLoaded',function(){
+    atualizarBotaoNotif();
+    checkAccess((ok)=>{
+      const b=document.getElementById('adminPanelToggle');if(b)b.style.setProperty('display',ok?'flex':'none','important');
+      const ab=document.querySelector('.admin-nav-btn[data-admin-view="admins"]');if(ab)ab.style.display=ownerAccess?'inline-flex':'none';
+    });
+  });
+  setTimeout(()=>{atualizarBotaoNotif();checkAccess((ok)=>{const b=document.getElementById('adminPanelToggle');if(b)b.style.setProperty('display',ok?'flex':'none','important');});},300);
+  setInterval(()=>checkAccess((ok)=>{const b=document.getElementById('adminPanelToggle');if(b)b.style.setProperty('display',ok?'flex':'none','important');}),2500);
+})();
+</script>
+<script>
+/* ===== KZN MOBILE NOTIFICATION SERVICE WORKER BOOTSTRAP ===== */
+if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('./kzn-notification-sw.js').catch(()=>{});});}
 </script>
 </body>
 </html>
