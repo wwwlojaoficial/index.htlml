@@ -3389,6 +3389,93 @@
 }
 
 </style>
+
+<style id="kzn-v13-final-ui-fixes">
+/* ===== KZN V13 — HEADER / PAYMENT / FLOATING BUTTONS ===== */
+
+/* 1) Hide the payment-information cards without deleting their data/forms. */
+.aviso-plano{display:none!important;}
+
+/* 2) Header: reserve space for the cart and mobile menu so nothing gets clipped. */
+.nav-container{min-width:0!important;overflow:visible!important;}
+.nav-logo-wrapper{min-width:0!important;overflow:visible!important;}
+.nav-actions{overflow:visible!important;}
+.profile-btn{overflow:visible!important;}
+.profile-btn .cart-icon-wrap{overflow:visible!important;}
+.profile-btn .cart-count{z-index:20!important;}
+
+@media (max-width:560px){
+  .navbar{padding:0 6px!important;}
+  .nav-container{height:66px!important;gap:4px!important;padding:0 3px!important;}
+  .nav-logo-wrapper{flex:1 1 auto!important;max-width:none!important;min-width:0!important;gap:4px!important;}
+  .nav-logo{gap:4px!important;min-width:0!important;}
+  .nav-logo img{width:31px!important;height:31px!important;flex:0 0 31px!important;}
+  .nav-logo .logo-text{min-width:0!important;}
+  .nav-logo .logo-text span{font-size:.78rem!important;white-space:nowrap!important;}
+  .nav-logo .logo-text small{font-size:.32rem!important;white-space:nowrap!important;}
+  .nav-divider{height:24px!important;margin:0 1px!important;}
+
+  .nav-xcore{min-width:0!important;max-width:105px!important;gap:4px!important;overflow:visible!important;}
+  .nav-xcore img{width:25px!important;height:25px!important;flex:0 0 25px!important;}
+  .nav-xcore .xcore-text{min-width:0!important;display:flex!important;flex-direction:column!important;overflow:visible!important;}
+  .nav-xcore .xcore-text .name{font-size:.48rem!important;line-height:1!important;white-space:nowrap!important;color:#a855f7!important;display:block!important;visibility:visible!important;opacity:1!important;}
+  .nav-xcore .xcore-text .team{font-size:.39rem!important;line-height:1!important;white-space:nowrap!important;color:#fff!important;display:block!important;visibility:visible!important;opacity:1!important;}
+
+  .nav-actions{gap:4px!important;min-width:max-content!important;flex:0 0 auto!important;}
+  #notifBtn.nav-icon-btn{width:42px!important;height:42px!important;min-width:42px!important;border-radius:50%!important;}
+  .profile-btn{width:70px!important;min-width:70px!important;max-width:70px!important;height:42px!important;padding:3px 6px 3px 3px!important;gap:4px!important;border-radius:24px!important;overflow:visible!important;}
+  .profile-btn .avatar{width:28px!important;height:28px!important;flex:0 0 28px!important;}
+  .profile-btn .user-name{display:none!important;}
+  .profile-btn .cart-icon-wrap{font-size:1rem!important;padding:3px!important;}
+  .profile-btn .cart-count{width:16px!important;height:16px!important;top:-5px!important;right:-7px!important;font-size:.45rem!important;}
+  .nav-toggle{width:40px!important;height:40px!important;min-width:40px!important;flex:0 0 40px!important;}
+}
+
+@media (max-width:380px){
+  .nav-logo .logo-text span{font-size:.70rem!important;}
+  .nav-xcore{max-width:84px!important;}
+  .nav-xcore .xcore-text .name{font-size:.41rem!important;}
+  .nav-xcore .xcore-text .team{font-size:.34rem!important;}
+  .nav-logo img{width:28px!important;height:28px!important;flex-basis:28px!important;}
+  #notifBtn.nav-icon-btn{width:39px!important;height:39px!important;min-width:39px!important;}
+  .profile-btn{width:65px!important;min-width:65px!important;max-width:65px!important;}
+  .nav-toggle{width:38px!important;height:38px!important;min-width:38px!important;}
+}
+
+/* 3) Premium round gold floating buttons: Admin above Chat Global. */
+.admin-floating-toggle,
+.chat-toggle-btn{
+  width:60px!important;
+  height:60px!important;
+  min-width:60px!important;
+  min-height:60px!important;
+  padding:0!important;
+  border-radius:50%!important;
+  display:none;
+  align-items:center!important;
+  justify-content:center!important;
+  color:#fff!important;
+  border:2px solid rgba(255,215,90,.95)!important;
+  background:radial-gradient(circle at 35% 28%,#fff2a6 0%,#f6c945 10%,#d99b00 42%,#8f5b00 100%)!important;
+  box-shadow:0 8px 24px rgba(0,0,0,.42),0 0 14px rgba(255,190,40,.70),inset 0 2px 5px rgba(255,255,255,.65),inset 0 -5px 10px rgba(74,42,0,.32)!important;
+  text-shadow:0 1px 2px rgba(70,40,0,.65)!important;
+  transition:transform .2s ease,filter .2s ease,box-shadow .2s ease!important;
+}
+.admin-floating-toggle{left:18px!important;bottom:148px!important;z-index:10050!important;}
+.chat-toggle-btn{left:18px!important;bottom:78px!important;z-index:10049!important;}
+.admin-floating-toggle:hover,
+.chat-toggle-btn:hover{transform:scale(1.08)!important;filter:brightness(1.08)!important;box-shadow:0 10px 28px rgba(0,0,0,.46),0 0 22px rgba(255,205,65,.9),inset 0 2px 5px rgba(255,255,255,.72)!important;}
+.admin-floating-toggle i,.chat-toggle-btn i{font-size:1.35rem!important;color:#fff!important;}
+.admin-floating-toggle span{display:none!important;}
+.admin-floating-toggle.open{background:radial-gradient(circle at 35% 28%,#fff2a6 0%,#f6c945 10%,#d99b00 42%,#8f5b00 100%)!important;border-color:#ffe79a!important;}
+.chat-toggle-btn .chat-badge{top:-2px!important;right:-2px!important;border:2px solid #5f3d00!important;background:#dc2626!important;color:#fff!important;}
+@media(max-width:560px){
+  .admin-floating-toggle{left:12px!important;bottom:148px!important;width:58px!important;height:58px!important;min-width:58px!important;min-height:58px!important;}
+  .chat-toggle-btn{left:12px!important;bottom:78px!important;width:58px!important;height:58px!important;min-width:58px!important;min-height:58px!important;}
+  .btn-whatsapp-fixo{left:12px!important;bottom:10px!important;}
+}
+</style>
+
 </head>
 <body>
 <!-- ===== WHATSAPP FIXO ===== -->
