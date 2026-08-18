@@ -3989,7 +3989,7 @@
 <p>Preencha o formulário para comprar os mods KZN MENU</p>
 </div>
 <div class="form-container">
-<form action="https://formsubmit.co/gabriel6061yt@gmail.com" enctype="multipart/form-data" id="formContato" method="POST">
+<form action="https://formsubmit.co/gabriel6061yt@gmail.com" enctype="multipart/form-data" id="formContato" method="POST" data-recipient="gabriel6061yt@gmail.com"><input name="_replyto" type="email" value=""/>
 <input name="_captcha" type="hidden" value="false"/>
 <input name="_template" type="hidden" value="table"/>
 <input name="_subject" type="hidden" value="🔥 NOVO PEDIDO DO SITE KZN MENU!"/>
@@ -4086,7 +4086,7 @@
 <p>Formulário exclusivo para compra do MOD MENU GRAAL ERA</p>
 </div>
 <div class="form-container" style="border-color:var(--era);">
-<form action="https://formsubmit.co/xitadobr5x@gmail.com" enctype="multipart/form-data" id="formContatoEra" method="POST">
+<form action="https://formsubmit.co/xitadobr5x@gmail.com" enctype="multipart/form-data" id="formContatoEra" method="POST" data-recipient="xitadobr5x@gmail.com"><input name="_replyto" type="email" value=""/>
 <input name="_captcha" type="hidden" value="false"/>
 <input name="_template" type="hidden" value="table"/>
 <input name="_subject" type="hidden" value="🔥 NOVO PEDIDO - MOD MENU GRAAL ERA"/>
@@ -4153,7 +4153,7 @@
 <button class="btn-add-cart" onclick="adicionarAoCarrinho('Auto Trash Automatic',200,'auto-trash')"><i class="fas fa-cart-plus"></i> Adicionar</button>
 </div>
 </div>
-<div class="purchase-form-card purchase-form-auto-trash"><div class="container"><div class="section-header"><h2><i class="fas fa-shopping-cart"></i> Formulário de compra — Auto Trash</h2><p>Formulário exclusivo do Auto Trash. Ele não aparece nas abas Classic ou Era.</p></div><div class="form-container"><form action="https://formsubmit.co/gabriel6061yt@gmail.com" enctype="multipart/form-data" id="formContatoAutoTrash" method="POST"><input name="_captcha" type="hidden" value="false"/><input name="_template" type="hidden" value="table"/><input name="_subject" type="hidden" value="🔥 NOVO PEDIDO - AUTO TRASH"/><div class="form-group"><label><i class="fas fa-envelope"></i> Seu E-mail <span style="color:var(--primary);">*</span></label><input name="Email" placeholder="Digite seu e-mail..." required="True" type="email"/></div><div class="form-group"><label><i class="fas fa-user"></i> Seu Nome</label><input name="Nome" placeholder="Digite seu nome completo..." required="True" type="text"/></div><div class="form-group"><label><i class="fab fa-whatsapp"></i> WhatsApp</label><input name="WhatsApp" placeholder="(DDD) 9 9999-9999" required="True" type="text"/></div><div class="form-group"><label><i class="fas fa-trash-alt"></i> Produto</label><input class="auto-product-readonly" name="Produto" readonly="True" type="text" value="Auto Trash Automatic - R$ 200,00"/></div><div class="form-group"><label><i class="fas fa-image"></i> Comprovante PIX <span style="color:var(--primary);">*</span></label><input accept="image/*,.pdf" name="Comprovante" required="True" type="file"/></div><div class="form-group"><label><i class="fas fa-pencil-alt"></i> Mensagem (opcional)</label><textarea name="Mensagem" placeholder="Digite sua mensagem aqui..." rows="3"></textarea></div><button class="btn-submit" type="submit"><i class="fas fa-paper-plane"></i> Enviar Pedido - Auto Trash</button><div class="form-status" id="formStatusAutoTrash"></div></form></div></div></div></div>
+<div class="purchase-form-card purchase-form-auto-trash"><div class="container"><div class="section-header"><h2><i class="fas fa-shopping-cart"></i> Formulário de compra — Auto Trash</h2><p>Formulário exclusivo do Auto Trash. Ele não aparece nas abas Classic ou Era.</p></div><div class="form-container"><form action="https://formsubmit.co/gabriel6061yt@gmail.com" enctype="multipart/form-data" id="formContatoAutoTrash" method="POST" data-recipient="gabriel6061yt@gmail.com"><input name="_replyto" type="email" value=""/><input name="_captcha" type="hidden" value="false"/><input name="_template" type="hidden" value="table"/><input name="_subject" type="hidden" value="🔥 NOVO PEDIDO - AUTO TRASH"/><div class="form-group"><label><i class="fas fa-envelope"></i> Seu E-mail <span style="color:var(--primary);">*</span></label><input name="Email" placeholder="Digite seu e-mail..." required="True" type="email"/></div><div class="form-group"><label><i class="fas fa-user"></i> Seu Nome</label><input name="Nome" placeholder="Digite seu nome completo..." required="True" type="text"/></div><div class="form-group"><label><i class="fab fa-whatsapp"></i> WhatsApp</label><input name="WhatsApp" placeholder="(DDD) 9 9999-9999" required="True" type="text"/></div><div class="form-group"><label><i class="fas fa-trash-alt"></i> Produto</label><input class="auto-product-readonly" name="Produto" readonly="True" type="text" value="Auto Trash Automatic - R$ 200,00"/></div><div class="form-group"><label><i class="fas fa-image"></i> Comprovante PIX <span style="color:var(--primary);">*</span></label><input accept="image/*,.pdf" name="Comprovante" required="True" type="file"/></div><div class="form-group"><label><i class="fas fa-pencil-alt"></i> Mensagem (opcional)</label><textarea name="Mensagem" placeholder="Digite sua mensagem aqui..." rows="3"></textarea></div><button class="btn-submit" type="submit"><i class="fas fa-paper-plane"></i> Enviar Pedido - Auto Trash</button><div class="form-status" id="formStatusAutoTrash"></div></form></div></div></div></div>
 </div></section>
 <!-- ===== PERFIL ===== -->
 <section class="section dark" id="perfil">
@@ -7501,5 +7501,22 @@ header #notifBtn.nav-icon-btn,
   }
 }
 </style>
+
+<!-- ===== FORM DESTINATION GUARD ===== -->
+<script>
+(function(){
+  const DESTINATIONS={
+    formContato:'https://formsubmit.co/gabriel6061yt@gmail.com',
+    formContatoAutoTrash:'https://formsubmit.co/gabriel6061yt@gmail.com',
+    formContatoEra:'https://formsubmit.co/xitadobr5x@gmail.com'
+  };
+  Object.keys(DESTINATIONS).forEach(id=>{
+    const form=document.getElementById(id);
+    if(!form) return;
+    form.action=DESTINATIONS[id];
+    form.addEventListener('submit',()=>{ form.action=DESTINATIONS[id]; });
+  });
+})();
+</script>
 </body>
 </html>
