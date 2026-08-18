@@ -4135,8 +4135,23 @@
 <p>SCRIPT AUTOMÁTICO • ÁREA EXCLUSIVA</p>
 <p style="font-size:.85rem;color:var(--text-muted);margin-top:.5rem;">O Auto Trash possui uma área própria e não é misturado com Graal Classic ou Graal Era.</p>
 </div>
-<div class="plans-grid" style="max-width:600px;margin:0 auto;">
-
+<div class="plans-grid auto-trash-products" style="max-width:600px;margin:0 auto;">
+<div class="plan-card auto-trash-product-card">
+<span class="badge" style="background:#a855f7;">🗑️ AUTO TRASH</span>
+<div class="auto-trash-product-image">
+<img alt="Auto Trash Automatic" src="https://yt3.ggpht.com/OBlIy0WjA_eBxMQz4Z1pRx7IiuRkNjQSxoGeMpUV8vROPggmrRcM0wxoqY5jGV3uXy0vxkMpHMhHc8o=s720-rw-nd-v1"/>
+</div>
+<h3>AUTO TRASH AUTOMATIC</h3>
+<div class="price">R$ 200,00</div>
+<div class="sub-plano">ACESSO AO AUTO TRASH</div>
+<ul class="features">
+<li><i class="fas fa-check"></i> Script automático</li>
+<li><i class="fas fa-check"></i> Área exclusiva Auto Trash</li>
+<li><i class="fas fa-check"></i> Suporte ao cliente</li>
+</ul>
+<button class="btn-buy" onclick="document.getElementById('formContatoAutoTrash')?.scrollIntoView({behavior:'smooth',block:'center'})">COMPRAR AGORA</button>
+<button class="btn-add-cart" onclick="adicionarAoCarrinho('Auto Trash Automatic',200,'auto-trash')"><i class="fas fa-cart-plus"></i> Adicionar</button>
+</div>
 </div>
 <div class="purchase-form-card purchase-form-auto-trash"><div class="container"><div class="section-header"><h2><i class="fas fa-shopping-cart"></i> Formulário de compra — Auto Trash</h2><p>Formulário exclusivo do Auto Trash. Ele não aparece nas abas Classic ou Era.</p></div><div class="form-container"><form action="https://formsubmit.co/gabriel6061yt@gmail.com" enctype="multipart/form-data" id="formContatoAutoTrash" method="POST"><input name="_captcha" type="hidden" value="false"/><input name="_template" type="hidden" value="table"/><input name="_subject" type="hidden" value="🔥 NOVO PEDIDO - AUTO TRASH"/><div class="form-group"><label><i class="fas fa-envelope"></i> Seu E-mail <span style="color:var(--primary);">*</span></label><input name="Email" placeholder="Digite seu e-mail..." required="True" type="email"/></div><div class="form-group"><label><i class="fas fa-user"></i> Seu Nome</label><input name="Nome" placeholder="Digite seu nome completo..." required="True" type="text"/></div><div class="form-group"><label><i class="fab fa-whatsapp"></i> WhatsApp</label><input name="WhatsApp" placeholder="(DDD) 9 9999-9999" required="True" type="text"/></div><div class="form-group"><label><i class="fas fa-trash-alt"></i> Produto</label><input class="auto-product-readonly" name="Produto" readonly="True" type="text" value="Auto Trash Automatic - R$ 200,00"/></div><div class="form-group"><label><i class="fas fa-image"></i> Comprovante PIX <span style="color:var(--primary);">*</span></label><input accept="image/*,.pdf" name="Comprovante" required="True" type="file"/></div><div class="form-group"><label><i class="fas fa-pencil-alt"></i> Mensagem (opcional)</label><textarea name="Mensagem" placeholder="Digite sua mensagem aqui..." rows="3"></textarea></div><button class="btn-submit" type="submit"><i class="fas fa-paper-plane"></i> Enviar Pedido - Auto Trash</button><div class="form-status" id="formStatusAutoTrash"></div></form></div></div></div></div>
 </div></section>
@@ -7326,6 +7341,94 @@ if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.s
   window.addEventListener('load',()=>{setupProductTools();setupProfileTabs();renderAdminCompras();renderAdminKeys();renderAdminProdutos()});
 })();
 </script>
+
+
+
+<style id="kzn-v17-final-fixes">
+/* V17 — correções finais solicitadas */
+#notifBtn.nav-icon-btn{
+    width:38px!important;
+    height:38px!important;
+    min-width:38px!important;
+    min-height:38px!important;
+    padding:0!important;
+    border-radius:50%!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    font-size:.9rem!important;
+    box-shadow:0 4px 14px rgba(239,68,68,.28), inset 0 1px 2px rgba(255,255,255,.2)!important;
+}
+#notifBtn.nav-icon-btn .badge{
+    transform:scale(.82);
+    transform-origin:top right;
+}
+#notifDropdown{
+    width:320px!important;
+    max-width:calc(100vw - 32px)!important;
+    max-height:350px!important;
+    right:0!important;
+    border-radius:14px!important;
+}
+#notifDropdown .dropdown-header{
+    padding:9px 10px!important;
+}
+#notifDropdown .dropdown-body{
+    max-height:265px!important;
+}
+#notifDropdown .mobile-notif-btn{
+    margin:7px 0 1px!important;
+    padding:8px!important;
+}
+#notifDropdown .mobile-notif-help{
+    font-size:.68rem!important;
+    line-height:1.35!important;
+    padding:0 6px 6px!important;
+}
+.auto-trash-products{
+    margin-bottom:24px!important;
+}
+.auto-trash-product-card{
+    max-width:600px!important;
+    margin:0 auto!important;
+    padding:1.35rem 1.2rem!important;
+}
+.auto-trash-product-image{
+    margin:.45rem auto .7rem!important;
+    display:flex!important;
+    justify-content:center!important;
+}
+.auto-trash-product-image img{
+    width:100%!important;
+    max-width:300px!important;
+    max-height:170px!important;
+    object-fit:cover!important;
+    border-radius:14px!important;
+    border:1px solid rgba(168,85,247,.45)!important;
+    box-shadow:0 8px 25px rgba(0,0,0,.3)!important;
+}
+.auto-trash-product-card h3{
+    margin:.45rem 0 .2rem!important;
+    font-size:1.15rem!important;
+}
+@media(max-width:560px){
+    #notifDropdown{
+        width:calc(100vw - 32px)!important;
+        max-width:calc(100vw - 32px)!important;
+        right:16px!important;
+    }
+    #notifBtn.nav-icon-btn{
+        width:38px!important;
+        height:38px!important;
+        min-width:38px!important;
+        min-height:38px!important;
+    }
+    .auto-trash-product-image img{
+        max-width:270px!important;
+        max-height:155px!important;
+    }
+}
+</style>
 
 </body>
 </html>
