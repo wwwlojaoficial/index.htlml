@@ -2994,6 +2994,112 @@
  .nav-xcore{display:flex!important;max-width:108px!important;}
  .nav-xcore .xcore-text .name{font-size:.5rem!important}.nav-xcore .xcore-text .team{font-size:.4rem!important}
 }
+
+
+/* ===== KZN V7 — NOTIFICATIONS / ADMIN STABILITY / XCORE HEADER ===== */
+#notifDropdown{
+  width:min(390px,calc(100vw - 24px))!important;
+  max-height:520px!important;
+  border-radius:16px!important;
+  background:linear-gradient(180deg,#111827,#0b1220)!important;
+  border:1px solid rgba(168,85,247,.28)!important;
+  box-shadow:0 22px 60px rgba(0,0,0,.55)!important;
+}
+#notifDropdown .dropdown-header{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  gap:8px!important;
+  padding:12px!important;
+  background:linear-gradient(135deg,rgba(124,58,237,.16),rgba(220,38,38,.08))!important;
+}
+#notifDropdown .dropdown-header > span{font-size:.9rem!important;font-weight:900!important;flex:1 1 auto!important;}
+#notifDropdown .dropdown-header .btn-clear{padding:7px 9px!important;font-size:.66rem!important;}
+#notifDropdown .mobile-notif-btn{flex:1 1 100%!important;margin-top:0!important;}
+#notifDropdown .dropdown-body{padding:8px!important;max-height:390px!important;}
+#notifDropdown .dropdown-item{
+  position:relative!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  gap:10px!important;
+  align-items:start!important;
+  margin-bottom:7px!important;
+  padding:12px 10px 10px 12px!important;
+  border:1px solid rgba(255,255,255,.07)!important;
+  border-radius:12px!important;
+  background:rgba(255,255,255,.035)!important;
+}
+#notifDropdown .dropdown-item.unread{border-left:3px solid #a855f7!important;background:rgba(168,85,247,.09)!important;}
+#notifDropdown .notif-content{min-width:0!important;}
+#notifDropdown .dropdown-item .item-text{display:block!important;font-size:.82rem!important;line-height:1.45!important;word-break:break-word!important;}
+#notifDropdown .dropdown-item .item-time{font-size:.62rem!important;margin-top:6px!important;}
+.notif-delete-btn{
+  width:32px!important;height:32px!important;flex:0 0 32px!important;
+  border:1px solid rgba(239,68,68,.25)!important;
+  border-radius:9px!important;background:rgba(239,68,68,.09)!important;
+  color:#f87171!important;cursor:pointer!important;
+}
+.notif-delete-btn:hover{background:#dc2626!important;color:#fff!important;}
+#notifDropdown .empty-state{padding:30px 14px!important;}
+
+/* Stable admin button: no flashing and always above Chat/WhatsApp. */
+.admin-floating-toggle{
+  display:none;
+  z-index:10050!important;
+  opacity:1!important;
+  visibility:visible!important;
+  transform:none!important;
+  transition:transform .18s ease,background .18s ease,box-shadow .18s ease!important;
+}
+.admin-floating-toggle.open{display:flex!important;}
+
+/* Xcore branding: keep it visible and use purple/white instead of muted/black. */
+.nav-xcore{
+  display:flex!important;
+  align-items:center!important;
+  flex:0 0 auto!important;
+  min-width:130px!important;
+  max-width:160px!important;
+  overflow:visible!important;
+  opacity:1!important;
+  visibility:visible!important;
+}
+.nav-xcore .xcore-text{display:flex!important;flex-direction:column!important;min-width:0!important;line-height:1!important;}
+.nav-xcore .xcore-text .name{
+  display:block!important;
+  color:#c084fc!important;
+  -webkit-text-fill-color:#c084fc!important;
+  text-shadow:0 0 10px rgba(168,85,247,.28)!important;
+  font-weight:900!important;
+}
+.nav-xcore .xcore-text .team{
+  display:block!important;
+  color:#f8fafc!important;
+  -webkit-text-fill-color:#f8fafc!important;
+  font-weight:900!important;
+  letter-spacing:1.2px!important;
+}
+@media(max-width:700px){
+  .nav-xcore{min-width:118px!important;max-width:132px!important;gap:5px!important;}
+  .nav-xcore img{width:30px!important;height:30px!important;}
+  .nav-xcore .xcore-text .name{font-size:.66rem!important;letter-spacing:.7px!important;}
+  .nav-xcore .xcore-text .team{font-size:.52rem!important;letter-spacing:.8px!important;}
+}
+@media(max-width:480px){
+  .nav-xcore{min-width:105px!important;max-width:118px!important;}
+  .nav-xcore img{width:28px!important;height:28px!important;}
+  .nav-xcore .xcore-text .name{font-size:.58rem!important;}
+  .nav-xcore .xcore-text .team{font-size:.47rem!important;}
+  #notifDropdown{right:-8px!important;}
+}
+
+/* Notification list controls */
+.notif-delete-all{
+  border:1px solid rgba(239,68,68,.28)!important;background:rgba(239,68,68,.08)!important;
+  color:#fca5a5!important;border-radius:9px!important;padding:7px 9px!important;
+  font-size:.66rem!important;font-weight:800!important;cursor:pointer!important;
+}
+.notif-delete-all:hover{background:#dc2626!important;color:#fff!important;}
+
 </style>
 </meta></head>
 <body>
@@ -3132,7 +3238,7 @@
 <div class="dropdown" id="notifDropdown">
 <div class="dropdown-header">
 <span><i class="fas fa-bell"></i> Notificações</span>
-<button class="btn-clear" onclick="marcarTodasNotificacoesLidas()">Marcar todas</button><button class="mobile-notif-btn" id="mobileNotifBtn" onclick="ativarNotificacoesCelular()"><i class="fas fa-mobile-alt"></i> Ativar notificações no celular</button>
+<button class="btn-clear" onclick="marcarTodasNotificacoesLidas()">Marcar lidas</button><button class="notif-delete-all" onclick="apagarTodasNotificacoes()">Apagar todas</button><button class="mobile-notif-btn" id="mobileNotifBtn" onclick="ativarNotificacoesCelular()"><i class="fas fa-mobile-alt"></i> Ativar notificações no celular</button>
 </div>
 <div class="dropdown-body" id="notifList">
 <div class="empty-state">
@@ -5752,17 +5858,54 @@
 
         function renderizarNotificacoes() {
             const list = document.getElementById('notifList');
+            if (!list) return;
             if (notificacoes.length === 0) {
                 list.innerHTML = `<div class="empty-state"><i class="fas fa-bell-slash"></i>Nenhuma notificação</div>`;
                 return;
             }
             list.innerHTML = notificacoes.map(n => `
-                <div class="dropdown-item ${n.lida ? '' : 'unread'}">
-                    <span class="item-text">${n.mensagem}</span>
-                    <span class="item-time">${n.data}</span>
+                <div class="dropdown-item ${n.lida ? '' : 'unread'}" data-notif-id="${String(n.id).replace(/[^a-zA-Z0-9_-]/g,'')}">
+                    <div class="notif-content">
+                        <span class="item-text">${n.mensagem || ''}</span>
+                        <span class="item-time">${n.data || ''}</span>
+                    </div>
+                    <button class="notif-delete-btn" type="button" title="Apagar notificação" onclick="event.stopPropagation(); apagarNotificacao('${String(n.id).replace(/'/g,"\'")}')">
+                        <i class="fas fa-trash"></i>
+                    </button>
                 </div>
             `).join('');
         }
+
+        window.apagarNotificacao = function(id) {
+            const target = notificacoes.find(n => String(n.id) === String(id));
+            if (!target) return;
+            notificacoes = notificacoes.filter(n => String(n.id) !== String(id));
+            salvarNotificacoes();
+            atualizarBadgeNotificacoes();
+            renderizarNotificacoes();
+            // Site notifications are also removed from Firebase when possible.
+            if (String(id).startsWith('site_') && typeof db !== 'undefined' && usuarioLogado?.email) {
+                const firebaseKey = String(id).slice(5);
+                const safeEmail = String(usuarioLogado.email).toLowerCase().replace(/[.#$\[\]\/]/g,'_');
+                db.ref('site/notificacoes').child(safeEmail).child(firebaseKey).remove().catch(err => console.warn('Não foi possível apagar a notificação remota:', err));
+            }
+        };
+
+        window.apagarTodasNotificacoes = function() {
+            if (!notificacoes.length) return;
+            if (!confirm('Apagar todas as notificações?')) return;
+            const remoteIds = notificacoes.filter(n => String(n.id).startsWith('site_')).map(n => String(n.id).slice(5));
+            notificacoes = [];
+            salvarNotificacoes();
+            atualizarBadgeNotificacoes();
+            renderizarNotificacoes();
+            if (remoteIds.length && typeof db !== 'undefined' && usuarioLogado?.email) {
+                const safeEmail = String(usuarioLogado.email).toLowerCase().replace(/[.#$\[\]\/]/g,'_');
+                const updates = {};
+                remoteIds.forEach(k => updates[k] = null);
+                db.ref('site/notificacoes').child(safeEmail).update(updates).catch(err => console.warn('Não foi possível apagar notificações remotas:', err));
+            }
+        };
 
         window.marcarTodasNotificacoesLidas = function() {
             notificacoes.forEach(n => n.lida = true);
@@ -6073,7 +6216,7 @@ window.copiarPixEra = function() {
  }
  function monitorSiteNotifications(){
    if(!usuarioLogado?.email)return;
-   siteNotifRef.child(sanitize(usuarioLogado.email)).limitToLast(50).on('child_added',snap=>{const n=snap.val(); if(!n)return; const key='site_'+snap.key; if(notificacoes.some(x=>x.id===key))return; notificacoes.unshift({id:key,mensagem:(n.title?'📢 '+n.title+': ':'')+n.message,data:n.createdAt?new Date(n.createdAt).toLocaleString('pt-BR'):new Date().toLocaleString('pt-BR'),lida:!!n.lida,tipo:'info'});if(notificacoes.length>50)notificacoes.pop();salvarNotificacoes();atualizarBadgeNotificacoes();renderizarNotificacoes();playNotificationSound();});
+   siteNotifRef.child(sanitize(usuarioLogado.email)).limitToLast(50).on('child_added',snap=>{const n=snap.val(); if(!n)return; const key='site_'+snap.key; if(notificacoes.some(x=>x.id===key))return; notificacoes.unshift({id:key,firebaseKey:snap.key,mensagem:(n.title?'📢 '+n.title+': ':'')+n.message,data:n.createdAt?new Date(n.createdAt).toLocaleString('pt-BR'):new Date().toLocaleString('pt-BR'),lida:!!n.lida,tipo:'info',remote:true});if(notificacoes.length>50)notificacoes.pop();salvarNotificacoes();atualizarBadgeNotificacoes();renderizarNotificacoes();playNotificationSound();});
  }
  const oldSetLoggedIn=window.setLoggedIn;
  window.setLoggedIn=function(){ if(typeof oldSetLoggedIn==='function')oldSetLoggedIn(); installOwnerNav(); monitorAccountBan(); monitorSiteNotifications(); };
@@ -6145,19 +6288,7 @@ window.copiarPixEra = function() {
         setTimeout(() => section.scrollIntoView({behavior:'smooth', block:'start'}), 20);
     };
 
-    window.atualizarBotaoAdmin = function(){
-        const btn = document.getElementById('adminPanelToggle');
-        const section = document.getElementById('central-proprietario');
-        if (!btn) return;
-        const show = ownerLogged();
-        btn.style.setProperty('display', show ? 'flex' : 'none', 'important');
-        btn.setAttribute('aria-hidden', show ? 'false' : 'true');
-        if (!show) {
-            btn.classList.remove('open');
-            section?.classList.remove('admin-visible');
-            section?.setAttribute('aria-hidden','true');
-        }
-    };
+    window.atualizarBotaoAdmin = function(){ /* V7: role-aware updater below owns visibility. */ };
 
     // IMPORTANT: do not auto-open the admin section after login.
     // Also remove any old dynamically-created owner nav links to keep the header clean.
@@ -6192,8 +6323,7 @@ window.copiarPixEra = function() {
     document.addEventListener('DOMContentLoaded', function(){
         fecharChatInicialmente();
         limparOwnerNavAntigo();
-        setTimeout(atualizarBotaoAdmin, 120);
-        setTimeout(atualizarBotaoAdmin, 500);
+        // V7: role-aware controller handles the button after authentication.
         // Guard against legacy code reopening the chat on initial page load.
         setTimeout(fecharChatInicialmente, 250);
         setTimeout(fecharChatInicialmente, 1000);
@@ -6207,7 +6337,7 @@ window.copiarPixEra = function() {
     }
 
     // Keep owner button synchronized without opening the panel.
-    setInterval(atualizarBotaoAdmin, 1200);
+    // V7: visibility is controlled by the final role-aware access controller below.
 })();
 </script>
 <script>
@@ -6315,13 +6445,13 @@ window.copiarPixEra = function() {
     const tbody=document.getElementById('admAdminsTabela');if(!tbody)return;
     ADMIN_REF.once('value').then(s=>{
       const q=(document.getElementById('admBuscaAdmin')?.value||'').toLowerCase();
-      const list=Object.entries(s.val()||{}).map(([key,a])=>({key,...a})).filter(a=>!q||String(a.email||'').toLowerCase().includes(q));
+      const list=Object.entries(s.val()||{}).map(([key,a])=>({key,...a})).filter(a=>a && a.ativo===true).filter(a=>!q||String(a.email||'').toLowerCase().includes(q));
       tbody.innerHTML=list.length?list.map(a=>`<tr><td>${escV6(a.email||'')}</td><td><span class="admin-role-pill">🛡️ ADMIN</span></td><td>${escV6(a.concedido_por||'')}</td><td><div class="admin-role-actions">${ownerAccess?`<button class="mini-action ban" onclick="removerAdminV6('${attrV6(a.email)}')">Remover</button>`:'<span class="admin-role-pill">Somente leitura</span>'}</div></td></tr>`).join(''):'<tr><td colspan="4">Nenhum administrador cadastrado.</td></tr>';
     });
   };
   window.abrirConcederAdmin=function(){if(!isOwner()){alert('👑 Apenas o proprietário pode conceder Admin.');return;}document.getElementById('adminModalBody').innerHTML=`<h3>🛡️ Conceder cargo Admin</h3><form class="admin-form" onsubmit="concederAdminV6(event)"><label>E-mail do usuário</label><input id="novoAdminEmailV6" type="email" required placeholder="cliente@email.com"><button>Conceder Admin</button></form>`;document.getElementById('adminActionModal').classList.add('open');};
   window.concederAdminV6=function(ev){ev.preventDefault();if(!isOwner())return;const email=document.getElementById('novoAdminEmailV6').value.trim().toLowerCase();if(!email||email===OWNER_EMAIL)return;ADMIN_REF.once('value').then(s=>{const list=Object.values(s.val()||{});if(list.some(a=>String(a.email||'').toLowerCase()===email&&a.ativo===true)){alert('⚠️ Esse usuário já é Admin.');return;}return ADMIN_REF.push({email,ativo:true,data:new Date().toISOString(),concedido_por:OWNER_EMAIL,concedido_por_nome:usuarioLogado?.nome||'Proprietário'});}).then(r=>{if(!r)return;adminLogV6('GRANT_ADMIN',email,'Cargo Admin concedido');window.fecharAdminModal();window.renderAdminsPanel();alert('🛡️ Admin concedido com sucesso.');});};
-  window.removerAdminV6=function(email){if(!isOwner()||email===OWNER_EMAIL)return;if(!confirm('Remover o cargo Admin de '+email+'?'))return;ADMIN_REF.once('value').then(s=>{const list=s.val()||{};return Promise.all(Object.entries(list).filter(([,a])=>String(a.email||'').toLowerCase()===email&&a.ativo===true).map(([k])=>ADMIN_REF.child(k).update({ativo:false})));}).then(()=>{adminLogV6('REMOVE_ADMIN',email,'Cargo Admin removido');window.renderAdminsPanel();alert('🛡️ Cargo Admin removido.');});};
+  window.removerAdminV6=function(email){if(!isOwner()||email===OWNER_EMAIL)return;if(!confirm('Remover o cargo Admin de '+email+'?'))return;ADMIN_REF.once('value').then(s=>{const list=s.val()||{};const keys=Object.entries(list).filter(([,a])=>String(a?.email||'').trim().toLowerCase()===String(email||'').trim().toLowerCase()).map(([k])=>k);if(!keys.length)throw new Error('Administrador não encontrado.');return Promise.all(keys.map(k=>ADMIN_REF.child(k).remove()));}).then(()=>{adminLogV6('REMOVE_ADMIN',email,'Cargo Admin removido');window.renderAdminsPanel();window.atualizarBotaoAdminV6?.();alert('🛡️ Cargo Admin removido com sucesso.');}).catch(err=>{console.error(err);alert('❌ Não foi possível remover o Admin. Verifique as permissões do Firebase.');});};
 
   /* Admin tab navigation: allow admins; keep admin management visible only to owner. */
   const oldMudar=window.mudarAbaAdmin;
