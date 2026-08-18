@@ -3536,6 +3536,19 @@
   position:relative;
 }
 </style>
+
+<style id="kzn-v15-final-fixes">
+/* V15: compact floating controls */
+.admin-floating-toggle,.chat-toggle-btn{width:48px!important;height:48px!important;min-width:48px!important;min-height:48px!important;border-radius:50%!important;padding:0!important;}
+.admin-floating-toggle{left:14px!important;bottom:132px!important;}
+.chat-toggle-btn{left:14px!important;bottom:76px!important;background:radial-gradient(circle at 35% 28%,#b9efff 0%,#63c9f5 28%,#238fd1 68%,#12639b 100%)!important;border-color:rgba(190,242,255,.95)!important;box-shadow:0 7px 20px rgba(30,144,220,.45),0 0 14px rgba(90,200,255,.65),inset 0 2px 5px rgba(255,255,255,.7)!important;}
+.admin-floating-toggle i,.chat-toggle-btn i{font-size:1.05rem!important;}
+.chat-toggle-btn .chat-badge{min-width:17px!important;height:17px!important;font-size:.55rem!important;}
+@media(max-width:560px){.admin-floating-toggle,.chat-toggle-btn{width:46px!important;height:46px!important;min-width:46px!important;min-height:46px!important}.admin-floating-toggle{left:10px!important;bottom:128px!important}.chat-toggle-btn{left:10px!important;bottom:74px!important}}
+/* V15: notification panel slightly narrower */
+#notifDropdown{width:min(390px,calc(100vw - 28px))!important;max-width:390px!important;}
+@media(max-width:560px){#notifDropdown{width:calc(100vw - 28px)!important;right:14px!important;left:auto!important;}}
+</style>
 </head>
 <body>
 <!-- ===== WHATSAPP FIXO ===== -->
@@ -6943,23 +6956,30 @@ window.copiarPixEra = function() {
     }else{alert('⚠️ Permissão de notificações não concedida.');}
   };
 
-  /* V11: restore real Push subscription option. A backend using the saved subscription is required to deliver while fully closed. */
+  /* V15: robust mobile/out-of-site notification activation. */
   window.ativarNotificacoesCelular=async function(){
     const btn=document.getElementById('mobileNotifBtn');
-    if(!('Notification' in window)||!('serviceWorker' in navigator)||!('PushManager' in window)){alert('❌ Seu navegador não suporta notificações push.');return;}
+    if(!('Notification' in window)){alert('❌ Este navegador não oferece notificações web.');return false;}
+    if(!window.isSecureContext){alert('❌ Notificações exigem HTTPS. Abra o site pelo endereço HTTPS.');return false;}
+    if(!('serviceWorker' in navigator)||!('PushManager' in window)){alert('❌ Seu navegador não suporta notificações push.');return false;}
     try{
-      const permission=await Notification.requestPermission();
-      if(permission!=='granted'){alert('⚠️ Permissão de notificações não concedida.');return;}
+      let permission=Notification.permission;
+      if(permission==='denied'){alert('⚠️ As notificações estão bloqueadas para este site. Ative-as nas permissões do navegador e tente novamente.');return false;}
+      if(permission!=='granted') permission=await Notification.requestPermission();
+      if(permission!=='granted'){alert('⚠️ Permissão de notificações não concedida.');return false;}
       const reg=await navigator.serviceWorker.register('./kzn-notification-sw.js',{scope:'./'});
+      await navigator.serviceWorker.ready;
       let sub=await reg.pushManager.getSubscription();
       if(!sub){sub=await reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:urlBase64ToUint8Array(PUBLIC_VAPID_KEY)});}
-      if(usuarioLogado){await db.ref('push_inscricoes/'+SAN(usuarioLogado.email)).set({endpoint:sub.endpoint,keys:sub.toJSON().keys||{},data:new Date().toISOString(),email:usuarioLogado.email,ativo:true});}
+      if(usuarioLogado?.email){
+        await db.ref('push_inscricoes/'+SAN(usuarioLogado.email)).set({endpoint:sub.endpoint,keys:sub.toJSON().keys||{},data:new Date().toISOString(),email:usuarioLogado.email,ativo:true});
+      }
       localStorage.setItem('kzn_mobile_notifications','enabled');
       if(btn){btn.classList.add('enabled');btn.innerHTML='<i class="fas fa-check"></i> Notificações fora do site ativadas';}
-      await reg.showNotification('KZN MENU',{body:'Notificações do celular ativadas.',icon:'https://yt3.ggpht.com/pCQ6XhcUzMYgxDHA4Z2WZzHIN9B8O3HqCB_nfbqMYymlQqQ1cDvZc-kszyjePyEjV13qgqvwDbJK=s800-rw-nd-v1'});
-    }catch(e){console.error(e);alert('❌ Não foi possível ativar as notificações. Verifique as permissões do navegador e tente novamente.');}
+      try{await reg.showNotification('KZN MENU',{body:'Notificações do celular ativadas com sucesso.',icon:'https://yt3.ggpht.com/pCQ6XhcUzMYgxDHA4Z2WZzHIN9B8O3HqCB_nfbqMYymlQqQ1cDvZc-kszyjePyEjV13qgqvwDbJK=s800-rw-nd-v1'});}catch(_){}
+      return true;
+    }catch(e){console.error('Push V15:',e);alert('❌ Não foi possível ativar as notificações. Se já autorizou, atualize a página e tente novamente.');return false;}
   };
-
   function atualizarBotaoNotif(){const b=document.getElementById('mobileNotifBtn');if(!b)return;if(localStorage.getItem('kzn_mobile_notifications')==='enabled'&&Notification.permission==='granted'){b.classList.add('enabled');b.innerHTML='<i class="fas fa-check"></i> Notificações do celular ativadas';}}
 
   /* Notify phone when a new site notification arrives. */
