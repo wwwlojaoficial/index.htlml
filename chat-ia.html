@@ -278,15 +278,18 @@
 // ============================================
 
 // 📌 DEEPSEEK - GRÁTIS (50 msgs/dia)
-const DEEPSEEK_KEY = 'sk-5e7a3f9c8d2b4a6f8e1c3d7b9f5a2e8c4d6f9b1a3c5e7d9f2b4a6c8e0d2f4a6'; // COLOQUE SUA KEY AQUI
+// 🔑 PEGUE SUA CHAVE EM: https://platform.deepseek.com/
+const DEEPSEEK_KEY = 'sk-5e7a3f9c8d2b4a6f8e1c3d7b9f5a2e8c4d6f9b1a3c5e7d9f2b4a6c8e0d2f4a6';
 const DEEPSEEK_URL = 'https://api.deepseek.com/v1/chat/completions';
 
 // 📌 GEMINI - GRÁTIS (60 req/min)
-const GEMINI_KEY = 'AIzaSyD7eB8fC9gA1hJ2kL3mN4oP5qR6sT7uV8wX9yZ'; // COLOQUE SUA KEY AQUI
+// 🔑 PEGUE SUA CHAVE EM: https://ai.google.dev/
+const GEMINI_KEY = 'AIzaSyD7eB8fC9gA1hJ2kL3mN4oP5qR6sT7uV8wX9yZ';
 const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
 
 // 📌 GROQ - GRÁTIS (Llama 3, Mistral)
-const GROQ_KEY = 'gsk_XyZ1aB2cD3eF4gH5iJ6kL7mN8oP9qR0sT'; // COLOQUE SUA KEY AQUI
+// 🔑 PEGUE SUA CHAVE EM: https://console.groq.com/
+const GROQ_KEY = 'gsk_XyZ1aB2cD3eF4gH5iJ6kL7mN8oP9qR0sT';
 const GROQ_URL = 'https://api.groq.com/openai/v1/chat/completions';
 
 // ============================================
@@ -488,7 +491,7 @@ function limparChat() {
     const container = document.getElementById('chatMessages');
     container.innerHTML = '';
     historico = [];
-    
+
     const msgBoasVindas = document.createElement('div');
     msgBoasVindas.className = 'msg bot';
     msgBoasVindas.innerHTML = `
