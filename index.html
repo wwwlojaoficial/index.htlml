@@ -2493,48 +2493,11 @@
                 padding: 1.2rem;
             }
         }
-
-        /* ===== MEGA UPDATE 2026 ===== */
-        .mega-admin { display:none; padding:2rem 0 5rem; background:var(--bg); min-height:70vh; }
-        .mega-admin.show { display:block; }
-        .admin-shell { display:grid; grid-template-columns:240px 1fr; gap:1.25rem; }
-        .admin-sidebar { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:1rem; position:sticky; top:90px; height:max-content; }
-        .admin-brand { padding:.75rem .8rem 1rem; border-bottom:1px solid var(--border); margin-bottom:.7rem; font-weight:800; }
-        .admin-nav button { width:100%; text-align:left; border:0; background:transparent; color:var(--text); padding:.75rem .8rem; border-radius:10px; cursor:pointer; margin:.12rem 0; }
-        .admin-nav button:hover,.admin-nav button.active { background:rgba(139,92,246,.14); color:var(--primary); }
-        .admin-main { min-width:0; }
-        .admin-top { display:flex; justify-content:space-between; gap:1rem; align-items:center; margin-bottom:1rem; }
-        .admin-top h2 { margin:0; }
-        .admin-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1rem; margin-bottom:1rem; }
-        .admin-stat { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:1rem; }
-        .admin-stat .value { font-size:1.65rem; font-weight:900; margin-top:.3rem; }
-        .admin-stat .label { color:var(--text-muted); font-size:.78rem; }
-        .admin-panel { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:1.15rem; }
-        .admin-panel h3 { margin:0 0 1rem; }
-        .admin-toolbar { display:flex; gap:.65rem; flex-wrap:wrap; margin-bottom:1rem; }
-        .admin-toolbar input,.admin-toolbar select,.admin-form input,.admin-form textarea,.admin-form select { flex:1; min-width:180px; background:var(--bg); border:1px solid var(--border); color:var(--text); border-radius:10px; padding:.75rem; outline:none; }
-        .admin-form { display:grid; gap:.75rem; }
-        .admin-form textarea { min-height:130px; resize:vertical; }
-        .admin-btn { border:0; border-radius:10px; padding:.75rem 1rem; cursor:pointer; font-weight:700; }
-        .admin-btn.primary { background:linear-gradient(135deg,var(--primary),var(--secondary)); color:#fff; }
-        .admin-btn.danger { background:var(--danger); color:#fff; }
-        .admin-btn.success { background:var(--success); color:#07110a; }
-        .admin-table-wrap { overflow:auto; }
-        .admin-table { width:100%; border-collapse:collapse; min-width:650px; }
-        .admin-table th,.admin-table td { padding:.75rem; border-bottom:1px solid var(--border); text-align:left; font-size:.82rem; }
-        .admin-table th { color:var(--text-muted); font-size:.72rem; text-transform:uppercase; }
-        .admin-badge { display:inline-flex; padding:.25rem .5rem; border-radius:999px; font-size:.68rem; font-weight:800; }
-        .admin-badge.ok { background:rgba(34,197,94,.15); color:var(--success); }
-        .admin-badge.ban { background:rgba(239,68,68,.15); color:var(--danger); }
-        .admin-empty { color:var(--text-muted); padding:1.5rem; text-align:center; }
-        .owner-only-link { display:none !important; }
-        .owner-only-link.show { display:list-item !important; }
-        .product-category-title { margin:2rem 0 1rem; text-align:center; }
-        .auto-trash-section .plan-card { max-width:520px; margin:0 auto; }
-        @media(max-width:900px){ .admin-shell{grid-template-columns:1fr}.admin-sidebar{position:static}.admin-grid{grid-template-columns:repeat(2,minmax(0,1fr));} }
-        @media(max-width:520px){ .admin-grid{grid-template-columns:1fr}.admin-top{align-items:flex-start;flex-direction:column}.admin-toolbar{flex-direction:column}.admin-toolbar input,.admin-toolbar select,.admin-form input,.admin-form textarea,.admin-form select{width:100%;box-sizing:border-box} }
-
-    </style>
+    
+/* ===== MEGA ATUALIZAÇÃO V2 ===== */
+.tab-btn.auto-trash{border-color:#a855f7!important;color:#c084fc!important}.tab-btn.auto-trash.active{background:linear-gradient(135deg,#7e22ce,#a855f7)!important;color:#fff!important}
+.auto-trash-notice{border-color:#a855f7!important;background:rgba(168,85,247,.08)!important}.owner-section{background:linear-gradient(180deg,rgba(17,24,39,.98),rgba(8,12,20,.98));}.owner-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:18px}.owner-stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:16px;text-align:center}.owner-stat span{font-size:22px;display:block}.owner-stat strong{display:block;font-size:25px;margin:4px 0}.owner-stat small{color:var(--text-muted)}.owner-toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}.owner-toolbar input{flex:1;min-width:220px;background:#0f172a;border:1px solid var(--border);color:#fff;padding:12px 14px;border-radius:10px}.owner-btn{border:1px solid var(--border);background:#151c2b;color:#fff;border-radius:10px;padding:11px 14px;cursor:pointer}.owner-btn.danger{background:linear-gradient(135deg,#b91c1c,#dc2626);border:0}.owner-panels{display:grid;grid-template-columns:2fr 1fr;gap:16px}.owner-panel{background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:16px}.owner-panel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.owner-table-wrap{overflow:auto}.owner-table{width:100%;border-collapse:collapse;min-width:650px}.owner-table th,.owner-table td{padding:11px;border-bottom:1px solid rgba(255,255,255,.07);text-align:left}.owner-table th{color:var(--text-muted);font-size:.78rem}.status-pill{display:inline-flex;padding:4px 8px;border-radius:999px;font-size:.72rem}.status-active{background:rgba(34,197,94,.14);color:#4ade80}.status-ban{background:rgba(239,68,68,.14);color:#f87171}.mini-action{border:0;border-radius:8px;padding:7px 9px;color:#fff;cursor:pointer;margin:2px;background:#334155}.mini-action.ban{background:#991b1b}.mini-action.unban{background:#166534}.owner-log-list{max-height:500px;overflow:auto}.owner-log{padding:10px;border-bottom:1px solid rgba(255,255,255,.07);font-size:.8rem}.owner-log small{color:var(--text-muted)}.admin-modal{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:99999;padding:16px}.admin-modal.open{display:flex}.admin-modal-card{position:relative;width:min(520px,100%);background:#101827;border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:22px;box-shadow:0 20px 70px rgba(0,0,0,.5)}.admin-close{position:absolute;right:12px;top:10px;border:0;background:none;color:#fff;font-size:20px;cursor:pointer}.admin-form input,.admin-form textarea,.admin-form select{width:100%;box-sizing:border-box;margin:7px 0 12px;background:#0b1220;border:1px solid var(--border);color:#fff;padding:11px;border-radius:9px}.admin-form button{width:100%;padding:12px;border:0;border-radius:10px;background:var(--primary);color:#fff;font-weight:700;cursor:pointer}@media(max-width:900px){.owner-grid{grid-template-columns:repeat(3,1fr)}.owner-panels{grid-template-columns:1fr}}@media(max-width:560px){.owner-grid{grid-template-columns:repeat(2,1fr)}.owner-section .container{padding-left:10px;padding-right:10px}}
+</style>
 </head>
 <body>
 
@@ -2655,12 +2618,9 @@
             <ul class="nav-menu" id="navMenuDesktop">
                 <li><a href="#inicio" class="active"><i class="fas fa-home"></i> Início</a></li>
                 <li><a href="#mods"><i class="fas fa-cubes"></i> Mods</a></li>
-                <li><a href="#auto-trash"><i class="fas fa-trash"></i> Auto Trash</a></li>
-                <li><a href="#auto-trash"><i class="fas fa-trash"></i> Auto Trash</a></li>
                 <li><a href="#regras"><i class="fas fa-gavel"></i> Regras</a></li>
                 <li><a href="#contato"><i class="fas fa-envelope"></i> Contato</a></li>
                 <li><a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
-                <li id="ownerNavDesktop" class="owner-only-link"><a href="#proprietario"><i class="fas fa-crown"></i> Proprietário</a></li>
             </ul>
 
             <ul class="nav-menu mobile-menu" id="navMenuMobile">
@@ -2670,7 +2630,6 @@
                 <li><a href="#contato"><i class="fas fa-envelope"></i> Contato</a></li>
                 <li><a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
                 <li><a href="#perfil"><i class="fas fa-user"></i> Perfil</a></li>
-                <li id="ownerNavMobile" class="owner-only-link"><a href="#proprietario"><i class="fas fa-crown"></i> Proprietário</a></li>
             </ul>
 
             <div class="nav-actions">
@@ -2769,8 +2728,8 @@
                 <button class="tab-btn era" onclick="trocarAba('era')">
                     <i class="fas fa-city"></i> Graal Era
                 </button>
-                <button class="tab-btn classic" onclick="trocarAba('auto-trash')">
-                    <i class="fas fa-trash"></i> Auto Trash
+                <button class="tab-btn auto-trash" onclick="trocarAba('auto-trash')">
+                    <i class="fas fa-trash-alt"></i> Auto Trash
                 </button>
             </div>
 
@@ -3012,40 +2971,6 @@
                 </div>
             </div>
 
-            <!-- ===== TAB AUTO TRASH ===== -->
-            <div class="tab-content auto-trash-section" id="tab-auto-trash">
-                <div class="plans-header">
-                    <h3><i class="fas fa-trash"></i> AUTO TRASH</h3>
-                    <p>Script automático separado dos produtos do Graal Classic e Graal Era.</p>
-                </div>
-                <div class="plans-grid">
-                    <!-- AUTO TRASH (GRAAL ERA) -->
-                    <div class="plan-card popular" style="border-color:var(--era);">
-                        <span class="badge era-badge">🔥 Exclusivo Era</span>
-                        <div style="text-align:center;margin:0.5rem 0;">
-                            <img src="https://yt3.ggpht.com/5nAR2gmp0Do_KMoGwr9_kPhA2uO4eJtX4QBVaG-9mmMU_KU8LHri7Tn1116x6tCDBcS4Toi2fYm0=s900-rw-nd-v1" alt="Auto Trash" class="script-image" />
-                        </div>
-                        <h3>AUTO TRASH AUTOMATIC</h3>
-                        <div class="sub-plano">Graal Era</div>
-                        <div class="price">R$ 200,00 <small>/ vitalício</small><span class="parcelamento">ou 2x R$ 100,00</span></div>
-                        <ul class="script-features">
-                            <li><i class="fas fa-check"></i> 100% AUTOMATIZADO</li>
-                            <li><i class="fas fa-check"></i> Farm de lixo 24/7</li>
-                            <li><i class="fas fa-check"></i> Movimento inteligente</li>
-                            <li><i class="fas fa-check"></i> Coleta automática</li>
-                            <li><i class="fas fa-check"></i> Compatível com Graal Era</li>
-                            <li><i class="fas fa-check"></i> Suporte dedicado</li>
-                        </ul>
-                        <div style="text-align:center;margin:0.6rem 0;padding:0.4rem;background:rgba(245,158,11,0.1);border-radius:8px;border:1px solid var(--era);">
-                            <p style="font-size:0.7rem;color:var(--text-muted);"><strong style="color:var(--era);">📊 Exemplo:</strong> 2.000 trash em ~2h40</p>
-                        </div>
-                        <button class="btn-buy" onclick="adicionarAoCarrinho('Auto Trash Automatic', 200, 'classic')">Comprar R$ 200,00</button>
-                        <button class="btn-add-cart" onclick="adicionarAoCarrinho('Auto Trash Automatic', 200, 'classic')"><i class="fas fa-cart-plus"></i> Adicionar</button>
-                    </div>
-                </div>
-                </div>
-            </div>
-
             <div class="cupom-area">
                 <input type="text" id="cupomInput" placeholder="Código promocional" />
                 <button class="btn-cupom" onclick="aplicarCupom()">Aplicar</button>
@@ -3134,81 +3059,6 @@
     </section>
 
     <!-- ===== REGRAS ===== -->
-
-    <!-- ===== CENTRAL DO PROPRIETÁRIO ===== -->
-    <section id="proprietario" class="mega-admin">
-        <div class="container">
-            <div class="admin-shell">
-                <aside class="admin-sidebar">
-                    <div class="admin-brand">👑 KZN ADMIN</div>
-                    <div class="admin-nav">
-                        <button class="active" onclick="adminAba('dashboard',this)">📊 Dashboard</button>
-                        <button onclick="adminAba('usuarios',this)">👥 Usuários</button>
-                        <button onclick="adminAba('banimentos',this)">🔨 Banimentos</button>
-                        <button onclick="adminAba('notificacoes',this)">🔔 Notificações</button>
-                        <button onclick="adminAba('logs',this)">📜 Logs</button>
-                    </div>
-                </aside>
-                <main class="admin-main">
-                    <div class="admin-top">
-                        <div><h2>Central do Proprietário</h2><p style="color:var(--text-muted);margin:.25rem 0 0;">Ferramentas administrativas do KZN MENU</p></div>
-                        <button class="admin-btn" onclick="fecharPainelProprietario()">Fechar</button>
-                    </div>
-
-                    <div id="admin-dashboard" class="admin-view">
-                        <div class="admin-grid">
-                            <div class="admin-stat"><div class="label">Usuários cadastrados</div><div class="value" id="admUsers">0</div></div>
-                            <div class="admin-stat"><div class="label">Banidos</div><div class="value" id="admBans">0</div></div>
-                            <div class="admin-stat"><div class="label">Notificações</div><div class="value" id="admNotifs">0</div></div>
-                            <div class="admin-stat"><div class="label">Online no chat</div><div class="value" id="admOnline">0</div></div>
-                        </div>
-                        <div class="admin-panel"><h3>Resumo</h3><div id="adminSummary" class="admin-empty">Carregando...</div></div>
-                    </div>
-
-                    <div id="admin-usuarios" class="admin-view" style="display:none">
-                        <div class="admin-panel">
-                            <h3>👥 Gerenciar usuários</h3>
-                            <div class="admin-toolbar"><input id="adminUserSearch" placeholder="Pesquisar por nome ou e-mail" oninput="renderAdminUsers()"></div>
-                            <div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>Usuário</th><th>E-mail</th><th>Status</th><th>Ações</th></tr></thead><tbody id="adminUsersTable"></tbody></table></div>
-                        </div>
-                    </div>
-
-                    <div id="admin-banimentos" class="admin-view" style="display:none">
-                        <div class="admin-panel">
-                            <h3>🔨 Banir conta</h3>
-                            <div class="admin-form">
-                                <input id="banEmailInput" type="email" placeholder="E-mail do usuário">
-                                <input id="banReasonInput" placeholder="Motivo do banimento">
-                                <select id="banDurationInput"><option value="1h">1 hora</option><option value="1d">1 dia</option><option value="7d">7 dias</option><option value="30d">30 dias</option><option value="permanent">Permanente</option></select>
-                                <button class="admin-btn danger" onclick="adminBanirConta()">🔨 Confirmar banimento</button>
-                            </div>
-                            <hr style="border-color:var(--border);margin:1.25rem 0">
-                            <div class="admin-toolbar"><input id="adminBanSearch" placeholder="Pesquisar banimento" oninput="renderAdminBans()"></div>
-                            <div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>Usuário</th><th>Motivo</th><th>Expiração</th><th>Status</th><th>Ação</th></tr></thead><tbody id="adminBansTable"></tbody></table></div>
-                        </div>
-                    </div>
-
-                    <div id="admin-notificacoes" class="admin-view" style="display:none">
-                        <div class="admin-panel">
-                            <h3>🔔 Enviar notificação</h3>
-                            <div class="admin-form">
-                                <input id="adminNotifEmail" type="email" placeholder="E-mail do usuário">
-                                <input id="adminNotifTitle" placeholder="Título">
-                                <textarea id="adminNotifMessage" placeholder="Escreva a mensagem..."></textarea>
-                                <button class="admin-btn primary" onclick="adminEnviarNotificacao()">📨 Enviar notificação</button>
-                            </div>
-                        </div>
-                        <div class="admin-panel" style="margin-top:1rem"><h3>Histórico</h3><div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>Destinatário</th><th>Título</th><th>Mensagem</th><th>Data</th></tr></thead><tbody id="adminNotifTable"></tbody></table></div></div>
-                    </div>
-
-                    <div id="admin-logs" class="admin-view" style="display:none">
-                        <div class="admin-panel"><h3>📜 Logs administrativos</h3><div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>Ação</th><th>Alvo</th><th>Administrador</th><th>Data</th></tr></thead><tbody id="adminLogsTable"></tbody></table></div></div>
-                    </div>
-                </main>
-            </div>
-        </div>
-    </section>
-
     <section id="regras" class="section dark">
         <div class="container">
             <div class="section-header">
@@ -3334,7 +3184,78 @@
             </form>
         </div>
     </div>
+
+    <!-- ===== TAB AUTO TRASH (SEPARADA) ===== -->
+    <div class="tab-content" id="tab-auto-trash">
+        <div class="plans-header">
+            <h3><i class="fas fa-trash-alt"></i> AUTO TRASH</h3>
+            <p>SCRIPT AUTOMÁTICO • ÁREA EXCLUSIVA</p>
+            <p style="font-size:.85rem;color:var(--text-muted);margin-top:.5rem;">O Auto Trash possui uma área própria e não é misturado com Graal Classic ou Graal Era.</p>
+        </div>
+        <div class="plans-grid" style="max-width:600px;margin:0 auto;">
+                    <!-- AUTO TRASH (GRAAL ERA) -->
+                    <div class="plan-card popular" style="border-color:var(--era);">
+                        <span class="badge era-badge">🔥 Exclusivo Era</span>
+                        <div style="text-align:center;margin:0.5rem 0;">
+                            <img src="https://yt3.ggpht.com/5nAR2gmp0Do_KMoGwr9_kPhA2uO4eJtX4QBVaG-9mmMU_KU8LHri7Tn1116x6tCDBcS4Toi2fYm0=s900-rw-nd-v1" alt="Auto Trash" class="script-image" />
+                        </div>
+                        <h3>AUTO TRASH AUTOMATIC</h3>
+                        <div class="sub-plano">Graal Era</div>
+                        <div class="price">R$ 200,00 <small>/ vitalício</small><span class="parcelamento">ou 2x R$ 100,00</span></div>
+                        <ul class="script-features">
+                            <li><i class="fas fa-check"></i> 100% AUTOMATIZADO</li>
+                            <li><i class="fas fa-check"></i> Farm de lixo 24/7</li>
+                            <li><i class="fas fa-check"></i> Movimento inteligente</li>
+                            <li><i class="fas fa-check"></i> Coleta automática</li>
+                            <li><i class="fas fa-check"></i> Compatível com Graal Era</li>
+                            <li><i class="fas fa-check"></i> Suporte dedicado</li>
+                        </ul>
+                        <div style="text-align:center;margin:0.6rem 0;padding:0.4rem;background:rgba(245,158,11,0.1);border-radius:8px;border:1px solid var(--era);">
+                            <p style="font-size:0.7rem;color:var(--text-muted);"><strong style="color:var(--era);">📊 Exemplo:</strong> 2.000 trash em ~2h40</p>
+                        </div>
+                        <button class="btn-buy" onclick="adicionarAoCarrinho('Auto Trash Automatic', 200, 'auto-trash')">Comprar R$ 200,00</button>
+                        <button class="btn-add-cart" onclick="adicionarAoCarrinho('Auto Trash Automatic', 200, 'auto-trash')"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+
+
+        </div>
+        <div class="aviso-plano auto-trash-notice">
+            <h4><i class="fas fa-info-circle"></i> AUTO TRASH SEPARADO</h4>
+            <p>Este produto pertence exclusivamente à categoria <strong>Auto Trash</strong>. O carrinho identifica a categoria para evitar mistura indevida de produtos.</p>
+        </div>
+    </div>
+
 </section>
+
+
+    <!-- ===== CENTRAL DO PROPRIETÁRIO ===== -->
+    <section id="central-proprietario" class="section owner-section" style="display:none;">
+      <div class="container">
+        <div class="section-header"><h2><i class="fas fa-crown"></i> Central do Proprietário</h2><p>Ferramentas administrativas do KZN MENU</p></div>
+        <div class="owner-grid">
+          <div class="owner-stat"><span>👥</span><strong id="admTotalUsuarios">0</strong><small>Usuários</small></div>
+          <div class="owner-stat"><span>🟢</span><strong id="admAtivos">0</strong><small>Ativos</small></div>
+          <div class="owner-stat"><span>🔴</span><strong id="admBanidos">0</strong><small>Banidos</small></div>
+          <div class="owner-stat"><span>🛒</span><strong id="admCompras">0</strong><small>Compras</small></div>
+          <div class="owner-stat"><span>🔑</span><strong id="admKeys">0</strong><small>Keys</small></div>
+          <div class="owner-stat"><span>🔔</span><strong id="admNotificacoes">0</strong><small>Notificações</small></div>
+        </div>
+        <div class="owner-toolbar">
+          <input id="admBuscaUsuario" type="search" placeholder="Pesquisar usuário por nome, e-mail ou UID..." oninput="filtrarUsuariosAdmin()">
+          <button class="owner-btn" onclick="carregarPainelProprietario()"><i class="fas fa-sync"></i> Atualizar</button>
+          <button class="owner-btn danger" onclick="abrirEnviarNotificacaoAdmin()"><i class="fas fa-paper-plane"></i> Enviar notificação</button>
+        </div>
+        <div class="owner-panels">
+          <div class="owner-panel"><div class="owner-panel-head"><h3><i class="fas fa-users"></i> Usuários</h3><span id="admUserStatus"></span></div><div class="owner-table-wrap"><table class="owner-table"><thead><tr><th>Usuário</th><th>E-mail</th><th>Status</th><th>Ações</th></tr></thead><tbody id="admUsuariosTabela"></tbody></table></div></div>
+          <div class="owner-panel"><div class="owner-panel-head"><h3><i class="fas fa-history"></i> Logs administrativos</h3></div><div id="admLogs" class="owner-log-list"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="admin-modal" id="adminActionModal" aria-hidden="true">
+      <div class="admin-modal-card"><button class="admin-close" onclick="fecharAdminModal()">✕</button><div id="adminModalBody"></div></div>
+    </div>
 
     <!-- ===== FAQ ===== -->
     <section id="faq" class="section">
@@ -5149,22 +5070,14 @@
             }
         };
 
-        window.handleWelcomeLogin = async function(response) {
+        window.handleWelcomeLogin = function(response) {
             try {
                 const payload = parseJwt(response.credential);
-                const email = (payload.email || '').toLowerCase();
-                if (email && await verificarBanimentoContaAntesDeEntrar(email)) {
-                    alert('🚫 Esta conta está bloqueada. Entre em contato com o proprietário.');
-                    return;
-                }
-                const usuario = { nome: payload.name, email, avatar: payload.picture, googleSub: payload.sub };
+                const usuario = { nome: payload.name, email: payload.email, avatar: payload.picture };
                 usuarioLogado = usuario;
                 localStorage.setItem('kzn_usuario_logado', JSON.stringify(usuario));
                 setLoggedIn();
-                showOwnerTools();
-                carregarNotificacoesRemotas();
             } catch (e) {
-                console.error(e);
                 alert('❌ Erro ao fazer login com Google.');
             }
         };
@@ -5180,7 +5093,10 @@
 
         window.logout = function() {
             if (!confirm('Tem certeza que deseja sair?')) return;
-            // Logout encerra apenas a sessão local. NÃO apaga o cadastro do usuário do banco.
+            if (usuarioLogado) {
+                const userRef = usuariosRef.child(usuarioLogado.email.replace(/[.#$\/\[\]]/g, '_'));
+                userRef.remove();
+            }
             localStorage.removeItem('kzn_usuario_logado');
             usuarioLogado = null;
             document.getElementById('welcomeOverlay').classList.remove('hidden');
@@ -5589,8 +5505,6 @@ window.copiarPixEra = function() {
                 usuarioLogado = JSON.parse(usuario);
                 setLoggedIn();
                 carregarPerfil();
-                showOwnerTools();
-                carregarNotificacoesRemotas();
             } else {
                 loginProcessed = false;
                 isLoggingIn = false;
@@ -5617,132 +5531,91 @@ window.copiarPixEra = function() {
             console.log('📦 Novos planos: BASIC, PLUS, PRO, PREMIUM, ULTIMATE, ELITE');
             console.log('🌆 NOVO: MOD MENU GRAAL ERA - Vendedor Xitado - PIX exclusivo');
         });
-
-        // ====== MEGA UPDATE: ADMIN + CONTA ======
-        const accountBansRef = db.ref('kzn/account_bans');
-        const adminNotificationsRef = db.ref('kzn/notifications');
-        const adminLogsRef = db.ref('kzn/admin_logs');
-
-        function isOwnerCurrent() {
-            return !!usuarioLogado && isProprietario(usuarioLogado.email);
-        }
-
-        function showOwnerTools() {
-            const d=document.getElementById('ownerNavDesktop'), m=document.getElementById('ownerNavMobile');
-            if (isOwnerCurrent()) { d?.classList.add('show'); m?.classList.add('show'); }
-            else { d?.classList.remove('show'); m?.classList.remove('show'); document.getElementById('proprietario')?.classList.remove('show'); }
-        }
-
-        window.abrirPainelProprietario = function(){
-            if(!isOwnerCurrent()){ alert('Acesso restrito ao proprietário.'); return; }
-            document.getElementById('proprietario').classList.add('show');
-            document.getElementById('proprietario').scrollIntoView({behavior:'smooth'});
-            carregarAdminTudo();
-        };
-        window.fecharPainelProprietario = function(){ document.getElementById('proprietario').classList.remove('show'); };
-        window.adminAba = function(nome, btn){
-            if(!isOwnerCurrent()) return;
-            document.querySelectorAll('.admin-view').forEach(v=>v.style.display='none');
-            const el=document.getElementById('admin-'+nome); if(el) el.style.display='block';
-            document.querySelectorAll('.admin-nav button').forEach(b=>b.classList.remove('active')); btn?.classList.add('active');
-            if(nome==='usuarios') renderAdminUsers();
-            if(nome==='banimentos') renderAdminBans();
-            if(nome==='notificacoes') renderAdminNotifications();
-            if(nome==='logs') renderAdminLogs();
-        };
-
-        async function carregarAdminTudo(){
-            if(!isOwnerCurrent()) return;
-            renderAdminUsers(); renderAdminBans(); renderAdminNotifications(); renderAdminLogs();
-            const bans=await accountBansRef.once('value');
-            const b=bans.val()||{}; const ativos=Object.values(b).filter(x=>x.ativo!==false && (!x.expiresAt || x.expiresAt>Date.now()));
-            document.getElementById('admUsers').textContent=usuariosCadastrados.length;
-            document.getElementById('admBans').textContent=ativos.length;
-            const ns=await adminNotificationsRef.once('value'); document.getElementById('admNotifs').textContent=Object.keys(ns.val()||{}).length;
-            document.getElementById('admOnline').textContent=Object.keys(usuariosOnline||{}).length;
-            document.getElementById('adminSummary').innerHTML=`<strong>Central ativa.</strong><br><span style="color:var(--text-muted)">As ferramentas administrativas estão disponíveis somente para a conta proprietária nesta interface.</span>`;
-        }
-
-        function getAllAdminUsers(){
-            const map={};
-            (usuariosCadastrados||[]).forEach(u=>{if(u?.email) map[u.email]=u;});
-            Object.values(usuariosOnline||{}).forEach(u=>{if(u?.email) map[u.email]=Object.assign(map[u.email]||{},u);});
-            if(usuarioLogado?.email) map[usuarioLogado.email]=Object.assign(map[usuarioLogado.email]||{},usuarioLogado);
-            return Object.values(map);
-        }
-        window.renderAdminUsers = async function(){
-            if(!isOwnerCurrent()) return;
-            const q=(document.getElementById('adminUserSearch')?.value||'').toLowerCase();
-            const bansSnap=await accountBansRef.once('value'); const bans=Object.values(bansSnap.val()||{});
-            const tbody=document.getElementById('adminUsersTable'); if(!tbody)return;
-            const users=getAllAdminUsers().filter(u=>(u.nome||'').toLowerCase().includes(q)||(u.email||'').toLowerCase().includes(q));
-            tbody.innerHTML=users.map(u=>{
-                const ban=bans.find(b=>b.email===u.email && b.ativo!==false && (!b.expiresAt||b.expiresAt>Date.now()));
-                return `<tr><td>${escapeHtmlAdmin(u.nome||'Usuário')}</td><td>${escapeHtmlAdmin(u.email||'')}</td><td>${ban?'<span class="admin-badge ban">BANIDO</span>':'<span class="admin-badge ok">ATIVO</span>'}</td><td>${ban?`<button class="admin-btn success" onclick="adminDesbanirConta('${encodeURIComponent(u.email)}')">Desbanir</button>`:`<button class="admin-btn danger" onclick="adminPreencherBan('${encodeURIComponent(u.email)}')">Banir</button>`}</td></tr>`;
-            }).join('') || '<tr><td colspan="4" class="admin-empty">Nenhum usuário encontrado.</td></tr>';
-        };
-        window.adminPreencherBan=function(e){ document.getElementById('banEmailInput').value=decodeURIComponent(e); adminAba('banimentos',document.querySelector('.admin-nav button:nth-child(3)')); };
-        window.adminBanirConta=async function(){
-            if(!isOwnerCurrent()) return;
-            const email=document.getElementById('banEmailInput').value.trim().toLowerCase();
-            const reason=document.getElementById('banReasonInput').value.trim()||'Banido pelo proprietário';
-            const duration=document.getElementById('banDurationInput').value;
-            if(!email) return alert('Informe o e-mail do usuário.');
-            if(isProprietario(email)) return alert('Não é permitido banir o proprietário.');
-            const ms={ '1h':3600000,'1d':86400000,'7d':604800000,'30d':2592000000 };
-            const expiresAt=duration==='permanent'?null:Date.now()+ms[duration];
-            await accountBansRef.push({email,reason,ativo:true,banType:duration==='permanent'?'permanent':'temporary',bannedAt:firebase.database.ServerValue.TIMESTAMP,expiresAt,bannedBy:usuarioLogado.email});
-            await adminLogsRef.push({action:'ACCOUNT_BAN',targetEmail:email,adminEmail:usuarioLogado.email,reason,createdAt:firebase.database.ServerValue.TIMESTAMP});
-            alert('Usuário banido com sucesso.');
-            document.getElementById('banReasonInput').value=''; carregarAdminTudo();
-        };
-        window.adminDesbanirConta=async function(encoded){
-            if(!isOwnerCurrent()) return;
-            const email=decodeURIComponent(encoded); if(!confirm('Desbanir '+email+'?'))return;
-            const snap=await accountBansRef.once('value'); const data=snap.val()||{};
-            for(const [key,b] of Object.entries(data)){if(b.email===email&&b.ativo!==false) await accountBansRef.child(key).update({ativo:false,unbannedAt:firebase.database.ServerValue.TIMESTAMP});}
-            await adminLogsRef.push({action:'ACCOUNT_UNBAN',targetEmail:email,adminEmail:usuarioLogado.email,createdAt:firebase.database.ServerValue.TIMESTAMP});
-            carregarAdminTudo();
-        };
-        window.renderAdminBans=async function(){
-            if(!isOwnerCurrent()) return;
-            const q=(document.getElementById('adminBanSearch')?.value||'').toLowerCase(); const snap=await accountBansRef.once('value'); const data=snap.val()||{};
-            const rows=Object.entries(data).filter(([k,b])=>(b.email||'').toLowerCase().includes(q));
-            const tbody=document.getElementById('adminBansTable'); if(!tbody)return;
-            tbody.innerHTML=rows.reverse().map(([k,b])=>{const active=b.ativo!==false&&(!b.expiresAt||b.expiresAt>Date.now());return `<tr><td>${escapeHtmlAdmin(b.email||'')}</td><td>${escapeHtmlAdmin(b.reason||'')}</td><td>${b.expiresAt?new Date(b.expiresAt).toLocaleString('pt-BR'):'Permanente'}</td><td>${active?'<span class="admin-badge ban">ATIVO</span>':'<span class="admin-badge ok">INATIVO</span>'}</td><td>${active?`<button class="admin-btn success" onclick="adminDesbanirConta('${encodeURIComponent(b.email)}')">Desbanir</button>`:''}</td></tr>`}).join('')||'<tr><td colspan="5" class="admin-empty">Nenhum banimento encontrado.</td></tr>';
-        };
-        window.adminEnviarNotificacao=async function(){
-            if(!isOwnerCurrent()) return;
-            const email=document.getElementById('adminNotifEmail').value.trim().toLowerCase(); const title=document.getElementById('adminNotifTitle').value.trim(); const message=document.getElementById('adminNotifMessage').value.trim();
-            if(!email||!title||!message)return alert('Preencha e-mail, título e mensagem.');
-            await adminNotificationsRef.push({userEmail:email,title,message,createdAt:firebase.database.ServerValue.TIMESTAMP,read:false,senderEmail:usuarioLogado.email});
-            await adminLogsRef.push({action:'SEND_NOTIFICATION',targetEmail:email,adminEmail:usuarioLogado.email,title,createdAt:firebase.database.ServerValue.TIMESTAMP});
-            alert('Notificação enviada.'); document.getElementById('adminNotifTitle').value=''; document.getElementById('adminNotifMessage').value=''; renderAdminNotifications();
-        };
-        window.renderAdminNotifications=async function(){
-            if(!isOwnerCurrent())return; const snap=await adminNotificationsRef.once('value'); const data=Object.values(snap.val()||{}).reverse(); const tbody=document.getElementById('adminNotifTable'); if(!tbody)return;
-            tbody.innerHTML=data.map(n=>`<tr><td>${escapeHtmlAdmin(n.userEmail||'')}</td><td>${escapeHtmlAdmin(n.title||'')}</td><td>${escapeHtmlAdmin(n.message||'')}</td><td>${n.createdAt?new Date(n.createdAt).toLocaleString('pt-BR'):'-'}</td></tr>`).join('')||'<tr><td colspan="4" class="admin-empty">Nenhuma notificação enviada.</td></tr>';
-        };
-        window.renderAdminLogs=async function(){
-            if(!isOwnerCurrent())return; const snap=await adminLogsRef.once('value'); const data=Object.values(snap.val()||{}).reverse(); const tbody=document.getElementById('adminLogsTable'); if(!tbody)return;
-            tbody.innerHTML=data.map(l=>`<tr><td>${escapeHtmlAdmin(l.action||'')}</td><td>${escapeHtmlAdmin(l.targetEmail||'-')}</td><td>${escapeHtmlAdmin(l.adminEmail||'-')}</td><td>${l.createdAt?new Date(l.createdAt).toLocaleString('pt-BR'):'-'}</td></tr>`).join('')||'<tr><td colspan="4" class="admin-empty">Nenhum log.</td></tr>';
-        };
-        function escapeHtmlAdmin(v){return String(v??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
-
-        async function verificarBanimentoContaAntesDeEntrar(email){
-            try{const snap=await accountBansRef.once('value'); const bans=Object.values(snap.val()||{}); return bans.some(b=>b.email===email&&b.ativo!==false&&(!b.expiresAt||b.expiresAt>Date.now()));}catch(e){console.warn('Não foi possível verificar banimento de conta:',e); return false;}
-        }
-
-        // Atualiza notificações remotas destinadas ao usuário logado.
-        function carregarNotificacoesRemotas(){
-            if(!usuarioLogado?.email)return;
-            adminNotificationsRef.orderByChild('userEmail').equalTo(usuarioLogado.email).on('value',snap=>{
-                const data=Object.values(snap.val()||{}).sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
-                data.forEach(n=>{ if(!notificacoes.some(x=>x.remoteId===n.createdAt&&x.mensagem===n.message)){ notificacoes.unshift({remoteId:n.createdAt,mensagem:n.message,titulo:n.title,tipo:'info',lida:!!n.read,data:n.createdAt}); }});
-                salvarNotificacoes(); if(typeof renderNotificacoes==='function')renderNotificacoes();
-            });
-        }
-
-    </script>
+    
+/* ===== KZN MEGA ATUALIZAÇÃO V2 ===== */
+(function(){
+ const OWNER='gabriel6061yt@gmail.com';
+ const siteBansRef = db.ref('site/bans');
+ const siteNotifRef = db.ref('site/notificacoes');
+ const siteLogsRef = db.ref('site/admin_logs');
+ const usersRef = db.ref('chat/usuarios');
+ const sanitize = e => String(e||'').toLowerCase().replace(/[.#$\[\]\/]/g,'_');
+ window.isOwnerAccount = function(){ return !!usuarioLogado && String(usuarioLogado.email||'').toLowerCase()===OWNER; };
+ function ensureOwner(){ if(!isOwnerAccount()){ alert('🚫 Acesso restrito ao proprietário.'); return false;} return true; }
+ function now(){ return new Date().toISOString(); }
+ function adminLog(action,targetEmail,details){ if(!isOwnerAccount()) return; siteLogsRef.push({action,targetEmail:targetEmail||'',adminEmail:OWNER,timestamp:now(),details:details||''}); }
+ window.trocarAba = function(aba){
+   document.querySelectorAll('.tab-content').forEach(el=>el.classList.remove('active'));
+   document.querySelectorAll('.tab-btn').forEach(el=>el.classList.remove('active'));
+   const target=document.getElementById('tab-'+aba); const btn=document.querySelector('.tab-btn.'+aba);
+   if(target) target.classList.add('active'); if(btn) btn.classList.add('active');
+ };
+ window.abrirCentralProprietario=function(){ if(!ensureOwner()) return; const sec=document.getElementById('central-proprietario'); if(sec){sec.style.display='block'; sec.scrollIntoView({behavior:'smooth'}); carregarPainelProprietario();} };
+ window.carregarPainelProprietario=function(){
+   if(!ensureOwner()) return;
+   Promise.all([usersRef.once('value'),siteBansRef.once('value'),siteLogsRef.once('value')]).then(([us,bs,ls])=>{
+      const users=Object.values(us.val()||{}); const bans=Object.values(bs.val()||{});
+      const activeBans=bans.filter(b=>b.active!==false && (!b.expiresAt || new Date(b.expiresAt)>new Date()));
+      document.getElementById('admTotalUsuarios').textContent=users.length;
+      document.getElementById('admBanidos').textContent=activeBans.length;
+      document.getElementById('admAtivos').textContent=Math.max(0,users.length-activeBans.length);
+      document.getElementById('admCompras').textContent=(JSON.parse(localStorage.getItem('kzn_compras')||'[]')).length;
+      document.getElementById('admKeys').textContent=(JSON.parse(localStorage.getItem('kzn_keys')||'[]')).length;
+      document.getElementById('admNotificacoes').textContent=(JSON.parse(localStorage.getItem('kzn_notificacoes')||'[]')).length;
+      renderUsers(users,activeBans);
+      const logs=Object.values(ls.val()||{}).sort((a,b)=>String(b.timestamp).localeCompare(String(a.timestamp))).slice(0,80);
+      document.getElementById('admLogs').innerHTML=logs.length?logs.map(l=>`<div class="owner-log"><strong>${esc(l.action)}</strong> — ${esc(l.targetEmail||'')}</div><small>${esc(l.timestamp||'')} · ${esc(l.details||'')}</small>`).join(''):'<div class="empty-state">Nenhum log administrativo.</div>';
+   });
+ };
+ function renderUsers(users,bans){
+   const q=(document.getElementById('admBuscaUsuario')?.value||'').toLowerCase();
+   const rows=users.filter(u=>!q || [u.nome,u.email,u.uid].some(v=>String(v||'').toLowerCase().includes(q))).slice(0,300);
+   const tbody=document.getElementById('admUsuariosTabela'); if(!tbody)return;
+   tbody.innerHTML=rows.map(u=>{const ban=bans.find(b=>b.email===u.email); const status=ban?'Banido':'Ativo'; return `<tr><td>${esc(u.nome||'Sem nome')}</td><td>${esc(u.email||'')}</td><td><span class="status-pill ${ban?'status-ban':'status-active'}">${status}</span></td><td>${ban?`<button class="mini-action unban" onclick="desbanirConta('${attr(u.email)}')">Desbanir</button>`:`<button class="mini-action ban" onclick="abrirBanirConta('${attr(u.email)}')">Banir</button>`}<button class="mini-action" onclick="abrirEnviarNotificacaoAdmin('${attr(u.email)}')">Notificar</button></td></tr>`}).join('') || '<tr><td colspan="4">Nenhum usuário encontrado.</td></tr>';
+ }
+ window.filtrarUsuariosAdmin=function(){ if(isOwnerAccount()) carregarPainelProprietario(); };
+ window.abrirBanirConta=function(email){ if(!ensureOwner())return; document.getElementById('adminModalBody').innerHTML=`<h3>🔨 Banir conta</h3><form class="admin-form" onsubmit="confirmarBanirConta(event,'${attr(email)}')"><label>Usuário</label><input value="${esc(email)}" disabled><label>Motivo</label><textarea id="banMotivo" required placeholder="Motivo do banimento"></textarea><label>Duração</label><select id="banDuracao"><option value="3600000">1 hora</option><option value="86400000">1 dia</option><option value="604800000">7 dias</option><option value="2592000000">30 dias</option><option value="permanent">Permanente</option></select><button>Confirmar banimento</button></form>`;openAdminModal(); };
+ window.confirmarBanirConta=function(ev,email){ ev.preventDefault(); if(!ensureOwner()||email===OWNER)return; const motivo=document.getElementById('banMotivo').value.trim()||'Banido pelo proprietário'; const d=document.getElementById('banDuracao').value; const expires=d==='permanent'?null:new Date(Date.now()+Number(d)).toISOString(); siteBansRef.child(sanitize(email)).set({email,banned:true,active:true,reason:motivo,banType:expires?'temporary':'permanent',bannedAt:now(),expiresAt:expires,bannedBy:OWNER}).then(()=>{adminLog('BAN_ACCOUNT',email,motivo);fecharAdminModal();carregarPainelProprietario();alert('🔨 Conta banida com sucesso.');}); };
+ window.desbanirConta=function(email){ if(!ensureOwner()||!confirm('Desbanir '+email+'?'))return; siteBansRef.child(sanitize(email)).update({active:false,banned:false,unbannedAt:now(),unbannedBy:OWNER}).then(()=>{adminLog('UNBAN_ACCOUNT',email,'Conta desbanida');carregarPainelProprietario();}); };
+ window.abrirEnviarNotificacaoAdmin=function(email=''){ if(!ensureOwner())return; document.getElementById('adminModalBody').innerHTML=`<h3>🔔 Enviar notificação</h3><form class="admin-form" onsubmit="enviarNotificacaoAdmin(event)"><label>E-mail do usuário</label><input id="notifEmailAdmin" type="email" required value="${esc(email)}" placeholder="cliente@email.com"><label>Título</label><input id="notifTituloAdmin" required placeholder="Título da notificação"><label>Mensagem</label><textarea id="notifMensagemAdmin" required rows="5" placeholder="Escreva a mensagem..."></textarea><button>Enviar notificação</button></form>`;openAdminModal(); };
+ window.enviarNotificacaoAdmin=function(ev){ev.preventDefault();if(!ensureOwner())return;const email=document.getElementById('notifEmailAdmin').value.trim().toLowerCase(),title=document.getElementById('notifTituloAdmin').value.trim(),message=document.getElementById('notifMensagemAdmin').value.trim(); if(!email||!title||!message)return; const ref=siteNotifRef.child(sanitize(email)).push(); ref.set({title,message,email,lida:false,createdAt:now(),sentBy:OWNER}).then(()=>{adminLog('SEND_NOTIFICATION',email,title);fecharAdminModal();alert('🔔 Notificação enviada.');}); };
+ function openAdminModal(){const m=document.getElementById('adminActionModal');m.classList.add('open');m.setAttribute('aria-hidden','false');}
+ window.fecharAdminModal=function(){const m=document.getElementById('adminActionModal');m.classList.remove('open');m.setAttribute('aria-hidden','true');};
+ function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+ function attr(v){return String(v??'').replace(/\\/g,'\\\\').replace(/'/g,"\\'");}
+ function installOwnerNav(){
+   if(!isOwnerAccount()||document.getElementById('ownerNavLink'))return;
+   const nav=document.getElementById('navMenuDesktop'); if(nav){const li=document.createElement('li');li.innerHTML='<a href="#central-proprietario" id="ownerNavLink"><i class="fas fa-crown"></i> Proprietário</a>';li.onclick=()=>abrirCentralProprietario();nav.appendChild(li);}
+   const mob=document.getElementById('navMenuMobile');if(mob){const li=document.createElement('li');li.innerHTML='<a href="#central-proprietario"><i class="fas fa-crown"></i> Central do Proprietário</a>';li.onclick=()=>abrirCentralProprietario();mob.appendChild(li);}
+   const sec=document.getElementById('central-proprietario');if(sec)sec.style.display='block';
+ }
+ function monitorAccountBan(){
+   if(!usuarioLogado?.email)return;
+   siteBansRef.child(sanitize(usuarioLogado.email)).on('value',snap=>{const b=snap.val();if(!b||b.active===false)return; if(b.expiresAt && new Date(b.expiresAt)<=new Date()){siteBansRef.child(sanitize(usuarioLogado.email)).update({active:false,banned:false});return;} if(!isOwnerAccount()){alert('🚫 Sua conta está bloqueada.\nMotivo: '+(b.reason||'Não informado')); if(typeof logout==='function') logout();}});
+ }
+ function monitorSiteNotifications(){
+   if(!usuarioLogado?.email)return;
+   siteNotifRef.child(sanitize(usuarioLogado.email)).limitToLast(50).on('child_added',snap=>{const n=snap.val(); if(!n)return; const key='site_'+snap.key; if(notificacoes.some(x=>x.id===key))return; notificacoes.unshift({id:key,mensagem:(n.title?'📢 '+n.title+': ':'')+n.message,data:n.createdAt?new Date(n.createdAt).toLocaleString('pt-BR'):new Date().toLocaleString('pt-BR'),lida:!!n.lida,tipo:'info'});if(notificacoes.length>50)notificacoes.pop();salvarNotificacoes();atualizarBadgeNotificacoes();renderizarNotificacoes();playNotificationSound();});
+ }
+ const oldSetLoggedIn=window.setLoggedIn;
+ window.setLoggedIn=function(){ if(typeof oldSetLoggedIn==='function')oldSetLoggedIn(); installOwnerNav(); monitorAccountBan(); monitorSiteNotifications(); };
+ // Corrige logout: nunca remove o cadastro do usuário.
+ const oldLogout=window.logout;
+ window.logout=function(){
+   if(!confirm('Tem certeza que deseja sair?'))return;
+   localStorage.removeItem('kzn_usuario_logado'); usuarioLogado=null;
+   document.getElementById('welcomeOverlay')?.classList.remove('hidden');
+   document.getElementById('chatToggleBtn')?.style && (document.getElementById('chatToggleBtn').style.display='none');
+   document.getElementById('chatWindow')?.classList.remove('open'); chatAberto=false; resetarPerfilPadrao();
+   alert('👋 Você saiu da sua conta.');
+ };
+ // Google: guardar sub como UID, sem expor segredo.
+ const oldGoogle=window.handleWelcomeLogin;
+ window.handleWelcomeLogin=function(response){try{const payload=parseJwt(response.credential);const usuario={nome:payload.name,email:payload.email,avatar:payload.picture,uid:payload.sub};usuarioLogado=usuario;localStorage.setItem('kzn_usuario_logado',JSON.stringify(usuario));setLoggedIn();}catch(e){alert('❌ Erro ao fazer login com Google.');}};
+ // Compatibilidade com login local.
+ const oldLogin=window.fazerLogin;
+ window.fazerLogin=function(){const email=document.getElementById('loginEmail')?.value.trim(); if(email){siteBansRef.child(sanitize(email)).once('value').then(s=>{const b=s.val();if(b&&b.active!==false){document.getElementById('loginStatus').textContent='🚫 Esta conta está bloqueada.';return;} if(typeof oldLogin==='function')oldLogin();});}else if(typeof oldLogin==='function')oldLogin();};
+})();
+</script>
 </body>
 </html>
