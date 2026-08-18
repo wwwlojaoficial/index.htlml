@@ -4010,7 +4010,7 @@
 <div class="form-group">
 <label><i class="fas fa-envelope"></i> Seu E-mail <span style="color:var(--primary);">*</span></label>
 <input name="Email" placeholder="Digite seu e-mail..." required="" type="email"/>
-<small style="color:var(--text-muted);font-size:0.7rem;">Se você estiver logado, o e-mail da sua conta será preenchido automaticamente.</small>
+<small style="color:var(--text-muted);font-size:0.7rem;">Você receberá sua key neste e-mail</small>
 </div>
 <div class="form-group"><label><i class="fas fa-user"></i> Seu Nome</label><input name="Nome" placeholder="Digite seu nome completo..." required="" type="text"/></div>
 <div class="form-group"><label><i class="fab fa-whatsapp"></i> WhatsApp</label><input name="WhatsApp" placeholder="(DDD) 9 9999-9999" required="" type="text"/></div>
@@ -4059,7 +4059,7 @@
 <button class="btn-add-cart" onclick="adicionarAoCarrinho('Auto Trash Automatic',200,'auto-trash')"><i class="fas fa-cart-plus"></i> Adicionar</button>
 </div>
 </div>
-<div class="purchase-form-card purchase-form-auto-trash"><div class="container"><div class="section-header"><h2><i class="fas fa-shopping-cart"></i> Formulário de compra — Auto Trash</h2><p>Formulário exclusivo do Auto Trash. Ele não aparece nas abas Classic ou Era.</p></div><div class="form-container"><form action="https://formsubmit.co/gabriel6061yt@gmail.com" enctype="multipart/form-data" id="formContatoAutoTrash" method="POST" data-recipient="gabriel6061yt@gmail.com"><input name="_replyto" type="hidden" value="" style="display:none!important"/><input name="_captcha" type="hidden" value="false" style="display:none!important"/><input name="_template" type="hidden" value="table" style="display:none!important"/><input name="_subject" type="hidden" value="🔥 NOVO PEDIDO - AUTO TRASH"/><div class="form-group"><label><i class="fas fa-envelope"></i> Seu E-mail <span style="color:var(--primary);">*</span></label><input name="Email" placeholder="Digite seu e-mail..." required="True" type="email"/></div><div class="form-group"><label><i class="fas fa-user"></i> Seu Nome</label><input name="Nome" placeholder="Digite seu nome completo..." required="True" type="text"/></div><div class="form-group"><label><i class="fab fa-whatsapp"></i> WhatsApp</label><input name="WhatsApp" placeholder="(DDD) 9 9999-9999" required="True" type="text"/></div><div class="form-group"><label><i class="fas fa-trash-alt"></i> Produto</label><input class="auto-product-readonly" name="Produto" readonly="True" type="text" value="Auto Trash Automatic - R$ 200,00"/></div><div class="form-group"><label><i class="fas fa-image"></i> Comprovante PIX <span style="color:var(--primary);">*</span></label><input accept="image/*,.pdf" name="Comprovante" required="True" type="file"/></div><div class="form-group"><label><i class="fas fa-pencil-alt"></i> Mensagem (opcional)</label><textarea name="Mensagem" placeholder="Digite sua mensagem aqui..." rows="3"></textarea></div><button class="btn-submit" type="submit"><i class="fas fa-paper-plane"></i> Enviar Pedido - Auto Trash</button><div class="form-status" id="formStatusAutoTrash"></div></form></div></div></div></div>
+<div class="purchase-form-card purchase-form-auto-trash"><div class="container"><div class="section-header"><h2><i class="fas fa-shopping-cart"></i> Formulário de compra — Auto Trash</h2><p>Formulário exclusivo do Auto Trash. Ele não aparece nas abas Classic ou Era.</p></div><div class="form-container"><form action="https://formsubmit.co/gabriel6061yt@gmail.com" enctype="multipart/form-data" id="formContatoAutoTrash" method="POST" data-recipient="gabriel6061yt@gmail.com"><input name="_replyto" type="hidden" value="" style="display:none!important"/><input name="_captcha" type="hidden" value="false" style="display:none!important"/><input name="_template" type="hidden" value="table" style="display:none!important"/><input name="_subject" type="hidden" value="🔥 NOVO PEDIDO - AUTO TRASH" style="display:none!important"/><div class="form-group"><label><i class="fas fa-envelope"></i> Seu E-mail <span style="color:var(--primary);">*</span></label><input name="Email" placeholder="Digite seu e-mail..." required="True" type="email"/></div><div class="form-group"><label><i class="fas fa-user"></i> Seu Nome</label><input name="Nome" placeholder="Digite seu nome completo..." required="True" type="text"/></div><div class="form-group"><label><i class="fab fa-whatsapp"></i> WhatsApp</label><input name="WhatsApp" placeholder="(DDD) 9 9999-9999" required="True" type="text"/></div><div class="form-group"><label><i class="fas fa-trash-alt"></i> Produto</label><input class="auto-product-readonly" name="Produto" readonly="True" type="text" value="Auto Trash Automatic - R$ 200,00"/></div><div class="form-group"><label><i class="fas fa-image"></i> Comprovante PIX <span style="color:var(--primary);">*</span></label><input accept="image/*,.pdf" name="Comprovante" required="True" type="file"/></div><div class="form-group"><label><i class="fas fa-pencil-alt"></i> Mensagem (opcional)</label><textarea name="Mensagem" placeholder="Digite sua mensagem aqui..." rows="3"></textarea></div><button class="btn-submit" type="submit"><i class="fas fa-paper-plane"></i> Enviar Pedido - Auto Trash</button><div class="form-status" id="formStatusAutoTrash"></div></form></div></div></div></div>
 </div></section>
 <!-- ===== PERFIL ===== -->
 <section class="section dark" id="perfil">
@@ -8012,10 +8012,7 @@ header #notifBtn.nav-icon-btn,
       const exists=Object.values(stock).some(x=>String(x?.key||'').trim()===key);
       if(exists){alert('⚠️ Essa Key já está cadastrada no estoque.');return;}
       const available=Object.values(stock).filter(x=>x&&x.produto===produto&&x.status==='available').length;
-      if(available>=MAX_KEYS_PER_PLAN){
-        alert(`⚠️ O estoque do plano ${p.label} já está cheio (${MAX_KEYS_PER_PLAN}/${MAX_KEYS_PER_PLAN}). Use uma Key antes de adicionar outra.`);
-        return;
-      }
+      if(available>=MAX_KEYS_PER_PLAN){alert(`⚠️ O estoque de ${p.label} já está cheio (${MAX_KEYS_PER_PLAN}/${MAX_KEYS_PER_PLAN}).`);return;}
       return KEY_REF.push({
         key, produto, plano:p.label, valorVenda:p.price, validadeDias:p.days,
         observacao:obs, status:'available', clienteEmail:'', clienteNome:'',
@@ -8307,17 +8304,9 @@ Obrigado pela compra.`;
     if(!PEDIDOS_STORAGE || typeof PEDIDOS_STORAGE.ref!=='function') throw new Error('Firebase Storage não está disponível.');
     const safeName=String(file.name||'comprovante').replace(/[^a-zA-Z0-9._-]/g,'_');
     const ref=PEDIDOS_STORAGE.ref(`pedidos/${orderId}/${Date.now()}_${safeName}`);
-    const uploadPromise=(async()=>{
-      await ref.put(file);
-      return {url:await ref.getDownloadURL(),name:file.name||safeName};
-    })();
-    const timeout=new Promise((_,reject)=>setTimeout(()=>reject(new Error('O envio do comprovante demorou mais de 15 segundos. O pedido foi salvo e o comprovante pode ser reenviado pelo painel.')),15000));
+    const uploadPromise=(async()=>{await ref.put(file);return {url:await ref.getDownloadURL(),name:file.name||safeName};})();
+    const timeout=new Promise((_,reject)=>setTimeout(()=>reject(new Error('Tempo limite de 15 segundos excedido. O pedido foi salvo e o comprovante pode ser reenviado pelo painel.')),15000));
     return await Promise.race([uploadPromise,timeout]);
-  }
-
-  async function safePurchaseLog(data){
-    try{ await db.ref('site/purchase_logs').push(data); }catch(e){ console.warn('purchase_log indisponível:',e); }
-    try{ await db.ref('site/admin_logs').push(data); }catch(e){ console.warn('admin_log indisponível:',e); }
   }
 
   async function registrarPedido(form){
@@ -8363,10 +8352,12 @@ Obrigado pela compra.`;
       // Save the order first so the admin panel receives the request even if
       // Storage rules temporarily prevent the proof upload.
       await PEDIDOS_REF.child(orderId).set(pedido);
-      await safePurchaseLog({
-        action:'ORDER_RECEIVED',event:'ORDER_RECEIVED',
-        pedidoId:orderId,targetEmail:email,produto,valor,
-        adminEmail:'SYSTEM',adminRole:'system',timestamp:new Date().toISOString(),
+      await db.ref('site/admin_logs').push({
+        action:'ORDER_RECEIVED',
+        targetEmail:email,
+        adminEmail:'SYSTEM',
+        adminRole:'system',
+        timestamp:new Date().toISOString(),
         details:`Pedido ${orderId} recebido · ${produto} · R$ ${valor!=null?Number(valor).toFixed(2):'0.00'} · comprovante ${file?.name||'não anexado'}`
       });
 
@@ -8379,10 +8370,12 @@ Obrigado pela compra.`;
           comprovanteNome:pedido.comprovanteNome,
           updatedAt:new Date().toISOString()
         });
-        await safePurchaseLog({
-          action:'ORDER_PROOF_UPLOADED',event:'ORDER_PROOF_UPLOADED',
-          pedidoId:orderId,targetEmail:email,produto,
-          adminEmail:'SYSTEM',adminRole:'system',timestamp:new Date().toISOString(),
+        await db.ref('site/admin_logs').push({
+          action:'ORDER_PROOF_UPLOADED',
+          targetEmail:email,
+          adminEmail:'SYSTEM',
+          adminRole:'system',
+          timestamp:new Date().toISOString(),
           details:`Pedido ${orderId} · comprovante ${proof.name||file?.name||'anexado'} salvo no Firebase Storage`
         });
       }catch(uploadErr){
@@ -8392,11 +8385,6 @@ Obrigado pela compra.`;
           comprovanteErro:pedido.comprovanteErro,
           updatedAt:new Date().toISOString()
         }).catch(()=>{});
-        await safePurchaseLog({
-          action:'ORDER_PROOF_FAILED',event:'ORDER_PROOF_FAILED',pedidoId:orderId,targetEmail:email,produto,
-          adminEmail:'SYSTEM',adminRole:'system',timestamp:new Date().toISOString(),
-          details:`Pedido ${orderId} · falha no comprovante: ${pedido.comprovanteErro}`
-        });
       }
 
       // Keep a local fallback so the order is still visible if Firebase rules
@@ -8417,8 +8405,7 @@ Obrigado pela compra.`;
         }).catch(()=>{});
       }
 
-      if(status){status.textContent=pedido.comprovanteErro?'Pedido registrado. O comprovante não pôde ser armazenado automaticamente; ele pode ser reenviado pelo painel. Enviando o formulário...':'Pedido registrado com comprovante. Enviando o formulário...';status.style.color=pedido.comprovanteErro?'var(--warning)':'var(--success)';}
-      if(btn){btn.innerHTML='<i class="fas fa-check"></i> Pedido registrado';}
+      if(status){status.textContent='Pedido registrado. Enviando o formulário...';status.style.color='var(--success)';}
 
       // Native submit keeps FormSubmit's existing email workflow and file attachment.
       HTMLFormElement.prototype.submit.call(form);
@@ -8457,8 +8444,8 @@ Obrigado pela compra.`;
 </script>
 
 
+<style id="kzn-v19-stock-style">.kzn-stock-progress{height:7px;background:rgba(255,255,255,.08);border-radius:99px;overflow:hidden;margin-top:9px}.kzn-stock-progress span{display:block;height:100%;background:linear-gradient(90deg,#7c3aed,#22c55e);border-radius:99px}</style>
 <style id="kzn-v17-orders-style">
-.kzn-stock-progress{height:7px;background:rgba(255,255,255,.08);border-radius:99px;overflow:hidden;margin-top:9px}.kzn-stock-progress span{display:block;height:100%;background:linear-gradient(90deg,#7c3aed,#22c55e);border-radius:99px}.kzn-order-card{position:relative}.kzn-order-card .kzn-order-email{color:#c4b5fd;font-weight:900;word-break:break-all}.kzn-order-proof{background:linear-gradient(135deg,#2563eb,#7c3aed)!important}.kzn-order-upload{background:#374151;color:#fff;border:1px solid rgba(255,255,255,.08)}.kzn-order-upload input{display:none}.kzn-order-actions .kzn-order-upload{cursor:pointer}.kzn-order-meta-banner{padding:12px;border-radius:12px;background:rgba(124,58,237,.09);border:1px solid rgba(124,58,237,.18);margin-bottom:12px}.kzn-order-meta-banner strong{color:#fff}.kzn-order-meta-banner span{color:#c4b5fd;word-break:break-all}
 .kzn-orders-card{overflow:hidden}
 .kzn-orders-toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .kzn-orders-toolbar input{flex:1;min-width:220px}
@@ -8585,10 +8572,9 @@ Obrigado pela compra.`;
         const email=E(x.email||x.cliente||'-');
         const product=E(x.produto||x.plano||x.nomeProduto||'-');
         const proof=x.comprovanteUrl
-          ? `<a class="kzn-order-proof" href="${E(x.comprovanteUrl)}" target="_blank" rel="noopener noreferrer"><i class="fas fa-eye"></i> Ver comprovante</a>`
-          : `<span class="kzn-order-proof" style="opacity:.6;cursor:not-allowed"><i class="fas fa-image"></i> ${x.comprovanteErro?'Comprovante não armazenado':'Sem comprovante'}</span>`;
-        const reupload=`<label class="kzn-order-upload"><i class="fas fa-upload"></i> ${x.comprovanteUrl?'Trocar comprovante':'Enviar comprovante'}<input type="file" accept="image/*,.pdf" onchange="kznReenviarComprovante('${E(x.id)}',this)"></label>`;
-        const keyBtn=owner() && planFromProduct(x.produto||x.plano)
+          ? `<a class="kzn-order-proof" href="${E(x.comprovanteUrl)}" target="_blank" rel="noopener noreferrer"><i class="fas fa-image"></i> Ver comprovante</a>`
+          : `<button class="kzn-order-proof" type="button" disabled><i class="fas fa-image"></i> Sem comprovante</button>`;
+        const keyBtn=planFromProduct(x.produto||x.plano)
           ? `<button class="kzn-order-key" type="button" onclick="kznAbrirPedidoKey('${E(x.id)}')"><i class="fas fa-key"></i> ${String(x.status||'').toLowerCase().includes('key')?'Trocar/reenviar Key':'Enviar Key'}</button>`
           : '';
         const status=x.status||'Recebido';
@@ -8597,7 +8583,6 @@ Obrigado pela compra.`;
             <div><div class="kzn-order-id">${id}</div><div class="kzn-order-date">${fmtDate(x.createdAt||x.timestamp||x.data)}</div></div>
             <span class="kzn-order-status ${statusClass(status)}">${E(status)}</span>
           </div>
-          <div class="kzn-order-meta-banner"><strong><i class="fas fa-envelope"></i> E-mail do cliente</strong><span class="kzn-order-email">${email}</span></div>
           <div class="kzn-order-grid">
             <div class="kzn-order-field"><label>Cliente</label><strong>${E(x.nome||'Não informado')}</strong><span>${email}</span></div>
             <div class="kzn-order-field"><label>WhatsApp</label><span>${E(x.whatsapp||'-')}</span></div>
@@ -8610,9 +8595,9 @@ Obrigado pela compra.`;
             </div>
             <div class="kzn-order-field full"><label>Mensagem</label><span class="${x.mensagem?'':'kzn-muted'}">${E(x.mensagem||'Sem mensagem')}</span></div>
             <div class="kzn-order-field full"><label>Comprovante</label><span>${x.comprovanteNome?E(x.comprovanteNome):'Não anexado'}</span></div>
-            ${x.key?`<div class="kzn-order-field full"><label>Key enviada</label><strong>${owner()?E(x.key):'••••••••••••'}</strong><span>${E(x.keyPlano||'')} · ${fmtDate(x.keyIssuedAt)}${owner()?'':' · Somente o proprietário pode visualizar a Key'}</span></div>`:''}
+            ${x.key?`<div class="kzn-order-field full"><label>Key enviada</label><strong>${E(x.key)}</strong><span>${E(x.keyPlano||'')} · ${fmtDate(x.keyIssuedAt)}</span></div>`:''}
           </div>
-          <div class="kzn-order-actions">${proof}${reupload}${keyBtn}</div>
+          <div class="kzn-order-actions">${proof}${keyBtn}</div>
         </article>`;
       }).join('');
     }catch(e){
@@ -8620,24 +8605,6 @@ Obrigado pela compra.`;
       el.innerHTML='<div class="kzn-empty">Não foi possível carregar os pedidos. Verifique as regras do Firebase.</div>';
     }
   }
-
-  window.kznReenviarComprovante=async function(id,input){
-    if(!(await canAdmin()))return alert('🚫 Acesso restrito.');
-    const file=input?.files?.[0]; if(!file)return;
-    try{
-      if(file.size>5*1024*1024)throw new Error('O comprovante deve ter no máximo 5 MB.');
-      if(!firebase.storage)throw new Error('Firebase Storage não está disponível.');
-      const path=`pedidos/${id}/${Date.now()}_${String(file.name).replace(/[^a-zA-Z0-9._-]/g,'_')}`;
-      const ref=firebase.storage().ref(path);
-      const uploadPromise=(async()=>{await ref.put(file);return await ref.getDownloadURL()})();
-      const url=await Promise.race([uploadPromise,new Promise((_,rej)=>setTimeout(()=>rej(new Error('Tempo limite de 15 segundos excedido.')),15000))]);
-      const snap=await ORDERS.child(id).once('value'); const p=snap.val()||{};
-      await ORDERS.child(id).update({comprovanteUrl:url,comprovanteNome:file.name,comprovantePath:path,comprovanteErro:'',updatedAt:new Date().toISOString()});
-      await LOGS.push({action:'ORDER_PROOF_REUPLOADED',targetEmail:p.email||'',adminEmail:currentEmail(),adminRole:currentEmail()===OWNER?'owner':'admin',timestamp:new Date().toISOString(),details:`Pedido ${id} · comprovante atualizado: ${file.name}`}).catch(()=>{});
-      alert('✅ Comprovante salvo.'); render();
-    }catch(e){alert('❌ Não foi possível salvar o comprovante: '+e.message)}
-    finally{if(input)input.value='';}
-  };
 
   window.renderAdminCompras=render;
 
@@ -8652,7 +8619,6 @@ Obrigado pela compra.`;
         adminRole:currentEmail()===OWNER?'owner':'admin',timestamp:new Date().toISOString(),
         details:`Pedido ${id} · ${p.produto||'-'} · ${p.status||'Recebido'} → ${status}`
       });
-      await db.ref('site/purchase_logs').push({event:'STATUS_CHANGED',action:'ORDER_STATUS_CHANGED',pedidoId:id,email:p.email||'',produto:p.produto||'',fromStatus:p.status||'Recebido',toStatus:status,adminEmail:currentEmail(),timestamp:new Date().toISOString()}).catch(()=>{});
       if(p.email){
         await NOTIFS.child(SAN(p.email)).push({
           title:`Atualização do pedido ${id}`,
@@ -8746,7 +8712,7 @@ Pedido: ${activeOrderId}`;
       // Also log a purchase-specific event for future auditing.
       await db.ref('site/purchase_logs').push({
         event:'KEY_ISSUED',pedidoId:activeOrderId,email:em,produto:activeOrder.produto,
-        keyId:kid,key:live.key?String(live.key).slice(0,4)+'••••'+String(live.key).slice(-4):'',status:'Key enviada',adminEmail:currentEmail(),timestamp:issuedAt
+        keyId:kid,key:live.key,status:'Key enviada',adminEmail:currentEmail(),timestamp:issuedAt
       }).catch(()=>{});
       kznFecharPedidoKey();
       alert('✅ Key enviada com sucesso para a notificação do cliente.');
@@ -8782,47 +8748,8 @@ Pedido: ${activeOrderId}`;
     fillPurchaseForms();
     setTimeout(fillPurchaseForms,700);
     setTimeout(fillPurchaseForms,1800);
-    const emailObserver=new MutationObserver(fillPurchaseForms);
-    emailObserver.observe(document.body,{subtree:true,childList:true});
   });
   window.addEventListener('load',()=>{fillPurchaseForms();setTimeout(render,300)});
-})();
-</script>
-
-
-<script id="kzn-v18-purchase-logs">
-(function(){
-  const PURCHASE_LOGS=db.ref('site/purchase_logs');
-  const ADMIN_LOGS=db.ref('site/admin_logs');
-  const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const cur=()=>{let u=window.usuarioLogado||null;try{if(!u)u=JSON.parse(localStorage.getItem('kzn_usuario_logado')||'null')}catch(e){}return String(u?.email||'').toLowerCase()};
-  const can=async()=>{const e=cur();if(!e)return false;if(e==='gabriel6061yt@gmail.com')return true;try{const s=await db.ref('chat/admins').once('value');return Object.values(s.val()||{}).some(a=>String(a?.email||'').toLowerCase()===e&&a?.ativo===true)}catch(e){return false}};
-  const fmt=v=>{try{return v?new Date(v).toLocaleString('pt-BR'):'-'}catch(e){return '-'}};
-  async function renderLogs(){
-    const el=document.getElementById('admLogs');if(!el)return;
-    if(!(await can())){el.innerHTML='<div class="empty-state">Acesso restrito a administradores.</div>';return}
-    el.innerHTML='<div class="kzn-empty"><i class="fas fa-spinner fa-spin"></i> Carregando logs...</div>';
-    try{
-      const [a,p]=await Promise.all([ADMIN_LOGS.once('value'),PURCHASE_LOGS.once('value')]);
-      const all=[...Object.entries(a.val()||{}).map(([id,x])=>({id,...x,_source:'admin'})),...Object.entries(p.val()||{}).map(([id,x])=>({id,...x,_source:'purchase'}))]
-        .sort((x,y)=>String(y.timestamp||y.createdAt||'').localeCompare(String(x.timestamp||x.createdAt||''))).slice(0,200);
-      if(!all.length){el.innerHTML='<div class="empty-state">Nenhum log registrado.</div>';return}
-      el.innerHTML=all.map(x=>{
-        const action=x.action||x.event||'EVENT';
-        const email=x.targetEmail||x.email||'';
-        const detail=x.details||`${x.produto||''}${x.pedidoId?' · Pedido '+x.pedidoId:''}`;
-        const tag=x._source==='purchase'?'COMPRA':'ADMIN';
-        return `<div class="owner-log"><strong>${esc(tag)} · ${esc(action)}</strong> — ${esc(email)}</div><small>${esc(fmt(x.timestamp||x.createdAt))} · ${esc(detail)}</small>`;
-      }).join('');
-    }catch(e){console.error(e);el.innerHTML='<div class="empty-state">Não foi possível carregar os logs.</div>'}
-  }
-  const old=window.mudarAbaAdmin;
-  window.mudarAbaAdmin=function(view){
-    if(typeof old==='function')old(view);
-    setTimeout(()=>{if(view==='logs')renderLogs()},120);
-  };
-  window.kznRenderPurchaseLogs=renderLogs;
-  document.addEventListener('DOMContentLoaded',()=>setTimeout(()=>{if(document.getElementById('adminViewLogs')?.classList.contains('active'))renderLogs()},500));
 })();
 </script>
 
