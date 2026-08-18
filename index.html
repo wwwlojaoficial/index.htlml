@@ -2863,6 +2863,113 @@
 .admin-help{color:var(--text-muted);font-size:.78rem;line-height:1.6;margin:0 0 14px}.owner-log-list{max-height:420px;overflow:auto}
 @media(max-width:800px){.admin-stats{grid-template-columns:repeat(2,1fr)}.admin-overview-grid{grid-template-columns:1fr}.admin-toolbar{flex-wrap:wrap}.admin-search{min-width:100%}}
 @media(max-width:480px){.admin-shell{width:calc(100% - 12px);border-radius:16px}.admin-head{padding:16px}.admin-stats{padding:10px;gap:7px}.admin-view{padding:11px}.admin-nav{padding:0 10px 10px}.admin-quick-actions{grid-template-columns:1fr}.admin-stat{padding:10px}.admin-stat-icon{width:34px;height:34px}.admin-action-btn{flex:1}.admin-table-wrap{max-height:360px}}
+
+/* ===== KZN V5 — ADMIN CONTROL + AUTO TRASH FORM PROFESSIONAL ===== */
+.admin-floating-toggle{
+    display:none;
+    position:fixed!important;
+    left:18px!important;
+    bottom:142px!important;
+    width:56px!important;
+    height:48px!important;
+    min-width:56px!important;
+    padding:0 12px!important;
+    z-index:10040!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:7px!important;
+    border:1px solid rgba(168,85,247,.8)!important;
+    border-radius:14px!important;
+    background:linear-gradient(135deg,#25103a,#6d28d9)!important;
+    color:#fff!important;
+    box-shadow:0 10px 30px rgba(0,0,0,.45),0 0 24px rgba(168,85,247,.24)!important;
+}
+.admin-floating-toggle span{display:none!important}
+.admin-floating-toggle.open{background:linear-gradient(135deg,#dc2626,#7c3aed)!important}
+.chat-toggle-btn{z-index:10039!important}
+.btn-whatsapp-fixo{z-index:10038!important}
+
+/* Auto Trash purchase form */
+.purchase-form-auto-trash{
+    max-width:920px!important;
+    margin:30px auto 0!important;
+    padding:0!important;
+}
+.purchase-form-auto-trash .container{max-width:920px!important;padding:0!important}
+.purchase-form-auto-trash .section-header{
+    margin-bottom:18px!important;
+    padding:0 8px;
+}
+.purchase-form-auto-trash .section-header h2{
+    font-size:clamp(1.45rem,4vw,2rem)!important;
+    line-height:1.2!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:10px!important;
+}
+.purchase-form-auto-trash .section-header h2 i{color:#a855f7!important}
+.purchase-form-auto-trash .section-header p{max-width:620px;margin:8px auto 0!important}
+.purchase-form-auto-trash .form-container{
+    max-width:760px!important;
+    padding:22px!important;
+    margin:0 auto!important;
+    background:linear-gradient(145deg,rgba(20,14,29,.98),rgba(12,15,24,.98))!important;
+    border:1px solid rgba(168,85,247,.42)!important;
+    border-radius:20px!important;
+    box-shadow:0 18px 55px rgba(0,0,0,.3),0 0 35px rgba(168,85,247,.08)!important;
+}
+.purchase-form-auto-trash .form-group{
+    margin-bottom:14px!important;
+}
+.purchase-form-auto-trash .form-group label{
+    display:flex!important;
+    align-items:center!important;
+    gap:8px!important;
+    font-size:.84rem!important;
+    margin-bottom:6px!important;
+}
+.purchase-form-auto-trash .form-group label i{width:18px;text-align:center;color:#c084fc}
+.purchase-form-auto-trash input,
+.purchase-form-auto-trash select,
+.purchase-form-auto-trash textarea{
+    box-sizing:border-box!important;
+    width:100%!important;
+    min-height:44px!important;
+    padding:11px 13px!important;
+    border-radius:11px!important;
+    background:#0b1220!important;
+    color:#fff!important;
+    border:1px solid rgba(255,255,255,.11)!important;
+    outline:none!important;
+}
+.purchase-form-auto-trash textarea{min-height:95px!important;resize:vertical!important}
+.purchase-form-auto-trash input[type=file]{padding:8px!important;font-size:.82rem!important}
+.purchase-form-auto-trash input:focus,
+.purchase-form-auto-trash select:focus,
+.purchase-form-auto-trash textarea:focus{
+    border-color:#a855f7!important;
+    box-shadow:0 0 0 3px rgba(168,85,247,.10)!important;
+}
+.purchase-form-auto-trash .auto-product-readonly{
+    background:linear-gradient(135deg,rgba(168,85,247,.12),rgba(124,58,237,.08))!important;
+    border-color:rgba(168,85,247,.35)!important;
+    color:#d8b4fe!important;
+    font-weight:700!important;
+}
+.purchase-form-auto-trash .btn-submit{
+    min-height:48px!important;
+    margin-top:5px!important;
+    background:linear-gradient(135deg,#a855f7,#7c3aed)!important;
+    border-radius:12px!important;
+    box-shadow:0 8px 25px rgba(168,85,247,.22)!important;
+}
+.purchase-form-auto-trash .btn-submit:hover{transform:translateY(-1px)!important}
+@media(max-width:560px){
+    .admin-floating-toggle{left:12px!important;bottom:142px!important;width:52px!important;height:46px!important}
+    .purchase-form-auto-trash{padding:0 8px!important}
+    .purchase-form-auto-trash .form-container{padding:16px!important;border-radius:16px!important}
+}
 </style>
 </meta></head>
 <body>
@@ -3431,7 +3538,7 @@
 <p>Este produto pertence exclusivamente à categoria <strong>Auto Trash</strong>. O carrinho identifica a categoria para evitar mistura indevida de produtos.</p>
 </div>
 </div>
-<div class="purchase-form-card purchase-form-auto-trash"><div class="container"><div class="section-header"><h2><i class="fas fa-shopping-cart"></i> Formulário de compra — Auto Trash</h2><p>Formulário exclusivo do Auto Trash. Ele não aparece nas abas Classic ou Era.</p></div><form action="https://formsubmit.co/gabriel6061yt@gmail.com" enctype="multipart/form-data" id="formContatoAutoTrash" method="POST"><input name="_captcha" type="hidden" value="false"/><input name="_template" type="hidden" value="table"/><input name="_subject" type="hidden" value="🔥 NOVO PEDIDO - AUTO TRASH"/><div class="form-group"><label><i class="fas fa-envelope"></i> Seu E-mail <span style="color:var(--primary);">*</span></label><input name="Email" placeholder="Digite seu e-mail..." required="True" type="email"/></div><div class="form-group"><label><i class="fas fa-user"></i> Seu Nome</label><input name="Nome" placeholder="Digite seu nome completo..." required="True" type="text"/></div><div class="form-group"><label><i class="fab fa-whatsapp"></i> WhatsApp</label><input name="WhatsApp" placeholder="(DDD) 9 9999-9999" required="True" type="text"/></div><div class="form-group"><label><i class="fas fa-trash-alt"></i> Produto</label><input name="Produto" readonly="True" type="text" value="Auto Trash Automatic - R$ 200,00"/></div><div class="form-group"><label><i class="fas fa-image"></i> Comprovante PIX <span style="color:var(--primary);">*</span></label><input accept="image/*,.pdf" name="Comprovante" required="True" type="file"/></div><div class="form-group"><label><i class="fas fa-pencil-alt"></i> Mensagem (opcional)</label><textarea name="Mensagem" placeholder="Digite sua mensagem aqui..." rows="3"></textarea></div><button class="btn-submit" type="submit"><i class="fas fa-paper-plane"></i> Enviar Pedido - Auto Trash</button><div class="form-status" id="formStatusAutoTrash"></div></form></div></div></div>
+<div class="purchase-form-card purchase-form-auto-trash"><div class="container"><div class="section-header"><h2><i class="fas fa-shopping-cart"></i> Formulário de compra — Auto Trash</h2><p>Formulário exclusivo do Auto Trash. Ele não aparece nas abas Classic ou Era.</p></div><div class="form-container"><form action="https://formsubmit.co/gabriel6061yt@gmail.com" enctype="multipart/form-data" id="formContatoAutoTrash" method="POST"><input name="_captcha" type="hidden" value="false"/><input name="_template" type="hidden" value="table"/><input name="_subject" type="hidden" value="🔥 NOVO PEDIDO - AUTO TRASH"/><div class="form-group"><label><i class="fas fa-envelope"></i> Seu E-mail <span style="color:var(--primary);">*</span></label><input name="Email" placeholder="Digite seu e-mail..." required="True" type="email"/></div><div class="form-group"><label><i class="fas fa-user"></i> Seu Nome</label><input name="Nome" placeholder="Digite seu nome completo..." required="True" type="text"/></div><div class="form-group"><label><i class="fab fa-whatsapp"></i> WhatsApp</label><input name="WhatsApp" placeholder="(DDD) 9 9999-9999" required="True" type="text"/></div><div class="form-group"><label><i class="fas fa-trash-alt"></i> Produto</label><input class="auto-product-readonly" name="Produto" readonly="True" type="text" value="Auto Trash Automatic - R$ 200,00"/></div><div class="form-group"><label><i class="fas fa-image"></i> Comprovante PIX <span style="color:var(--primary);">*</span></label><input accept="image/*,.pdf" name="Comprovante" required="True" type="file"/></div><div class="form-group"><label><i class="fas fa-pencil-alt"></i> Mensagem (opcional)</label><textarea name="Mensagem" placeholder="Digite sua mensagem aqui..." rows="3"></textarea></div><button class="btn-submit" type="submit"><i class="fas fa-paper-plane"></i> Enviar Pedido - Auto Trash</button><div class="form-status" id="formStatusAutoTrash"></div></form></div></div></div></div>
 </div></section>
 <!-- ===== PERFIL ===== -->
 <section class="section dark" id="perfil">
@@ -5961,7 +6068,14 @@ window.copiarPixEra = function() {
     const OWNER_EMAIL = 'gabriel6061yt@gmail.com';
 
     function ownerLogged(){
-        const u = window.usuarioLogado;
+        let u = null;
+        try {
+            if (typeof usuarioLogado !== 'undefined' && usuarioLogado) u = usuarioLogado;
+        } catch(e) {}
+        if (!u) u = window.usuarioLogado || null;
+        if (!u) {
+            try { u = JSON.parse(localStorage.getItem('kzn_usuario_logado') || 'null'); } catch(e) {}
+        }
         return !!u && String(u.email || '').trim().toLowerCase() === OWNER_EMAIL;
     }
 
@@ -6003,7 +6117,8 @@ window.copiarPixEra = function() {
         const section = document.getElementById('central-proprietario');
         if (!btn) return;
         const show = ownerLogged();
-        btn.style.display = show ? 'flex' : 'none';
+        btn.style.setProperty('display', show ? 'flex' : 'none', 'important');
+        btn.setAttribute('aria-hidden', show ? 'false' : 'true');
         if (!show) {
             btn.classList.remove('open');
             section?.classList.remove('admin-visible');
@@ -6045,6 +6160,7 @@ window.copiarPixEra = function() {
         fecharChatInicialmente();
         limparOwnerNavAntigo();
         setTimeout(atualizarBotaoAdmin, 120);
+        setTimeout(atualizarBotaoAdmin, 500);
         // Guard against legacy code reopening the chat on initial page load.
         setTimeout(fecharChatInicialmente, 250);
         setTimeout(fecharChatInicialmente, 1000);
