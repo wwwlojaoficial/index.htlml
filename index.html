@@ -3476,6 +3476,66 @@
 }
 </style>
 
+
+<style id="kzn-v14-final-fixes">
+/* ===== KZN V14 — MOBILE FLOATING BUTTONS ===== */
+.admin-floating-toggle,
+.chat-toggle-btn{
+  width:58px!important;
+  height:58px!important;
+  min-width:58px!important;
+  min-height:58px!important;
+  padding:0!important;
+  border-radius:50%!important;
+  display:none;
+  align-items:center!important;
+  justify-content:center!important;
+  box-sizing:border-box!important;
+  border:2px solid rgba(255,235,130,.95)!important;
+  color:#fff!important;
+  font-size:1.25rem!important;
+  line-height:1!important;
+  overflow:hidden!important;
+}
+.admin-floating-toggle{
+  background:radial-gradient(circle at 35% 30%,#fff3a8 0,#ffd23c 22%,#f2a900 58%,#a86400 100%)!important;
+  box-shadow:0 0 0 2px rgba(255,210,55,.25),0 8px 28px rgba(0,0,0,.45),0 0 28px rgba(255,190,0,.75)!important;
+}
+.chat-toggle-btn{
+  background:radial-gradient(circle at 35% 30%,#e9f8ff 0,#7dd3fc 22%,#38bdf8 58%,#0878b8 100%)!important;
+  border-color:rgba(186,230,253,.98)!important;
+  box-shadow:0 0 0 2px rgba(125,211,252,.28),0 8px 28px rgba(0,0,0,.45),0 0 28px rgba(56,189,248,.72)!important;
+}
+.admin-floating-toggle:hover,.chat-toggle-btn:hover{
+  transform:scale(1.07)!important;
+  filter:brightness(1.08)!important;
+}
+.admin-floating-toggle.open{
+  background:radial-gradient(circle at 35% 30%,#fff3a8 0,#ffc928 22%,#e09a00 58%,#8b5700 100%)!important;
+}
+.admin-floating-toggle span{display:none!important}
+.admin-floating-toggle i,.chat-toggle-btn i{margin:0!important}
+.chat-toggle-btn .chat-badge{
+  top:-1px!important;
+  right:-1px!important;
+}
+/* Keep the floating controls separated and compact on phones. */
+@media(max-width:600px){
+  .admin-floating-toggle{
+    left:14px!important;
+    bottom:150px!important;
+  }
+  .chat-toggle-btn{
+    left:14px!important;
+    bottom:82px!important;
+  }
+}
+/* Profile is a standalone panel, never permanently visible over the store. */
+#perfil.profile-section,
+#perfil{
+  position:relative;
+}
+</style>
 </head>
 <body>
 <!-- ===== WHATSAPP FIXO ===== -->
@@ -7026,5 +7086,94 @@ if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.s
 })();
 </script>
 
+
+<script id="kzn-v14-profile-persistence">
+/* ===== KZN V14 — PERSIST CUSTOM PROFILE NAME =====
+   Google authentication may restore the provider's original name on reload.
+   Keep the user's chosen store name in a separate local record keyed by email,
+   then apply it after authentication/profile loading without changing the email. */
+(function(){
+  const KEY='kzn_custom_profile_names';
+
+  function readMap(){
+    try{return JSON.parse(localStorage.getItem(KEY)||'{}')||{};}catch(e){return {};}
+  }
+  function emailKey(email){
+    return String(email||'').trim().toLowerCase();
+  }
+  function getCustomName(email){
+    const map=readMap(), key=emailKey(email);
+    return key && map[key] ? String(map[key]) : '';
+  }
+  function applyName(){
+    let u=null;
+    try{u=JSON.parse(localStorage.getItem('kzn_usuario_logado')||'null');}catch(e){}
+    if(!u || !u.email) return;
+    const custom=getCustomName(u.email);
+    if(custom){
+      u.nome=custom;
+      try{localStorage.setItem('kzn_usuario_logado',JSON.stringify(u));}catch(e){}
+      try{if(typeof usuarioLogado!=='undefined') usuarioLogado=u;}catch(e){}
+      const ids=['userDisplay','profileName','editNome'];
+      ids.forEach(id=>{const el=document.getElementById(id);if(el)el.value!==undefined&&id==='editNome'?(el.value=custom):(el.textContent=custom);});
+      const avatarText=document.getElementById('avatarProfileText');
+      if(avatarText && !document.getElementById('avatarProfileImage')?.src) avatarText.textContent=custom.charAt(0).toUpperCase();
+    }
+  }
+
+  window.kznApplyPersistentProfileName=applyName;
+
+  const originalSave=window.salvarEdicaoPerfil;
+  window.salvarEdicaoPerfil=function(){
+    const input=document.getElementById('editNome');
+    const nome=String(input?.value||'').trim();
+    if(!nome){alert('⚠️ Digite um nome válido.');return;}
+    let u=null;
+    try{u=JSON.parse(localStorage.getItem('kzn_usuario_logado')||'null');}catch(e){}
+    if(!u?.email){alert('🔒 Nenhum usuário logado.');return;}
+
+    const key=emailKey(u.email);
+    const map=readMap();
+    map[key]=nome;
+    try{localStorage.setItem(KEY,JSON.stringify(map));}catch(e){}
+
+    /* Run the existing save routine too, preserving all current behavior. */
+    try{
+      if(typeof originalSave==='function') originalSave();
+    }catch(e){}
+
+    try{
+      u.nome=nome;
+      localStorage.setItem('kzn_usuario_logado',JSON.stringify(u));
+      if(typeof usuarioLogado!=='undefined') usuarioLogado=u;
+    }catch(e){}
+
+    applyName();
+  };
+
+  /* Apply after the existing auth/profile code has had time to initialize. */
+  document.addEventListener('DOMContentLoaded',()=>{
+    applyName();
+    setTimeout(applyName,250);
+    setTimeout(applyName,1000);
+    setTimeout(applyName,2500);
+  });
+  window.addEventListener('load',()=>{
+    applyName();
+    setTimeout(applyName,500);
+  });
+
+  /* If the site changes the logged-in object later, re-apply the custom name. */
+  const oldSetLoggedIn=window.setLoggedIn;
+  if(typeof oldSetLoggedIn==='function'){
+    window.setLoggedIn=function(){
+      const r=oldSetLoggedIn.apply(this,arguments);
+      setTimeout(applyName,0);
+      setTimeout(applyName,300);
+      return r;
+    };
+  }
+})();
+</script>
 </body>
 </html>
