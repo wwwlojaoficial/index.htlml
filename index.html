@@ -4191,7 +4191,7 @@
 <button class="admin-nav-btn" data-admin-view="notificacoes" onclick="mudarAbaAdmin('notificacoes')"><i class="fas fa-paper-plane"></i> Notificações</button>
 <button class="admin-nav-btn" data-admin-view="logs" onclick="mudarAbaAdmin('logs')"><i class="fas fa-list-alt"></i> Logs</button>
 <button class="admin-nav-btn" data-admin-view="admins" onclick="mudarAbaAdmin('admins')"><i class="fas fa-user-shield"></i> Administradores</button>
-<button class="admin-nav-btn" data-admin-view="compras" onclick="mudarAbaAdmin('compras')"><i class="fas fa-shopping-cart"></i> Compras</button>
+<button class="admin-nav-btn" data-admin-view="compras" onclick="mudarAbaAdmin('compras')"><i class="fas fa-clipboard-list"></i> Pedidos</button>
 <button class="admin-nav-btn" data-admin-view="keys" onclick="mudarAbaAdmin('keys')"><i class="fas fa-key"></i> Keys</button>
 <button class="admin-nav-btn owner-only-feature" data-admin-view="keyestoque" onclick="mudarAbaAdmin('keyestoque')" style="display:none"><i class="fas fa-layer-group"></i> Estoque de Keys</button>
 <button class="admin-nav-btn" data-admin-view="taxas" onclick="mudarAbaAdmin('taxas')"><i class="fas fa-money-bill-transfer"></i> Pagar Taxa de Script</button>
@@ -4209,7 +4209,7 @@
 </div>
 <div class="admin-card"><div class="admin-card-title"><i class="fas fa-store"></i><span>Resumo da loja</span></div>
 <div class="admin-mini-list">
-<div><span>Compras registradas</span><strong id="admCompras">0</strong></div>
+<div><span>Pedidos registrados</span><strong id="admCompras">0</strong></div>
 <div><span>Keys cadastradas</span><strong id="admKeys">0</strong></div>
 <div><span>Status</span><strong class="admin-online">ONLINE</strong></div>
 </div>
@@ -4243,9 +4243,9 @@
 </div>
 <div class="admin-view" id="adminViewCompras">
   <div class="admin-card">
-    <div class="admin-card-title"><i class="fas fa-shopping-cart"></i><span>Compras registradas</span></div>
+    <div class="admin-card-title"><i class="fas fa-shopping-cart"></i><span>Pedidos registrados</span></div>
     <div class="admin-toolbar"><input id="admBuscaCompra" type="search" placeholder="Pesquisar pedido, e-mail ou produto..." oninput="renderAdminCompras()"></div>
-    <div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>Pedido</th><th>Cliente</th><th>Produto</th><th>Valor</th><th>Data</th><th>Status</th></tr></thead><tbody id="admComprasTabela"></tbody></table></div>
+    <div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>Pedido</th><th>Cliente</th><th>Produto</th><th>Valor</th><th>Data</th><th>Status</th><th>Comprovante</th></tr></thead><tbody id="admComprasTabela"></tbody></table></div>
   </div>
 </div>
 <div class="admin-view" id="adminViewKeys">
@@ -4340,13 +4340,20 @@
       <div class="kzn-key-panel">
         <h3>Registrar pagamento da taxa</h3>
         <p>Informe a venda, a Key entregue e o comprovante do PIX usado para pagar o fornecedor.</p>
+        <div class="kzn-fee-payee">
+          <div><strong>Destinatário da taxa</strong><span>Zapo — dono do script</span></div>
+          <div class="kzn-fee-pix-row"><code id="kznTaxaPixKey">7d23dda5-ef7e-430a-b7a3-ed28504e515d</code><button type="button" class="kzn-key-btn secondary" onclick="kznCopiarPixTaxa()"><i class="fas fa-copy"></i> Copiar PIX</button></div>
+        </div>
         <form class="kzn-key-form" onsubmit="kznRegistrarTaxa(event)">
           <div><label>Descrição / produto</label><input id="kznTaxaDescricao" required placeholder="Mod Simples R$ 30"></div>
           <div class="kzn-key-row"><div><label>Key do usuário</label><input id="kznTaxaKey" required placeholder="KZN-... "></div><div><label>Valor da venda</label><input id="kznTaxaVenda" type="number" step="0.01" min="0" required placeholder="30" oninput="kznTaxaAuto()"></div></div>
           <div class="kzn-key-row"><div><label>Taxa a pagar</label><input id="kznTaxaValor" type="number" step="0.01" min="0" required placeholder="5"><div id="kznTaxaPreview" class="kzn-fee-preview">Informe o valor da venda.</div></div><div><label>Cliente (e-mail)</label><input id="kznTaxaCliente" type="email" placeholder="cliente@email.com"></div></div>
-          <div><label>Comprovante PIX</label><input id="kznTaxaComprovante" type="file" accept="image/*,.pdf"></div>
-          <div id="kznTaxaArquivoNome" class="admin-help">O comprovante selecionado será registrado junto ao pagamento. Para preservar espaço, o arquivo não será salvo dentro do HTML.</div>
-          <button class="kzn-key-btn" type="submit"><i class="fas fa-file-invoice-dollar"></i> Registrar pagamento</button>
+          <div><label>Comprovante PIX para Zapo</label><input id="kznTaxaComprovante" type="file" accept="image/*,.pdf" onchange="kznAtualizarArquivoTaxa()"></div>
+          <div id="kznTaxaArquivoNome" class="admin-help">Selecione o comprovante. Ele será salvo no Firebase Storage e poderá ser compartilhado pelo botão abaixo.</div>
+          <div class="kzn-fee-share-row">
+            <button type="button" class="kzn-key-btn secondary" onclick="kznCompartilharComprovante()"><i class="fas fa-share-alt"></i> Compartilhar com Zapo</button>
+            <button class="kzn-key-btn" type="submit"><i class="fas fa-file-invoice-dollar"></i> Registrar pagamento</button>
+          </div>
         </form>
         <div class="kzn-fee-preview">Taxas configuradas: R$ 30 → <strong>R$ 5</strong> · R$ 50 → <strong>R$ 10</strong> · R$ 200 → <strong>R$ 20</strong> · R$ 300 → <strong>R$ 30</strong>.</div>
       </div>
@@ -6925,7 +6932,16 @@ window.copiarPixEra = function() {
   const SAN=e=>String(e||'').toLowerCase().replace(/[.#$\[\]\/]/g,'_');
   let adminAccess=false, ownerAccess=false;
 
-  function currentEmail(){return String(window.usuarioLogado?.email||usuarioLogado?.email||'').trim().toLowerCase();}
+  function currentEmail(){
+    let u=window.usuarioLogado||null;
+    try{
+      if(!u && typeof usuarioLogado!=='undefined' && usuarioLogado) u=usuarioLogado;
+    }catch(e){}
+    if(!u){
+      try{u=JSON.parse(localStorage.getItem('kzn_usuario_logado')||'null');}catch(e){}
+    }
+    return String(u?.email||'').trim().toLowerCase();
+  }
   function isOwner(){return currentEmail()===OWNER_EMAIL;}
   function checkAccess(cb){
     if(isOwner()){ownerAccess=true;adminAccess=true;cb(true,true);return;}
@@ -7326,10 +7342,39 @@ if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.s
     }));
   }
 
-  function renderAdminCompras(){
-    const t=document.getElementById('admComprasTabela');if(!t)return;const q=(document.getElementById('admBuscaCompra')?.value||'').toLowerCase();
-    const a=arr('kzn_compras').filter(x=>JSON.stringify(x).toLowerCase().includes(q));
-    t.innerHTML=a.length?a.map((x,i)=>`<tr><td>${safe(x.id||x.pedido||('#'+(i+1)))}</td><td>${safe(x.email||x.cliente||'-')}</td><td>${safe(x.produto||x.nome||'-')}</td><td>${safe(x.valor!=null?'R$ '+x.valor:'-')}</td><td>${safe(x.data||x.timestamp||'-')}</td><td>${safe(x.status||'Pendente')}</td></tr>`).join(''):'<tr><td colspan="6">Nenhuma compra encontrada.</td></tr>';
+  async function renderAdminCompras(){
+    const t=document.getElementById('admComprasTabela');if(!t)return;
+    if(!window.kznCanAccessAdmin?.()){t.innerHTML='<tr><td colspan="7">Acesso restrito.</td></tr>';return;}
+    const q=(document.getElementById('admBuscaCompra')?.value||'').toLowerCase().trim();
+    t.innerHTML='<tr><td colspan="7">Carregando pedidos...</td></tr>';
+    try{
+      const snap=await db.ref('site/pedidos').once('value');
+      const remote=Object.entries(snap.val()||{}).map(([id,x])=>({id,...x}));
+      const local=arr('kzn_compras').map((x,i)=>({id:x.id||x.pedido||('LOCAL-'+(i+1)),...x,_local:true}));
+      const map=new Map();
+      [...remote,...local].forEach(x=>map.set(String(x.id),x));
+      let a=[...map.values()].sort((x,y)=>String(y.createdAt||y.timestamp||y.data||'').localeCompare(String(x.createdAt||x.timestamp||x.data||'')));
+      if(q)a=a.filter(x=>JSON.stringify(x).toLowerCase().includes(q));
+      t.innerHTML=a.length?a.map((x,i)=>{
+        const comprovante=x.comprovanteUrl
+          ? `<a href="${safe(x.comprovanteUrl)}" target="_blank" rel="noopener noreferrer">Abrir</a>`
+          : (x.comprovanteNome?safe(x.comprovanteNome):'-');
+        return `<tr>
+          <td>${safe(x.pedidoId||x.id||('#'+(i+1)))}</td>
+          <td>${safe(x.email||x.cliente||'-')}<br><small>${safe(x.nome||'')}</small></td>
+          <td>${safe(x.produto||x.plano||x.nomeProduto||'-')}</td>
+          <td>${safe(x.valor!=null?'R$ '+Number(x.valor).toFixed(2).replace('.',','):'-')}</td>
+          <td>${safe(x.createdAt?new Date(x.createdAt).toLocaleString('pt-BR'):(x.data||x.timestamp||'-'))}</td>
+          <td>${safe(x.status||'Recebido')}</td>
+          <td>${comprovante}</td>
+        </tr>`;
+      }).join(''):'<tr><td colspan="7">Nenhum pedido encontrado.</td></tr>';
+      const count=document.getElementById('admCompras');
+      if(count)count.textContent=String(a.length);
+    }catch(e){
+      console.error('Erro ao carregar pedidos:',e);
+      t.innerHTML='<tr><td colspan="7">Não foi possível carregar os pedidos do Firebase.</td></tr>';
+    }
   }
   function renderAdminKeys(){
     const t=document.getElementById('admKeysTabela');if(!t)return;const q=(document.getElementById('admBuscaKey')?.value||'').toLowerCase();
@@ -7887,6 +7932,13 @@ header #notifBtn.nav-icon-btn,
     padding-left:55px !important;
   }
 }
+  .kzn-fee-payee{margin:12px 0;padding:12px;border:1px solid rgba(139,92,246,.28);border-radius:12px;background:rgba(139,92,246,.08)}
+  .kzn-fee-payee>div:first-child{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:9px}
+  .kzn-fee-payee strong{color:#fff}.kzn-fee-payee span{color:var(--text-muted);font-size:.85rem}
+  .kzn-fee-pix-row{display:flex;gap:8px;align-items:center}.kzn-fee-pix-row code{flex:1;min-width:0;padding:9px;border-radius:8px;background:#0b1120;color:#22c55e;word-break:break-all}
+  .kzn-fee-share-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .kzn-key-btn.secondary{background:#1f2937;border:1px solid rgba(255,255,255,.1)}
+  @media(max-width:600px){.kzn-fee-payee>div:first-child{align-items:flex-start;flex-direction:column;gap:3px}.kzn-fee-pix-row,.kzn-fee-share-row{grid-template-columns:1fr;display:grid}.kzn-fee-pix-row code{width:100%;box-sizing:border-box}}
 </style>
 
 
@@ -7910,7 +7962,16 @@ header #notifBtn.nav-icon-btn,
     'KZN MENU Classic - ULTIMATE (175 dias)':{label:'ULTIMATE',price:250,days:175},
     'KZN MENU Classic - ELITE (210 dias)':{label:'ELITE',price:300,days:210}
   };
-  function email(){return String(window.usuarioLogado?.email||window.currentEmail?.()||'').trim().toLowerCase();}
+  function email(){
+    let u=window.usuarioLogado||null;
+    try{
+      if(!u && typeof usuarioLogado!=='undefined' && usuarioLogado) u=usuarioLogado;
+    }catch(e){}
+    if(!u){
+      try{u=JSON.parse(localStorage.getItem('kzn_usuario_logado')||'null');}catch(e){}
+    }
+    return String(u?.email||'').trim().toLowerCase();
+  }
   function owner(){return email()===OWNER;}
   function admin(cb){
     if(owner()){cb(true,true);return;}
@@ -8063,6 +8124,34 @@ Obrigado pela compra.`;
     }).catch(e=>alert('❌ Erro ao emitir/enviar Key: '+e.message));
   };
 
+  window.kznCopiarPixTaxa=function(){
+    const key='7d23dda5-ef7e-430a-b7a3-ed28504e515d';
+    navigator.clipboard?.writeText(key).then(()=>alert('✅ PIX do Zapo copiado.')).catch(()=>alert('PIX do Zapo: '+key));
+  };
+
+  window.kznAtualizarArquivoTaxa=function(){
+    const f=document.getElementById('kznTaxaComprovante')?.files?.[0];
+    const el=document.getElementById('kznTaxaArquivoNome');
+    if(el) el.textContent=f?`Comprovante selecionado: ${f.name}`:'Selecione o comprovante. Ele será salvo no Firebase Storage e poderá ser compartilhado pelo botão abaixo.';
+  };
+
+  window.kznCompartilharComprovante=async function(){
+    const input=document.getElementById('kznTaxaComprovante');
+    const file=input?.files?.[0];
+    if(!file){alert('⚠️ Selecione o comprovante primeiro.');return;}
+    const texto='Comprovante de pagamento de taxa para Zapo\nPIX: 7d23dda5-ef7e-430a-b7a3-ed28504e515d';
+    try{
+      if(navigator.share){
+        const data={title:'Comprovante para Zapo',text:texto};
+        if(navigator.canShare?.({files:[file]}) ) data.files=[file];
+        await navigator.share(data);
+      }else{
+        await navigator.clipboard?.writeText(texto);
+        alert('ℹ️ O navegador não oferece compartilhamento direto. O PIX foi copiado; anexe o comprovante manualmente ao contato do Zapo.');
+      }
+    }catch(e){ if(e?.name!=='AbortError') alert('❌ Não foi possível abrir o compartilhamento.'); }
+  };
+
   window.kznRegistrarTaxa=function(ev){
     ev.preventDefault();
     admin(async (ok,isOwner)=>{
@@ -8085,6 +8174,7 @@ Obrigado pela compra.`;
         }
         await ref.set({
           descricao,key,valorVenda:venda,taxaPaga:taxa,clienteEmail:cliente,
+          destinatario:'Zapo',pixDestinatario:'7d23dda5-ef7e-430a-b7a3-ed28504e515d',
           comprovanteNome:comprovante.nome,comprovanteTipo:comprovante.tipo,
           comprovanteTamanho:comprovante.tamanho,comprovanteUrl:comprovante.url,
           comprovantePath:comprovante.path,status:'registrado',createdAt:now(),
@@ -8093,7 +8183,7 @@ Obrigado pela compra.`;
         await LOG_REF2.push({
           action:'PAY_SCRIPT_FEE',targetEmail:cliente,adminEmail:email(),
           adminRole:isOwner?'owner':'admin',timestamp:now(),
-          details:`${descricao} · Key ${key} · Taxa R$ ${taxa.toFixed(2)} · comprovante ${file?.name||'não anexado'}`
+          details:`${descricao} · Key ${key} · Taxa R$ ${taxa.toFixed(2)} · destinatário Zapo · PIX 7d23dda5-ef7e-430a-b7a3-ed28504e515d · comprovante ${file?.name||'não anexado'}`
         });
         ['kznTaxaDescricao','kznTaxaKey','kznTaxaVenda','kznTaxaValor','kznTaxaCliente'].forEach(id=>document.getElementById(id).value='');
         document.getElementById('kznTaxaComprovante').value='';
@@ -8121,7 +8211,7 @@ Obrigado pela compra.`;
         const arr=Object.entries(s.val()||{}).map(([id,x])=>({id,...x})).sort((a,b)=>String(b.createdAt).localeCompare(String(a.createdAt)));
         el.innerHTML=arr.length?arr.map(x=>`<div class="kzn-log-item">
           <strong>${E(x.descricao)}</strong>
-          <small>Key: ${E(x.key||'-')} · Cliente: ${E(x.clienteEmail||'-')}<br>
+          <small>Pagamento para: ${E(x.destinatario||'Zapo')} · PIX: ${E(x.pixDestinatario||'7d23dda5-ef7e-430a-b7a3-ed28504e515d')}<br>Key: ${E(x.key||'-')} · Cliente: ${E(x.clienteEmail||'-')}<br>
           Venda: R$ ${Number(x.valorVenda||0).toFixed(2).replace('.',',')} · Taxa: R$ ${Number(x.taxaPaga||0).toFixed(2).replace('.',',')}<br>
           Comprovante: ${x.comprovanteUrl?`<a href="${E(x.comprovanteUrl)}" target="_blank" rel="noopener noreferrer">Abrir comprovante</a>`:'não anexado'}<br>
           Registrado por: ${E(x.createdBy||'-')} · ${new Date(x.createdAt).toLocaleString('pt-BR')}</small>
@@ -8171,9 +8261,158 @@ Obrigado pela compra.`;
   document.addEventListener('DOMContentLoaded',()=>{
     syncTabs();
     setTimeout(syncTabs,500);
-    setInterval(syncTabs,2500);
+    setInterval(syncTabs,5000);
   });
 })();
 </script>
+
+<script>
+/* ===== KZN V16 — PEDIDOS NO PAINEL ADMIN + FIX DE ACESSO ===== */
+(function(){
+  const PEDIDOS_REF = db.ref('site/pedidos');
+  const PEDIDOS_STORAGE = (typeof firebase !== 'undefined' && firebase.storage) ? firebase.storage() : null;
+
+  function getLoggedUser(){
+    let u=window.usuarioLogado||null;
+    try{
+      if(!u && typeof usuarioLogado!=='undefined' && usuarioLogado) u=usuarioLogado;
+    }catch(e){}
+    if(!u){
+      try{u=JSON.parse(localStorage.getItem('kzn_usuario_logado')||'null');}catch(e){}
+    }
+    return u||{};
+  }
+
+  function esc(v){
+    return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  async function uploadProof(file, orderId){
+    if(!file || !PEDIDOS_STORAGE) return {url:'',name:file?.name||''};
+    if(file.size > 5*1024*1024) throw new Error('O comprovante deve ter no máximo 5 MB.');
+    const safeName=String(file.name||'comprovante').replace(/[^a-zA-Z0-9._-]/g,'_');
+    const ref=PEDIDOS_STORAGE.ref(`pedidos/${orderId}/${Date.now()}_${safeName}`);
+    await ref.put(file);
+    return {url:await ref.getDownloadURL(),name:file.name||safeName};
+  }
+
+  async function registrarPedido(form){
+    const fd=new FormData(form);
+    const orderId='PED-'+Date.now()+'-'+Math.random().toString(36).slice(2,7).toUpperCase();
+    const email=String(fd.get('Email')||'').trim().toLowerCase();
+    const nome=String(fd.get('Nome')||'').trim();
+    const whatsapp=String(fd.get('WhatsApp')||'').trim();
+    const produto=String(fd.get('Plano')||fd.get('Produto')||'').trim();
+    const mensagem=String(fd.get('Mensagem')||'').trim();
+    const file=form.querySelector('input[name="Comprovante"]')?.files?.[0]||null;
+
+    let valor=null;
+    const m=produto.match(/R\$\s*([\d.,]+)/i);
+    if(m) valor=Number(m[1].replace(/\./g,'').replace(',','.'));
+    if(!valor && /auto trash/i.test(produto)) valor=200;
+
+    const user=getLoggedUser();
+    const pedido={
+      pedidoId:orderId,
+      email,
+      nome,
+      whatsapp,
+      produto,
+      valor,
+      mensagem,
+      status:'Recebido',
+      comprovanteNome:file?.name||'',
+      comprovanteUrl:'',
+      usuarioUid:user.uid||'',
+      usuarioCadastrado:!!user.email,
+      origem:'formulario_site',
+      createdAt:new Date().toISOString(),
+      updatedAt:new Date().toISOString()
+    };
+
+    const btn=form.querySelector('button[type="submit"]');
+    const status=form.querySelector('.form-status');
+    if(btn){btn.disabled=true;btn.dataset.originalText=btn.innerHTML;btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Enviando pedido...';}
+    if(status){status.textContent='Registrando seu pedido...';status.style.color='var(--text-muted)';}
+
+    try{
+      // Save the order first so the admin panel receives the request even if
+      // Storage rules temporarily prevent the proof upload.
+      await PEDIDOS_REF.child(orderId).set(pedido);
+
+      try{
+        const proof=await uploadProof(file,orderId);
+        pedido.comprovanteUrl=proof.url;
+        pedido.comprovanteNome=proof.name;
+        await PEDIDOS_REF.child(orderId).update({
+          comprovanteUrl:pedido.comprovanteUrl,
+          comprovanteNome:pedido.comprovanteNome,
+          updatedAt:new Date().toISOString()
+        });
+      }catch(uploadErr){
+        console.warn('Comprovante não foi enviado ao Storage:',uploadErr);
+        pedido.comprovanteErro=String(uploadErr?.message||uploadErr);
+        await PEDIDOS_REF.child(orderId).update({
+          comprovanteErro:pedido.comprovanteErro,
+          updatedAt:new Date().toISOString()
+        }).catch(()=>{});
+      }
+
+      // Keep a local fallback so the order is still visible if Firebase rules
+      // temporarily reject a write on an older deployment.
+      try{
+        const arr=JSON.parse(localStorage.getItem('kzn_compras')||'[]');
+        arr.unshift(pedido);
+        localStorage.setItem('kzn_compras',JSON.stringify(arr.slice(0,200)));
+      }catch(e){}
+
+      // If the user is logged in, also create a notification about the order.
+      if(email){
+        const safeEmail=email.toLowerCase().replace(/[.#$\[\]\/]/g,'_');
+        await db.ref('site/notificacoes').child(safeEmail).push({
+          title:'Pedido recebido',
+          message:`Recebemos seu pedido ${orderId}. Aguarde a confirmação do pagamento e a liberação da sua Key.`,
+          email,lida:false,createdAt:new Date().toISOString(),type:'order_received',pedidoId:orderId
+        }).catch(()=>{});
+      }
+
+      if(status){status.textContent='Pedido registrado. Enviando o formulário...';status.style.color='var(--success)';}
+
+      // Native submit keeps FormSubmit's existing email workflow and file attachment.
+      HTMLFormElement.prototype.submit.call(form);
+    }catch(e){
+      console.error(e);
+      if(status){status.textContent='Não foi possível registrar o pedido. Tente novamente.';status.style.color='var(--danger)';}
+      if(btn){btn.disabled=false;btn.innerHTML=btn.dataset.originalText||'Enviar Pedido';}
+      alert('❌ Erro ao registrar o pedido: '+(e.message||e));
+    }
+  }
+
+  function bindOrderForm(id){
+    const form=document.getElementById(id);
+    if(!form || form.dataset.kznOrderBound==='1')return;
+    form.dataset.kznOrderBound='1';
+    form.addEventListener('submit',function(ev){
+      ev.preventDefault();
+      registrarPedido(form);
+    });
+  }
+
+  function refreshAdminOrders(){
+    if(typeof window.renderAdminCompras==='function') window.renderAdminCompras();
+  }
+
+  document.addEventListener('DOMContentLoaded',function(){
+    bindOrderForm('formContato');
+    bindOrderForm('formContatoAutoTrash');
+    setTimeout(refreshAdminOrders,800);
+  });
+
+  // Re-bind if the page dynamically restores/changes the forms.
+  setTimeout(()=>{bindOrderForm('formContato');bindOrderForm('formContatoAutoTrash');},1500);
+  window.kznRegistrarPedido=registrarPedido;
+})();
+</script>
+
 </body>
 </html>
