@@ -2497,6 +2497,293 @@
 /* ===== MEGA ATUALIZAÇÃO V2 ===== */
 .tab-btn.auto-trash{border-color:#a855f7!important;color:#c084fc!important}.tab-btn.auto-trash.active{background:linear-gradient(135deg,#7e22ce,#a855f7)!important;color:#fff!important}
 .auto-trash-notice{border-color:#a855f7!important;background:rgba(168,85,247,.08)!important}.owner-section{background:linear-gradient(180deg,rgba(17,24,39,.98),rgba(8,12,20,.98));}.owner-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:18px}.owner-stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:16px;text-align:center}.owner-stat span{font-size:22px;display:block}.owner-stat strong{display:block;font-size:25px;margin:4px 0}.owner-stat small{color:var(--text-muted)}.owner-toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}.owner-toolbar input{flex:1;min-width:220px;background:#0f172a;border:1px solid var(--border);color:#fff;padding:12px 14px;border-radius:10px}.owner-btn{border:1px solid var(--border);background:#151c2b;color:#fff;border-radius:10px;padding:11px 14px;cursor:pointer}.owner-btn.danger{background:linear-gradient(135deg,#b91c1c,#dc2626);border:0}.owner-panels{display:grid;grid-template-columns:2fr 1fr;gap:16px}.owner-panel{background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:16px}.owner-panel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.owner-table-wrap{overflow:auto}.owner-table{width:100%;border-collapse:collapse;min-width:650px}.owner-table th,.owner-table td{padding:11px;border-bottom:1px solid rgba(255,255,255,.07);text-align:left}.owner-table th{color:var(--text-muted);font-size:.78rem}.status-pill{display:inline-flex;padding:4px 8px;border-radius:999px;font-size:.72rem}.status-active{background:rgba(34,197,94,.14);color:#4ade80}.status-ban{background:rgba(239,68,68,.14);color:#f87171}.mini-action{border:0;border-radius:8px;padding:7px 9px;color:#fff;cursor:pointer;margin:2px;background:#334155}.mini-action.ban{background:#991b1b}.mini-action.unban{background:#166534}.owner-log-list{max-height:500px;overflow:auto}.owner-log{padding:10px;border-bottom:1px solid rgba(255,255,255,.07);font-size:.8rem}.owner-log small{color:var(--text-muted)}.admin-modal{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:99999;padding:16px}.admin-modal.open{display:flex}.admin-modal-card{position:relative;width:min(520px,100%);background:#101827;border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:22px;box-shadow:0 20px 70px rgba(0,0,0,.5)}.admin-close{position:absolute;right:12px;top:10px;border:0;background:none;color:#fff;font-size:20px;cursor:pointer}.admin-form input,.admin-form textarea,.admin-form select{width:100%;box-sizing:border-box;margin:7px 0 12px;background:#0b1220;border:1px solid var(--border);color:#fff;padding:11px;border-radius:9px}.admin-form button{width:100%;padding:12px;border:0;border-radius:10px;background:var(--primary);color:#fff;font-weight:700;cursor:pointer}@media(max-width:900px){.owner-grid{grid-template-columns:repeat(3,1fr)}.owner-panels{grid-template-columns:1fr}}@media(max-width:560px){.owner-grid{grid-template-columns:repeat(2,1fr)}.owner-section .container{padding-left:10px;padding-right:10px}}
+
+/* ===== KZN V3 — HEADER / TABS / ADMIN / CHAT FIXES ===== */
+.nav-container{
+    width:100%;
+    min-width:0;
+}
+.nav-logo-wrapper{
+    min-width:0;
+    overflow:hidden;
+}
+.nav-logo{
+    min-width:0;
+}
+.nav-logo .logo-text{
+    min-width:0;
+}
+.nav-logo .logo-text span,
+.nav-xcore .xcore-text .name,
+.nav-xcore .xcore-text .team{
+    white-space:nowrap;
+}
+.nav-actions{
+    margin-left:auto;
+    min-width:max-content;
+    position:relative;
+    z-index:1002;
+}
+.nav-menu#navMenuDesktop{
+    min-width:0;
+}
+.nav-icon-btn,
+.profile-btn,
+.nav-toggle{
+    flex-shrink:0;
+}
+
+.auto-trash-shell{
+    max-width:920px;
+    margin:0 auto;
+    padding:4px;
+}
+.auto-trash-shell .plans-header{
+    margin-bottom:18px;
+}
+.auto-trash-shell .plan-card{
+    max-width:620px;
+    margin:0 auto;
+}
+.auto-trash-shell .script-features{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:7px;
+}
+@media(max-width:560px){
+    .auto-trash-shell .script-features{grid-template-columns:1fr;}
+}
+/* Purchase tabs */
+.tabs-nav{
+    position:relative;
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:10px;
+    max-width:980px;
+    margin:0 auto 24px;
+    padding:8px;
+    background:rgba(15,15,20,.78);
+    border:1px solid var(--border);
+    border-radius:18px;
+    box-shadow:0 12px 40px rgba(0,0,0,.22);
+}
+.tab-btn{
+    justify-content:center;
+    min-height:52px;
+    padding:12px 14px;
+    border-width:1px;
+    border-radius:12px;
+    white-space:nowrap;
+    box-shadow:none;
+}
+.tab-btn.auto-trash{border-color:var(--era);}
+.tab-btn.auto-trash.active{
+    background:linear-gradient(135deg,var(--era),#d97706);
+    border-color:var(--era);
+    color:#111;
+}
+.tab-content{
+    width:100%;
+}
+.tab-content.active{
+    animation:tabIn .28s ease both;
+}
+@keyframes tabIn{
+    from{opacity:0;transform:translateY(8px)}
+    to{opacity:1;transform:translateY(0)}
+}
+.plan-card{
+    transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;
+}
+.plan-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 16px 45px rgba(0,0,0,.28);
+}
+.plans-grid{
+    align-items:stretch;
+}
+.plans-grid .plan-card{
+    height:100%;
+    display:flex;
+    flex-direction:column;
+}
+.plans-grid .plan-card .features,
+.plans-grid .plan-card .script-features{
+    flex:1;
+}
+.plans-grid .plan-card .btn-buy,
+.plans-grid .plan-card .btn-add-cart{
+    margin-top:8px;
+}
+
+/* Floating owner control — always above Chat Global */
+.admin-floating-toggle{
+    position:fixed;
+    left:14px;
+    bottom:198px;
+    z-index:10001;
+    display:none;
+    align-items:center;
+    gap:7px;
+    border:1px solid rgba(168,85,247,.65);
+    border-radius:12px;
+    padding:10px 13px;
+    background:linear-gradient(135deg,#17121f,#251438);
+    color:#fff;
+    font-weight:800;
+    font-size:.78rem;
+    cursor:pointer;
+    box-shadow:0 8px 30px rgba(0,0,0,.35),0 0 20px rgba(168,85,247,.16);
+    transition:transform .2s ease,filter .2s ease;
+}
+.admin-floating-toggle:hover{
+    transform:translateY(-2px);
+    filter:brightness(1.12);
+}
+.admin-floating-toggle.open{
+    border-color:var(--primary);
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+}
+
+/* More professional owner panel */
+.owner-section{
+    background:
+      radial-gradient(circle at 10% 10%,rgba(220,38,38,.08),transparent 30%),
+      radial-gradient(circle at 90% 20%,rgba(168,85,247,.08),transparent 30%),
+      var(--bg);
+}
+.owner-section .section-header{
+    margin-bottom:18px;
+}
+.owner-grid{
+    gap:12px;
+}
+.owner-stat{
+    border:1px solid rgba(255,255,255,.08);
+    background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018));
+    backdrop-filter:blur(12px);
+}
+.owner-toolbar{
+    display:grid !important;
+    grid-template-columns:minmax(0,1fr) auto auto;
+    gap:10px;
+    margin:16px 0;
+}
+.owner-toolbar input{
+    min-width:0;
+}
+.owner-panels{
+    gap:16px !important;
+}
+.owner-panel{
+    border:1px solid rgba(255,255,255,.08);
+    box-shadow:0 14px 40px rgba(0,0,0,.18);
+}
+.owner-table-wrap{
+    overflow:auto;
+}
+.owner-table{
+    min-width:680px;
+}
+.owner-table th{
+    position:sticky;
+    top:0;
+    z-index:1;
+    background:#11131a;
+}
+.owner-btn{
+    min-height:44px;
+    border-radius:10px;
+}
+.admin-modal{
+    z-index:10050 !important;
+}
+
+/* Keep the chat closed until the user explicitly opens it */
+.chat-window{
+    visibility:hidden;
+    opacity:0;
+    transform:translateY(8px) scale(.98);
+    pointer-events:none;
+    transition:opacity .18s ease,transform .18s ease,visibility .18s ease;
+}
+.chat-window.open{
+    visibility:visible;
+    opacity:1;
+    transform:none;
+    pointer-events:auto;
+}
+
+/* Mobile header: preserve notification/cart/menu controls */
+@media (max-width:768px){
+    .nav-container{
+        justify-content:flex-start;
+    }
+    .nav-logo-wrapper{
+        flex:1 1 auto;
+    }
+    .nav-logo .logo-text span{
+        overflow:hidden;
+        text-overflow:ellipsis;
+    }
+    .nav-xcore{
+        flex-shrink:0;
+    }
+    .nav-xcore .xcore-text{
+        display:none;
+    }
+    .nav-actions{
+        flex:0 0 auto;
+    }
+    .tabs-nav{
+        grid-template-columns:1fr;
+        gap:7px;
+        padding:7px;
+        margin-bottom:18px;
+    }
+    .tab-btn{
+        width:100%;
+        min-height:46px;
+    }
+    .admin-floating-toggle{
+        bottom:196px;
+        left:12px;
+    }
+    .owner-toolbar{
+        grid-template-columns:1fr !important;
+    }
+}
+@media (max-width:480px){
+    .nav-logo img{width:28px;height:28px;}
+    .nav-logo .logo-text span{font-size:.68rem;}
+    .nav-xcore img{width:24px;height:24px;}
+    .nav-actions{gap:3px;}
+    .nav-icon-btn{width:30px;height:30px;}
+    .profile-btn{padding:2px 4px;}
+    .chat-window{
+        width:calc(100vw - 20px);
+        left:10px;
+        right:10px;
+        bottom:190px;
+        height:min(420px,62vh);
+        max-height:62vh;
+    }
+    .chat-toggle-btn{
+        bottom:128px;
+        left:12px;
+    }
+    .btn-whatsapp-fixo{
+        bottom:70px;
+        left:12px;
+    }
+    .admin-floating-toggle{
+        bottom:188px;
+        left:12px;
+        padding:9px 11px;
+        font-size:.72rem;
+    }
+}
+
 </style>
 </head>
 <body>
@@ -2510,6 +2797,12 @@
     <button class="chat-toggle-btn" id="chatToggleBtn" onclick="toggleChat()" style="display:none;">
         <i class="fas fa-comment-dots"></i>
         <span class="chat-badge" id="chatBadge">0</span>
+    </button>
+
+    <!-- ===== OWNER PANEL TOGGLE ===== -->
+    <button class="admin-floating-toggle" id="adminPanelToggle" onclick="toggleCentralProprietario()" title="Abrir/fechar Central do Proprietário">
+        <i class="fas fa-crown"></i>
+        <span>Admin</span>
     </button>
 
     <!-- ===== CHAT WINDOW ===== -->
@@ -3113,7 +3406,6 @@
                             <option value="KZN MENU Classic - PREMIUM (140 dias) R$ 200,00">🔥 PREMIUM - R$ 200,00 (140 dias)</option>
                             <option value="KZN MENU Classic - ULTIMATE (175 dias) R$ 250,00">👑 ULTIMATE - R$ 250,00 (175 dias)</option>
                             <option value="KZN MENU Classic - ELITE (210 dias) R$ 300,00">💎 ELITE - R$ 300,00 (210 dias)</option>
-                            <option value="Auto Trash Automatic - R$ 200,00 (Graal Era)">♻️ Auto Trash - R$ 200,00 (Graal Era)</option>
                         </select>
                     </div>
                     <div class="form-group"><label><i class="fas fa-image"></i> 📸 Comprovante PIX <span style="color:var(--primary);">*</span></label><input type="file" name="Comprovante" accept="image/*,.pdf" required><p style="font-size:0.65rem;color:var(--text-muted);margin-top:0.3rem;">Envie uma foto do comprovante PIX (PNG, JPG, PDF - até 5MB)</p></div>
@@ -3187,6 +3479,8 @@
 
     <!-- ===== TAB AUTO TRASH (SEPARADA) ===== -->
     <div class="tab-content" id="tab-auto-trash">
+        <div class="auto-trash-shell">
+
         <div class="plans-header">
             <h3><i class="fas fa-trash-alt"></i> AUTO TRASH</h3>
             <p>SCRIPT AUTOMÁTICO • ÁREA EXCLUSIVA</p>
@@ -3217,12 +3511,10 @@
                         <button class="btn-add-cart" onclick="adicionarAoCarrinho('Auto Trash Automatic', 200, 'auto-trash')"><i class="fas fa-cart-plus"></i> Adicionar</button>
                     </div>
                 </div>
-
-
-        </div>
         <div class="aviso-plano auto-trash-notice">
             <h4><i class="fas fa-info-circle"></i> AUTO TRASH SEPARADO</h4>
             <p>Este produto pertence exclusivamente à categoria <strong>Auto Trash</strong>. O carrinho identifica a categoria para evitar mistura indevida de produtos.</p>
+        </div>
         </div>
     </div>
 
@@ -4954,8 +5246,10 @@
         function setLoggedIn() {
             document.getElementById('welcomeOverlay').classList.add('hidden');
             document.getElementById('chatToggleBtn').style.display = 'flex';
-            document.getElementById('chatWindow').classList.add('open');
-            chatAberto = true;
+            // O Chat Global NÃO deve abrir automaticamente após o login.
+            const chatInicial = document.getElementById('chatWindow');
+            if (chatInicial) chatInicial.classList.remove('open');
+            chatAberto = false;
             
             carregarPerfil();
             
@@ -5093,10 +5387,7 @@
 
         window.logout = function() {
             if (!confirm('Tem certeza que deseja sair?')) return;
-            if (usuarioLogado) {
-                const userRef = usuariosRef.child(usuarioLogado.email.replace(/[.#$\/\[\]]/g, '_'));
-                userRef.remove();
-            }
+            // Logout encerra apenas a sessão. O cadastro do usuário permanece no banco.
             localStorage.removeItem('kzn_usuario_logado');
             usuarioLogado = null;
             document.getElementById('welcomeOverlay').classList.remove('hidden');
@@ -5547,8 +5838,13 @@ window.copiarPixEra = function() {
  window.trocarAba = function(aba){
    document.querySelectorAll('.tab-content').forEach(el=>el.classList.remove('active'));
    document.querySelectorAll('.tab-btn').forEach(el=>el.classList.remove('active'));
-   const target=document.getElementById('tab-'+aba); const btn=document.querySelector('.tab-btn.'+aba);
-   if(target) target.classList.add('active'); if(btn) btn.classList.add('active');
+   const target=document.getElementById('tab-'+aba);
+   const btn=document.querySelector('.tab-btn.'+aba);
+   if(target) target.classList.add('active');
+   if(btn) btn.classList.add('active');
+   // Mantém o usuário na área de compras e fecha menus que poderiam sobrepor a página.
+   document.getElementById('notifDropdown')?.classList.remove('open');
+   document.getElementById('cartDropdown')?.classList.remove('open');
  };
  window.abrirCentralProprietario=function(){ if(!ensureOwner()) return; const sec=document.getElementById('central-proprietario'); if(sec){sec.style.display='block'; sec.scrollIntoView({behavior:'smooth'}); carregarPainelProprietario();} };
  window.carregarPainelProprietario=function(){
@@ -5616,6 +5912,79 @@ window.copiarPixEra = function() {
  const oldLogin=window.fazerLogin;
  window.fazerLogin=function(){const email=document.getElementById('loginEmail')?.value.trim(); if(email){siteBansRef.child(sanitize(email)).once('value').then(s=>{const b=s.val();if(b&&b.active!==false){document.getElementById('loginStatus').textContent='🚫 Esta conta está bloqueada.';return;} if(typeof oldLogin==='function')oldLogin();});}else if(typeof oldLogin==='function')oldLogin();};
 })();
+</script>
+<script>
+
+/* ===== KZN V3 — OWNER TOGGLE + CHAT INITIAL STATE ===== */
+(function(){
+    const OWNER_EMAIL = 'gabriel6061yt@gmail.com';
+
+    function ownerLogged(){
+        return !!window.usuarioLogado &&
+          String(window.usuarioLogado.email || '').toLowerCase() === OWNER_EMAIL;
+    }
+
+    window.toggleCentralProprietario = function(){
+        if (!ownerLogged()){
+            if (typeof ensureOwner === 'function') ensureOwner();
+            return;
+        }
+        const section = document.getElementById('central-proprietario');
+        const btn = document.getElementById('adminPanelToggle');
+        if (!section) return;
+
+        const isOpen = section.style.display !== 'none' && section.style.display !== '';
+        if (isOpen){
+            section.style.display = 'none';
+            btn?.classList.remove('open');
+            return;
+        }
+
+        section.style.display = 'block';
+        btn?.classList.add('open');
+        if (typeof carregarPainelProprietario === 'function') carregarPainelProprietario();
+        section.scrollIntoView({behavior:'smooth', block:'start'});
+    };
+
+    window.atualizarBotaoAdmin = function(){
+        const btn = document.getElementById('adminPanelToggle');
+        if (!btn) return;
+        const show = ownerLogged();
+        btn.style.display = show ? 'flex' : 'none';
+        if (!show) {
+            const sec = document.getElementById('central-proprietario');
+            if (sec) sec.style.display = 'none';
+            btn.classList.remove('open');
+        }
+    };
+
+    // Never auto-open Chat Global.
+    window.fecharChatInicialmente = function(){
+        const chat = document.getElementById('chatWindow');
+        if (chat) chat.classList.remove('open');
+        window.chatAberto = false;
+    };
+
+    const originalSetLoggedIn = window.setLoggedIn;
+    if (typeof originalSetLoggedIn === 'function') {
+        window.setLoggedIn = function(){
+            originalSetLoggedIn.apply(this, arguments);
+            fecharChatInicialmente();
+            setTimeout(atualizarBotaoAdmin, 50);
+        };
+    }
+
+    document.addEventListener('DOMContentLoaded', function(){
+        setTimeout(function(){
+            fecharChatInicialmente();
+            atualizarBotaoAdmin();
+        }, 80);
+    });
+
+    // Keep owner control synchronized when profile/login state changes.
+    setInterval(atualizarBotaoAdmin, 1500);
+})();
+
 </script>
 </body>
 </html>
