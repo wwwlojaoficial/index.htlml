@@ -3605,6 +3605,15 @@
 @media(max-width:820px){.kzn-key-layout{grid-template-columns:1fr}.kzn-stock-item{grid-template-columns:1fr 1fr}.kzn-stock-item .actions{grid-column:1/-1}.kzn-stock-item .kzn-status{justify-self:start}.kzn-key-row{grid-template-columns:1fr}}
 
 </style>
+
+<style id="kzn-v20-professional-orders">
+#formContato input[type="hidden"],#formContatoAutoTrash input[type="hidden"]{display:none!important;width:0!important;height:0!important;margin:0!important;padding:0!important;visibility:hidden!important}
+.kzn-purchase-form-modern{background:linear-gradient(145deg,rgba(15,23,42,.98),rgba(10,15,28,.98));border:1px solid rgba(139,92,246,.18);border-radius:22px;padding:18px;box-shadow:0 18px 50px rgba(0,0,0,.22)}
+.kzn-form-intro{display:flex;gap:13px;align-items:center;padding:15px;border-radius:16px;background:linear-gradient(135deg,rgba(124,58,237,.15),rgba(220,38,38,.08));border:1px solid rgba(167,139,250,.18);margin-bottom:15px}.kzn-form-icon{width:44px;height:44px;display:grid;place-items:center;border-radius:13px;background:linear-gradient(135deg,#7c3aed,#dc2626);color:#fff;font-size:1rem;flex:none}.kzn-form-intro h3{margin:0 0 3px;color:#fff;font-size:1.05rem}.kzn-form-intro p{margin:0;color:#9ca3af;font-size:.76rem;line-height:1.45}
+.kzn-form-step{display:flex;align-items:center;gap:8px;margin:15px 0 9px;color:#e5e7eb}.kzn-form-step span{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:#7c3aed;color:#fff;font-weight:900;font-size:.7rem}.kzn-form-step strong{font-size:.82rem}.kzn-form-step small{color:#8b95aa;font-size:.68rem}.kzn-proof-upload-group{padding:12px;border-radius:14px;background:rgba(255,255,255,.025);border:1px dashed rgba(139,92,246,.28)}.kzn-proof-upload-group input[type=file]{padding:10px!important}
+.kzn-order-actions .disabled{opacity:.55;cursor:not-allowed!important}.kzn-proof-viewer{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:14px;background:rgba(0,0,0,.82);backdrop-filter:blur(6px);z-index:11000}.kzn-proof-viewer.open{display:flex}.kzn-proof-box{width:min(900px,100%);height:min(88vh,760px);background:#0f172a;border:1px solid rgba(167,139,250,.3);border-radius:18px;overflow:hidden;box-shadow:0 25px 90px rgba(0,0,0,.55);display:flex;flex-direction:column}.kzn-proof-head{display:flex;align-items:center;justify-content:space-between;padding:12px 15px;border-bottom:1px solid rgba(255,255,255,.08);color:#fff}.kzn-proof-head button{width:36px;height:36px;border:0;border-radius:10px;background:#1f2937;color:#fff;cursor:pointer}.kzn-proof-content{flex:1;display:grid;place-items:center;overflow:auto;padding:10px}.kzn-proof-content img{max-width:100%;max-height:100%;object-fit:contain;border-radius:8px}.kzn-proof-content iframe{width:100%;height:100%;border:0;border-radius:8px;background:#fff}
+@media(max-width:700px){.kzn-purchase-form-modern{padding:13px;border-radius:17px}.kzn-form-intro{align-items:flex-start}.kzn-order-list{grid-template-columns:1fr}.kzn-order-grid{grid-template-columns:1fr}.kzn-order-field.full{grid-column:auto}.kzn-proof-box{height:90vh;border-radius:14px}}
+</style>
 </head>
 <body>
 <!-- ===== WHATSAPP FIXO ===== -->
@@ -4002,11 +4011,13 @@
 <h2><i class="fas fa-envelope"></i> Entre em Contato - KZN MENU</h2>
 <p>Preencha o formulário para comprar os mods KZN MENU</p>
 </div>
-<div class="form-container">
-<form action="https://formsubmit.co/gabriel6061yt@gmail.com" enctype="multipart/form-data" id="formContato" method="POST" data-recipient="gabriel6061yt@gmail.com"><input name="_replyto" type="hidden" value="" style="display:none!important"/>
-<input name="_captcha" type="hidden" value="false" style="display:none!important"/>
-<input name="_template" type="hidden" value="table" style="display:none!important"/>
-<input name="_subject" type="hidden" value="🔥 NOVO PEDIDO DO SITE KZN MENU!" style="display:none!important"/>
+<div class="form-container kzn-purchase-form-modern">
+<div class="kzn-form-intro"><div class="kzn-form-icon"><i class="fas fa-shield-alt"></i></div><div><h3>Finalizar pedido</h3><p>Preencha os dados abaixo e envie o comprovante PIX. Seu pedido aparecerá no painel administrativo para conferência.</p></div></div>
+<div class="kzn-form-step"><span>1</span><strong>Seus dados</strong><small>E-mail e contato</small></div>
+<form action="https://formsubmit.co/gabriel6061yt@gmail.com" enctype="multipart/form-data" id="formContato" method="POST" data-recipient="gabriel6061yt@gmail.com"><input name="_replyto" type="hidden" value=""/>
+<input name="_captcha" type="hidden" value="false"/>
+<input name="_template" type="hidden" value="table"/>
+<input name="_subject" type="hidden" value="🔥 NOVO PEDIDO DO SITE KZN MENU!"/>
 <div class="form-group">
 <label><i class="fas fa-envelope"></i> Seu E-mail <span style="color:var(--primary);">*</span></label>
 <input name="Email" placeholder="Digite seu e-mail..." required="" type="email"/>
@@ -4014,6 +4025,7 @@
 </div>
 <div class="form-group"><label><i class="fas fa-user"></i> Seu Nome</label><input name="Nome" placeholder="Digite seu nome completo..." required="" type="text"/></div>
 <div class="form-group"><label><i class="fab fa-whatsapp"></i> WhatsApp</label><input name="WhatsApp" placeholder="(DDD) 9 9999-9999" required="" type="text"/></div>
+<div class="kzn-form-step"><span>2</span><strong>Escolha do plano</strong><small>Selecione exatamente o plano comprado</small></div>
 <div class="form-group"><label><i class="fas fa-crown"></i> Plano Escolhido</label>
 <select name="Plano" required="">
 <option value="">Selecione um plano...</option>
@@ -4026,7 +4038,8 @@
 <option value="KZN MENU Classic - ELITE (210 dias) R$ 300,00">💎 ELITE - R$ 300,00 (210 dias)</option>
 </select>
 </div>
-<div class="form-group"><label><i class="fas fa-image"></i> 📸 Comprovante PIX <span style="color:var(--primary);">*</span></label><input accept="image/*,.pdf" name="Comprovante" required="" type="file"/><p style="font-size:0.65rem;color:var(--text-muted);margin-top:0.3rem;">Envie uma foto do comprovante PIX (PNG, JPG, PDF - até 5MB)</p></div>
+<div class="kzn-form-step"><span>3</span><strong>Comprovante</strong><small>Foto ou PDF do pagamento • máximo 5 MB</small></div>
+<div class="form-group kzn-proof-upload-group"><label><i class="fas fa-image"></i> 📸 Comprovante PIX <span style="color:var(--primary);">*</span></label><input accept="image/*,.pdf" name="Comprovante" required="" type="file"/><p style="font-size:0.65rem;color:var(--text-muted);margin-top:0.3rem;">Envie uma foto do comprovante PIX (PNG, JPG, PDF - até 5MB)</p></div>
 <div class="form-group"><label><i class="fas fa-pencil-alt"></i> Mensagem (opcional)</label><textarea name="Mensagem" placeholder="Digite sua mensagem aqui..." rows="3"></textarea></div>
 <button class="btn-submit" id="formSubmitBtn" type="submit"><i class="fas fa-paper-plane"></i> Enviar Pedido KZN</button>
 <div class="form-status" id="formStatus"></div>
@@ -4059,7 +4072,7 @@
 <button class="btn-add-cart" onclick="adicionarAoCarrinho('Auto Trash Automatic',200,'auto-trash')"><i class="fas fa-cart-plus"></i> Adicionar</button>
 </div>
 </div>
-<div class="purchase-form-card purchase-form-auto-trash"><div class="container"><div class="section-header"><h2><i class="fas fa-shopping-cart"></i> Formulário de compra — Auto Trash</h2><p>Formulário exclusivo do Auto Trash. Ele não aparece nas abas Classic ou Era.</p></div><div class="form-container"><form action="https://formsubmit.co/gabriel6061yt@gmail.com" enctype="multipart/form-data" id="formContatoAutoTrash" method="POST" data-recipient="gabriel6061yt@gmail.com"><input name="_replyto" type="hidden" value="" style="display:none!important"/><input name="_captcha" type="hidden" value="false" style="display:none!important"/><input name="_template" type="hidden" value="table" style="display:none!important"/><input name="_subject" type="hidden" value="🔥 NOVO PEDIDO - AUTO TRASH" style="display:none!important"/><div class="form-group"><label><i class="fas fa-envelope"></i> Seu E-mail <span style="color:var(--primary);">*</span></label><input name="Email" placeholder="Digite seu e-mail..." required="True" type="email"/></div><div class="form-group"><label><i class="fas fa-user"></i> Seu Nome</label><input name="Nome" placeholder="Digite seu nome completo..." required="True" type="text"/></div><div class="form-group"><label><i class="fab fa-whatsapp"></i> WhatsApp</label><input name="WhatsApp" placeholder="(DDD) 9 9999-9999" required="True" type="text"/></div><div class="form-group"><label><i class="fas fa-trash-alt"></i> Produto</label><input class="auto-product-readonly" name="Produto" readonly="True" type="text" value="Auto Trash Automatic - R$ 200,00"/></div><div class="form-group"><label><i class="fas fa-image"></i> Comprovante PIX <span style="color:var(--primary);">*</span></label><input accept="image/*,.pdf" name="Comprovante" required="True" type="file"/></div><div class="form-group"><label><i class="fas fa-pencil-alt"></i> Mensagem (opcional)</label><textarea name="Mensagem" placeholder="Digite sua mensagem aqui..." rows="3"></textarea></div><button class="btn-submit" type="submit"><i class="fas fa-paper-plane"></i> Enviar Pedido - Auto Trash</button><div class="form-status" id="formStatusAutoTrash"></div></form></div></div></div></div>
+<div class="purchase-form-card purchase-form-auto-trash"><div class="container"><div class="section-header"><h2><i class="fas fa-shopping-cart"></i> Formulário de compra — Auto Trash</h2><p>Formulário exclusivo do Auto Trash. Ele não aparece nas abas Classic ou Era.</p></div><div class="form-container"><form action="https://formsubmit.co/gabriel6061yt@gmail.com" enctype="multipart/form-data" id="formContatoAutoTrash" method="POST" data-recipient="gabriel6061yt@gmail.com"><input name="_replyto" type="hidden" value=""/><input name="_captcha" type="hidden" value="false"/><input name="_template" type="hidden" value="table"/><input name="_subject" type="hidden" value="🔥 NOVO PEDIDO - AUTO TRASH"/><div class="form-group"><label><i class="fas fa-envelope"></i> Seu E-mail <span style="color:var(--primary);">*</span></label><input name="Email" placeholder="Digite seu e-mail..." required="True" type="email"/></div><div class="form-group"><label><i class="fas fa-user"></i> Seu Nome</label><input name="Nome" placeholder="Digite seu nome completo..." required="True" type="text"/></div><div class="form-group"><label><i class="fab fa-whatsapp"></i> WhatsApp</label><input name="WhatsApp" placeholder="(DDD) 9 9999-9999" required="True" type="text"/></div><div class="form-group"><label><i class="fas fa-trash-alt"></i> Produto</label><input class="auto-product-readonly" name="Produto" readonly="True" type="text" value="Auto Trash Automatic - R$ 200,00"/></div><div class="form-group"><label><i class="fas fa-image"></i> Comprovante PIX <span style="color:var(--primary);">*</span></label><input accept="image/*,.pdf" name="Comprovante" required="True" type="file"/></div><div class="form-group"><label><i class="fas fa-pencil-alt"></i> Mensagem (opcional)</label><textarea name="Mensagem" placeholder="Digite sua mensagem aqui..." rows="3"></textarea></div><button class="btn-submit" type="submit"><i class="fas fa-paper-plane"></i> Enviar Pedido - Auto Trash</button><div class="form-status" id="formStatusAutoTrash"></div></form></div></div></div></div>
 </div></section>
 <!-- ===== PERFIL ===== -->
 <section class="section dark" id="perfil">
@@ -4192,7 +4205,7 @@
 <button class="admin-nav-btn" data-admin-view="logs" onclick="mudarAbaAdmin('logs')"><i class="fas fa-list-alt"></i> Logs</button>
 <button class="admin-nav-btn" data-admin-view="admins" onclick="mudarAbaAdmin('admins')"><i class="fas fa-user-shield"></i> Administradores</button>
 <button class="admin-nav-btn" data-admin-view="compras" onclick="mudarAbaAdmin('compras')"><i class="fas fa-clipboard-list"></i> Pedidos</button>
-<button class="admin-nav-btn" data-admin-view="keys" onclick="mudarAbaAdmin('keys')"><i class="fas fa-key"></i> Keys</button>
+<button class="admin-nav-btn owner-only-feature" data-admin-view="keys" onclick="mudarAbaAdmin('keys')" style="display:none"><i class="fas fa-key"></i> Keys</button>
 <button class="admin-nav-btn owner-only-feature" data-admin-view="keyestoque" onclick="mudarAbaAdmin('keyestoque')" style="display:none"><i class="fas fa-layer-group"></i> Estoque de Keys</button>
 <button class="admin-nav-btn" data-admin-view="taxas" onclick="mudarAbaAdmin('taxas')"><i class="fas fa-money-bill-transfer"></i> Pagar Taxa de Script</button>
 <button class="admin-nav-btn" data-admin-view="produtos" onclick="mudarAbaAdmin('produtos')"><i class="fas fa-box"></i> Produtos</button>
@@ -4239,23 +4252,30 @@
 <p class="admin-help">Admins ativos podem abrir a Central do Proprietário e utilizar as ferramentas administrativas permitidas. O proprietário continua sendo o único responsável por conceder ou remover o cargo.</p>
 <div class="admin-toolbar"><div class="admin-search"><i class="fas fa-search"></i><input id="admBuscaAdmin" oninput="renderAdminsPanel()" placeholder="Pesquisar administrador por e-mail..." type="search"/></div><button class="admin-action-btn primary" onclick="abrirConcederAdmin()"><i class="fas fa-user-plus"></i> Dar Admin</button></div>
 <div class="admin-table-wrap"><table class="owner-table"><thead><tr><th>E-mail</th><th>Status</th><th>Concedido por</th><th>Ações</th></tr></thead><tbody id="admAdminsTabela"></tbody></table></div>
+<div class="kzn-owner-management">
+  <div class="kzn-owner-management-head">
+    <div><strong><i class="fas fa-crown"></i> Proprietários adicionais</strong><small>Somente o proprietário principal pode conceder ou remover este cargo.</small></div>
+    <button type="button" class="admin-action-btn primary" onclick="kznAbrirConcederOwner()"><i class="fas fa-crown"></i> Dar Proprietário</button>
+  </div>
+  <div class="admin-table-wrap"><table class="owner-table"><thead><tr><th>E-mail</th><th>Status</th><th>Concedido por</th><th>Ações</th></tr></thead><tbody id="kznOwnersTabela"></tbody></table></div>
+</div>
 </div>
 </div>
 <div class="admin-view" id="adminViewCompras">
   <div class="admin-card kzn-orders-card">
     <div class="admin-card-title">
       <i class="fas fa-shopping-cart"></i>
-      <span>Pedidos registrados</span>
-      <small>Pedidos, comprovantes, status e emissão de Keys</small>
+      <span>Central de pedidos</span>
+      <small>Pedidos recebidos · comprovantes · status · emissão de Keys</small>
     </div>
     <div class="admin-toolbar kzn-orders-toolbar">
-      <input id="admBuscaCompra" type="search" placeholder="Pesquisar pedido, e-mail ou produto..." oninput="renderAdminCompras()">
+      <input id="admBuscaCompra" type="search" placeholder="Pesquisar por pedido, e-mail ou plano..." oninput="renderAdminCompras()">
       <button class="admin-action-btn" type="button" onclick="renderAdminCompras()"><i class="fas fa-sync-alt"></i> Atualizar</button>
     </div>
     <div id="admComprasTabela" class="kzn-order-list"></div>
   </div>
 </div>
-<div class="admin-view" id="adminViewKeys">
+<div class="admin-view owner-only-view" id="adminViewKeys">
   <div class="admin-card">
     <div class="admin-card-title"><i class="fas fa-key"></i><span>Keys</span></div>
     <div class="admin-toolbar"><input id="admBuscaKey" type="search" placeholder="Pesquisar key, usuário ou produto..." oninput="renderAdminKeys()"></div>
@@ -4268,7 +4288,7 @@
     <div class="admin-card-title">
       <i class="fas fa-layer-group"></i>
       <span>Estoque de Keys</span>
-      <small>Somente proprietário</small>
+      <small>Somente proprietário · visualizar, editar, emitir e apagar</small>
     </div>
 
     <div class="kzn-stock-summary" id="kznStockSummary"></div>
@@ -6949,7 +6969,7 @@ window.copiarPixEra = function() {
     }
     return String(u?.email||'').trim().toLowerCase();
   }
-  function isOwner(){return currentEmail()===OWNER_EMAIL;}
+  function isOwner(){return typeof window.kznIsOwnerEmail==='function' ? window.kznIsOwnerEmail(currentEmail()) : currentEmail()===OWNER_EMAIL;}
   function checkAccess(cb){
     if(isOwner()){ownerAccess=true;adminAccess=true;cb(true,true);return;}
     const email=currentEmail();
@@ -6961,6 +6981,7 @@ window.copiarPixEra = function() {
     }).catch(()=>{adminAccess=false;ownerAccess=false;cb(false,false);});
   }
   window.kznCanAccessAdmin=function(){return adminAccess||ownerAccess;};
+  window.kznIsPrimaryOwner=function(){return currentEmail()===OWNER_EMAIL;};
   window.kznIsOwner=function(){return ownerAccess;};
   window.ensureAdminAccess=function(){
     if(adminAccess||ownerAccess)return true;
@@ -7006,7 +7027,7 @@ window.copiarPixEra = function() {
       if(typeof oldLoad==='function'){
         /* old loader uses owner-only guard, so render our own stats/users below */
       }
-      Promise.all([db.ref('chat/usuarios').once('value'),db.ref('site/bans').once('value'),LOG_REF.once('value')]).then(([us,bs,ls])=>{
+      Promise.all([db.ref('chat/usuarios').once('value'),db.ref('site/bans').once('value'),LOG_REF.once('value'),db.ref('site/purchase_logs').once('value')]).then(([us,bs,ls,pls])=>{
         const users=Object.values(us.val()||{}),bans=Object.values(bs.val()||{});
         const activeBans=bans.filter(b=>b.active!==false && (!b.expiresAt||new Date(b.expiresAt)>new Date()));
         document.getElementById('admTotalUsuarios')&&(document.getElementById('admTotalUsuarios').textContent=users.length);
@@ -7016,8 +7037,10 @@ window.copiarPixEra = function() {
         document.getElementById('admKeys')&&(document.getElementById('admKeys').textContent=(JSON.parse(localStorage.getItem('kzn_keys')||'[]')).length);
         document.getElementById('admNotificacoes')&&(document.getElementById('admNotificacoes').textContent=(JSON.parse(localStorage.getItem('kzn_notificacoes')||'[]')).length);
         if(typeof window.renderUsersV6==='function')window.renderUsersV6(users,activeBans);
-        const logs=Object.values(ls.val()||{}).sort((a,b)=>String(b.timestamp).localeCompare(String(a.timestamp))).slice(0,80);
-        const el=document.getElementById('admLogs');if(el)el.innerHTML=logs.length?logs.map(l=>`<div class="owner-log"><strong>${escV6(l.action)}</strong> — ${escV6(l.targetEmail||'')}</div><small>${escV6(l.timestamp||'')} · ${escV6(l.details||'')}</small>`).join(''):'<div class="empty-state">Nenhum log administrativo.</div>';
+        const adminLogs=Object.values(ls.val()||{}).map(l=>({...l,_logType:'ADMIN'}));
+        const purchaseLogs=Object.values(pls.val()||{}).map(l=>({...l,_logType:'PURCHASE',action:l.event||l.action||'PURCHASE_EVENT',targetEmail:l.email||l.targetEmail||''}));
+        const logs=[...adminLogs,...purchaseLogs].sort((a,b)=>String(b.timestamp||'').localeCompare(String(a.timestamp||''))).slice(0,120);
+        const el=document.getElementById('admLogs');if(el)el.innerHTML=logs.length?logs.map(l=>`<div class="owner-log"><strong>${escV6(l._logType==='PURCHASE'?'COMPRA · '+l.action:l.action||'EVENTO')}</strong> — ${escV6(l.targetEmail||'')}</div><small>${escV6(l.timestamp||'')} · ${escV6(l.details||l.produto||l.pedidoId||'')}</small>`).join(''):'<div class="empty-state">Nenhum log registrado.</div>';
         window.renderAdminsPanel();
       });
     });
@@ -7059,6 +7082,9 @@ window.copiarPixEra = function() {
     document.querySelectorAll('.admin-view').forEach(v=>v.classList.remove('active'));
     const target=document.getElementById('adminView'+String(view).charAt(0).toUpperCase()+String(view).slice(1));if(target)target.classList.add('active');
     const adminsBtn=document.querySelector('.admin-nav-btn[data-admin-view="admins"]');if(adminsBtn)adminsBtn.style.display=ownerAccess?'inline-flex':'none';
+    document.querySelectorAll('.admin-nav-btn.owner-only-feature').forEach(b=>b.style.display=ownerAccess?'inline-flex':'none');
+    document.querySelectorAll('.owner-only-view').forEach(v=>{if(v.id!=='adminViewKeyestoque' && v.id!=='adminViewKeys')return;v.classList.toggle('kzn-owner-hidden',!ownerAccess);});
+    if(!ownerAccess && (view==='keys'||view==='keyestoque'))return;
     if(view==='usuarios'||view==='logs'||view==='admins')window.carregarPainelProprietario();
   };
 
@@ -7384,7 +7410,9 @@ if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.s
     }
   }
   function renderAdminKeys(){
-    const t=document.getElementById('admKeysTabela');if(!t)return;const q=(document.getElementById('admBuscaKey')?.value||'').toLowerCase();
+    const t=document.getElementById('admKeysTabela');if(!t)return;
+    if(typeof window.kznIsOwner==='function' && !window.kznIsOwner()){t.innerHTML='<tr><td colspan="5">Somente o proprietário pode visualizar Keys.</td></tr>';return;}
+    const q=(document.getElementById('admBuscaKey')?.value||'').toLowerCase();
     const a=arr('kzn_keys').filter(x=>JSON.stringify(x).toLowerCase().includes(q));
     t.innerHTML=a.length?a.map(x=>`<tr><td>${safe(x.key||x.codigo||'-')}</td><td>${safe(x.email||x.usuario||'-')}</td><td>${safe(x.produto||'-')}</td><td>${safe(x.expiracao||x.expira||'-')}</td><td>${safe(x.status||'Ativa')}</td></tr>`).join(''):'<tr><td colspan="5">Nenhuma key encontrada.</td></tr>';
   }
@@ -7946,9 +7974,18 @@ header #notifBtn.nav-icon-btn,
   .kzn-fee-share-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
   .kzn-key-btn.secondary{background:#1f2937;border:1px solid rgba(255,255,255,.1)}
   @media(max-width:600px){.kzn-fee-payee>div:first-child{align-items:flex-start;flex-direction:column;gap:3px}.kzn-fee-pix-row,.kzn-fee-share-row{grid-template-columns:1fr;display:grid}.kzn-fee-pix-row code{width:100%;box-sizing:border-box}}
+.kzn-owner-hidden{display:none!important}
 </style>
-
-
+<style id="kzn-owner-stock-controls">
+.kzn-stock-item .actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.kzn-stock-item .actions .kzn-copy{border:0;border-radius:9px;padding:8px 10px;cursor:pointer;font-weight:800}
+.kzn-stock-item .actions .kzn-edit-btn{background:#312e81;color:#c4b5fd}
+.kzn-stock-item .actions .kzn-delete-btn{background:#3f1d24;color:#fca5a5}
+.kzn-owner-management{margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.08)}
+.kzn-owner-management-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:10px}
+.kzn-owner-management-head strong{display:block;color:#fff}.kzn-owner-management-head small{display:block;color:#94a3b8;margin-top:4px}
+@media(max-width:600px){.kzn-owner-management-head{align-items:stretch;flex-direction:column}.kzn-owner-management-head .admin-action-btn{width:100%}}
+</style>
 <script>
 /* ===== KZN V14 — ESTOQUE POR PLANO + EMISSÃO + TAXAS ===== */
 (function(){
@@ -7960,7 +7997,6 @@ header #notifBtn.nav-icon-btn,
   const SAN=v=>String(v||'').toLowerCase().replace(/[.#$\[\]\/]/g,'_');
   const E=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const now=()=>new Date().toISOString();
-  const MAX_KEYS_PER_PLAN=5;
   const PLANS={
     'KZN MENU Classic - SIMPLE (20 dias)':{label:'SIMPLE',price:30,days:20},
     'KZN MENU Classic - BASIC (35 dias)':{label:'BASIC',price:50,days:35},
@@ -7980,7 +8016,7 @@ header #notifBtn.nav-icon-btn,
     }
     return String(u?.email||'').trim().toLowerCase();
   }
-  function owner(){return email()===OWNER;}
+  function owner(){return typeof window.kznIsOwnerEmail==='function' ? window.kznIsOwnerEmail(email()) : email()===OWNER;}
   function admin(cb){
     if(owner()){cb(true,true);return;}
     const em=email(); if(!em){cb(false,false);return;}
@@ -8008,11 +8044,11 @@ header #notifBtn.nav-icon-btn,
     if(!key||!p){alert('❌ Selecione um plano e informe a Key.');return;}
 
     KEY_REF.once('value').then(s=>{
-      const stock=s.val()||{};
-      const exists=Object.values(stock).some(x=>String(x?.key||'').trim()===key);
+      const all=s.val()||{};
+      const totalPlano=Object.values(all).filter(x=>String(x?.produto||'')===produto).length;
+      if(totalPlano>=5){alert(`⚠️ O estoque de ${p.label} já está cheio (5/5). Apague ou utilize uma Key antes de adicionar outra.`);return;}
+      const exists=Object.values(all).some(x=>String(x?.key||'').trim()===key);
       if(exists){alert('⚠️ Essa Key já está cadastrada no estoque.');return;}
-      const available=Object.values(stock).filter(x=>x&&x.produto===produto&&x.status==='available').length;
-      if(available>=MAX_KEYS_PER_PLAN){alert(`⚠️ O estoque de ${p.label} já está cheio (${MAX_KEYS_PER_PLAN}/${MAX_KEYS_PER_PLAN}).`);return;}
       return KEY_REF.push({
         key, produto, plano:p.label, valorVenda:p.price, validadeDias:p.days,
         observacao:obs, status:'available', clienteEmail:'', clienteNome:'',
@@ -8058,7 +8094,7 @@ header #notifBtn.nav-icon-btn,
     el.innerHTML=Object.values(counts).map(p=>`
       <button type="button" class="kzn-stock-summary-card" onclick="document.getElementById('kznFiltroProduto').value='${p.label==='SIMPLE'?'KZN MENU Classic - SIMPLE (20 dias)':p.label==='BASIC'?'KZN MENU Classic - BASIC (35 dias)':p.label==='PLUS'?'KZN MENU Classic - PLUS (70 dias)':p.label==='PRO'?'KZN MENU Classic - PRO (105 dias)':p.label==='PREMIUM'?'KZN MENU Classic - PREMIUM (140 dias)':p.label==='ULTIMATE'?'KZN MENU Classic - ULTIMATE (175 dias)':'KZN MENU Classic - ELITE (210 dias)'}';kznRenderEstoque()">
         <strong>${E(p.label)}</strong><span>R$ ${p.price.toFixed(2).replace('.',',')} · ${p.days} dias</span>
-        <b>${p.available}/${MAX_KEYS_PER_PLAN}</b><small>Keys disponíveis no estoque</small><div class="kzn-stock-progress"><span style="width:${Math.min(100,(p.available/MAX_KEYS_PER_PLAN)*100)}%"></span></div>
+        <b>${p.available}</b><small>disponíveis / ${p.total} cadastradas</small>
       </button>`).join('');
   }
 
@@ -8085,8 +8121,10 @@ header #notifBtn.nav-icon-btn,
         </div>
         <span class="kzn-status ${used?'used':'available'}">${used?'USADA':'DISPONÍVEL'}</span>
         <div class="actions">
-          <button class="kzn-copy" onclick="kznCopiarKey('${id}')"><i class="fas fa-copy"></i></button>
-          ${used?'':`<button class="kzn-copy" onclick="kznEmitirKey('${id}')"><i class="fas fa-paper-plane"></i> Emitir</button>`}
+          <button class="kzn-copy" onclick="kznCopiarKey('${id}')"><i class="fas fa-copy"></i> Copiar</button>
+          ${used?'':`<button class="kzn-copy" onclick="kznEmitirKey('${id}')"><i class="fas fa-paper-plane"></i> Emitir</button>
+          <button class="kzn-copy kzn-edit-btn" onclick="kznEditarKey('${id}')"><i class="fas fa-pen"></i> Editar</button>
+          <button class="kzn-copy kzn-delete-btn" onclick="kznApagarKey('${id}')"><i class="fas fa-trash"></i> Apagar</button>`}
         </div>
       </div>`;
     }).join('');
@@ -8095,6 +8133,39 @@ header #notifBtn.nav-icon-btn,
   window.kznCopiarKey=function(id){
     const x=window.kznStock?.[id];if(!x)return;
     navigator.clipboard?.writeText(x.key).then(()=>alert('✅ Key copiada.')).catch(()=>alert('Key: '+x.key));
+  };
+
+  window.kznEditarKey=function(id){
+    if(!owner()){denyOwner();return;}
+    const x=window.kznStock?.[id];
+    if(!x)return alert('❌ Key não encontrada.');
+    if(x.status!=='available')return alert('⚠️ Uma Key já emitida não pode ser editada.');
+    const novaKey=prompt('Editar Key:',x.key||'');
+    if(novaKey===null)return;
+    const key=novaKey.trim();
+    if(!key)return alert('❌ A Key não pode ficar vazia.');
+    const obs=prompt('Editar observação:',x.observacao||'');
+    if(obs===null)return;
+    KEY_REF.once('value').then(s=>{
+      const all=s.val()||{};
+      const duplicate=Object.entries(all).some(([otherId,v])=>otherId!==id&&String(v?.key||'').trim()===key);
+      if(duplicate)throw new Error('Essa Key já está cadastrada em outro estoque.');
+      return KEY_REF.child(id).update({key,observacao:obs.trim(),updatedAt:now(),updatedBy:email()});
+    }).then(()=>LOG_REF2.push({action:'EDIT_KEY_STOCK',targetEmail:x.clienteEmail||'',adminEmail:email(),adminRole:'owner',timestamp:now(),details:`Key do plano ${x.plano||x.produto} editada`}))
+      .then(()=>{alert('✅ Key atualizada.');kznCarregarEstoque();})
+      .catch(e=>alert('❌ Não foi possível editar a Key: '+e.message));
+  };
+
+  window.kznApagarKey=function(id){
+    if(!owner()){denyOwner();return;}
+    const x=window.kznStock?.[id];
+    if(!x)return alert('❌ Key não encontrada.');
+    if(x.status!=='available')return alert('⚠️ Uma Key já emitida não pode ser apagada.');
+    if(!confirm(`Apagar esta Key do estoque ${x.plano||x.produto}?\n\n${x.key}\n\nEsta ação não pode ser desfeita.`))return;
+    KEY_REF.child(id).remove()
+      .then(()=>LOG_REF2.push({action:'DELETE_KEY_STOCK',targetEmail:'',adminEmail:email(),adminRole:'owner',timestamp:now(),details:`Key ${x.plano||x.produto} removida do estoque`}))
+      .then(()=>{alert('🗑️ Key apagada do estoque.');kznCarregarEstoque();})
+      .catch(e=>alert('❌ Não foi possível apagar a Key: '+e.message));
   };
 
   window.kznEmitirKey=function(id){
@@ -8299,14 +8370,12 @@ Obrigado pela compra.`;
   }
 
   async function uploadProof(file, orderId){
-    if(!file) return {url:'',name:''};
+    if(!file || !PEDIDOS_STORAGE) return {url:'',name:file?.name||''};
     if(file.size > 5*1024*1024) throw new Error('O comprovante deve ter no máximo 5 MB.');
-    if(!PEDIDOS_STORAGE || typeof PEDIDOS_STORAGE.ref!=='function') throw new Error('Firebase Storage não está disponível.');
     const safeName=String(file.name||'comprovante').replace(/[^a-zA-Z0-9._-]/g,'_');
     const ref=PEDIDOS_STORAGE.ref(`pedidos/${orderId}/${Date.now()}_${safeName}`);
-    const uploadPromise=(async()=>{await ref.put(file);return {url:await ref.getDownloadURL(),name:file.name||safeName};})();
-    const timeout=new Promise((_,reject)=>setTimeout(()=>reject(new Error('Tempo limite de 15 segundos excedido. O pedido foi salvo e o comprovante pode ser reenviado pelo painel.')),15000));
-    return await Promise.race([uploadPromise,timeout]);
+    await ref.put(file);
+    return {url:await ref.getDownloadURL(),name:file.name||safeName};
   }
 
   async function registrarPedido(form){
@@ -8444,7 +8513,6 @@ Obrigado pela compra.`;
 </script>
 
 
-<style id="kzn-v19-stock-style">.kzn-stock-progress{height:7px;background:rgba(255,255,255,.08);border-radius:99px;overflow:hidden;margin-top:9px}.kzn-stock-progress span{display:block;height:100%;background:linear-gradient(90deg,#7c3aed,#22c55e);border-radius:99px}</style>
 <style id="kzn-v17-orders-style">
 .kzn-orders-card{overflow:hidden}
 .kzn-orders-toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
@@ -8549,12 +8617,20 @@ Obrigado pela compra.`;
 
   async function loadOrders(){
     const snap=await ORDERS.once('value');
-    const remote=Object.entries(snap.val()||{}).map(([id,x])=>({id,...x}));
+    const remote=Object.entries(snap.val()||{}).map(([id,x])=>({id,...x,_source:'firebase'}));
     let local=[];
-    try{local=JSON.parse(localStorage.getItem('kzn_compras')||'[]').map((x,i)=>({id:x.id||x.pedidoId||x.pedido||'LOCAL-'+(i+1),...x,_local:true}))}catch(e){}
+    try{local=JSON.parse(localStorage.getItem('kzn_compras')||'[]').map((x,i)=>({id:x.id||x.pedidoId||x.pedido||'LOCAL-'+(i+1),...x,_local:true,_source:'local'}))}catch(e){}
     const map=new Map();
-    [...remote,...local].forEach(x=>map.set(String(x.id),x));
-    return [...map.values()].sort((a,b)=>String(b.createdAt||'').localeCompare(String(a.createdAt||'')));
+    [...local,...remote].forEach(x=>{
+      const key=String(x.pedidoId||x.id||'').trim();
+      if(!key)return;
+      const prev=map.get(key);
+      if(!prev){map.set(key,x);return;}
+      const tx=Date.parse(x.updatedAt||x.createdAt||x.timestamp||0)||0;
+      const tp=Date.parse(prev.updatedAt||prev.createdAt||prev.timestamp||0)||0;
+      if(x._source==='firebase' || tx>=tp)map.set(key,{...prev,...x,_source:x._source});
+    });
+    return [...map.values()].sort((a,b)=>String(b.updatedAt||b.createdAt||'').localeCompare(String(a.updatedAt||a.createdAt||'')));
   }
 
   async function render(){
@@ -8572,8 +8648,8 @@ Obrigado pela compra.`;
         const email=E(x.email||x.cliente||'-');
         const product=E(x.produto||x.plano||x.nomeProduto||'-');
         const proof=x.comprovanteUrl
-          ? `<a class="kzn-order-proof" href="${E(x.comprovanteUrl)}" target="_blank" rel="noopener noreferrer"><i class="fas fa-image"></i> Ver comprovante</a>`
-          : `<button class="kzn-order-proof" type="button" disabled><i class="fas fa-image"></i> Sem comprovante</button>`;
+          ? `<button class="kzn-order-proof" type="button" onclick="kznVerComprovante('${E(x.comprovanteUrl)}','${E(x.comprovanteNome||'Comprovante')}')"><i class="fas fa-eye"></i> Ver comprovante</button>`
+          : `<button class="kzn-order-proof disabled" type="button" disabled><i class="fas fa-image"></i> Comprovante indisponível</button>`;
         const keyBtn=planFromProduct(x.produto||x.plano)
           ? `<button class="kzn-order-key" type="button" onclick="kznAbrirPedidoKey('${E(x.id)}')"><i class="fas fa-key"></i> ${String(x.status||'').toLowerCase().includes('key')?'Trocar/reenviar Key':'Enviar Key'}</button>`
           : '';
@@ -8605,6 +8681,21 @@ Obrigado pela compra.`;
       el.innerHTML='<div class="kzn-empty">Não foi possível carregar os pedidos. Verifique as regras do Firebase.</div>';
     }
   }
+
+  window.kznVerComprovante=function(url,name){
+    if(!/^https?:\/\//i.test(String(url||'')))return alert('Comprovante inválido.');
+    let modal=document.getElementById('kznProofViewer');
+    if(!modal){
+      modal=document.createElement('div');modal.id='kznProofViewer';modal.className='kzn-proof-viewer';
+      modal.innerHTML=`<div class="kzn-proof-box"><div class="kzn-proof-head"><strong id="kznProofTitle">Comprovante</strong><button type="button" onclick="kznFecharComprovante()" aria-label="Fechar"><i class="fas fa-times"></i></button></div><div id="kznProofContent" class="kzn-proof-content"></div></div>`;
+      document.body.appendChild(modal);modal.addEventListener('click',e=>{if(e.target===modal)window.kznFecharComprovante()});
+    }
+    document.getElementById('kznProofTitle').textContent=name||'Comprovante';
+    const box=document.getElementById('kznProofContent'), lower=String(name||url).toLowerCase();
+    box.innerHTML=/\.pdf($|[?#])/i.test(lower)?`<iframe src="${E(url)}" title="Comprovante PDF"></iframe>`:`<img src="${E(url)}" alt="Comprovante PIX"/>`;
+    modal.classList.add('open');
+  };
+  window.kznFecharComprovante=function(){document.getElementById('kznProofViewer')?.classList.remove('open')};
 
   window.renderAdminCompras=render;
 
@@ -8734,9 +8825,7 @@ Pedido: ${activeOrderId}`;
         emailInput.value=email;
         emailInput.dataset.autoFilled='1';
         emailInput.readOnly=true;
-        emailInput.setAttribute('aria-label','E-mail da conta logada');
-        const help=emailInput.parentElement?.querySelector('small');
-        if(help)help.textContent='E-mail preenchido automaticamente pela sua conta';
+        emailInput.title='E-mail da conta conectada';
       }
       if(reply)reply.value=email;
       const nameInput=form.querySelector('input[name="Nome"]');
@@ -8748,10 +8837,81 @@ Pedido: ${activeOrderId}`;
     fillPurchaseForms();
     setTimeout(fillPurchaseForms,700);
     setTimeout(fillPurchaseForms,1800);
+    const emailObserver=new MutationObserver(fillPurchaseForms);
+    emailObserver.observe(document.body,{subtree:true,childList:true});
   });
   window.addEventListener('load',()=>{fillPurchaseForms();setTimeout(render,300)});
 })();
 </script>
 
+\n<script id="kzn-v21-owner-registry">
+(function(){
+  const PRIMARY='gabriel6061yt@gmail.com';
+  const OWNERS=db.ref('site/owners');
+  const SAN=v=>String(v||'').trim().toLowerCase().replace(/[.#$\[\]\/]/g,'_');
+  const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const current=()=>{let u=window.usuarioLogado||null;try{if(!u&&typeof usuarioLogado!=='undefined')u=usuarioLogado}catch(e){}if(!u){try{u=JSON.parse(localStorage.getItem('kzn_usuario_logado')||'null')}catch(e){}}return String(u?.email||'').trim().toLowerCase()};
+  window.kznOwnerEmails={[PRIMARY]:true};
+  window.kznOwnersReady=false;
+  window.kznIsOwnerEmail=function(em){const e=String(em||'').trim().toLowerCase();return !!e&&(e===PRIMARY||window.kznOwnerEmails[e]===true)};
+  window.kznOwnersReadyPromise=OWNERS.once('value').then(s=>{
+    const data=s.val()||{};
+    Object.values(data).forEach(o=>{if(o&&o.ativo!==false&&o.email)window.kznOwnerEmails[String(o.email).trim().toLowerCase()]=true;});
+    window.kznOwnersReady=true;
+    window.atualizarBotaoAdminV6?.();
+    window.renderAdminsPanel?.();
+    return data;
+  }).catch(e=>{console.warn('Owners registry:',e);window.kznOwnersReady=true;return {};});
+  function primary(){return current()===PRIMARY}
+  function ownerOnly(){if(!primary()){alert('👑 Apenas o proprietário principal pode conceder ou remover proprietários.');return false}return true}
+  window.kznRenderOwners=function(){
+    const tbody=document.getElementById('kznOwnersTabela');if(!tbody)return;
+    OWNERS.once('value').then(s=>{
+      const list=Object.entries(s.val()||{}).map(([id,o])=>({id,...o})).filter(o=>o&&o.ativo!==false);
+      tbody.innerHTML=list.length?list.map(o=>`<tr><td>${esc(o.email)}</td><td><span class="admin-role-pill">👑 PROPRIETÁRIO</span></td><td>${esc(o.grantedBy||PRIMARY)}</td><td><button class="mini-action ban" onclick="kznRemoverOwner('${esc(o.email)}')">Remover</button></td></tr>`).join(''):'<tr><td colspan="4">Nenhum proprietário adicional cadastrado.</td></tr>';
+    });
+  };
+  window.kznAbrirConcederOwner=function(){
+    if(!ownerOnly())return;
+    const body=document.getElementById('adminModalBody');if(!body)return;
+    body.innerHTML=`<h3>👑 Conceder cargo Proprietário</h3><p class="admin-help">O usuário poderá visualizar, editar, apagar, adicionar e emitir Keys, além de acessar as ferramentas de proprietário.</p><form class="admin-form" onsubmit="kznConcederOwner(event)"><label>E-mail do usuário</label><input id="kznNovoOwnerEmail" type="email" required placeholder="cliente@email.com"><button>Conceder Proprietário</button></form>`;
+    document.getElementById('adminActionModal')?.classList.add('open');
+  };
+  window.kznConcederOwner=function(ev){
+    ev.preventDefault();if(!ownerOnly())return;
+    const em=String(document.getElementById('kznNovoOwnerEmail')?.value||'').trim().toLowerCase();
+    if(!em)return;
+    if(em===PRIMARY)return alert('⚠️ Esse e-mail já é o proprietário principal.');
+    OWNERS.once('value').then(s=>{
+      const exists=Object.values(s.val()||{}).some(o=>String(o?.email||'').toLowerCase()===em&&o?.ativo!==false);
+      if(exists)throw new Error('Esse usuário já é proprietário.');
+      return OWNERS.push({email:em,ativo:true,grantedAt:new Date().toISOString(),grantedBy:PRIMARY});
+    }).then(()=>{
+      window.kznOwnerEmails[em]=true;
+      db.ref('site/admin_logs').push({action:'GRANT_OWNER',targetEmail:em,adminEmail:PRIMARY,adminRole:'primary_owner',timestamp:new Date().toISOString(),details:'Cargo Proprietário concedido'});
+      document.getElementById('adminActionModal')?.classList.remove('open');
+      window.kznRenderOwners();window.atualizarBotaoAdminV6?.();alert('👑 Proprietário concedido com sucesso.');
+    }).catch(e=>alert('❌ Não foi possível conceder Proprietário: '+e.message));
+  };
+  window.kznRemoverOwner=function(em){
+    if(!ownerOnly())return;
+    em=String(em||'').trim().toLowerCase();
+    if(em===PRIMARY)return alert('⚠️ O proprietário principal não pode ser removido.');
+    if(!confirm('Remover o cargo Proprietário de '+em+'?'))return;
+    OWNERS.once('value').then(s=>{
+      const ids=Object.entries(s.val()||{}).filter(([,o])=>String(o?.email||'').toLowerCase()===em).map(([id])=>id);
+      if(!ids.length)throw new Error('Proprietário não encontrado.');
+      return Promise.all(ids.map(id=>OWNERS.child(id).update({ativo:false,removedAt:new Date().toISOString(),removedBy:PRIMARY})));
+    }).then(()=>{
+      delete window.kznOwnerEmails[em];
+      db.ref('site/admin_logs').push({action:'REMOVE_OWNER',targetEmail:em,adminEmail:PRIMARY,adminRole:'primary_owner',timestamp:new Date().toISOString(),details:'Cargo Proprietário removido'});
+      window.kznRenderOwners();window.atualizarBotaoAdminV6?.();alert('👑 Cargo Proprietário removido.');
+    }).catch(e=>alert('❌ Não foi possível remover Proprietário: '+e.message));
+  };
+  const oldRender=window.renderAdminsPanel;
+  window.renderAdminsPanel=function(){oldRender?.();setTimeout(window.kznRenderOwners,100)};
+  window.addEventListener('load',()=>{window.kznOwnersReadyPromise.then(()=>window.kznRenderOwners?.())});
+})();
+</script>\n
 </body>
 </html>
