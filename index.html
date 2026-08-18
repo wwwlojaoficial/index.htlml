@@ -4037,7 +4037,7 @@
 <div class="plan-card" style="border-color:var(--era);">
 <span class="badge" style="background:var(--era);color:#000;">🔥 EXCLUSIVO</span>
 <div style="text-align:center;margin:0.5rem 0;">
-<img alt="MOD MENU GRAAL ERA" class="era-product-image" src="https://yt3.ggpht.com/OBlIy0WjA_eBxMQz4Z1pRx7IiuRkNjQSxoGeMpUV8vROPggmrRcM0wxoqY5jGV3uXy0vxkMpHMhHc8o=s720-rw-nd-v1"/>
+<img alt="MOD MENU GRAAL ERA" class="era-product-image" src="https://yt3.ggpht.com/5nAR2gmp0Do_KMoGwr9_kPhA2uO4eJtX4QBVaG-9mmMU_KU8LHri7Tn1116x6tCDBcS4Toi2fYm0=s900-rw-nd-v1"/>
 </div>
 <div class="seller-info">
 <strong>Vendedor:</strong> Xitado
@@ -4091,7 +4091,7 @@
 <input name="_template" type="hidden" value="table"/>
 <input name="_subject" type="hidden" value="🔥 NOVO PEDIDO - MOD MENU GRAAL ERA"/>
 <div style="text-align:center;margin-bottom:1.2rem;">
-<img alt="MOD MENU GRAAL ERA" src="https://yt3.ggpht.com/OBlIy0WjA_eBxMQz4Z1pRx7IiuRkNjQSxoGeMpUV8vROPggmrRcM0wxoqY5jGV3uXy0vxkMpHMhHc8o=s720-rw-nd-v1" style="max-width:180px;border-radius:12px;border:2px solid var(--era);"/>
+<img alt="MOD MENU GRAAL ERA" src="https://yt3.ggpht.com/5nAR2gmp0Do_KMoGwr9_kPhA2uO4eJtX4QBVaG-9mmMU_KU8LHri7Tn1116x6tCDBcS4Toi2fYm0=s900-rw-nd-v1" style="max-width:180px;border-radius:12px;border:2px solid var(--era);"/>
 <p style="color:var(--text-muted);font-size:0.85rem;margin-top:0.3rem;">
 <strong style="color:var(--era);">Vendedor:</strong> Xitado
                     </p>
@@ -4139,7 +4139,7 @@
 <div class="plan-card auto-trash-product-card">
 <span class="badge" style="background:#a855f7;">🗑️ AUTO TRASH</span>
 <div class="auto-trash-product-image">
-<img alt="Auto Trash Automatic" src="https://yt3.ggpht.com/OBlIy0WjA_eBxMQz4Z1pRx7IiuRkNjQSxoGeMpUV8vROPggmrRcM0wxoqY5jGV3uXy0vxkMpHMhHc8o=s720-rw-nd-v1"/>
+<img alt="Auto Trash Automatic" src="https://yt3.ggpht.com/5nAR2gmp0Do_KMoGwr9_kPhA2uO4eJtX4QBVaG-9mmMU_KU8LHri7Tn1116x6tCDBcS4Toi2fYm0=s900-rw-nd-v1"/>
 </div>
 <h3>AUTO TRASH AUTOMATIC</h3>
 <div class="price">R$ 200,00</div>
@@ -7430,5 +7430,76 @@ if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.s
 }
 </style>
 
+
+<style id="kzn-v18-final-notification-autotrash-fix">
+/* V18 — correção final: imagem correta do Auto Trash + notificações realmente compactas */
+.auto-trash-product-image img{
+  content:url("https://yt3.ggpht.com/5nAR2gmp0Do_KMoGwr9_kPhA2uO4eJtX4QBVaG-9mmMU_KU8LHri7Tn1116x6tCDBcS4Toi2fYm0=s900-rw-nd-v1")!important;
+  width:100%!important;
+  max-width:280px!important;
+  height:auto!important;
+  max-height:none!important;
+  object-fit:contain!important;
+}
+#notifBtn.nav-icon-btn,
+header #notifBtn.nav-icon-btn,
+.navbar #notifBtn.nav-icon-btn{
+  width:40px!important;
+  height:40px!important;
+  min-width:40px!important;
+  min-height:40px!important;
+  max-width:40px!important;
+  max-height:40px!important;
+  flex:0 0 40px!important;
+  padding:0!important;
+  border-radius:50%!important;
+}
+#notifDropdown{
+  width:280px!important;
+  min-width:280px!important;
+  max-width:280px!important;
+  max-height:340px!important;
+  right:0!important;
+}
+#notifDropdown .dropdown-header{
+  padding:8px!important;
+  gap:5px!important;
+}
+#notifDropdown .dropdown-body{
+  max-height:245px!important;
+  padding:6px!important;
+}
+@media(max-width:560px){
+  #notifBtn.nav-icon-btn,
+  header #notifBtn.nav-icon-btn,
+  .navbar #notifBtn.nav-icon-btn{
+    width:40px!important;
+    height:40px!important;
+    min-width:40px!important;
+    min-height:40px!important;
+    max-width:40px!important;
+    max-height:40px!important;
+    flex-basis:40px!important;
+  }
+  #notifDropdown{
+    position:fixed!important;
+    top:66px!important;
+    right:10px!important;
+    left:auto!important;
+    width:280px!important;
+    min-width:280px!important;
+    max-width:280px!important;
+    max-height:340px!important;
+  }
+}
+@media(max-width:320px){
+  #notifDropdown{
+    right:5px!important;
+    width:calc(100vw - 10px)!important;
+    min-width:0!important;
+    max-width:calc(100vw - 10px)!important;
+  }
+}
+</style>
 </body>
 </html>
