@@ -3024,6 +3024,7 @@
                     <button class="btn-buy" style="background:linear-gradient(135deg,var(--secondary),var(--secondary-light));" onclick="abrirModalPixEra()">
     COMPRAR AGORA - R$ 65,00
 </button>
+<button class="btn-add-cart" onclick="adicionarAoCarrinho('MOD MENU GRAAL ERA', 65, 'era')"><i class="fas fa-cart-plus"></i> Adicionar ao Carrinho</button>
                     <button class="btn-add-cart" onclick="adicionarAoCarrinho('MOD MENU GRAAL ERA', 65)"><i class="fas fa-cart-plus"></i> Adicionar ao Carrinho</button>
                 </div>
             </div>
@@ -5155,16 +5156,16 @@
             atualizarCarrinho();
         }
 
-        window.adicionarAoCarrinho = function(nome, preco) {
-            const item = carrinho.find(i => i.nome === nome);
-            if (item) {
-                item.quantidade++;
-            } else {
-                carrinho.push({ nome, preco, quantidade: 1 });
-            }
-            salvarCarrinho();
-            alert(`🛒 ${nome} adicionado ao carrinho!`);
-        };
+        window.adicionarAoCarrinho = function(nome, preco, tipo = 'classic') {
+    const item = carrinho.find(i => i.nome === nome);
+    if (item) {
+        item.quantidade++;
+    } else {
+        carrinho.push({ nome, preco, quantidade: 1, tipo: tipo });
+    }
+    salvarCarrinho();
+    alert(`🛒 ${nome} adicionado ao carrinho!`);
+};
 
         function removerDoCarrinho(index) {
             carrinho.splice(index, 1);
@@ -5203,24 +5204,32 @@
         }
 
         window.finalizarCompra = function() {
-            if (carrinho.length === 0) {
-                alert('🛒 Seu carrinho está vazio!');
-                return;
-            }
-            const total = carrinho.reduce((sum, item) => sum + (item.preco * item.quantidade), 0);
-            if (confirm(`🛒 Finalizar compra de R$ ${total.toFixed(2)}?`)) {
-                carrinho = [];
-                salvarCarrinho();
-                alert('✅ Pagamento gerado!');
-                abrirModalPix();
-                document.getElementById('planInfo').textContent = `Total: R$ ${total.toFixed(2)}`;
-                document.getElementById('cartDropdown').classList.remove('open');
-            }
-        };
-
-        window.toggleCarrinho = function() {
-            document.getElementById('cartDropdown').classList.toggle('open');
-        };
+    if (carrinho.length === 0) {
+        alert('🛒 Seu carrinho está vazio!');
+        return;
+    }
+    
+    // Verifica se tem MOD MENU ERA no carrinho
+    const temEra = carrinho.some(item => item.nome === 'MOD MENU GRAAL ERA');
+    const total = carrinho.reduce((sum, item) => sum + (item.preco * item.quantidade), 0);
+    
+    if (confirm(`🛒 Finalizar compra de R$ ${total.toFixed(2)}?`)) {
+        carrinho = [];
+        salvarCarrinho();
+        alert('✅ Pagamento gerado!');
+        
+        // Se tiver MOD MENU ERA, abre o modal ERA
+        if (temEra) {
+            abrirModalPixEra();
+            document.getElementById('planInfoEra').textContent = `Total: R$ ${total.toFixed(2)}`;
+        } else {
+            abrirModalPix();
+            document.getElementById('planInfo').textContent = `Total: R$ ${total.toFixed(2)}`;
+        }
+        
+        document.getElementById('cartDropdown').classList.remove('open');
+    }
+};
 
         // ====== NOTIFICAÇÕES ======
         function carregarNotificacoes() {
