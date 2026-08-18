@@ -8913,5 +8913,87 @@ Pedido: ${activeOrderId}`;
   window.addEventListener('load',()=>{window.kznOwnersReadyPromise.then(()=>window.kznRenderOwners?.())});
 })();
 </script>\n
+
+<style id="kzn-v22-professional-fixes">
+/* ===== V22 — pedidos profissionais + estoque dark + som ===== */
+.kzn-orders-toolbar{background:rgba(8,13,25,.55);border:1px solid rgba(139,92,246,.12);border-radius:14px;padding:10px}
+.kzn-orders-toolbar input{background:#080d18!important;color:#fff!important;border:1px solid rgba(139,92,246,.22)!important;border-radius:11px!important;padding:11px 13px!important;min-height:42px}
+.kzn-order-list{display:grid!important;grid-template-columns:1fr!important;gap:12px!important;margin-top:14px}
+.kzn-order-card{position:relative!important;background:linear-gradient(145deg,#111827,#0d1424)!important;border:1px solid rgba(139,92,246,.16)!important;border-radius:18px!important;padding:15px!important;box-shadow:0 12px 35px rgba(0,0,0,.22)!important;overflow:hidden}
+.kzn-order-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(#8b5cf6,#ef4444);opacity:.9}
+.kzn-order-head{padding-left:5px!important}
+.kzn-order-id{font-size:.82rem!important;color:#c4b5fd!important}
+.kzn-order-date{font-size:.68rem!important;color:#7f8aa3!important}
+.kzn-order-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+.kzn-order-field{background:rgba(2,6,23,.48)!important;border:1px solid rgba(255,255,255,.055)!important;border-radius:12px!important;padding:10px!important}
+.kzn-order-field label{font-size:.61rem!important;color:#8792aa!important}
+.kzn-order-field strong,.kzn-order-field span{font-size:.78rem!important}
+.kzn-order-actions{padding-top:2px!important}
+.kzn-order-actions .kzn-order-proof,.kzn-order-actions .kzn-order-key{min-height:40px!important;padding:10px 13px!important;border-radius:11px!important}
+.kzn-order-proof{background:#172033!important;border:1px solid rgba(255,255,255,.09)!important}
+.kzn-order-key{background:linear-gradient(135deg,#7c3aed,#db2777)!important}
+.kzn-order-sound-btn{margin-left:auto!important;white-space:nowrap!important}
+.kzn-order-sound-btn.enabled{background:rgba(34,197,94,.14)!important;color:#4ade80!important;border-color:rgba(34,197,94,.3)!important}
+.kzn-stock-summary{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px!important;margin-bottom:14px!important}
+.kzn-stock-summary-card{appearance:none!important;width:100%!important;text-align:left!important;display:grid!important;grid-template-columns:auto 1fr auto!important;align-items:center!important;gap:3px 10px!important;padding:13px 14px!important;background:linear-gradient(145deg,#111827,#0b1220)!important;color:#e5e7eb!important;border:1px solid rgba(139,92,246,.18)!important;border-radius:14px!important;box-shadow:0 8px 22px rgba(0,0,0,.18)!important;cursor:pointer!important}
+.kzn-stock-summary-card strong{grid-row:1/3;color:#c4b5fd!important;font-size:.9rem!important}
+.kzn-stock-summary-card span{font-size:.68rem!important;color:#8f9ab0!important}
+.kzn-stock-summary-card b{font-size:1.05rem!important;color:#4ade80!important;text-align:right!important}
+.kzn-stock-summary-card small{font-size:.62rem!important;color:#7f8aa3!important;text-align:right!important}
+.kzn-stock-item{background:linear-gradient(145deg,#111827,#0d1424)!important;border:1px solid rgba(139,92,246,.12)!important;border-radius:13px!important}
+@media(max-width:700px){.kzn-order-grid{grid-template-columns:1fr!important}.kzn-stock-summary{grid-template-columns:1fr!important}.kzn-order-sound-btn{margin-left:0!important;width:100%!important}}
+</style>
+
+<script id="kzn-v22-functional-fixes">
+(function(){
+  const V22={known:new Set(),initialized:false,audioEnabled:false,audioCtx:null};
+  const escV22=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const moneyV22=v=>{const n=Number(v);return Number.isFinite(n)?'R$ '+n.toFixed(2).replace('.',','):'-'};
+  const dateV22=v=>{try{return v?new Date(v).toLocaleString('pt-BR'):'-'}catch(e){return '-'}};
+  const statusClassV22=s=>{const x=String(s||'').toLowerCase();if(x.includes('key'))return 'key';if(x.includes('pago'))return 'pago';if(x.includes('an'))return 'analise';if(x.includes('cancel'))return 'cancelado';return 'recebido'};
+  function getUserV22(){let u=window.usuarioLogado||null;try{if(!u)u=JSON.parse(localStorage.getItem('kzn_usuario_logado')||'null')}catch(e){}return u||{}}
+  async function canAdminV22(){try{if(typeof canAdmin==='function')return await canAdmin();}catch(e){} const e=String(getUserV22().email||'').toLowerCase();return !!e}
+  async function loadV22(){
+    const remoteSnap=await db.ref('site/pedidos').once('value');
+    const remote=Object.entries(remoteSnap.val()||{}).map(([id,x])=>({id,...(x||{}),_source:'firebase'}));
+    let local=[];try{local=JSON.parse(localStorage.getItem('kzn_compras')||'[]').map((x,i)=>({id:x.id||x.pedidoId||x.pedido||'LOCAL-'+i,...x,_source:'local'}))}catch(e){}
+    const map=new Map();
+    remote.forEach(x=>{const k=String(x.pedidoId||x.id||'').trim();if(k)map.set(k,x)});
+    local.forEach(x=>{const k=String(x.pedidoId||x.id||'').trim();if(k&&!map.has(k))map.set(k,x)});
+    return [...map.values()].sort((a,b)=>Date.parse(b.updatedAt||b.createdAt||b.timestamp||b.data||0)-Date.parse(a.updatedAt||a.createdAt||a.timestamp||a.data||0));
+  }
+  function injectSoundButton(){
+    const bar=document.querySelector('.kzn-orders-toolbar');if(!bar||bar.querySelector('.kzn-order-sound-btn'))return;
+    const b=document.createElement('button');b.type='button';b.className='admin-action-btn kzn-order-sound-btn';b.innerHTML='<i class="fas fa-volume-mute"></i> Som de pedidos: OFF';
+    b.onclick=()=>{V22.audioEnabled=!V22.audioEnabled;localStorage.setItem('kzn_order_sound',V22.audioEnabled?'1':'0');if(V22.audioEnabled){unlockAudio();beepV22(true)}updateSoundButton(b)};
+    bar.appendChild(b);updateSoundButton(b);
+  }
+  function updateSoundButton(b){const on=V22.audioEnabled;b.classList.toggle('enabled',on);b.innerHTML=on?'<i class="fas fa-volume-up"></i> Som de pedidos: ON':'<i class="fas fa-volume-mute"></i> Som de pedidos: OFF'}
+  function unlockAudio(){try{if(!V22.audioCtx)V22.audioCtx=new (window.AudioContext||window.webkitAudioContext)();if(V22.audioCtx.state==='suspended')V22.audioCtx.resume()}catch(e){}}
+  function beepV22(test=false){if(!V22.audioEnabled&&!test)return;try{unlockAudio();const c=V22.audioCtx;if(!c)return;const o=c.createOscillator(),g=c.createGain();o.type='sine';o.frequency.setValueAtTime(test?740:880,c.currentTime);o.frequency.exponentialRampToValueAtTime(test?520:660,c.currentTime+.16);g.gain.setValueAtTime(.0001,c.currentTime);g.gain.exponentialRampToValueAtTime(.12,c.currentTime+.015);g.gain.exponentialRampToValueAtTime(.0001,c.currentTime+.2);o.connect(g);g.connect(c.destination);o.start();o.stop(c.currentTime+.21)}catch(e){}}
+  async function renderV22(){
+    const el=document.getElementById('admComprasTabela');if(!el)return;if(!(await canAdminV22())){el.innerHTML='<div class="kzn-empty">Acesso restrito a administradores.</div>';return}
+    injectSoundButton();el.innerHTML='<div class="kzn-empty"><i class="fas fa-spinner fa-spin"></i> Carregando pedidos...</div>';
+    try{
+      let list=await loadV22();const q=String(document.getElementById('admBuscaCompra')?.value||'').toLowerCase().trim();if(q)list=list.filter(x=>JSON.stringify(x).toLowerCase().includes(q));
+      if(!list.length){el.innerHTML='<div class="kzn-empty"><i class="fas fa-inbox"></i><br>Nenhum pedido encontrado.</div>';return}
+      el.innerHTML=list.map((x,i)=>{
+        const id=escV22(x.id||x.pedidoId||('#'+(i+1))), email=escV22(x.email||x.cliente||'-'), product=escV22(x.produto||x.plano||x.nomeProduto||'-'), status=x.status||'Recebido';
+        const proof=x.comprovanteUrl?`<button class="kzn-order-proof" type="button" onclick="kznVerComprovante('${escV22(x.comprovanteUrl)}','${escV22(x.comprovanteNome||'Comprovante PIX')}')"><i class="fas fa-receipt"></i> Ver comprovante</button>`:`<button class="kzn-order-proof disabled" type="button" disabled><i class="fas fa-file-circle-xmark"></i> Sem comprovante</button>`;
+        const keyBtn=typeof planFromProduct==='function'&&planFromProduct(x.produto||x.plano)?`<button class="kzn-order-key" type="button" onclick="kznAbrirPedidoKey('${escV22(x.id)}')"><i class="fas fa-key"></i> ${String(status).toLowerCase().includes('key')?'Reenviar Key':'Enviar Key'}</button>`:'';
+        return `<article class="kzn-order-card"><div class="kzn-order-head"><div><div class="kzn-order-id">${id}</div><div class="kzn-order-date"><i class="far fa-clock"></i> ${dateV22(x.createdAt||x.timestamp||x.data)}</div></div><span class="kzn-order-status ${statusClassV22(status)}">${escV22(status)}</span></div><div class="kzn-order-grid"><div class="kzn-order-field"><label>Cliente</label><strong>${escV22(x.nome||'Não informado')}</strong><span>${email}</span></div><div class="kzn-order-field"><label>WhatsApp</label><span>${escV22(x.whatsapp||'-')}</span></div><div class="kzn-order-field"><label>Produto / plano</label><strong>${product}</strong></div><div class="kzn-order-field"><label>Valor</label><strong>${moneyV22(x.valor)}</strong></div><div class="kzn-order-field full"><label>Status do pedido</label><select class="kzn-order-status-select" onchange="kznAlterarStatusPedido('${escV22(x.id)}',this.value)">${['Recebido','Em análise','Pago','Key enviada','Cancelado'].map(s=>`<option ${s===status?'selected':''}>${s}</option>`).join('')}</select></div><div class="kzn-order-field full"><label>Comprovante</label><span>${escV22(x.comprovanteNome||'Não anexado')}</span></div>${x.key?`<div class="kzn-order-field full"><label>Key enviada</label><strong>${escV22(x.key)}</strong><span>${escV22(x.keyPlano||'')} · ${dateV22(x.keyIssuedAt)}</span></div>`:''}${x.mensagem?`<div class="kzn-order-field full"><label>Mensagem</label><span>${escV22(x.mensagem)}</span></div>`:''}</div><div class="kzn-order-actions">${proof}${keyBtn}</div></article>`;
+      }).join('');
+    }catch(e){console.error(e);el.innerHTML='<div class="kzn-empty">Não foi possível carregar os pedidos. Verifique as regras do Firebase.</div>'}
+  }
+  function initSound(){
+    V22.audioEnabled=localStorage.getItem('kzn_order_sound')==='1';
+    document.addEventListener('pointerdown',()=>{if(V22.audioEnabled)unlockAudio()},{passive:true});
+    if(V22.initialized)return;V22.initialized=true;
+    db.ref('site/pedidos').once('value').then(s=>{Object.keys(s.val()||{}).forEach(id=>V22.known.add(String(id)));db.ref('site/pedidos').on('child_added',snap=>{const id=String(snap.key);if(V22.known.has(id))return;V22.known.add(id);beepV22(false);if(typeof renderV22==='function')renderV22();})}).catch(()=>{});
+  }
+  window.renderAdminCompras=renderV22;
+  document.addEventListener('DOMContentLoaded',()=>{initSound();setTimeout(()=>{renderV22();injectSoundButton()},700)});
+})();
+</script>
 </body>
 </html>
