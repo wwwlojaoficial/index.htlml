@@ -8579,13 +8579,10 @@ Obrigado pela compra.`;
     return String(u?.email||'').trim().toLowerCase();
   }
   async function canAdmin(){
+    // Central de Pedidos: SOMENTE proprietários. Administradores comuns não têm acesso.
     const em=currentEmail();
     if(!em)return false;
-    if(em===OWNER)return true;
-    try{
-      const s=await db.ref('chat/admins').once('value');
-      return Object.values(s.val()||{}).some(a=>String(a?.email||'').toLowerCase()===em&&a?.ativo===true);
-    }catch(e){return false}
+    return em===OWNER || (typeof window.kznIsOwnerEmail==='function' && window.kznIsOwnerEmail(em));
   }
   function planFromProduct(prod){
     const s=String(prod||'').toLowerCase();
@@ -9077,7 +9074,12 @@ Pedido: ${activeOrderId}`;
 
   function user(){let u=window.usuarioLogado||null;try{if(!u)u=JSON.parse(localStorage.getItem('kzn_usuario_logado')||'null')}catch(e){}return u||{};}
   function email(){return String(user().email||'').trim().toLowerCase();}
-  async function canAdmin(){const em=email();if(!em)return false;if(em===OWNER)return true;try{const s=await db.ref('chat/admins').once('value');return Object.values(s.val()||{}).some(a=>String(a?.email||'').toLowerCase()===em&&a?.ativo===true)}catch(e){return false}}
+  async function canAdmin(){
+    // Pedidos e emissão de Keys são funções exclusivas de proprietários.
+    const em=email();
+    if(!em)return false;
+    return em===OWNER || (typeof window.kznIsOwnerEmail==='function' && window.kznIsOwnerEmail(em));
+  }
   function isOwner(){return email()===OWNER || (typeof window.kznIsOwnerEmail==='function'&&window.kznIsOwnerEmail(email()));}
   function planOf(v){const s=String(v||'').toLowerCase();return PLANS.find(p=>s.includes(p[1].toLowerCase()))||null}
   function now(){return new Date().toISOString()}
@@ -9539,6 +9541,68 @@ Pedido: ${activeOrderId}`;
 .kzn-log-list-prof{display:grid;gap:12px}.kzn-log-order-card{position:relative;overflow:hidden;padding:15px;background:linear-gradient(145deg,#111a2c,#0d1525);border:1px solid rgba(139,92,246,.16);border-radius:18px}.kzn-log-order-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,#8b5cf6,#ec4899)}.kzn-log-order-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.kzn-log-order-id{font-size:.85rem;font-weight:900;color:#c4b5fd;word-break:break-all}.kzn-log-order-date{font-size:.68rem;color:#64748b;margin-top:4px}.kzn-log-order-main{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:12px}.kzn-log-order-main>div{padding:10px;border-radius:11px;background:rgba(2,6,23,.48);border:1px solid rgba(255,255,255,.05)}.kzn-log-order-main label,.kzn-log-detail-grid label{display:block;font-size:.6rem;letter-spacing:.06em;color:#64748b;font-weight:900;margin-bottom:4px}.kzn-log-order-main strong,.kzn-log-order-main span{display:block;font-size:.8rem;color:#f8fafc;word-break:break-word}.kzn-log-order-main span{color:#94a3b8}.kzn-log-state{display:inline-flex;align-items:center;justify-content:center;padding:6px 10px;border-radius:999px;background:rgba(251,191,36,.12);color:#fbbf24;font-size:.67rem;font-weight:900;white-space:nowrap}.kzn-log-state.delivered{background:rgba(34,197,94,.12);color:#4ade80}.kzn-log-state.deleted{background:rgba(239,68,68,.12);color:#f87171}.kzn-log-progress{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:12px}.kzn-log-progress span{padding:7px 6px;border-radius:9px;background:#0a1020;color:#64748b;font-size:.62rem;font-weight:800;text-align:center;border:1px solid rgba(255,255,255,.04)}.kzn-log-progress span.done{background:rgba(34,197,94,.08);color:#86efac;border-color:rgba(34,197,94,.16)}.kzn-log-order-actions{margin-top:10px}.kzn-log-detail-btn{width:100%;border:1px solid rgba(96,165,250,.18);background:#172033;color:#bfdbfe;border-radius:10px;padding:10px 12px;font-weight:900;font-size:.73rem;cursor:pointer}.kzn-log-detail-modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:14px;background:rgba(0,0,0,.82);backdrop-filter:blur(8px);z-index:130000}.kzn-log-detail-modal.open{display:flex}.kzn-log-detail-box{width:min(760px,100%);max-height:92vh;overflow:auto;background:#0b1220;border:1px solid rgba(168,85,247,.28);border-radius:18px;box-shadow:0 25px 90px rgba(0,0,0,.55)}.kzn-log-detail-closebar{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.07);color:#fff;position:sticky;top:0;background:#0b1220;z-index:2}.kzn-log-detail-closebar button{width:38px;height:38px;border:0;border-radius:10px;background:#172033;color:#fff;cursor:pointer}.kzn-log-detail-body{padding:16px}.kzn-log-detail-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.kzn-log-detail-id{font-size:1rem;font-weight:900;color:#c4b5fd;word-break:break-all}.kzn-log-detail-sub{font-size:.72rem;color:#64748b;margin-top:3px}.kzn-log-detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:14px}.kzn-log-detail-grid>div{padding:11px;border-radius:12px;background:#0e1626;border:1px solid rgba(255,255,255,.05)}.kzn-log-detail-grid strong,.kzn-log-detail-grid span{display:block;color:#f8fafc;font-size:.8rem;word-break:break-word}.kzn-log-detail-grid span{color:#94a3b8;margin-top:2px}.kzn-log-timeline{margin-top:16px}.kzn-log-timeline h4{margin:0 0 10px;color:#fff;font-size:.9rem}.kzn-log-timeline-item{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.055)}.kzn-log-timeline-item:last-child{border-bottom:0}.kzn-log-dot{width:30px;height:30px;flex:0 0 30px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#172033;color:#93c5fd}.kzn-log-timeline-item.delivered .kzn-log-dot{background:rgba(34,197,94,.12);color:#4ade80}.kzn-log-timeline-item.deleted .kzn-log-dot{background:rgba(239,68,68,.12);color:#f87171}.kzn-log-timeline-item>div{min-width:0}.kzn-log-timeline-item strong{display:block;color:#fff;font-size:.8rem}.kzn-log-timeline-item small{display:block;color:#64748b;font-size:.65rem;margin-top:2px}.kzn-log-timeline-item p{margin:4px 0 0;color:#94a3b8;font-size:.72rem;word-break:break-word}
 @media(max-width:700px){.kzn-log-summary{grid-template-columns:repeat(2,minmax(0,1fr))}.kzn-log-order-main,.kzn-log-detail-grid{grid-template-columns:1fr}.kzn-log-progress{grid-template-columns:repeat(2,1fr)}}
 </style>
+
+<script id="kzn-owner-only-orders-security">
+/* ===== KZN SECURITY — PEDIDOS EXCLUSIVO PARA PROPRIETÁRIOS ===== */
+(function(){
+  const OWNER_EMAIL='gabriel6061yt@gmail.com';
+  function currentEmail(){
+    let u=window.usuarioLogado||null;
+    try{if(!u)u=JSON.parse(localStorage.getItem('kzn_usuario_logado')||'null')}catch(e){}
+    return String(u?.email||'').trim().toLowerCase();
+  }
+  function isOwner(){
+    const em=currentEmail();
+    return !!em && (em===OWNER_EMAIL || (typeof window.kznIsOwnerEmail==='function' && window.kznIsOwnerEmail(em)));
+  }
+  function deny(){alert('🚫 A aba Pedidos e o envio de Keys são exclusivos dos proprietários.');}
+
+  function sync(){
+    const owner=isOwner();
+    const btn=document.querySelector('.admin-nav-btn[data-admin-view="compras"]');
+    const view=document.getElementById('adminViewCompras');
+    if(btn)btn.style.setProperty('display',owner?'inline-flex':'none','important');
+    if(view){
+      view.style.display=owner?'':'none';
+      if(!owner && view.classList.contains('active')){
+        view.classList.remove('active');
+        const dash=document.getElementById('adminViewDashboard');
+        if(dash)dash.classList.add('active');
+        document.querySelectorAll('.admin-nav-btn').forEach(b=>b.classList.toggle('active',b.dataset.adminView==='dashboard'));
+      }
+    }
+  }
+
+  const baseSwitch=window.mudarAbaAdmin;
+  window.mudarAbaAdmin=function(view){
+    if(view==='compras' && !isOwner()){deny();sync();return;}
+    if(typeof baseSwitch==='function')return baseSwitch(view);
+  };
+
+  // Defense in depth: block direct calls to order/key operations even if someone
+  // tries to invoke them from the browser console or a stale UI instance.
+  ['kznAbrirPedidoKey','kznConfirmarPedidoKey','kznAlterarStatusPedido','kznExcluirPedido','kznAbrirInfoLogCompra','kznVerComprovantePedido'].forEach(name=>{
+    const install=()=>{
+      const fn=window[name];
+      if(typeof fn!=='function' || fn.__kznOwnerGuard)return;
+      const guarded=async function(){
+        if(!isOwner()){deny();return;}
+        return fn.apply(this,arguments);
+      };
+      guarded.__kznOwnerGuard=true;
+      window[name]=guarded;
+    };
+    install();
+    setTimeout(install,500);
+    setTimeout(install,1500);
+  });
+
+  sync();
+  document.addEventListener('DOMContentLoaded',sync);
+  window.addEventListener('load',sync);
+  setInterval(sync,3000);
+})();
+</script>
 </body>
 </html>
 
