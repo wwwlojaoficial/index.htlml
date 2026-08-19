@@ -3836,7 +3836,9 @@
 <button class="tab-btn classic active" onclick="trocarAba('classic')">
 <i class="fas fa-sword"></i> Graal Classic
                 </button>
-
+<button class="tab-btn era" onclick="trocarAba('era')">
+<i class="fas fa-city"></i> Graal Era — Xitado
+                </button>
 <button class="tab-btn auto-trash" onclick="trocarAba('auto-trash')">
 <i class="fas fa-trash-alt"></i> Auto Trash
                 </button>
@@ -4039,6 +4041,11 @@
 <option value="KZN MENU Classic - ELITE (210 dias) R$ 300,00">💎 ELITE - R$ 300,00 (210 dias)</option>
 </select>
 </div>
+<div class="kzn-pix-payment-box" data-kzn-pix-box>
+<div><strong><i class="fas fa-qrcode"></i> PIX para pagamento</strong><span>KZN MENU</span></div>
+<code data-kzn-pix-key>6c80021c-957b-49c0-9a5d-98371bf67120</code>
+<button type="button" class="kzn-pix-copy-btn" onclick="kznCopiarPixKzn()"><i class="fas fa-copy"></i> Copiar chave PIX</button>
+</div>
 <div class="kzn-form-step"><span>3</span><strong>Comprovante</strong><small>Foto ou PDF do pagamento • máximo 5 MB</small></div>
 <div class="form-group kzn-proof-upload-group"><label><i class="fas fa-image"></i> 📸 Comprovante PIX <span style="color:var(--primary);">*</span></label><input accept="image/*,.pdf" name="Comprovante" required="" type="file"/><p style="font-size:0.65rem;color:var(--text-muted);margin-top:0.3rem;">Envie uma foto do comprovante PIX (PNG, JPG, PDF - até 5MB)</p></div>
 <div class="form-group"><label><i class="fas fa-pencil-alt"></i> Mensagem (opcional)</label><textarea name="Mensagem" placeholder="Digite sua mensagem aqui..." rows="3"></textarea></div>
@@ -4047,6 +4054,66 @@
 </form>
 </div>
 </div></div></div>
+
+<!-- ===== TAB ERA (GRAAL ERA — XITADO) ===== -->
+<div class="tab-content" id="tab-era">
+  <div class="plans-header">
+    <h3><i class="fas fa-city"></i> MOD MENU GRAAL ERA</h3>
+    <p>MOD MENU • GRAAL ONLINE ERA</p>
+    <p style="font-size:.85rem;color:var(--text-muted);margin-top:.5rem;">Produto do vendedor Xitado • pagamento recebido pela KZN MENU.</p>
+  </div>
+  <div class="plans-grid" style="max-width:620px;margin:0 auto;">
+    <div class="plan-card">
+      <span class="badge" style="background:#7c3aed;">🟣 ERA • XITADO</span>
+      <div style="text-align:center;margin:.5rem 0;">
+        <img alt="MOD MENU GRAAL ERA" class="mod-image" src="https://yt3.ggpht.com/OBlIy0WjA_eBxMQz4Z1pRx7IiuRkNjQSxoGeMpUV8vROPggmrRcM0wxoqY5jGV3uXy0vxkMpHMhHc8o=s720-rw-nd-v1" style="max-width:220px;"/>
+      </div>
+      <h3>MOD MENU GRAAL ERA</h3>
+      <div class="price">R$ 65,00</div>
+      <div class="sub-plano">Produto Xitado • taxa operacional total registrada: R$ 15,00</div>
+      <ul class="features">
+        <li><i class="fas fa-check"></i> Mod Menu Graal Era</li>
+        <li><i class="fas fa-check"></i> Key de ativação</li>
+        <li><i class="fas fa-check"></i> Suporte do vendedor</li>
+        <li><i class="fas fa-check"></i> Pagamento PIX KZN MENU</li>
+      </ul>
+      <button class="btn-buy" type="button" onclick="document.getElementById('formContatoEra')?.scrollIntoView({behavior:'smooth',block:'center'})">COMPRAR AGORA</button>
+      <button class="btn-add-cart" type="button" onclick="adicionarAoCarrinho('MOD MENU GRAAL ERA - Xitado',65,'era')"><i class="fas fa-cart-plus"></i> Adicionar</button>
+    </div>
+  </div>
+  <div class="purchase-form-card purchase-form-era">
+    <div class="container">
+      <div class="section-header">
+        <h2><i class="fas fa-shopping-cart"></i> Formulário de compra — Graal Era</h2>
+        <p>Preencha os dados, pague via PIX KZN MENU e envie o comprovante.</p>
+      </div>
+      <div class="form-container kzn-purchase-form-modern">
+        <div class="kzn-form-intro"><div class="kzn-form-icon"><i class="fas fa-shield-alt"></i></div><div><h3>Finalizar pedido</h3><p>O produto é do vendedor Xitado, mas o pagamento desta aba utiliza a chave PIX KZN MENU.</p></div></div>
+        <div class="kzn-pix-payment-box" data-kzn-pix-box>
+          <div><strong><i class="fas fa-qrcode"></i> PIX para pagamento</strong><span>KZN MENU</span></div>
+          <code data-kzn-pix-key>6c80021c-957b-49c0-9a5d-98371bf67120</code>
+          <button type="button" class="kzn-pix-copy-btn" onclick="kznCopiarPixKzn()"><i class="fas fa-copy"></i> Copiar chave PIX</button>
+        </div>
+        <form action="https://formsubmit.co/gabriel6061yt@gmail.com" enctype="multipart/form-data" id="formContatoEra" method="POST" data-recipient="gabriel6061yt@gmail.com" onsubmit="return kznSubmitEra(event)">
+          <input name="_replyto" type="hidden" value=""/>
+          <input name="_captcha" type="hidden" value="false"/>
+          <input name="_template" type="hidden" value="table"/>
+          <input name="_subject" type="hidden" value="NOVO PEDIDO - MOD MENU GRAAL ERA"/>
+          <div class="form-group"><label><i class="fas fa-envelope"></i> Seu E-mail *</label><input name="Email" type="email" required placeholder="Digite seu e-mail..."/></div>
+          <div class="form-group"><label><i class="fas fa-user"></i> Seu Nome *</label><input name="Nome" type="text" required placeholder="Digite seu nome completo..."/></div>
+          <div class="form-group"><label><i class="fab fa-whatsapp"></i> WhatsApp *</label><input name="WhatsApp" type="text" required placeholder="(DDD) 9 9999-9999"/></div>
+          <div class="form-group"><label><i class="fas fa-city"></i> Produto</label><input name="Produto" class="auto-product-readonly" readonly value="MOD MENU GRAAL ERA - Xitado - R$ 65,00"/></div>
+          <div class="form-group"><label><i class="fas fa-file-contract"></i> Termos</label><label class="kzn-era-terms-check"><input id="kznEraTerms" name="TermosAceitos" type="checkbox" value="SIM" required><span>Li, compreendi e concordo com os Termos de Compra da KZN MENU.</span></label></div>
+          <div class="form-group"><label><i class="fas fa-image"></i> Comprovante PIX *</label><input name="Comprovante" type="file" accept="image/*,.pdf" required/><small style="color:var(--text-muted);font-size:.68rem;">PNG, JPG ou PDF • máximo 5 MB</small></div>
+          <div class="form-group"><label><i class="fas fa-pencil-alt"></i> Mensagem (opcional)</label><textarea name="Mensagem" rows="3" placeholder="Digite sua mensagem..."></textarea></div>
+          <button class="btn-submit" type="submit"><i class="fas fa-paper-plane"></i> Enviar Pedido — Graal Era</button>
+          <div class="form-status" id="formStatusEra"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ===== TAB ERA (GRAAL ERA) ===== -->
 <div class="tab-content" id="tab-auto-trash">
 <div class="auto-trash-shell">
@@ -4063,7 +4130,7 @@
 </div>
 <h3>AUTO TRASH AUTOMATIC</h3>
 <div class="price">R$ 200,00</div>
-<div class="sub-plano">ACESSO AO AUTO TRASH</div>
+<div class="sub-plano">À vista R$ 200 • ou 2x R$ 100</div>
 <ul class="features">
 <li><i class="fas fa-check"></i> Script automático</li>
 <li><i class="fas fa-check"></i> Área exclusiva Auto Trash</li>
@@ -4073,7 +4140,12 @@
 <button class="btn-add-cart" onclick="adicionarAoCarrinho('Auto Trash Automatic',200,'auto-trash')"><i class="fas fa-cart-plus"></i> Adicionar</button>
 </div>
 </div>
-<div class="purchase-form-card purchase-form-auto-trash"><div class="container"><div class="section-header"><h2><i class="fas fa-shopping-cart"></i> Formulário de compra — Auto Trash</h2><p>Formulário exclusivo do Auto Trash. Ele não aparece nas abas Classic ou Era.</p></div><div class="form-container"><form action="https://formsubmit.co/gabriel6061yt@gmail.com" enctype="multipart/form-data" id="formContatoAutoTrash" method="POST" data-recipient="gabriel6061yt@gmail.com"><input name="_replyto" type="hidden" value=""/><input name="_captcha" type="hidden" value="false"/><input name="_template" type="hidden" value="table"/><input name="_subject" type="hidden" value="🔥 NOVO PEDIDO - AUTO TRASH"/><div class="form-group"><label><i class="fas fa-envelope"></i> Seu E-mail <span style="color:var(--primary);">*</span></label><input name="Email" placeholder="Digite seu e-mail..." required="True" type="email"/></div><div class="form-group"><label><i class="fas fa-user"></i> Seu Nome</label><input name="Nome" placeholder="Digite seu nome completo..." required="True" type="text"/></div><div class="form-group"><label><i class="fab fa-whatsapp"></i> WhatsApp</label><input name="WhatsApp" placeholder="(DDD) 9 9999-9999" required="True" type="text"/></div><div class="form-group"><label><i class="fas fa-trash-alt"></i> Produto</label><input class="auto-product-readonly" name="Produto" readonly="True" type="text" value="Auto Trash Automatic - R$ 200,00"/></div><div class="form-group"><label><i class="fas fa-image"></i> Comprovante PIX <span style="color:var(--primary);">*</span></label><input accept="image/*,.pdf" name="Comprovante" required="True" type="file"/></div><div class="form-group"><label><i class="fas fa-pencil-alt"></i> Mensagem (opcional)</label><textarea name="Mensagem" placeholder="Digite sua mensagem aqui..." rows="3"></textarea></div><button class="btn-submit" type="submit"><i class="fas fa-paper-plane"></i> Enviar Pedido - Auto Trash</button><div class="form-status" id="formStatusAutoTrash"></div></form></div></div></div></div>
+<div class="purchase-form-card purchase-form-auto-trash"><div class="container"><div class="section-header"><h2><i class="fas fa-shopping-cart"></i> Formulário de compra — Auto Trash</h2><p>Formulário exclusivo do Auto Trash. Ele não aparece nas abas Classic ou Era.</p></div><div class="form-container"><form action="https://formsubmit.co/gabriel6061yt@gmail.com" enctype="multipart/form-data" id="formContatoAutoTrash" method="POST" data-recipient="gabriel6061yt@gmail.com"><input name="_replyto" type="hidden" value=""/><input name="_captcha" type="hidden" value="false"/><input name="_template" type="hidden" value="table"/><input name="_subject" type="hidden" value="🔥 NOVO PEDIDO - AUTO TRASH"/><div class="form-group"><label><i class="fas fa-envelope"></i> Seu E-mail <span style="color:var(--primary);">*</span></label><input name="Email" placeholder="Digite seu e-mail..." required="True" type="email"/></div><div class="form-group"><label><i class="fas fa-user"></i> Seu Nome</label><input name="Nome" placeholder="Digite seu nome completo..." required="True" type="text"/></div><div class="form-group"><label><i class="fab fa-whatsapp"></i> WhatsApp</label><input name="WhatsApp" placeholder="(DDD) 9 9999-9999" required="True" type="text"/></div><div class="form-group"><label><i class="fas fa-trash-alt"></i> Produto</label><input class="auto-product-readonly" name="Produto" readonly="True" type="text" value="Auto Trash Automatic - R$ 200,00"/></div><div class="kzn-pix-payment-box" data-kzn-pix-box>
+<div><strong><i class="fas fa-qrcode"></i> PIX para pagamento</strong><span>KZN MENU</span></div>
+<code data-kzn-pix-key>6c80021c-957b-49c0-9a5d-98371bf67120</code>
+<button type="button" class="kzn-pix-copy-btn" onclick="kznCopiarPixKzn()"><i class="fas fa-copy"></i> Copiar chave PIX</button>
+</div>
+<div class="form-group"><label><i class="fas fa-image"></i> Comprovante PIX <span style="color:var(--primary);">*</span></label><input accept="image/*,.pdf" name="Comprovante" required="True" type="file"/></div><div class="form-group"><label><i class="fas fa-pencil-alt"></i> Mensagem (opcional)</label><textarea name="Mensagem" placeholder="Digite sua mensagem aqui..." rows="3"></textarea></div><button class="btn-submit" type="submit"><i class="fas fa-paper-plane"></i> Enviar Pedido - Auto Trash</button><div class="form-status" id="formStatusAutoTrash"></div></form></div></div></div></div>
 </div></section>
 <!-- ===== PERFIL ===== -->
 <section class="section dark" id="perfil">
@@ -4317,6 +4389,8 @@
                 <option value="KZN MENU Classic - PREMIUM (140 dias)">PREMIUM — R$ 200 — 140 dias</option>
                 <option value="KZN MENU Classic - ULTIMATE (175 dias)">ULTIMATE — R$ 250 — 175 dias</option>
                 <option value="KZN MENU Classic - ELITE (210 dias)">ELITE — R$ 300 — 210 dias</option>
+                <option value="Auto Trash Automatic">AUTO TRASH — R$ 200</option>
+                <option value="MOD MENU GRAAL ERA - Xitado">ERA XITADO — R$ 65</option>
               </select>
             </div>
             <div>
@@ -4350,8 +4424,15 @@
             <option value="KZN MENU Classic - PREMIUM (140 dias)">PREMIUM — 140 dias</option>
             <option value="KZN MENU Classic - ULTIMATE (175 dias)">ULTIMATE — 175 dias</option>
             <option value="KZN MENU Classic - ELITE (210 dias)">ELITE — 210 dias</option>
+            <option value="Auto Trash Automatic">AUTO TRASH</option>
+            <option value="MOD MENU GRAAL ERA - Xitado">ERA XITADO</option>
           </select>
           <input id="kznBuscaEstoque" type="search" placeholder="Pesquisar Key ou cliente..." oninput="kznRenderEstoque()">
+          <label class="kzn-stock-toggle" title="Oculta apenas as Keys já usadas; elas continuam salvas no Firebase e podem voltar a ser exibidas.">
+            <input id="kznOcultarUsadas" type="checkbox" onchange="kznRenderEstoque()">
+            <span class="kzn-stock-switch" aria-hidden="true"></span>
+            <span>Ocultar Keys usadas</span>
+          </label>
           <button class="admin-action-btn" onclick="kznCarregarEstoque()"><i class="fas fa-sync-alt"></i> Atualizar</button>
         </div>
 
@@ -4373,6 +4454,19 @@
           <div class="kzn-fee-pix-row"><code id="kznTaxaPixKey">7d23dda5-ef7e-430a-b7a3-ed28504e515d</code><button type="button" class="kzn-key-btn secondary" onclick="kznCopiarPixTaxa()"><i class="fas fa-copy"></i> Copiar PIX</button></div>
         </div>
         <form class="kzn-key-form" onsubmit="kznRegistrarTaxa(event)">
+          <div><label>Produto / regra de taxa</label><select id="kznTaxaRegra" onchange="kznTaxaAuto()">
+            <option value="">Selecione uma regra...</option>
+            <option value="kzn30">KZN SIMPLE — R$ 30 → taxa R$ 5</option>
+            <option value="kzn50">KZN BASIC — R$ 50 → taxa R$ 10</option>
+            <option value="kzn100">KZN PLUS — R$ 100 → taxa R$ 10</option>
+            <option value="kzn150">KZN PRO — R$ 150 → taxa R$ 15</option>
+            <option value="kzn200">KZN PREMIUM — R$ 200 → taxa R$ 20</option>
+            <option value="kzn250">KZN ULTIMATE — R$ 250 → taxa R$ 25</option>
+            <option value="kzn300">KZN ELITE — R$ 300 → taxa R$ 30</option>
+            <option value="autoVista">AUTO TRASH à vista — R$ 200 → taxa R$ 20</option>
+            <option value="auto2x">AUTO TRASH 2x R$ 100 — taxa R$ 10</option>
+            <option value="eraXitado">ERA XITADO — R$ 65 → fornecedor R$ 10 + KZN R$ 5 = taxa total R$ 15</option>
+          </select></div>
           <div><label>Descrição / produto</label><input id="kznTaxaDescricao" required placeholder="Mod Simples R$ 30"></div>
           <div class="kzn-key-row"><div><label>Key do usuário</label><input id="kznTaxaKey" required placeholder="KZN-... "></div><div><label>Valor da venda</label><input id="kznTaxaVenda" type="number" step="0.01" min="0" required placeholder="30" oninput="kznTaxaAuto()"></div></div>
           <div class="kzn-key-row"><div><label>Taxa a pagar</label><input id="kznTaxaValor" type="number" step="0.01" min="0" required placeholder="5"><div id="kznTaxaPreview" class="kzn-fee-preview">Informe o valor da venda.</div></div><div><label>Cliente (e-mail)</label><input id="kznTaxaCliente" type="email" placeholder="cliente@email.com"></div></div>
@@ -6383,23 +6477,10 @@
             
             const total = carrinho.reduce((sum, item) => sum + (item.preco * item.quantidade), 0);
             
-            // Define os dados de pagamento com base no tipo do produto
-            const primeiroItem = carrinho[0];
-            let pixKey, emailVendedor, vendedorNome;
-            
-            if (primeiroItem.tipo === 'era') {
-                pixKey = 'bc662963-1a5a-4fb0-af5e-5c7e4a82e590';
-                emailVendedor = 'xitadobr5x@gmail.com';
-                vendedorNome = 'Xitado';
-            } else {
-                pixKey = '6c80021c-957b-49c0-9a5d-98371bf67120';
-                emailVendedor = 'gabriel6061yt@gmail.com';
-                vendedorNome = 'KZN MENU';
-            }
-            
-            // Abre modal com a chave correta
+            // Pagamento PIX unificado pela KZN MENU em todas as abas.
+            const pixKey = '6c80021c-957b-49c0-9a5d-98371bf67120';
             document.getElementById('pixKey').textContent = pixKey;
-            document.getElementById('planInfo').textContent = `Vendedor: ${vendedorNome} | Total: R$ ${total.toFixed(2)}`;
+            document.getElementById('planInfo').textContent = `Pagamento: KZN MENU | Total: R$ ${total.toFixed(2)}`;
             abrirModalPix();
             
             // Fecha o dropdown do carrinho
@@ -6619,7 +6700,7 @@ function setupMention() {
 
 // ====== COPIAR PIX ERA ======
 window.copiarPixEra = function() {
-    const key = 'bc662963-1a5a-4fb0-af5e-5c7e4a82e590';
+    const key = '6c80021c-957b-49c0-9a5d-98371bf67120';
     navigator.clipboard.writeText(key).then(() => {
         const btn = document.querySelector('#contato-era .btn-copy');
         if (btn) {
@@ -7710,6 +7791,16 @@ header #notifBtn.nav-icon-btn,
   .kzn-discord-cta { width:100%; justify-content:center; box-sizing:border-box; }
 }
 </style>
+
+<style id="kzn-v32-era-pix-style">
+.tab-btn.era{border-color:#7c3aed}.tab-btn.era.active{background:#7c3aed;border-color:#7c3aed;color:#fff;box-shadow:0 4px 28px rgba(124,58,237,.3)}
+.kzn-pix-payment-box{margin:14px 0;padding:14px;border:1px solid rgba(139,92,246,.25);border-radius:14px;background:linear-gradient(145deg,rgba(124,58,237,.10),rgba(10,15,30,.96));display:grid;gap:8px}
+.kzn-pix-payment-box>div{display:flex;justify-content:space-between;gap:10px;align-items:center;color:#fff}.kzn-pix-payment-box>div span{font-size:.68rem;color:#a78bfa;font-weight:900}.kzn-pix-payment-box code{display:block;padding:10px 12px;border-radius:10px;background:#070d19;border:1px solid rgba(255,255,255,.08);color:#4ade80;font-size:.76rem;word-break:break-all}
+.kzn-pix-copy-btn{border:0;border-radius:10px;padding:9px 11px;background:#172033;color:#bfdbfe;border:1px solid rgba(96,165,250,.2);font-weight:900;cursor:pointer}
+.kzn-era-terms-check{display:flex!important;gap:8px;align-items:flex-start;background:rgba(139,92,246,.07);padding:10px;border-radius:10px;border:1px solid rgba(139,92,246,.18)}
+.kzn-era-terms-check input{width:18px!important;height:18px!important;flex:0 0 18px!important}
+@media(max-width:560px){.kzn-pix-payment-box>div{align-items:flex-start;flex-direction:column}.kzn-pix-copy-btn{width:100%}}
+</style>
 <script>
 (function(){
   const AUTO_TRASH_IMG='https://yt3.ggpht.com/5nAR2gmp0Do_KMoGwr9_kPhA2uO4eJtX4QBVaG-9mmMU_KU8LHri7Tn1116x6tCDBcS4Toi2fYm0=s900-rw-nd-v1';
@@ -7987,6 +8078,16 @@ header #notifBtn.nav-icon-btn,
 .kzn-owner-management-head strong{display:block;color:#fff}.kzn-owner-management-head small{display:block;color:#94a3b8;margin-top:4px}
 @media(max-width:600px){.kzn-owner-management-head{align-items:stretch;flex-direction:column}.kzn-owner-management-head .admin-action-btn{width:100%}}
 </style>
+<style id="kzn-v31-stock-filter-style">
+.kzn-stock-toggle{display:inline-flex;align-items:center;gap:9px;min-height:44px;padding:0 14px;border:1px solid rgba(148,163,184,.18);border-radius:12px;background:rgba(15,23,42,.72);color:#cbd5e1;font-size:.82rem;font-weight:800;cursor:pointer;user-select:none;white-space:nowrap}
+.kzn-stock-toggle input{position:absolute;opacity:0;pointer-events:none}
+.kzn-stock-switch{position:relative;width:38px;height:22px;border-radius:999px;background:#334155;transition:.2s;flex:0 0 auto}
+.kzn-stock-switch:after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#e2e8f0;transition:.2s}
+.kzn-stock-toggle input:checked + .kzn-stock-switch{background:linear-gradient(90deg,#7c3aed,#ec4899)}
+.kzn-stock-toggle input:checked + .kzn-stock-switch:after{transform:translateX(16px);background:#fff}
+.kzn-stock-toggle:focus-within{outline:2px solid rgba(168,85,247,.55);outline-offset:2px}
+@media(max-width:560px){.kzn-stock-toggle{width:100%;justify-content:flex-start;order:3}.kzn-stock-filters{align-items:stretch}.kzn-stock-filters .admin-action-btn{width:100%}}
+</style>
 <script>
 /* ===== KZN V14 — ESTOQUE POR PLANO + EMISSÃO + TAXAS ===== */
 (function(){
@@ -7999,13 +8100,15 @@ header #notifBtn.nav-icon-btn,
   const E=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const now=()=>new Date().toISOString();
   const PLANS={
-    'KZN MENU Classic - SIMPLE (20 dias)':{label:'SIMPLE',price:30,days:20},
-    'KZN MENU Classic - BASIC (35 dias)':{label:'BASIC',price:50,days:35},
-    'KZN MENU Classic - PLUS (70 dias)':{label:'PLUS',price:100,days:70},
-    'KZN MENU Classic - PRO (105 dias)':{label:'PRO',price:150,days:105},
-    'KZN MENU Classic - PREMIUM (140 dias)':{label:'PREMIUM',price:200,days:140},
-    'KZN MENU Classic - ULTIMATE (175 dias)':{label:'ULTIMATE',price:250,days:175},
-    'KZN MENU Classic - ELITE (210 dias)':{label:'ELITE',price:300,days:210}
+    'KZN MENU Classic - SIMPLE (20 dias)':{label:'SIMPLE',price:30,days:20,fee:5},
+    'KZN MENU Classic - BASIC (35 dias)':{label:'BASIC',price:50,days:35,fee:10},
+    'KZN MENU Classic - PLUS (70 dias)':{label:'PLUS',price:100,days:70,fee:10},
+    'KZN MENU Classic - PRO (105 dias)':{label:'PRO',price:150,days:105,fee:15},
+    'KZN MENU Classic - PREMIUM (140 dias)':{label:'PREMIUM',price:200,days:140,fee:20},
+    'KZN MENU Classic - ULTIMATE (175 dias)':{label:'ULTIMATE',price:250,days:175,fee:25},
+    'KZN MENU Classic - ELITE (210 dias)':{label:'ELITE',price:300,days:210,fee:30},
+    'Auto Trash Automatic':{label:'AUTO TRASH',price:200,days:null,fee:20,fee2x:10},
+    'MOD MENU GRAAL ERA - Xitado':{label:'ERA XITADO',price:65,days:null,fee:15,feeFornecedor:10,feeKzn:5}
   };
   function email(){
     let u=window.usuarioLogado||null;
@@ -8093,8 +8196,8 @@ header #notifBtn.nav-icon-btn,
       if(p){counts[p.label].total++; if(x.status==='available')counts[p.label].available++; if(x.status==='used')counts[p.label].used++;}
     });
     el.innerHTML=Object.values(counts).map(p=>`
-      <button type="button" class="kzn-stock-summary-card" onclick="document.getElementById('kznFiltroProduto').value='${p.label==='SIMPLE'?'KZN MENU Classic - SIMPLE (20 dias)':p.label==='BASIC'?'KZN MENU Classic - BASIC (35 dias)':p.label==='PLUS'?'KZN MENU Classic - PLUS (70 dias)':p.label==='PRO'?'KZN MENU Classic - PRO (105 dias)':p.label==='PREMIUM'?'KZN MENU Classic - PREMIUM (140 dias)':p.label==='ULTIMATE'?'KZN MENU Classic - ULTIMATE (175 dias)':'KZN MENU Classic - ELITE (210 dias)'}';kznRenderEstoque()">
-        <strong>${E(p.label)}</strong><span>R$ ${p.price.toFixed(2).replace('.',',')} · ${p.days} dias</span>
+      <button type="button" class="kzn-stock-summary-card" onclick="document.getElementById('kznFiltroProduto').value='${Object.entries(PLANS).find(([,v])=>v.label===p.label)?.[0]||''}';kznRenderEstoque()">
+        <strong>${E(p.label)}</strong><span>R$ ${p.price.toFixed(2).replace('.',',')} · ${p.days?`${p.days} dias`:'prazo do produto'}</span>
         <b>${p.available}</b><small>disponíveis / ${p.total} cadastradas</small>
       </button>`).join('');
   }
@@ -8104,10 +8207,12 @@ header #notifBtn.nav-icon-btn,
     if(!owner()){el.innerHTML='<div class="empty-state">Somente o proprietário pode visualizar o estoque.</div>';return;}
     const q=String(document.getElementById('kznBuscaEstoque')?.value||'').toLowerCase();
     const filtro=document.getElementById('kznFiltroProduto')?.value||'';
+    const ocultarUsadas=!!document.getElementById('kznOcultarUsadas')?.checked;
     const arr=Object.entries(window.kznStock||{}).filter(([,x])=>{
       const matchProduto=!filtro||x.produto===filtro;
+      const matchStatus=!ocultarUsadas||x.status!=='used';
       const matchBusca=!q||[x.key,x.produto,x.plano,x.clienteEmail,x.status].some(v=>String(v||'').toLowerCase().includes(q));
-      return matchProduto&&matchBusca;
+      return matchProduto&&matchStatus&&matchBusca;
     }).sort((a,b)=>String(b[1].createdAt).localeCompare(String(a[1].createdAt)));
 
     if(!arr.length){el.innerHTML='<div class="empty-state"><i class="fas fa-key"></i>Nenhuma Key encontrada neste estoque.</div>';return;}
@@ -8117,7 +8222,7 @@ header #notifBtn.nav-icon-btn,
       return `<div class="kzn-stock-item">
         <div class="kzn-stock-main">
           <div class="key">${E(x.key)}</div>
-          <div class="meta"><strong>${E(p.label||x.plano||x.produto)}</strong> · R$ ${Number(x.valorVenda||0).toFixed(2).replace('.',',')} · ${Number(x.validadeDias||0)} dias</div>
+          <div class="meta"><strong>${E(p.label||x.plano||x.produto)}</strong> · R$ ${Number(x.valorVenda||0).toFixed(2).replace('.',',')} · ${p.days?`${p.days} dias`:'prazo do produto'}</div>
           ${x.clienteEmail?`<div class="meta">Cliente: ${E(x.clienteEmail)}</div>`:''}
         </div>
         <span class="kzn-status ${used?'used':'available'}">${used?'USADA':'DISPONÍVEL'}</span>
@@ -8183,7 +8288,7 @@ header #notifBtn.nav-icon-btn,
 
 Produto: ${p.label||x.produto}
 Valor: R$ ${Number(x.valorVenda||0).toFixed(2).replace('.',',')}
-Validade: ${p.days||x.validadeDias||'-'} dias
+Validade: ${p.days||x.validadeDias||'conforme produto'}
 Key: ${x.key}
 
 Obrigado pela compra.`;
@@ -8194,7 +8299,7 @@ Obrigado pela compra.`;
     KEY_REF.child(id).update(update).then(()=>{
       return NOTIF_REF.child(SAN(em)).push({
         title,message,email:em,lida:false,createdAt:now(),sentBy:email(),sentByRole:'owner',
-        type:'key_delivery',product:p.label||x.produto,key:x.key,validadeDias:p.days||x.validadeDias||0
+        type:'key_delivery',product:p.label||x.produto,key:x.key,validadeDias:p.days||x.validadeDias||null
       });
     }).then(()=>{
       return LOG_REF2.push({
@@ -8277,12 +8382,28 @@ Obrigado pela compra.`;
   };
 
   window.kznTaxaAuto=function(){
-    const venda=Number(document.getElementById('kznTaxaVenda')?.value)||0;
-    const el=document.getElementById('kznTaxaValor');
+    const regra=document.getElementById('kznTaxaRegra')?.value||'';
+    const vendaEl=document.getElementById('kznTaxaVenda');
+    const taxaEl=document.getElementById('kznTaxaValor');
     const preview=document.getElementById('kznTaxaPreview');
-    const taxas={30:5,50:10,200:20,300:30};
-    const taxa=taxas[venda]!==undefined?taxas[venda]:Math.round(venda*.10*100)/100;
-    if(el)el.value=taxa?taxa.toFixed(2):'';
+    const rules={
+      kzn30:{venda:30,taxa:5,text:'KZN SIMPLE: taxa R$ 5,00'},
+      kzn50:{venda:50,taxa:10,text:'KZN BASIC: taxa R$ 10,00'},
+      kzn100:{venda:100,taxa:10,text:'KZN PLUS: taxa R$ 10,00'},
+      kzn150:{venda:150,taxa:15,text:'KZN PRO: taxa R$ 15,00'},
+      kzn200:{venda:200,taxa:20,text:'KZN PREMIUM: taxa R$ 20,00'},
+      kzn250:{venda:250,taxa:25,text:'KZN ULTIMATE: taxa R$ 25,00'},
+      kzn300:{venda:300,taxa:30,text:'KZN ELITE: taxa R$ 30,00'},
+      autoVista:{venda:200,taxa:20,text:'AUTO TRASH à vista: taxa R$ 20,00'},
+      auto2x:{venda:100,taxa:10,text:'AUTO TRASH 2x: parcela R$ 100,00 · taxa R$ 10,00'},
+      eraXitado:{venda:65,taxa:15,text:'ERA XITADO: fornecedor R$ 10,00 + KZN R$ 5,00 = R$ 15,00'}
+    };
+    const r=rules[regra];
+    if(r){ if(vendaEl)vendaEl.value=r.venda.toFixed(2); if(taxaEl)taxaEl.value=r.taxa.toFixed(2); if(preview)preview.innerHTML=`${r.text}`; return; }
+    const venda=Number(vendaEl?.value)||0;
+    const taxaDefault={30:5,50:10,100:10,150:15,200:20,250:25,300:30};
+    const taxa=taxaDefault[venda]!==undefined?taxaDefault[venda]:Math.round(venda*.10*100)/100;
+    if(taxaEl)taxaEl.value=taxa?taxa.toFixed(2):'';
     if(preview)preview.innerHTML=taxa?`Taxa calculada: <strong>R$ ${taxa.toFixed(2).replace('.',',')}</strong>`:'Informe o valor da venda.';
   };
 
@@ -8422,7 +8543,7 @@ Obrigado pela compra.`;
     ['KZN MENU Classic - PRO (105 dias)','PRO',150,105],
     ['KZN MENU Classic - PREMIUM (140 dias)','PREMIUM',200,140],
     ['KZN MENU Classic - ULTIMATE (175 dias)','ULTIMATE',250,175],
-    ['KZN MENU Classic - ELITE (210 dias)','ELITE',300,210]
+    ['KZN MENU Classic - ELITE (210 dias)','ELITE',300,210],['Auto Trash Automatic','AUTO TRASH',200,0],['MOD MENU GRAAL ERA - Xitado','ERA XITADO',65,0]
   ];
 
   function currentEmail(){
@@ -8617,7 +8738,7 @@ Obrigado pela compra.`;
       const message=`Sua Key foi liberada!
 
 Produto: ${plan[1]}
-Validade: ${plan[3]} dias
+Validade: ${plan[3] ? plan[3]+' dias' : 'conforme produto'}
 Key: ${live.key}
 
 Pedido: ${activeOrderId}`;
@@ -8904,7 +9025,7 @@ Pedido: ${activeOrderId}`;
     ['KZN MENU Classic - PRO (105 dias) R$ 150,00','PRO',150,105],
     ['KZN MENU Classic - PREMIUM (140 dias) R$ 200,00','PREMIUM',200,140],
     ['KZN MENU Classic - ULTIMATE (175 dias) R$ 250,00','ULTIMATE',250,175],
-    ['KZN MENU Classic - ELITE (210 dias) R$ 300,00','ELITE',300,210]
+    ['KZN MENU Classic - ELITE (210 dias) R$ 300,00','ELITE',300,210],['Auto Trash Automatic','AUTO TRASH',200,0],['MOD MENU GRAAL ERA - Xitado','ERA XITADO',65,0]
   ];
   const TERMS_VERSION='1.0';
   const TERMS_HTML=`<h4>📜 TERMOS DE COMPRA — KZN MENU</h4>
@@ -9393,3 +9514,77 @@ Pedido: ${activeOrderId}`;
 </style>
 </body>
 </html>
+
+
+<script id="kzn-v32-era-pix-stock-integration">
+(function(){
+  const KZN_PIX='6c80021c-957b-49c0-9a5d-98371bf67120';
+  const ORDERS=db.ref('site/pedidos');
+  const LOGS=db.ref('site/admin_logs');
+  const NOTIFS=db.ref('site/notificacoes');
+  const TERMS_VERSION='1.0';
+  const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const san=v=>String(v||'').toLowerCase().replace(/[.#$\[\]\/]/g,'_');
+  const user=()=>{let u=window.usuarioLogado||null;try{if(!u)u=JSON.parse(localStorage.getItem('kzn_usuario_logado')||'null')}catch(e){}return u||{}};
+  const email=()=>String(user().email||'').trim().toLowerCase();
+  const now=()=>new Date().toISOString();
+
+  window.kznCopiarPixKzn=function(){
+    navigator.clipboard?.writeText(KZN_PIX).then(()=>alert('✅ Chave PIX KZN copiada.')).catch(()=>alert('PIX KZN: '+KZN_PIX));
+  };
+
+  document.querySelectorAll('[data-kzn-pix-key]').forEach(el=>el.textContent=KZN_PIX);
+
+  // Checkout -> form, with KZN PIX in every category.
+  window.finalizarCompra=function(){
+    let cart=[];try{cart=JSON.parse(localStorage.getItem('kzn_carrinho')||'[]')}catch(e){cart=[]}
+    if(!cart.length){alert('🛒 Seu carrinho está vazio!');return;}
+    const tipos=new Set(cart.map(i=>i.tipo==='era'?'era':i.tipo));
+    if(tipos.size>1){alert('⚠️ Finalize produtos de categorias diferentes separadamente.');return;}
+    if(cart.length!==1||Number(cart[0].quantidade||1)!==1){alert('⚠️ O formulário aceita um produto por pedido. Remova itens extras do carrinho e tente novamente.');return;}
+    const item=cart[0];
+    const close=document.getElementById('cartDropdown');if(close)close.classList.remove('open');
+    const pix=document.getElementById('pixKey');if(pix)pix.textContent=KZN_PIX;
+    const info=document.getElementById('planInfo');if(info)info.textContent=`Pagamento: KZN MENU | Total: R$ ${(Number(item.preco||0)).toFixed(2).replace('.',',')}`;
+    const target=item.tipo==='era'?'formContatoEra':(item.tipo==='auto-trash'?'formContatoAutoTrash':'formContato');
+    localStorage.setItem('kzn_checkout_plan',String(item.nome||''));
+    localStorage.setItem('kzn_checkout_qty','1');
+    if(target==='formContato'){
+      const f=document.getElementById('formContato');
+      const s=f?.querySelector('select[name="Plano"]');
+      if(s){const op=[...s.options].find(o=>o.value===item.nome)||[...s.options].find(o=>o.textContent.toLowerCase().includes(String(item.nome||'').toLowerCase().split(' - ')[1]?.split(' ')[0]||''));if(op){s.value=op.value;s.disabled=true;let h=f.querySelector('input[name="PlanoCarrinho"]');if(!h){h=document.createElement('input');h.type='hidden';h.name='PlanoCarrinho';f.appendChild(h)}h.value=op.value}}
+    }
+    document.getElementById(target)?.scrollIntoView({behavior:'smooth',block:'center'});
+  };
+
+  async function kznCompressProof(file){
+    if(!file||!String(file.type).startsWith('image/'))return '';
+    return new Promise(resolve=>{
+      const reader=new FileReader();reader.onerror=()=>resolve('');reader.onload=e=>{
+        const img=new Image();img.onload=()=>{const scale=Math.min(1,720/Math.max(img.width,img.height));const c=document.createElement('canvas');c.width=Math.max(1,Math.round(img.width*scale));c.height=Math.max(1,Math.round(img.height*scale));const x=c.getContext('2d');x.drawImage(img,0,0,c.width,c.height);resolve(c.toDataURL('image/jpeg',.62))};img.onerror=()=>resolve('');img.src=e.target.result};reader.readAsDataURL(file)
+    });
+  }
+
+  window.kznSubmitEra=async function(ev){
+    ev.preventDefault();
+    const form=ev.currentTarget;const status=form.querySelector('.form-status');const btn=form.querySelector('button[type="submit"]');
+    const check=form.querySelector('#kznEraTerms');const file=form.querySelector('input[name="Comprovante"]')?.files?.[0];
+    if(!check?.checked){alert('⚠️ Aceite os Termos de Compra para continuar.');return false;}
+    if(!file){alert('⚠️ Envie o comprovante PIX.');return false;}
+    if(file.size>5*1024*1024){alert('❌ O comprovante deve ter no máximo 5 MB.');return false;}
+    const fd=new FormData(form);const id='PED-'+Date.now()+'-'+Math.random().toString(36).slice(2,7).toUpperCase();const ts=now();const u=user();
+    const pedido={pedidoId:id,email:String(fd.get('Email')||email()).trim().toLowerCase(),nome:String(fd.get('Nome')||u.nome||'').trim(),whatsapp:String(fd.get('WhatsApp')||'').trim(),produto:'MOD MENU GRAAL ERA - Xitado',plano:'ERA XITADO',valor:65,validadeDias:null,mensagem:String(fd.get('Mensagem')||'').trim(),status:'Recebido',comprovanteNome:file.name||'',comprovanteUrl:'',comprovantePreview:await kznCompressProof(file),usuarioUid:u.uid||'',origem:'era_formulario',termsAccepted:true,termsVersion:TERMS_VERSION,termsAcceptedAt:ts,pixPagamento:KZN_PIX,vendedor:'Xitado',createdAt:ts,updatedAt:ts};
+    if(btn){btn.disabled=true;btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Enviando pedido...'}
+    if(status){status.textContent='Salvando pedido...';status.style.display='block'}
+    try{
+      await ORDERS.child(id).set(pedido);
+      await LOGS.push({action:'ORDER_RECEIVED',targetEmail:pedido.email,adminEmail:'SYSTEM',adminRole:'system',timestamp:ts,details:`${pedido.produto} · R$ 65,00 · PIX KZN · termos aceitos`});
+      if(pedido.email)await NOTIFS.child(san(pedido.email)).push({title:'Pedido recebido',message:`Pedido ${id} recebido. Aguarde a confirmação e a liberação da Key.`,email:pedido.email,lida:false,createdAt:ts,type:'order_received',pedidoId:id}).catch(()=>{});
+      try{localStorage.removeItem('kzn_checkout_plan');localStorage.removeItem('kzn_checkout_qty')}catch(e){}
+      if(status){status.textContent='✅ Pedido enviado com sucesso. Aguarde a confirmação.';status.style.color='var(--success)'}
+      form.reset();
+    }catch(e){console.error(e);if(btn){btn.disabled=false;btn.innerHTML='<i class="fas fa-paper-plane"></i> Enviar Pedido — Graal Era'}if(status){status.textContent='❌ Não foi possível enviar o pedido.';status.style.color='var(--danger)'}alert('❌ '+(e.message||e))}
+    return false;
+  };
+})();
+</script>
