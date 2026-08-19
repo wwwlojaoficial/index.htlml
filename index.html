@@ -8349,169 +8349,7 @@ Obrigado pela compra.`;
 })();
 </script>
 
-<script>
-/* ===== KZN V16 — PEDIDOS NO PAINEL ADMIN + FIX DE ACESSO ===== */
-(function(){
-  const PEDIDOS_REF = db.ref('site/pedidos');
-  const PEDIDOS_STORAGE = (typeof firebase !== 'undefined' && firebase.storage) ? firebase.storage() : null;
 
-  function getLoggedUser(){
-    let u=window.usuarioLogado||null;
-    try{
-      if(!u && typeof usuarioLogado!=='undefined' && usuarioLogado) u=usuarioLogado;
-    }catch(e){}
-    if(!u){
-      try{u=JSON.parse(localStorage.getItem('kzn_usuario_logado')||'null');}catch(e){}
-    }
-    return u||{};
-  }
-
-  function esc(v){
-    return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  }
-
-  async function uploadProof(file, orderId){
-    if(!file || !PEDIDOS_STORAGE) return {url:'',name:file?.name||''};
-    if(file.size > 5*1024*1024) throw new Error('O comprovante deve ter no máximo 5 MB.');
-    const safeName=String(file.name||'comprovante').replace(/[^a-zA-Z0-9._-]/g,'_');
-    const ref=PEDIDOS_STORAGE.ref(`pedidos/${orderId}/${Date.now()}_${safeName}`);
-    await ref.put(file);
-    return {url:await ref.getDownloadURL(),name:file.name||safeName};
-  }
-
-  async function registrarPedido(form){
-    const fd=new FormData(form);
-    const orderId='PED-'+Date.now()+'-'+Math.random().toString(36).slice(2,7).toUpperCase();
-    const email=String(fd.get('Email')||'').trim().toLowerCase();
-    const nome=String(fd.get('Nome')||'').trim();
-    const whatsapp=String(fd.get('WhatsApp')||'').trim();
-    const produto=String(fd.get('Plano')||fd.get('Produto')||'').trim();
-    const mensagem=String(fd.get('Mensagem')||'').trim();
-    const file=form.querySelector('input[name="Comprovante"]')?.files?.[0]||null;
-
-    let valor=null;
-    const m=produto.match(/R\$\s*([\d.,]+)/i);
-    if(m) valor=Number(m[1].replace(/\./g,'').replace(',','.'));
-    if(!valor && /auto trash/i.test(produto)) valor=200;
-
-    const user=getLoggedUser();
-    const pedido={
-      pedidoId:orderId,
-      email,
-      nome,
-      whatsapp,
-      produto,
-      valor,
-      mensagem,
-      status:'Recebido',
-      comprovanteNome:file?.name||'',
-      comprovanteUrl:'',
-      usuarioUid:user.uid||'',
-      usuarioCadastrado:!!user.email,
-      origem:'formulario_site',
-      createdAt:new Date().toISOString(),
-      updatedAt:new Date().toISOString()
-    };
-
-    const btn=form.querySelector('button[type="submit"]');
-    const status=form.querySelector('.form-status');
-    if(btn){btn.disabled=true;btn.dataset.originalText=btn.innerHTML;btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Enviando pedido...';}
-    if(status){status.textContent='Registrando seu pedido...';status.style.color='var(--text-muted)';}
-
-    try{
-      // Save the order first so the admin panel receives the request even if
-      // Storage rules temporarily prevent the proof upload.
-      await PEDIDOS_REF.child(orderId).set(pedido);
-      await db.ref('site/admin_logs').push({
-        action:'ORDER_RECEIVED',
-        targetEmail:email,
-        adminEmail:'SYSTEM',
-        adminRole:'system',
-        timestamp:new Date().toISOString(),
-        details:`Pedido ${orderId} recebido · ${produto} · R$ ${valor!=null?Number(valor).toFixed(2):'0.00'} · comprovante ${file?.name||'não anexado'}`
-      });
-
-      try{
-        const proof=await uploadProof(file,orderId);
-        pedido.comprovanteUrl=proof.url;
-        pedido.comprovanteNome=proof.name;
-        await PEDIDOS_REF.child(orderId).update({
-          comprovanteUrl:pedido.comprovanteUrl,
-          comprovanteNome:pedido.comprovanteNome,
-          updatedAt:new Date().toISOString()
-        });
-        await db.ref('site/admin_logs').push({
-          action:'ORDER_PROOF_UPLOADED',
-          targetEmail:email,
-          adminEmail:'SYSTEM',
-          adminRole:'system',
-          timestamp:new Date().toISOString(),
-          details:`Pedido ${orderId} · comprovante ${proof.name||file?.name||'anexado'} salvo no Firebase Storage`
-        });
-      }catch(uploadErr){
-        console.warn('Comprovante não foi enviado ao Storage:',uploadErr);
-        pedido.comprovanteErro=String(uploadErr?.message||uploadErr);
-        await PEDIDOS_REF.child(orderId).update({
-          comprovanteErro:pedido.comprovanteErro,
-          updatedAt:new Date().toISOString()
-        }).catch(()=>{});
-      }
-
-      // Keep a local fallback so the order is still visible if Firebase rules
-      // temporarily reject a write on an older deployment.
-      try{
-        const arr=JSON.parse(localStorage.getItem('kzn_compras')||'[]');
-        arr.unshift(pedido);
-        localStorage.setItem('kzn_compras',JSON.stringify(arr.slice(0,200)));
-      }catch(e){}
-
-      // If the user is logged in, also create a notification about the order.
-      if(email){
-        const safeEmail=email.toLowerCase().replace(/[.#$\[\]\/]/g,'_');
-        await db.ref('site/notificacoes').child(safeEmail).push({
-          title:'Pedido recebido',
-          message:`Recebemos seu pedido ${orderId}. Aguarde a confirmação do pagamento e a liberação da sua Key.`,
-          email,lida:false,createdAt:new Date().toISOString(),type:'order_received',pedidoId:orderId
-        }).catch(()=>{});
-      }
-
-      if(status){status.textContent='Pedido registrado. Enviando o formulário...';status.style.color='var(--success)';}
-
-      // Native submit keeps FormSubmit's existing email workflow and file attachment.
-      HTMLFormElement.prototype.submit.call(form);
-    }catch(e){
-      console.error(e);
-      if(status){status.textContent='Não foi possível registrar o pedido. Tente novamente.';status.style.color='var(--danger)';}
-      if(btn){btn.disabled=false;btn.innerHTML=btn.dataset.originalText||'Enviar Pedido';}
-      alert('❌ Erro ao registrar o pedido: '+(e.message||e));
-    }
-  }
-
-  function bindOrderForm(id){
-    const form=document.getElementById(id);
-    if(!form || form.dataset.kznOrderBound==='1')return;
-    form.dataset.kznOrderBound='1';
-    form.addEventListener('submit',function(ev){
-      ev.preventDefault();
-      registrarPedido(form);
-    });
-  }
-
-  function refreshAdminOrders(){
-    if(typeof window.renderAdminCompras==='function') window.renderAdminCompras();
-  }
-
-  document.addEventListener('DOMContentLoaded',function(){
-    bindOrderForm('formContato');
-    bindOrderForm('formContatoAutoTrash');
-    setTimeout(refreshAdminOrders,800);
-  });
-
-  // Re-bind if the page dynamically restores/changes the forms.
-  setTimeout(()=>{bindOrderForm('formContato');bindOrderForm('formContatoAutoTrash');},1500);
-  window.kznRegistrarPedido=registrarPedido;
-})();
-</script>
 
 
 <style id="kzn-v17-orders-style">
@@ -8841,7 +8679,7 @@ Pedido: ${activeOrderId}`;
     const emailObserver=new MutationObserver(fillPurchaseForms);
     emailObserver.observe(document.body,{subtree:true,childList:true});
   });
-  window.addEventListener('load',()=>{fillPurchaseForms();setTimeout(render,300)});
+  window.addEventListener('load',()=>{fillPurchaseForms()});
 })();
 </script>
 
@@ -8945,172 +8783,9 @@ Pedido: ${activeOrderId}`;
 @media(max-width:700px){.kzn-order-grid{grid-template-columns:1fr!important}.kzn-stock-summary{grid-template-columns:1fr!important}.kzn-order-sound-btn{margin-left:0!important;width:100%!important}}
 </style>
 
-<script id="kzn-v22-functional-fixes">
-(function(){
-  const V22={known:new Set(),initialized:false,audioEnabled:false,audioCtx:null};
-  const escV22=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const moneyV22=v=>{const n=Number(v);return Number.isFinite(n)?'R$ '+n.toFixed(2).replace('.',','):'-'};
-  const dateV22=v=>{try{return v?new Date(v).toLocaleString('pt-BR'):'-'}catch(e){return '-'}};
-  const statusClassV22=s=>{const x=String(s||'').toLowerCase();if(x.includes('key'))return 'key';if(x.includes('pago'))return 'pago';if(x.includes('an'))return 'analise';if(x.includes('cancel'))return 'cancelado';return 'recebido'};
-  function getUserV22(){let u=window.usuarioLogado||null;try{if(!u)u=JSON.parse(localStorage.getItem('kzn_usuario_logado')||'null')}catch(e){}return u||{}}
-  async function canAdminV22(){try{if(typeof canAdmin==='function')return await canAdmin();}catch(e){} const e=String(getUserV22().email||'').toLowerCase();return !!e}
-  async function loadV22(){
-    const remoteSnap=await db.ref('site/pedidos').once('value');
-    const remote=Object.entries(remoteSnap.val()||{}).map(([id,x])=>({id,...(x||{}),_source:'firebase'}));
-    let local=[];try{local=JSON.parse(localStorage.getItem('kzn_compras')||'[]').map((x,i)=>({id:x.id||x.pedidoId||x.pedido||'LOCAL-'+i,...x,_source:'local'}))}catch(e){}
-    const map=new Map();
-    remote.forEach(x=>{const k=String(x.pedidoId||x.id||'').trim();if(k)map.set(k,x)});
-    local.forEach(x=>{const k=String(x.pedidoId||x.id||'').trim();if(k&&!map.has(k))map.set(k,x)});
-    return [...map.values()].sort((a,b)=>Date.parse(b.updatedAt||b.createdAt||b.timestamp||b.data||0)-Date.parse(a.updatedAt||a.createdAt||a.timestamp||a.data||0));
-  }
-  function injectSoundButton(){
-    const bar=document.querySelector('.kzn-orders-toolbar');if(!bar||bar.querySelector('.kzn-order-sound-btn'))return;
-    const b=document.createElement('button');b.type='button';b.className='admin-action-btn kzn-order-sound-btn';b.innerHTML='<i class="fas fa-volume-mute"></i> Som de pedidos: OFF';
-    b.onclick=()=>{V22.audioEnabled=!V22.audioEnabled;localStorage.setItem('kzn_order_sound',V22.audioEnabled?'1':'0');if(V22.audioEnabled){unlockAudio();beepV22(true)}updateSoundButton(b)};
-    bar.appendChild(b);updateSoundButton(b);
-  }
-  function updateSoundButton(b){const on=V22.audioEnabled;b.classList.toggle('enabled',on);b.innerHTML=on?'<i class="fas fa-volume-up"></i> Som de pedidos: ON':'<i class="fas fa-volume-mute"></i> Som de pedidos: OFF'}
-  function unlockAudio(){try{if(!V22.audioCtx)V22.audioCtx=new (window.AudioContext||window.webkitAudioContext)();if(V22.audioCtx.state==='suspended')V22.audioCtx.resume()}catch(e){}}
-  function beepV22(test=false){if(!V22.audioEnabled&&!test)return;try{unlockAudio();const c=V22.audioCtx;if(!c)return;const o=c.createOscillator(),g=c.createGain();o.type='sine';o.frequency.setValueAtTime(test?740:880,c.currentTime);o.frequency.exponentialRampToValueAtTime(test?520:660,c.currentTime+.16);g.gain.setValueAtTime(.0001,c.currentTime);g.gain.exponentialRampToValueAtTime(.12,c.currentTime+.015);g.gain.exponentialRampToValueAtTime(.0001,c.currentTime+.2);o.connect(g);g.connect(c.destination);o.start();o.stop(c.currentTime+.21)}catch(e){}}
-  async function renderV22(){
-    const el=document.getElementById('admComprasTabela');if(!el)return;if(!(await canAdminV22())){el.innerHTML='<div class="kzn-empty">Acesso restrito a administradores.</div>';return}
-    injectSoundButton();el.innerHTML='<div class="kzn-empty"><i class="fas fa-spinner fa-spin"></i> Carregando pedidos...</div>';
-    try{
-      let list=await loadV22();const q=String(document.getElementById('admBuscaCompra')?.value||'').toLowerCase().trim();if(q)list=list.filter(x=>JSON.stringify(x).toLowerCase().includes(q));
-      if(!list.length){el.innerHTML='<div class="kzn-empty"><i class="fas fa-inbox"></i><br>Nenhum pedido encontrado.</div>';return}
-      el.innerHTML=list.map((x,i)=>{
-        const id=escV22(x.id||x.pedidoId||('#'+(i+1))), email=escV22(x.email||x.cliente||'-'), product=escV22(x.produto||x.plano||x.nomeProduto||'-'), status=x.status||'Recebido';
-        const proof=x.comprovanteUrl?`<button class="kzn-order-proof" type="button" onclick="kznVerComprovante('${escV22(x.comprovanteUrl)}','${escV22(x.comprovanteNome||'Comprovante PIX')}')"><i class="fas fa-receipt"></i> Ver comprovante</button>`:`<button class="kzn-order-proof disabled" type="button" disabled><i class="fas fa-file-circle-xmark"></i> Sem comprovante</button>`;
-        const keyBtn=typeof planFromProduct==='function'&&planFromProduct(x.produto||x.plano)?`<button class="kzn-order-key" type="button" onclick="kznAbrirPedidoKey('${escV22(x.id)}')"><i class="fas fa-key"></i> ${String(status).toLowerCase().includes('key')?'Reenviar Key':'Enviar Key'}</button>`:'';
-        return `<article class="kzn-order-card"><div class="kzn-order-head"><div><div class="kzn-order-id">${id}</div><div class="kzn-order-date"><i class="far fa-clock"></i> ${dateV22(x.createdAt||x.timestamp||x.data)}</div></div><span class="kzn-order-status ${statusClassV22(status)}">${escV22(status)}</span></div><div class="kzn-order-grid"><div class="kzn-order-field"><label>Cliente</label><strong>${escV22(x.nome||'Não informado')}</strong><span>${email}</span></div><div class="kzn-order-field"><label>WhatsApp</label><span>${escV22(x.whatsapp||'-')}</span></div><div class="kzn-order-field"><label>Produto / plano</label><strong>${product}</strong></div><div class="kzn-order-field"><label>Valor</label><strong>${moneyV22(x.valor)}</strong></div><div class="kzn-order-field full"><label>Status do pedido</label><select class="kzn-order-status-select" onchange="kznAlterarStatusPedido('${escV22(x.id)}',this.value)">${['Recebido','Em análise','Pago','Key enviada','Cancelado'].map(s=>`<option ${s===status?'selected':''}>${s}</option>`).join('')}</select></div><div class="kzn-order-field full"><label>Comprovante</label><span>${escV22(x.comprovanteNome||'Não anexado')}</span></div>${x.key?`<div class="kzn-order-field full"><label>Key enviada</label><strong>${escV22(x.key)}</strong><span>${escV22(x.keyPlano||'')} · ${dateV22(x.keyIssuedAt)}</span></div>`:''}${x.mensagem?`<div class="kzn-order-field full"><label>Mensagem</label><span>${escV22(x.mensagem)}</span></div>`:''}</div><div class="kzn-order-actions">${proof}${keyBtn}</div></article>`;
-      }).join('');
-    }catch(e){console.error(e);el.innerHTML='<div class="kzn-empty">Não foi possível carregar os pedidos. Verifique as regras do Firebase.</div>'}
-  }
-  function initSound(){
-    V22.audioEnabled=localStorage.getItem('kzn_order_sound')==='1';
-    document.addEventListener('pointerdown',()=>{if(V22.audioEnabled)unlockAudio()},{passive:true});
-    if(V22.initialized)return;V22.initialized=true;
-    db.ref('site/pedidos').once('value').then(s=>{Object.keys(s.val()||{}).forEach(id=>V22.known.add(String(id)));db.ref('site/pedidos').on('child_added',snap=>{const id=String(snap.key);if(V22.known.has(id))return;V22.known.add(id);beepV22(false);if(typeof renderV22==='function')renderV22();})}).catch(()=>{});
-  }
-  window.renderAdminCompras=renderV22;
-  document.addEventListener('DOMContentLoaded',()=>{initSound();setTimeout(()=>{renderV22();injectSoundButton()},700)});
-})();
-</script>
 
-<script id="kzn-v23-order-fixes">
-(function(){
-  const ORDERS = db.ref('site/pedidos');
-  const LOGS = db.ref('site/admin_logs');
-  const PURCHASE_LOGS = db.ref('site/purchase_logs');
-  const STORAGE = (typeof firebase!=='undefined' && firebase.storage) ? firebase.storage() : null;
-  const OWNER = 'gabriel6061yt@gmail.com';
-  const esc = v => String(v ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const currentEmail = ()=>{ let u=window.usuarioLogado||null; if(!u){try{u=JSON.parse(localStorage.getItem('kzn_usuario_logado')||'null')}catch(e){}} return String(u?.email||'').trim().toLowerCase(); };
-  async function canAdmin(){
-    const em=currentEmail(); if(!em)return false; if(em===OWNER)return true;
-    try{ const s=await db.ref('chat/admins').once('value'); return Object.values(s.val()||{}).some(a=>String(a?.email||'').toLowerCase()===em && a?.ativo===true); }catch(e){return false;}
-  }
-  function fmt(v){try{return v?new Date(v).toLocaleString('pt-BR'):'-'}catch(e){return '-'}}
-  function money(v){return v==null||v===''?'-':'R$ '+Number(v).toFixed(2).replace('.',',')}
-  function statusClass(s){const x=String(s||'Recebido').toLowerCase(); if(x.includes('cancel'))return 'cancelado';if(x.includes('key'))return 'key';if(x.includes('pago'))return 'pago';if(x.includes('an'))return 'analise';return 'recebido';}
-  function planFor(prod){
-    const arr=[['KZN MENU Classic - SIMPLE (20 dias)','SIMPLE',30,20],['KZN MENU Classic - BASIC (35 dias)','BASIC',50,35],['KZN MENU Classic - PLUS (70 dias)','PLUS',100,70],['KZN MENU Classic - PRO (105 dias)','PRO',150,105],['KZN MENU Classic - PREMIUM (140 dias)','PREMIUM',200,140],['KZN MENU Classic - ULTIMATE (175 dias)','ULTIMATE',250,175],['KZN MENU Classic - ELITE (210 dias)','ELITE',300,210]];
-    const t=String(prod||'').toLowerCase(); return arr.find(p=>t.includes(p[1].toLowerCase()))||null;
-  }
-  async function load(){
-    const s=await ORDERS.once('value');
-    const remote=Object.entries(s.val()||{}).map(([id,x])=>({id,...x}));
-    let local=[];try{local=JSON.parse(localStorage.getItem('kzn_compras')||'[]').map((x,i)=>({id:x.id||x.pedidoId||x.pedido||('LOCAL-'+i),...x}))}catch(e){}
-    const map=new Map();
-    remote.forEach(x=>{const k=String(x.pedidoId||x.id||'').trim();if(k)map.set(k,x)});
-    local.forEach(x=>{const k=String(x.pedidoId||x.id||'').trim();if(k&&!map.has(k))map.set(k,x)});
-    return [...map.values()].sort((a,b)=>new Date(b.updatedAt||b.createdAt||b.timestamp||b.data||0)-new Date(a.updatedAt||a.createdAt||a.timestamp||a.data||0));
-  }
-  function proofButton(x){
-    const id=esc(x.id||x.pedidoId||'');
-    if(x.comprovanteUrl) return `<button class="kzn-order-proof" type="button" onclick="kznVerComprovante('${esc(x.comprovanteUrl)}','${esc(x.comprovanteNome||'Comprovante PIX')}')"><i class="fas fa-eye"></i> Ver comprovante</button>`;
-    if(x.comprovanteNome) return `<button class="kzn-order-proof" type="button" onclick="kznVerComprovantePedido('${id}','${esc(x.comprovanteNome)}')"><i class="fas fa-eye"></i> Ver comprovante</button>`;
-    return `<button class="kzn-order-proof disabled" type="button" disabled><i class="fas fa-file-circle-xmark"></i> Sem comprovante</button>`;
-  }
-  window.kznVerComprovantePedido=async function(id,name){
-    if(!(await canAdmin()))return alert('🚫 Acesso restrito.');
-    if(!STORAGE)return alert('❌ Firebase Storage não está disponível.');
-    try{
-      const folder=STORAGE.ref(`pedidos/${id}`);
-      const list=await folder.listAll();
-      if(!list.items.length)return alert('❌ O arquivo do comprovante não foi encontrado no Storage.');
-      const file=list.items[0];
-      const url=await file.getDownloadURL();
-      if(typeof window.kznVerComprovante==='function') window.kznVerComprovante(url,name||file.name||'Comprovante PIX');
-    }catch(e){console.error(e);alert('❌ Não foi possível localizar o comprovante: '+e.message);}
-  };
-  window.kznExcluirPedido=async function(id){
-    if(!(await canAdmin()))return alert('🚫 Acesso restrito.');
-    const snap=await ORDERS.child(id).once('value'); const p=snap.val(); if(!p)return alert('Pedido não encontrado.');
-    const email=String(p.email||p.cliente||'').trim().toLowerCase(); const product=String(p.produto||p.plano||p.nomeProduto||'-');
-    if(!confirm(`Apagar o pedido ${id}?\n\nEle será removido da lista de pedidos, mas o registro da exclusão permanecerá nos logs.`))return;
-    const ts=new Date().toISOString();
-    try{
-      await LOGS.push({action:'ORDER_DELETED',targetEmail:email,adminEmail:currentEmail(),adminRole:currentEmail()===OWNER?'owner':'admin',timestamp:ts,details:`Pedido ${id} excluído · ${product}`});
-      await PURCHASE_LOGS.push({event:'ORDER_DELETED',pedidoId:id,email,produto:product,adminEmail:currentEmail(),timestamp:ts});
-      await ORDERS.child(id).remove();
-      try{
-        const arr=JSON.parse(localStorage.getItem('kzn_compras')||'[]');
-        localStorage.setItem('kzn_compras',JSON.stringify(arr.filter(x=>String(x.id||x.pedidoId||x.pedido||'')!==String(id))));
-      }catch(e){}
-      alert('✅ Pedido apagado. A exclusão foi registrada nos logs.');
-      window.renderAdminCompras?.();
-    }catch(e){console.error(e);alert('❌ Não foi possível apagar o pedido: '+e.message);}
-  };
-  window.kznAbrirInfoLogCompra=async function(id){
-    if(!(await canAdmin()))return;
-    const s=await ORDERS.child(id).once('value'); const p=s.val(); if(!p)return alert('Pedido não encontrado.');
-    const box=`Pedido: ${id}\nData: ${fmt(p.createdAt||p.timestamp||p.data)}\nE-mail: ${p.email||'-'}\nProduto: ${p.produto||p.plano||'-'}\nValor: ${money(p.valor)}\nNome: ${p.nome||'-'}\nWhatsApp: ${p.whatsapp||'-'}\nMensagem: ${p.mensagem||'-'}\nComprovante: ${p.comprovanteNome||'Não anexado'}`;
-    alert(box);
-  };
-  async function render(){
-    const el=document.getElementById('admComprasTabela'); if(!el)return;
-    if(!(await canAdmin())){el.innerHTML='<div class="kzn-empty">Acesso restrito a administradores.</div>';return;}
-    el.innerHTML='<div class="kzn-empty"><i class="fas fa-spinner fa-spin"></i> Carregando pedidos...</div>';
-    try{
-      let list=await load(); const q=String(document.getElementById('admBuscaCompra')?.value||'').toLowerCase().trim(); if(q)list=list.filter(x=>JSON.stringify(x).toLowerCase().includes(q));
-      if(!list.length){el.innerHTML='<div class="kzn-empty"><i class="fas fa-inbox"></i><br>Nenhum pedido encontrado.</div>';return;}
-      el.innerHTML=list.map((x,i)=>{
-        const id=esc(x.id||x.pedidoId||('#'+(i+1))); const email=esc(x.email||x.cliente||'-'); const product=esc(x.produto||x.plano||x.nomeProduto||'-'); const st=x.status||'Recebido';
-        const keyBtn=planFor(x.produto||x.plano)?`<button class="kzn-order-key" type="button" onclick="kznAbrirPedidoKey('${id}')"><i class="fas fa-key"></i> ${String(st).toLowerCase().includes('key')?'Trocar/reenviar Key':'Enviar Key'}</button>`:'';
-        return `<article class="kzn-order-card">
-          <div class="kzn-order-head"><div><div class="kzn-order-id">${id}</div><div class="kzn-order-date"><i class="far fa-clock"></i> ${fmt(x.createdAt||x.timestamp||x.data)}</div></div><span class="kzn-order-status ${statusClass(st)}">${esc(st)}</span></div>
-          <div class="kzn-order-grid">
-            <div class="kzn-order-field"><label>Cliente</label><strong>${esc(x.nome||'Não informado')}</strong><span>${email}</span></div>
-            <div class="kzn-order-field"><label>WhatsApp</label><span>${esc(x.whatsapp||'-')}</span></div>
-            <div class="kzn-order-field"><label>Produto / plano</label><strong>${product}</strong></div>
-            <div class="kzn-order-field"><label>Valor</label><strong>${money(x.valor)}</strong></div>
-            <div class="kzn-order-field full"><label>Status</label><select class="kzn-order-status-select" onchange="kznAlterarStatusPedido('${id}',this.value)">${['Recebido','Em análise','Pago','Key enviada','Cancelado'].map(s=>`<option ${s===st?'selected':''}>${s}</option>`).join('')}</select></div>
-            <div class="kzn-order-field full"><label>Mensagem</label><span class="${x.mensagem?'':'kzn-muted'}">${esc(x.mensagem||'Sem mensagem')}</span></div>
-            <div class="kzn-order-field full"><label>Comprovante</label><span>${esc(x.comprovanteNome||'Não anexado')}</span></div>
-            ${x.key?`<div class="kzn-order-field full"><label>Key enviada</label><strong>${esc(x.key)}</strong><span>${esc(x.keyPlano||'')} · ${fmt(x.keyIssuedAt)}</span></div>`:''}
-          </div>
-          <div class="kzn-order-actions">${proofButton(x)}${keyBtn}<button class="kzn-order-info" type="button" onclick="kznAbrirInfoLogCompra('${id}')"><i class="fas fa-circle-info"></i> Informações</button><button class="kzn-order-delete" type="button" onclick="kznExcluirPedido('${id}')"><i class="fas fa-trash"></i> Apagar</button></div>
-        </article>`;
-      }).join('');
-      const count=document.getElementById('admCompras');if(count)count.textContent=String(list.length);
-    }catch(e){console.error(e);el.innerHTML='<div class="kzn-empty">Não foi possível carregar os pedidos.</div>';}
-  }
-  window.renderAdminCompras=render;
-  const oldSwitch=window.mudarAbaAdmin;
-  window.mudarAbaAdmin=function(view){ if(typeof oldSwitch==='function')oldSwitch(view); if(view==='compras')setTimeout(render,60); if(view==='logs')setTimeout(renderPurchaseLogs,60); };
-  async function renderPurchaseLogs(){
-    const el=document.getElementById('admLogs'); if(!el||!(await canAdmin()))return;
-    try{
-      const [a,p]=await Promise.all([LOGS.once('value'),PURCHASE_LOGS.once('value')]);
-      const all=[...Object.values(a.val()||{}).map(x=>({...x,_src:'ADMIN'})),...Object.values(p.val()||{}).map(x=>({timestamp:x.timestamp,targetEmail:x.email,produto:x.produto,action:x.event||'PURCHASE',details:x.pedidoId||'',_src:'COMPRA'}))]
-        .filter(x=>x.timestamp && (x.targetEmail||x.email||x.produto||x.details)).sort((x,y)=>String(y.timestamp).localeCompare(String(x.timestamp))).slice(0,160);
-      el.innerHTML=all.length?all.map(x=>`<div class="owner-log"><strong>${esc(x._src==='COMPRA'?'COMPRA · '+(x.action||'EVENTO'):(x.action||'EVENTO'))}</strong><div><span>${fmt(x.timestamp)}</span> · <span>${esc(x.targetEmail||x.email||'-')}</span> · <span>${esc(x.produto||x.details||'-')}</span></div></div>`).join(''):'<div class="empty-state">Nenhum log registrado.</div>';
-    }catch(e){el.innerHTML='<div class="empty-state">Não foi possível carregar os logs.</div>';}
-  }
-  window.addEventListener('load',()=>setTimeout(()=>{render();renderPurchaseLogs();},900));
-})();
-</script>
+
+
 <style id="kzn-v23-final-fixes">
 .kzn-order-actions{display:flex!important;flex-wrap:wrap!important;gap:8px!important;margin-top:10px!important}
 .kzn-order-actions button{font-weight:800!important;cursor:pointer!important}
@@ -9281,37 +8956,82 @@ Pedido: ${activeOrderId}`;
   }
   function clearPlanLock(){const form=document.getElementById('formContato');if(!form)return;const s=form.querySelector('select[name="Plano"]');if(s){s.disabled=false;s.value='';}form.querySelector('.kzn-cart-plan-lock')?.remove();form.querySelector('input[name="PlanoCarrinho"]')?.remove();}
 
+  async function proofDataUrl(file){
+    if(!file || !/^image\//i.test(file.type||'')) return '';
+    return await new Promise(resolve=>{
+      const reader=new FileReader();
+      reader.onerror=()=>resolve('');
+      reader.onload=()=>{
+        const img=new Image();
+        img.onload=()=>{
+          try{
+            const max=1600, scale=Math.min(1,max/Math.max(img.width||1,img.height||1));
+            const canvas=document.createElement('canvas');
+            canvas.width=Math.max(1,Math.round((img.width||1)*scale));
+            canvas.height=Math.max(1,Math.round((img.height||1)*scale));
+            const ctx=canvas.getContext('2d'); ctx.fillStyle='#fff'; ctx.fillRect(0,0,canvas.width,canvas.height);
+            ctx.drawImage(img,0,0,canvas.width,canvas.height);
+            const out=canvas.toDataURL('image/jpeg',0.78);
+            resolve(out.length<=900000?out:'');
+          }catch(e){resolve('')}
+        };
+        img.onerror=()=>resolve(''); img.src=String(reader.result||'');
+      };
+      reader.readAsDataURL(file);
+    });
+  }
   async function upload(file,id){
-    if(!file)return {url:'',name:''};
+    if(!file)return {url:'',name:'',dataUrl:''};
     if(file.size>5*1024*1024)throw new Error('O comprovante deve ter no máximo 5 MB.');
-    if(!STORAGE)throw new Error('Firebase Storage não está disponível.');
-    const ref=STORAGE.ref(`pedidos/${id}/${Date.now()}_${safeKey(file.name||'comprovante')}`);
-    const task=ref.put(file);
-    await Promise.race([task,new Promise((_,rej)=>setTimeout(()=>rej(new Error('Upload do comprovante demorou demais. Tente novamente.')),25000))]);
-    return {url:await ref.getDownloadURL(),name:file.name||'Comprovante PIX'};
+    const name=file.name||'Comprovante PIX';
+    let dataUrl=''; try{dataUrl=await proofDataUrl(file)}catch(e){}
+    if(!STORAGE)return {url:'',name,dataUrl};
+    try{
+      const ref=STORAGE.ref(`pedidos/${id}/${Date.now()}_${safeKey(name)}`);
+      const task=ref.put(file);
+      await Promise.race([task,new Promise((_,rej)=>setTimeout(()=>rej(new Error('Upload do comprovante demorou demais.')),25000))]);
+      let url='';
+      for(let attempt=0;attempt<3 && !url;attempt++){
+        try{url=await ref.getDownloadURL()}catch(e){if(attempt<2)await new Promise(r=>setTimeout(r,700*(attempt+1)))}
+      }
+      return {url,name,dataUrl};
+    }catch(e){
+      console.warn('Firebase Storage falhou; usando comprovante de contingência:',e);
+      return {url:'',name,dataUrl};
+    }
   }
   async function saveOrder(form){
-    const fd=new FormData(form);const selected=String(fd.get('PlanoCarrinho')||fd.get('Plano')||'').trim();const p=planOf(selected);const check=form.querySelector('input[name="TermosAceitos"]');
+    const fd=new FormData(form), selected=String(fd.get('PlanoCarrinho')||fd.get('Plano')||'').trim(), p=planOf(selected);
+    const check=form.querySelector('input[name="TermosAceitos"]');
     if(!check?.checked)throw new Error('Você precisa aceitar os Termos de Compra.');
     if(!selected||!p)throw new Error('Selecione um plano válido.');
-    const file=form.querySelector('input[name="Comprovante"]')?.files?.[0];if(!file)throw new Error('Envie o comprovante PIX.');
-    const id='PED-'+Date.now()+'-'+Math.random().toString(36).slice(2,7).toUpperCase();const ts=now();const u=user();
-    const pedido={pedidoId:id,email:String(fd.get('Email')||email()).trim().toLowerCase(),nome:String(fd.get('Nome')||u.nome||'').trim(),whatsapp:String(fd.get('WhatsApp')||'').trim(),produto:selected,plano:p[1],valor:p[2],validadeDias:p[3],mensagem:String(fd.get('Mensagem')||'').trim(),status:'Recebido',comprovanteNome:file.name||'',comprovanteUrl:'',usuarioUid:u.uid||'',origem:'carrinho_formulario',termsAccepted:true,termsVersion:TERMS_VERSION,termsAcceptedAt:ts,createdAt:ts,updatedAt:ts};
-    const btn=form.querySelector('button[type="submit"]');const status=form.querySelector('.form-status');if(btn){btn.disabled=true;btn.dataset.v24=btn.innerHTML;btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Enviando pedido...'}if(status){status.textContent='Salvando pedido e comprovante...';status.style.color='var(--text-muted)'}
+    const file=form.querySelector('input[name="Comprovante"]')?.files?.[0];
+    if(!file)throw new Error('Envie o comprovante PIX.');
+    const id='PED-'+Date.now()+'-'+Math.random().toString(36).slice(2,7).toUpperCase(), ts=now(), u=user();
+    const pedido={pedidoId:id,email:String(fd.get('Email')||email()).trim().toLowerCase(),nome:String(fd.get('Nome')||u.nome||'').trim(),whatsapp:String(fd.get('WhatsApp')||'').trim(),produto:selected,plano:p[1],valor:p[2],validadeDias:p[3],mensagem:String(fd.get('Mensagem')||'').trim(),status:'Recebido',comprovanteNome:file.name||'',comprovanteUrl:'',comprovanteDataUrl:'',usuarioUid:u.uid||'',origem:'carrinho_formulario',termsAccepted:true,termsVersion:TERMS_VERSION,termsAcceptedAt:ts,createdAt:ts,updatedAt:ts};
+    const btn=form.querySelector('button[type="submit"]'), status=form.querySelector('.form-status');
+    if(btn){btn.disabled=true;btn.dataset.v24=btn.innerHTML;btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Enviando pedido...'}
+    if(status){status.textContent='Registrando pedido...';status.style.color='var(--text-muted)'}
     try{
+      // Persist first: Storage problems must never make the order disappear.
       await ORDERS.child(id).set(pedido);
-      await PURCHASE_LOGS.push({event:'ORDER_RECEIVED',pedidoId:id,email:pedido.email,produto:pedido.produto,timestamp:ts,termsAccepted:true,termsVersion:TERMS_VERSION});
-      await LOGS.push({action:'ORDER_RECEIVED',targetEmail:pedido.email,adminEmail:'SYSTEM',adminRole:'system',timestamp:ts,details:`${pedido.produto} · ${pedido.email} · termos aceitos v${TERMS_VERSION}`});
-      try{const proof=await upload(file,id);pedido.comprovanteUrl=proof.url;pedido.comprovanteNome=proof.name;await ORDERS.child(id).update({comprovanteUrl:proof.url,comprovanteNome:proof.name,updatedAt:now(),comprovanteErro:null});await PURCHASE_LOGS.push({event:'ORDER_PROOF_UPLOADED',pedidoId:id,email:pedido.email,produto:pedido.produto,timestamp:now()})}catch(err){await ORDERS.child(id).update({comprovanteErro:String(err.message||err),updatedAt:now()}).catch(()=>{});throw err;}
-      const path=SAN(pedido.email);await NOTIFS.child(path).push({title:'Pedido recebido',message:`Pedido ${id} recebido. Aguarde a confirmação e a liberação da Key.`,email:pedido.email,lida:false,createdAt:now(),type:'order_received',pedidoId:id}).catch(()=>{});
-      if(status){status.textContent='Pedido enviado com sucesso. Aguarde a confirmação do pagamento.';status.style.color='var(--success)'}
-      if(btn){btn.innerHTML='<i class="fas fa-check"></i> Pedido enviado';}
-      form.reset();setLoggedFields(form);ensureTerms(form);const tc=form.querySelector('input[name="TermosAceitos"]');if(tc)tc.checked=false;const tb=form.querySelector('button[type="submit"]');if(tb){tb.disabled=true;tb.style.opacity='.55';tb.style.cursor='not-allowed'}clearPlanLock();
-      localStorage.removeItem('kzn_checkout_plan');localStorage.removeItem('kzn_checkout_qty');
-      if(typeof window.renderAdminCompras==='function')window.renderAdminCompras();
-    }catch(e){console.error(e);if(status){status.textContent='Não foi possível concluir o envio.';status.style.color='var(--danger)'}if(btn){btn.disabled=false;btn.innerHTML=btn.dataset.v24||'Enviar Pedido'}throw e}
+      let proof={url:'',name:file.name||'Comprovante PIX',dataUrl:''};
+      try{proof=await upload(file,id)}catch(e){console.warn(e)}
+      const proofUpdate={comprovanteUrl:proof.url||'',comprovanteNome:proof.name||file.name||'Comprovante PIX',comprovanteDataUrl:proof.dataUrl||'',comprovanteErro:proof.url||proof.dataUrl?null:'Storage sem URL de download; fallback de imagem indisponível.',updatedAt:now()};
+      await ORDERS.child(id).update(proofUpdate); Object.assign(pedido,proofUpdate);
+      await PURCHASE_LOGS.push({event:'ORDER_RECEIVED',pedidoId:id,email:pedido.email,produto:pedido.produto,timestamp:ts,termsAccepted:true,termsVersion:TERMS_VERSION}).catch(console.warn);
+      await LOGS.push({action:'ORDER_RECEIVED',targetEmail:pedido.email,adminEmail:'SYSTEM',adminRole:'system',timestamp:ts,details:`${pedido.produto} · ${pedido.email} · termos aceitos v${TERMS_VERSION}`}).catch(console.warn);
+      if(proof.url||proof.dataUrl)await PURCHASE_LOGS.push({event:'ORDER_PROOF_UPLOADED',pedidoId:id,email:pedido.email,produto:pedido.produto,timestamp:now(),storage:!!proof.url,fallback:!!proof.dataUrl}).catch(console.warn);
+      await NOTIFS.child(SAN(pedido.email)).push({title:'Pedido recebido',message:`Pedido ${id} recebido. Aguarde a confirmação e a liberação da Key.`,email:pedido.email,lida:false,createdAt:now(),type:'order_received',pedidoId:id}).catch(console.warn);
+      if(status){status.textContent='Pedido enviado com sucesso. O pedido já foi registrado.';status.style.color='var(--success)'}
+      if(btn)btn.innerHTML='<i class="fas fa-check"></i> Pedido enviado';
+      form.reset();setLoggedFields(form);ensureTerms(form);const tc=form.querySelector('input[name="TermosAceitos"]');if(tc)tc.checked=false;const tb=form.querySelector('button[type="submit"]');if(tb){tb.disabled=true;tb.style.opacity='.55';tb.style.cursor='not-allowed'}
+      clearPlanLock();localStorage.removeItem('kzn_checkout_plan');localStorage.removeItem('kzn_checkout_qty');try{localStorage.removeItem('kzn_carrinho')}catch(e){}
+      setTimeout(()=>{if(typeof window.renderAdminCompras==='function')window.renderAdminCompras()},120);
+    }catch(e){
+      console.error(e);if(status){status.textContent='Não foi possível concluir o pedido.';status.style.color='var(--danger)'}if(btn){btn.disabled=false;btn.innerHTML=btn.dataset.v24||'Enviar Pedido'}throw e;
+    }
   }
-
   function replaceForm(id){
     const old=document.getElementById(id);if(!old)return null;
     const fresh=old.cloneNode(true);old.replaceWith(fresh);fresh.dataset.kznV24Bound='1';
@@ -9323,23 +9043,35 @@ Pedido: ${activeOrderId}`;
   /* ---------- CART -> FORM ---------- */
   window.finalizarCompra=function(){
     let cart=[];try{cart=JSON.parse(localStorage.getItem('kzn_carrinho')||'[]')}catch(e){cart=[]}
+    cart=(Array.isArray(cart)?cart:[]).filter(x=>x&&x.nome);
     if(!cart.length){alert('🛒 Seu carrinho está vazio!');return}
-    const tipos=new Set(cart.map(i=>i.tipo==='era'?'era':i.tipo));if(tipos.size>1){alert('⚠️ Finalize produtos de categorias diferentes separadamente.');return}
-    if(cart.length!==1||Number(cart[0].quantidade||1)!==1){alert('⚠️ O formulário aceita um plano por pedido. Remova itens extras do carrinho e tente novamente.');return}
-    const item=cart[0];const product=String(item.nome||'');
-    localStorage.setItem('kzn_checkout_plan',product);localStorage.setItem('kzn_checkout_qty','1');
-    document.getElementById('cartDropdown')?.classList.remove('open');
-    if(item.tipo==='era'){document.getElementById('formContatoEra')?.scrollIntoView({behavior:'smooth',block:'center'});return}
-    const form=document.getElementById('formContato');if(!form){alert('Formulário de pedidos não encontrado.');return}
-    applyPlanToForm(product,1);setLoggedFields(form);ensureTerms(form);form.scrollIntoView({behavior:'smooth',block:'center'});
+    const unique=[];
+    for(const item of cart){const key=String(item.tipo||'classic')+'::'+String(item.nome||'').trim();if(!unique.some(x=>String(x.tipo||'classic')+'::'+String(x.nome||'').trim()===key))unique.push({...item,quantidade:1})}
+    const tipos=new Set(unique.map(i=>i.tipo==='era'?'era':'classic'));
+    if(tipos.size>1){alert('⚠️ Finalize produtos do Graal Classic e Graal Era separadamente.');return}
+    if(unique.length>1){alert('⚠️ O checkout aceita apenas 1 plano por pedido. Remova os outros planos do carrinho e tente novamente.');return}
+    const item=unique[0], product=String(item.nome||'').trim();
+    localStorage.setItem('kzn_checkout_plan',product);localStorage.setItem('kzn_checkout_qty','1');document.getElementById('cartDropdown')?.classList.remove('open');
+    const formId=item.tipo==='era'?'formContatoAutoTrash':'formContato', form=document.getElementById(formId);
+    if(!form){alert('Formulário de pedido não encontrado.');return}
+    if(formId==='formContato'){applyPlanToForm(product,1)}else{let hidden=form.querySelector('input[name="PlanoCarrinho"]')||document.createElement('input');hidden.type='hidden';hidden.name='PlanoCarrinho';hidden.value=product;if(!hidden.parentNode)form.appendChild(hidden)}
+    setLoggedFields(form);ensureTerms(form);form.scrollIntoView({behavior:'smooth',block:'center'});
   };
 
   /* ---------- ADMIN ORDERS ---------- */
   async function loadOrders(){
     const s=await ORDERS.once('value');return Object.entries(s.val()||{}).map(([id,x])=>({id,...x})).sort((a,b)=>Date.parse(b.updatedAt||b.createdAt||b.timestamp||0)-Date.parse(a.updatedAt||a.createdAt||a.timestamp||0));
   }
-  async function storageProof(id){if(!STORAGE)throw new Error('Firebase Storage indisponível.');const folder=STORAGE.ref(`pedidos/${id}`);const list=await folder.listAll();if(!list.items.length)throw new Error('Comprovante não encontrado no Storage.');const f=list.items.sort((a,b)=>String(b.name).localeCompare(String(a.name)))[0];return {url:await f.getDownloadURL(),name:f.name};}
-  window.kznVerComprovantePedido=async function(id,name){if(!(await canAdmin()))return alert('🚫 Acesso restrito.');try{let s=await ORDERS.child(id).once('value');const p=s.val()||{};let url=p.comprovanteUrl;let nm=p.comprovanteNome||name||'Comprovante PIX';if(!url){const f=await storageProof(id);url=f.url;nm=f.name}window.kznVerComprovante(url,nm)}catch(e){alert('❌ Não foi possível abrir o comprovante: '+(e.message||e))}};
+  async function storageProof(id){
+    if(!STORAGE)throw new Error('Firebase Storage indisponível.');
+    const paths=[`pedidos/${id}`,`site/pedidos/${id}`];let lastErr=null;
+    for(const path of paths){try{const folder=STORAGE.ref(path);const list=await Promise.race([folder.listAll(),new Promise((_,rej)=>setTimeout(()=>rej(new Error('Firebase Storage demorou demais para responder.')),8000))]);if(!list.items.length)continue;const f=list.items[0];let url='';for(let attempt=0;attempt<3&&!url;attempt++){try{url=await f.getDownloadURL()}catch(e){lastErr=e;if(attempt<2)await new Promise(r=>setTimeout(r,700*(attempt+1)))}}if(url)return{url,name:f.name}}catch(e){lastErr=e}}
+    throw lastErr||new Error('Comprovante não encontrado no Storage.');
+  }
+  window.kznVerComprovantePedido=async function(id,name){
+    if(!(await canAdmin()))return alert('🚫 Acesso restrito.');
+    try{const p=(await ORDERS.child(id).once('value')).val()||{},nm=p.comprovanteNome||name||'Comprovante PIX';if(p.comprovanteDataUrl){window.kznVerComprovante(p.comprovanteDataUrl,nm);return}if(p.comprovanteUrl){window.kznVerComprovante(p.comprovanteUrl,nm);return}const f=await storageProof(id);window.kznVerComprovante(f.url,f.name||nm)}catch(e){alert('❌ Não foi possível abrir o comprovante: '+(e.message||e))}
+  };
   function proof(x){const id=ESC(x.id||x.pedidoId||'');if(x.comprovanteUrl||x.comprovanteNome)return `<button class="kzn-v24-proof" type="button" onclick="kznVerComprovantePedido('${id}','${ESC(x.comprovanteNome||'Comprovante PIX')}')"><i class="fas fa-eye"></i> Ver comprovante</button>`;return `<button class="kzn-v24-proof disabled" type="button" disabled><i class="fas fa-file-circle-xmark"></i> Sem comprovante</button>`}
   window.kznAbrirInfoLogCompra=async function(id){if(!(await canAdmin()))return;const p=(await ORDERS.child(id).once('value')).val();if(!p)return alert('Pedido não encontrado.');const box=`PEDIDO ${id}\n\nData: ${date(p.createdAt)}\nE-mail: ${p.email||'-'}\nProduto: ${p.produto||'-'}\n\nTermos: ${p.termsAccepted?'ACEITOS':'NÃO REGISTRADO'}\nVersão: ${p.termsVersion||'-'}\nAceito em: ${date(p.termsAcceptedAt)}\n\nNome: ${p.nome||'-'}\nWhatsApp: ${p.whatsapp||'-'}\nMensagem: ${p.mensagem||'-'}`;alert(box)};
   window.kznExcluirPedido=async function(id){if(!(await canAdmin()))return;const s=await ORDERS.child(id).once('value');const p=s.val();if(!p)return alert('Pedido não encontrado.');if(!confirm(`Excluir o pedido ${id}? O pedido sairá da Central, mas ficará registrado nos Logs.`))return;const ts=now();try{await PURCHASE_LOGS.push({event:'ORDER_DELETED',pedidoId:id,email:p.email||'',produto:p.produto||'',timestamp:ts,adminEmail:email()});await LOGS.push({action:'ORDER_DELETED',targetEmail:p.email||'',adminEmail:email(),adminRole:isOwner()?'owner':'admin',timestamp:ts,details:`${p.produto||'-'} · ${p.email||'-'} · pedido ${id} apagado`});await ORDERS.child(id).remove();renderOrders();}catch(e){alert('❌ Não foi possível apagar: '+e.message)}};
@@ -9361,23 +9093,8 @@ Pedido: ${activeOrderId}`;
         return;
       }
 
-      // Resolve comprovantes antes de desenhar os cards:
-      // 1) usa a URL já gravada no pedido;
-      // 2) se não existir, tenta localizar no Storage pelo ID do pedido.
-      const hydrated=await Promise.all(list.map(async x=>{
-        let proofUrl=String(x.comprovanteUrl||'').trim();
-        let proofName=String(x.comprovanteNome||'').trim();
-        if(!proofUrl && proofName){
-          try{
-            const found=await storageProof(x.id||x.pedidoId);
-            proofUrl=found.url;
-            proofName=found.name||proofName;
-          }catch(e){
-            // Mantém o pedido visível mesmo se o Storage não puder ser consultado.
-          }
-        }
-        return {...x,_proofUrl:proofUrl,_proofName:proofName};
-      }));
+      // Do not block the Orders panel on Firebase Storage. Proof resolution happens on click.
+      const hydrated=list.map(x=>({...x,_proofUrl:String(x.comprovanteDataUrl||x.comprovanteUrl||'').trim(),_proofName:String(x.comprovanteNome||'').trim()}));
 
       const cards=hydrated.map(x=>{
         const id=ESC(x.id||x.pedidoId||'');
@@ -9418,10 +9135,10 @@ Pedido: ${activeOrderId}`;
         }else if(x.comprovanteNome){
           proofHtml=`
             <div class="kzn-v27-proof-preview">
-              <div class="proof-loading"><i class="fas fa-spinner fa-spin"></i>&nbsp; Comprovante registrado. Não foi possível obter a URL do Storage.</div>
+              <div class="proof-loading"><i class="fas fa-spinner fa-spin"></i>&nbsp; Comprovante anexado. Toque em “Abrir” para visualizar.</div>
               <div class="kzn-v27-proof-meta">
                 <span class="kzn-v27-proof-name">${ESC(x.comprovanteNome)}</span>
-                <button class="kzn-v27-proof-open" type="button" onclick="kznVerComprovantePedido('${id}','${ESC(x.comprovanteNome)}')"><i class="fas fa-rotate"></i> Tentar abrir</button>
+                <button class="kzn-v27-proof-open" type="button" onclick="kznVerComprovantePedido('${id}','${ESC(x.comprovanteNome)}')"><i class="fas fa-eye"></i> Ver comprovante</button>
               </div>
             </div>`;
         }else{
@@ -9480,7 +9197,7 @@ Pedido: ${activeOrderId}`;
 
   /* ---------- PROOF VIEWER ---------- */
   if(!document.getElementById('kznV24ProofViewer')){const d=document.createElement('div');d.id='kznV24ProofViewer';d.className='kzn-proof-viewer';d.innerHTML='<div class="kzn-proof-viewer-box"><div class="kzn-proof-viewer-head"><strong id="kznV24ProofTitle">Comprovante PIX</strong><button onclick="kznFecharComprovanteV24()"><i class="fas fa-times"></i></button></div><div id="kznV24ProofContent" class="kzn-proof-viewer-content"></div></div>';document.body.appendChild(d)}
-  window.kznVerComprovante=function(url,name){if(!url)return alert('Comprovante indisponível.');const modal=document.getElementById('kznV24ProofViewer');const box=document.getElementById('kznV24ProofContent');document.getElementById('kznV24ProofTitle').textContent=name||'Comprovante PIX';box.replaceChildren();const raw=String(url);if(/\.pdf($|[?#])/i.test(String(name||raw))){const iframe=document.createElement('iframe');iframe.src=raw;iframe.title='Comprovante PIX';box.appendChild(iframe)}else{const img=document.createElement('img');img.src=raw;img.alt='Comprovante PIX';img.onerror=()=>{box.innerHTML='<div class="kzn-empty">Não foi possível carregar a imagem do comprovante.</div>'};box.appendChild(img)}modal.classList.add('open')};
+  window.kznVerComprovante=function(url,name){if(!url)return alert('Comprovante indisponível.');if(!/^(https?:\/\/|data:image\/)/i.test(String(url)))return alert('Comprovante inválido.');const modal=document.getElementById('kznV24ProofViewer');const box=document.getElementById('kznV24ProofContent');document.getElementById('kznV24ProofTitle').textContent=name||'Comprovante PIX';box.replaceChildren();const raw=String(url);if(/\.pdf($|[?#])/i.test(String(name||raw))){const iframe=document.createElement('iframe');iframe.src=raw;iframe.title='Comprovante PIX';box.appendChild(iframe)}else{const img=document.createElement('img');img.src=raw;img.alt='Comprovante PIX';img.onerror=()=>{box.innerHTML='<div class="kzn-empty">Não foi possível carregar a imagem do comprovante.</div>'};box.appendChild(img)}modal.classList.add('open')};
   window.kznFecharComprovanteV24=function(){document.getElementById('kznV24ProofViewer')?.classList.remove('open')};
 
   /* ---------- NEW ORDER SOUND ---------- */
