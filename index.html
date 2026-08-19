@@ -4151,7 +4151,7 @@
   </div>
   <label class="kzn-v24-terms-check">
     <input id="kznEraTerms" name="TermosAceitos" type="checkbox" value="SIM" required>
-    <span>Li, compreendi e concordo com os Termos de Compra da KZN MENU.<small>Versão 1.0. A aceitação será registrada junto ao pedido.</small></span>
+    <span>Li, compreendi e concordo com os Termos de Compra do KZN MENU.<small>Versão 1.0. A aceitação será registrada junto ao pedido.</small></span>
   </label>
 </div>
           <div class="form-group"><label><i class="fas fa-image"></i> Comprovante PIX *</label><input name="Comprovante" type="file" accept="image/*,.pdf" required/><small style="color:var(--text-muted);font-size:.68rem;">PNG, JPG ou PDF • máximo 5 MB</small></div>
@@ -4676,8 +4676,7 @@
 <div class="pix-key" id="pixKey">6c80021c-957b-49c0-9a5d-98371bf67120</div>
 <button class="btn-copy" onclick="copiarPix()"><i class="fas fa-copy"></i> Copiar Chave PIX</button>
 <div class="plan-info" id="planInfo">Plano: - | Valor: -</div>
-<div style="margin-top:0.8rem;"><a class="discord-link" href="https://discord.gg/tuwnDbWc2" target="_blank"><i class="fab fa-discord"></i> Entrar em contato no Discord</a></div>
-<div style="margin-top:0.6rem;font-size:0.75rem;color:var(--text-muted);"><p>Após o pagamento, envie o comprovante no Discord para ativação.</p></div>
+<div style="margin-top:0.6rem;font-size:0.75rem;color:var(--text-muted);"><p>Após o pagamento, acompanhe o pedido pelo site.</p></div>
 </div>
 </div>
 <!-- ===== SCRIPTS ===== -->
@@ -4704,19 +4703,16 @@
         const adminsRef = db.ref('chat/admins');
         const modLogRef = db.ref('chat/mod_log');
         const typingRef = db.ref('chat/typing');
+        // Presença por sessão: mostra somente usuários realmente conectados.
+        const presencaRef = db.ref('chat/presenca');
+        const presencaSessaoId = (crypto && crypto.randomUUID) ? crypto.randomUUID() : ('sess_' + Date.now() + '_' + Math.random().toString(36).slice(2));
 
         // ====== CONSTANTES ======
         const PROPRIETARIO_EMAIL = 'gabriel6061yt@gmail.com';
         const BOT_NOME = '🤖 BOT Kzn Menu';
         const BOT_AVATAR = '🤖';
         const BOT_EMAIL = 'bot@kzn.com';
-        const BOT_MESSAGES = [
-            '🔥 KZN MOD MENU • Recursos exclusivos para Graal Online Classic & Era.',
-            '⚡ KZN SCRIPT AUTO TRASH • Confira informações e disponibilidade.',
-            '🤖 KZN GUARDIAN • Produtos, planos, atualizações e suporte.',
-            '💬 SERVIDOR OFICIAL • Entre no Discord da KZN Menu para acompanhar novidades, atualizações, suporte e comunicados. 🔗 discord.gg/99HDeQsE73',
-            '🛡️ SEGURANÇA • Evite golpes. Não realize pagamentos para terceiros ou canais desconhecidos.'
-        ];
+        // O BOT não envia propaganda automática. Ele responde a comandos e dúvidas do usuário.
 
         // ====== VARIÁVEIS ======
         let usuarioLogado = null;
@@ -4731,9 +4727,7 @@
         let isInitialLoad = true;
         let processedMessageIds = new Set();
         let botEnabled = true;
-        let botInterval = 120000;
         let botTimer = null;
-        let lastBotMessage = 0;
         let userScrolled = false;
         let scrollTimeout = null;
         let midiaRecorder = null;
@@ -4990,20 +4984,10 @@
         };
 
         // ====== KZN BOT ======
+        // Sem mensagens automáticas periódicas: evita spam e repetição.
         function iniciarBot() {
-            if (botTimer) clearInterval(botTimer);
-            if (!botEnabled) return;
-
-            botTimer = setInterval(() => {
-                if (!usuarioLogado) return;
-                const agora = Date.now();
-                if (agora - lastBotMessage < botInterval) return;
-
-                const msgIndex = Math.floor(Math.random() * BOT_MESSAGES.length);
-                const msg = BOT_MESSAGES[msgIndex];
-                enviarMensagemBot(msg);
-                lastBotMessage = agora;
-            }, botInterval);
+            if (botTimer) { clearInterval(botTimer); botTimer = null; }
+            botEnabled = true;
         }
 
         function enviarMensagemBot(mensagem) {
@@ -5355,37 +5339,43 @@
             });
         }
 
-        // ====== USUÁRIOS ONLINE ======
+        // ====== USUÁRIOS ONLINE — PRESENÇA EM TEMPO REAL ======
         function carregarUsuariosOnline() {
-            usuariosRef.on('value', (snapshot) => {
+            presencaRef.on('value', (snapshot) => {
                 const dados = snapshot.val() || {};
-                const count = Object.keys(dados).length;
-                document.getElementById('onlineCount').textContent = `👤 ${count} online`;
+                const agora = Date.now();
+                const online = Object.values(dados).filter(u => u && u.online === true && (agora - Number(u.ultimo || 0)) < 75000);
+                const el = document.getElementById('onlineCount');
+                if (el) el.textContent = `👤 ${online.length} online`;
             });
         }
 
         function atualizarStatusOnline() {
             if (!usuarioLogado) return;
-
-            const userRef = usuariosRef.child(usuarioLogado.email.replace(/[.#$\/\[\]]/g, '_'));
-            userRef.set({
-                nome: usuarioLogado.nome,
-                email: usuarioLogado.email,
+            const sessionRef = presencaRef.child(presencaSessaoId);
+            const payload = {
+                nome: usuarioLogado.nome || 'Usuário',
+                email: usuarioLogado.email || '',
                 avatar: usuarioLogado.avatar || '',
                 online: true,
-                ultimo: Date.now()
-            });
+                ultimo: firebase.database.ServerValue.TIMESTAMP
+            };
+            sessionRef.set(payload);
+            sessionRef.onDisconnect().remove();
 
-            window.addEventListener('beforeunload', () => {
-                userRef.remove();
-            });
-
-            setInterval(() => {
-                if (usuarioLogado) {
-                    userRef.update({ ultimo: Date.now() });
-                }
-            }, 30000);
+            if (window.kznPresenceTimer) clearInterval(window.kznPresenceTimer);
+            window.kznPresenceTimer = setInterval(() => {
+                if (usuarioLogado) sessionRef.update({online:true, ultimo:firebase.database.ServerValue.TIMESTAMP});
+            }, 20000);
         }
+
+        function encerrarPresenca() {
+            try {
+                if (window.kznPresenceTimer) clearInterval(window.kznPresenceTimer);
+                presencaRef.child(presencaSessaoId).remove();
+            } catch(e) {}
+        }
+        window.addEventListener('beforeunload', encerrarPresenca);
 
         // ====== MENU USUÁRIO (MODERAÇÃO) ======
         window.abrirMenuUsuario = function(email) {
@@ -5398,7 +5388,7 @@
                 return;
             }
             if (isBot(email)) {
-                alert('🤖 Este é o BOT oficial da KZN!');
+                alert('🤖 Este é o BOT oficial do KZN!');
                 return;
             }
 
@@ -5543,7 +5533,8 @@
                 let msg = '📋 **COMANDOS DISPONÍVEIS:**\n\n';
                 msg += '🔹 `/comandos` - Mostra esta lista\n';
                 msg += '🔹 `/regras` - Mostra as regras do chat\n';
-                msg += '🔹 `/online` - Mostra usuários online\n';
+                msg += '🔹 `/online` - Mostra quem está online agora\n';
+                msg += '🔹 `/sim` - Ensina como comprar pelo site\n';
                 
                 verificarAdmin(usuario.email, (isAdminUser) => {
                     if (isAdminUser) {
@@ -5572,23 +5563,25 @@
             }
 
             if (comando === '/online') {
-                usuariosRef.once('value', (snapshot) => {
+                presencaRef.once('value', (snapshot) => {
                     const dados = snapshot.val() || {};
-                    const onlineUsers = [];
-                    Object.values(dados).forEach(u => {
-                        if (u.online === true || (Date.now() - u.ultimo) < 60000) {
-                            onlineUsers.push(u.nome || u.email.split('@')[0]);
-                        }
-                    });
-                    const count = onlineUsers.length;
-                    let msg = `👥 **USUÁRIOS ONLINE:** ${count}\n\n`;
-                    if (count > 0) {
-                        msg += onlineUsers.map((nome, i) => `${i+1}. ${nome}`).join('\n');
+                    const agora = Date.now();
+                    const onlineUsers = Object.values(dados)
+                        .filter(u => u && u.online === true && (agora - Number(u.ultimo || 0)) < 75000)
+                        .sort((a,b) => String(a.nome || '').localeCompare(String(b.nome || ''), 'pt-BR'));
+                    let msg = `👥 **USUÁRIOS ONLINE AGORA:** ${onlineUsers.length}\n\n`;
+                    if (onlineUsers.length) {
+                        msg += onlineUsers.map((u, i) => `🟢 ${i+1}. ${u.nome || u.email || 'Usuário'}`).join('\n');
                     } else {
-                        msg += 'Nenhum usuário online no momento.';
+                        msg += 'Nenhum usuário está online neste momento.';
                     }
                     enviarMensagemBot(msg);
                 });
+                return true;
+            }
+
+            if (comando === '/sim') {
+                enviarMensagemBot(`🛒 **COMO COMPRAR NO KZN MENU**\n\n1. Abra a área **Loja**.\n2. Escolha o produto: Classic, Graal Era ou Auto Trash.\n3. Selecione o plano/produto e adicione ao **carrinho**.\n4. Abra o carrinho e toque em **Finalizar Compra**.\n5. Confira se o produto e o valor estão corretos.\n6. No formulário, informe seu e-mail, nome e WhatsApp.\n7. Pague usando a **chave PIX do KZN** exibida no formulário.\n8. Aceite os **Termos de Compra**.\n9. Anexe o comprovante PIX e envie o pedido.\n10. O pedido aparecerá para processamento e, após a confirmação do pagamento, a Key/produto será entregue.\n\n💡 Se precisar de ajuda em qualquer etapa, escreva sua dúvida aqui no chat.`);
                 return true;
             }
 
@@ -5792,32 +5785,37 @@
             });
         };
 
-        // ====== KZN BOT V11 — respostas automáticas profissionais ======
+        // ====== KZN BOT — respostas sem spam ======
+        let botResponseLock = false;
         function responderBotAutomaticamente(texto, usuario) {
             const original = String(texto || '').trim();
-            if (!original || original.startsWith('/')) return;
+            if (!original || original.startsWith('/') || botResponseLock) return;
             const s = original.toLowerCase();
             let resposta = null;
             if (/\b(oi|olá|ola|hello|hey|eai|e aí)\b/.test(s)) {
-                resposta = `👋 Olá, ${usuario.nome || 'jogador'}! Sou o BOT oficial da KZN MENU. Posso ajudar com produtos, compras, suporte e informações do site.`;
-            } else if (s.includes('preço') || s.includes('preco') || s.includes('valor') || s.includes('plano')) {
-                resposta = '💰 Quer consultar os planos? Abra a aba de compras e escolha Classic, Era ou Auto Trash para ver os valores e validades disponíveis.';
+                resposta = `👋 Olá, ${usuario.nome || 'jogador'}! Sou o BOT oficial do KZN MENU. Se quiser aprender a comprar, digite **/sim**.`;
             } else if (s.includes('comprar') || s.includes('compra') || s.includes('pix')) {
-                resposta = '🛒 Para comprar, abra o produto desejado, adicione ao carrinho ou use o formulário da própria categoria. Em caso de dúvida, fale com o suporte.';
+                resposta = '🛒 Para ver o passo a passo da compra, digite **/sim**.';
             } else if (s.includes('suporte') || s.includes('ajuda') || s.includes('problema') || s.includes('erro')) {
-                resposta = '🛠️ Para suporte, descreva o problema no chat ou use o WhatsApp oficial. Um administrador poderá continuar o atendimento.';
-            } else if (s.includes('classic')) {
-                resposta = '🏛️ O GRAAL CLASSIC possui sua própria aba de compras. Abra a seção Classic para conferir os planos disponíveis.';
-            } else if (s.includes('era')) {
-                resposta = '🌆 O GRAAL ERA possui uma aba própria. Abra a seção Era para consultar o produto e as informações disponíveis.';
-            } else if (s.includes('auto trash') || s.includes('autotrash')) {
-                resposta = '🗑️ O AUTO TRASH está separado em uma aba própria para facilitar a compra e evitar mistura com Classic e Era.';
-            } else if (s.includes('notificação') || s.includes('notificacao')) {
-                resposta = '🔔 Você pode ativar as notificações do celular na central de notificações para receber avisos do KZN MENU quando o navegador oferecer suporte.';
+                resposta = '🛠️ Posso orientar sobre a compra. Digite **/sim** para ver o passo a passo.';
             }
             if (resposta) {
-                setTimeout(() => enviarMensagemBot(resposta), 700);
+                botResponseLock = true;
+                setTimeout(() => { enviarMensagemBot(resposta); botResponseLock = false; }, 900);
             }
+        }
+
+        // Boas-vindas somente uma vez por conta nova.
+        function enviarBoasVindasNovoUsuario(usuario) {
+            if (!usuario || !usuario.email) return;
+            const chave = String(usuario.email).toLowerCase().replace(/[.#$\/\[\]]/g, '_');
+            const welcomeRef = db.ref('chat/bot_welcome/' + chave);
+            welcomeRef.transaction(current => current ? current : {enviado:true, data:firebase.database.ServerValue.TIMESTAMP})
+                .then(result => {
+                    if (result && result.committed && result.snapshot && result.snapshot.val() && result.snapshot.val().data) {
+                        enviarMensagemBot(`👋 **Bem-vindo ao KZN MENU, ${usuario.nome || 'jogador'}!**\n\nSe precisar de ajuda para comprar algum produto, digite **/sim** e eu vou te ensinar passo a passo como fazer a compra pelo site.`);
+                    }
+                }).catch(() => {});
         }
 
         // ====== ENVIAR MENSAGEM ======
@@ -6371,6 +6369,7 @@
 
             usuariosCadastrados.push({ nome, email, senha });
             salvarUsuarios();
+            enviarBoasVindasNovoUsuario({nome, email});
 
             status.className = 'form-status success';
             status.textContent = '✅ Conta criada! Faça login.';
@@ -6411,6 +6410,7 @@
                 const payload = parseJwt(response.credential);
                 const usuario = { nome: payload.name, email: payload.email, avatar: payload.picture };
                 usuarioLogado = usuario;
+                enviarBoasVindasNovoUsuario(usuario);
                 localStorage.setItem('kzn_usuario_logado', JSON.stringify(usuario));
                 setLoggedIn();
             } catch (e) {
@@ -9114,7 +9114,7 @@ Pedido: ${activeOrderId}`;
   function ensureTerms(form){
     if(!form||form.dataset.kznV24Terms==='1')return;
     const proof=form.querySelector('input[name="Comprovante"]');
-    const box=document.createElement('div');box.className='kzn-v24-terms';box.innerHTML=`<div class="kzn-v24-terms-head"><i class="fas fa-file-contract"></i><strong>Termos de Compra</strong></div><div class="kzn-v24-terms-body">${TERMS_HTML}</div><label class="kzn-v24-terms-check"><input type="checkbox" name="TermosAceitos" value="SIM"><span>Li, compreendi e concordo com os Termos de Compra da KZN MENU.<small>Versão ${TERMS_VERSION}. A aceitação será registrada junto ao pedido.</small></span></label>`;
+    const box=document.createElement('div');box.className='kzn-v24-terms';box.innerHTML=`<div class="kzn-v24-terms-head"><i class="fas fa-file-contract"></i><strong>Termos de Compra</strong></div><div class="kzn-v24-terms-body">${TERMS_HTML}</div><label class="kzn-v24-terms-check"><input type="checkbox" name="TermosAceitos" value="SIM"><span>Li, compreendi e concordo com os Termos de Compra do KZN MENU.<small>Versão ${TERMS_VERSION}. A aceitação será registrada junto ao pedido.</small></span></label>`;
     (proof?.closest('.form-group')||form.lastElementChild)?.before(box);
     form.dataset.kznV24Terms='1';
     const check=box.querySelector('input');const btn=form.querySelector('button[type="submit"]');
