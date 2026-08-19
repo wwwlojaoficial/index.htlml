@@ -8867,6 +8867,11 @@ Pedido: ${activeOrderId}`;
   .kzn-v27-proof-open{width:100%}
 }
 </style>
+<style id="kzn-v29-proof-repair-style">
+.kzn-v27-proof-meta{flex-wrap:wrap!important}
+.kzn-v27-proof-open{display:inline-flex!important;align-items:center!important;justify-content:center!important}
+@media(max-width:560px){.kzn-v27-proof-open{width:100%!important}}
+</style>
 
 <style id="kzn-v24-master-style">
 /* ===== KZN V24 — FINAL MASTER UI ===== */
@@ -8965,39 +8970,46 @@ Pedido: ${activeOrderId}`;
         const img=new Image();
         img.onload=()=>{
           try{
-            const max=1600, scale=Math.min(1,max/Math.max(img.width||1,img.height||1));
-            const canvas=document.createElement('canvas');
-            canvas.width=Math.max(1,Math.round((img.width||1)*scale));
-            canvas.height=Math.max(1,Math.round((img.height||1)*scale));
-            const ctx=canvas.getContext('2d'); ctx.fillStyle='#fff'; ctx.fillRect(0,0,canvas.width,canvas.height);
-            ctx.drawImage(img,0,0,canvas.width,canvas.height);
-            const out=canvas.toDataURL('image/jpeg',0.78);
-            resolve(out.length<=900000?out:'');
+            const attempts=[[900,.52],[760,.46],[640,.40],[520,.34]];
+            let result='';
+            for(const [max,quality] of attempts){
+              const scale=Math.min(1,max/Math.max(img.width||1,img.height||1));
+              const canvas=document.createElement('canvas');
+              canvas.width=Math.max(1,Math.round((img.width||1)*scale));
+              canvas.height=Math.max(1,Math.round((img.height||1)*scale));
+              const ctx=canvas.getContext('2d');
+              ctx.fillStyle='#fff'; ctx.fillRect(0,0,canvas.width,canvas.height);
+              ctx.drawImage(img,0,0,canvas.width,canvas.height);
+              result=canvas.toDataURL('image/jpeg',quality);
+              if(result.length<=420000) break;
+            }
+            resolve(result&&result.length<=500000?result:'');
           }catch(e){resolve('')}
         };
-        img.onerror=()=>resolve(''); img.src=String(reader.result||'');
+        img.onerror=()=>resolve('');
+        img.src=String(reader.result||'');
       };
       reader.readAsDataURL(file);
     });
   }
   async function upload(file,id){
-    if(!file)return {url:'',name:'',dataUrl:''};
+    if(!file)return {url:'',name:'',dataUrl:'',storagePath:''};
     if(file.size>5*1024*1024)throw new Error('O comprovante deve ter no máximo 5 MB.');
     const name=file.name||'Comprovante PIX';
-    let dataUrl=''; try{dataUrl=await proofDataUrl(file)}catch(e){}
-    if(!STORAGE)return {url:'',name,dataUrl};
+    let dataUrl=''; try{dataUrl=await proofDataUrl(file)}catch(e){console.warn('Preview:',e)}
+    if(!STORAGE)return {url:'',name,dataUrl,storagePath:''};
+    const safeName=safeKey(name);
+    const storagePath=`pedidos/${id}/${Date.now()}_${safeName}`;
     try{
-      const ref=STORAGE.ref(`pedidos/${id}/${Date.now()}_${safeKey(name)}`);
+      const ref=STORAGE.ref(storagePath);
       const task=ref.put(file);
-      await Promise.race([task,new Promise((_,rej)=>setTimeout(()=>rej(new Error('Upload do comprovante demorou demais.')),25000))]);
-      let url='';
-      for(let attempt=0;attempt<3 && !url;attempt++){
-        try{url=await ref.getDownloadURL()}catch(e){if(attempt<2)await new Promise(r=>setTimeout(r,700*(attempt+1)))}
-      }
-      return {url,name,dataUrl};
+      await Promise.race([task,new Promise((_,rej)=>setTimeout(()=>rej(new Error('Upload do comprovante demorou demais.')),18000))]);
+      // Do not call getDownloadURL here. The preview is the primary viewing path.
+      // The original remains safely stored and can be resolved later by an admin.
+      return {url:'',name,dataUrl,storagePath};
     }catch(e){
-      console.warn('Firebase Storage falhou; usando comprovante de contingência:',e);
-      return {url:'',name,dataUrl};
+      console.warn('Firebase Storage falhou; o preview local continua disponível:',e);
+      return {url:'',name,dataUrl,storagePath:''};
     }
   }
   async function saveOrder(form){
@@ -9008,20 +9020,24 @@ Pedido: ${activeOrderId}`;
     const file=form.querySelector('input[name="Comprovante"]')?.files?.[0];
     if(!file)throw new Error('Envie o comprovante PIX.');
     const id='PED-'+Date.now()+'-'+Math.random().toString(36).slice(2,7).toUpperCase(), ts=now(), u=user();
-    const pedido={pedidoId:id,email:String(fd.get('Email')||email()).trim().toLowerCase(),nome:String(fd.get('Nome')||u.nome||'').trim(),whatsapp:String(fd.get('WhatsApp')||'').trim(),produto:selected,plano:p[1],valor:p[2],validadeDias:p[3],mensagem:String(fd.get('Mensagem')||'').trim(),status:'Recebido',comprovanteNome:file.name||'',comprovanteUrl:'',comprovanteDataUrl:'',usuarioUid:u.uid||'',origem:'carrinho_formulario',termsAccepted:true,termsVersion:TERMS_VERSION,termsAcceptedAt:ts,createdAt:ts,updatedAt:ts};
+    const preview=await proofDataUrl(file); const pedido={pedidoId:id,email:String(fd.get('Email')||email()).trim().toLowerCase(),nome:String(fd.get('Nome')||u.nome||'').trim(),whatsapp:String(fd.get('WhatsApp')||'').trim(),produto:selected,plano:p[1],valor:p[2],validadeDias:p[3],mensagem:String(fd.get('Mensagem')||'').trim(),status:'Recebido',comprovanteNome:file.name||'',comprovanteUrl:'',comprovanteDataUrl:'',comprovantePreview:preview,usuarioUid:u.uid||'',origem:'carrinho_formulario',termsAccepted:true,termsVersion:TERMS_VERSION,termsAcceptedAt:ts,createdAt:ts,updatedAt:ts};
     const btn=form.querySelector('button[type="submit"]'), status=form.querySelector('.form-status');
     if(btn){btn.disabled=true;btn.dataset.v24=btn.innerHTML;btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Enviando pedido...'}
     if(status){status.textContent='Registrando pedido...';status.style.color='var(--text-muted)'}
     try{
       // Persist first: Storage problems must never make the order disappear.
       await ORDERS.child(id).set(pedido);
-      let proof={url:'',name:file.name||'Comprovante PIX',dataUrl:''};
-      try{proof=await upload(file,id)}catch(e){console.warn(e)}
-      const proofUpdate={comprovanteUrl:proof.url||'',comprovanteNome:proof.name||file.name||'Comprovante PIX',comprovanteDataUrl:proof.dataUrl||'',comprovanteErro:proof.url||proof.dataUrl?null:'Storage sem URL de download; fallback de imagem indisponível.',updatedAt:now()};
-      await ORDERS.child(id).update(proofUpdate); Object.assign(pedido,proofUpdate);
+      const initialProofUpdate={comprovanteUrl:'',comprovanteDataUrl:pedido.comprovanteDataUrl||'',comprovantePreview:pedido.comprovantePreview||'',comprovanteNome:file.name||'Comprovante PIX',comprovanteErro:pedido.comprovantePreview?'': 'Preview não gerado; o original poderá ser reenviado pelo administrador.',updatedAt:now()};
+      await ORDERS.child(id).update(initialProofUpdate); Object.assign(pedido,initialProofUpdate);
       await PURCHASE_LOGS.push({event:'ORDER_RECEIVED',pedidoId:id,email:pedido.email,produto:pedido.produto,timestamp:ts,termsAccepted:true,termsVersion:TERMS_VERSION}).catch(console.warn);
       await LOGS.push({action:'ORDER_RECEIVED',targetEmail:pedido.email,adminEmail:'SYSTEM',adminRole:'system',timestamp:ts,details:`${pedido.produto} · ${pedido.email} · termos aceitos v${TERMS_VERSION}`}).catch(console.warn);
-      if(proof.url||proof.dataUrl)await PURCHASE_LOGS.push({event:'ORDER_PROOF_UPLOADED',pedidoId:id,email:pedido.email,produto:pedido.produto,timestamp:now(),storage:!!proof.url,fallback:!!proof.dataUrl}).catch(console.warn);
+      if(pedido.comprovantePreview)await PURCHASE_LOGS.push({event:'ORDER_PROOF_PREVIEW_SAVED',pedidoId:id,email:pedido.email,produto:pedido.produto,timestamp:now(),storage:false,fallback:true}).catch(console.warn);
+      // Upload the original as a backup. It must never block or invalidate the order.
+      upload(file,id).then(async proof=>{
+        const patch={comprovanteErro:null,updatedAt:now(),comprovanteStoragePath:proof.storagePath||''};
+        await ORDERS.child(id).update(patch).catch(()=>{});
+        if(proof.storagePath)await PURCHASE_LOGS.push({event:'ORDER_PROOF_ORIGINAL_SAVED',pedidoId:id,email:pedido.email,produto:pedido.produto,timestamp:now(),storagePath:proof.storagePath}).catch(()=>{});
+      }).catch(()=>{});
       await NOTIFS.child(SAN(pedido.email)).push({title:'Pedido recebido',message:`Pedido ${id} recebido. Aguarde a confirmação e a liberação da Key.`,email:pedido.email,lida:false,createdAt:now(),type:'order_received',pedidoId:id}).catch(console.warn);
       if(status){status.textContent='Pedido enviado com sucesso. O pedido já foi registrado.';status.style.color='var(--success)'}
       if(btn)btn.innerHTML='<i class="fas fa-check"></i> Pedido enviado';
@@ -9064,13 +9080,40 @@ Pedido: ${activeOrderId}`;
   }
   async function storageProof(id){
     if(!STORAGE)throw new Error('Firebase Storage indisponível.');
-    const paths=[`pedidos/${id}`,`site/pedidos/${id}`];let lastErr=null;
-    for(const path of paths){try{const folder=STORAGE.ref(path);const list=await Promise.race([folder.listAll(),new Promise((_,rej)=>setTimeout(()=>rej(new Error('Firebase Storage demorou demais para responder.')),8000))]);if(!list.items.length)continue;const f=list.items[0];let url='';for(let attempt=0;attempt<3&&!url;attempt++){try{url=await f.getDownloadURL()}catch(e){lastErr=e;if(attempt<2)await new Promise(r=>setTimeout(r,700*(attempt+1)))}}if(url)return{url,name:f.name}}catch(e){lastErr=e}}
+    const snap=await ORDERS.child(id).once('value'); const p=snap.val()||{};
+    if(p.comprovanteStoragePath){
+      const ref=STORAGE.ref(p.comprovanteStoragePath);
+      const url=await Promise.race([ref.getDownloadURL(),new Promise((_,rej)=>setTimeout(()=>rej(new Error('Firebase Storage demorou demais para responder.')),5000))]);
+      return {url,name:p.comprovanteNome||'Comprovante PIX'};
+    }
+    const paths=[`pedidos/${id}`,`site/pedidos/${id}`];
+    let lastErr=null;
+    for(const path of paths){
+      try{
+        const folder=STORAGE.ref(path);
+        const list=await Promise.race([folder.listAll(),new Promise((_,rej)=>setTimeout(()=>rej(new Error('Firebase Storage demorou demais para responder.')),5000))]);
+        if(!list.items.length)continue;
+        const f=list.items[0];
+        const url=await Promise.race([f.getDownloadURL(),new Promise((_,rej)=>setTimeout(()=>rej(new Error('Firebase Storage demorou demais para responder.')),5000))]);
+        return {url,name:f.name};
+      }catch(e){lastErr=e}
+    }
     throw lastErr||new Error('Comprovante não encontrado no Storage.');
   }
   window.kznVerComprovantePedido=async function(id,name){
     if(!(await canAdmin()))return alert('🚫 Acesso restrito.');
-    try{const p=(await ORDERS.child(id).once('value')).val()||{},nm=p.comprovanteNome||name||'Comprovante PIX';if(p.comprovanteDataUrl){window.kznVerComprovante(p.comprovanteDataUrl,nm);return}if(p.comprovanteUrl){window.kznVerComprovante(p.comprovanteUrl,nm);return}const f=await storageProof(id);window.kznVerComprovante(f.url,f.name||nm)}catch(e){alert('❌ Não foi possível abrir o comprovante: '+(e.message||e))}
+    const p=(await ORDERS.child(id).once('value')).val()||{};
+    const nm=p.comprovanteNome||name||'Comprovante PIX';
+    const preview=p.comprovantePreview||p.comprovanteDataUrl||'';
+    if(preview){window.kznVerComprovante(preview,nm);return}
+    if(p.comprovanteUrl){window.kznVerComprovante(p.comprovanteUrl,nm);return}
+    try{
+      const f=await storageProof(id);
+      window.kznVerComprovante(f.url,f.name||nm);
+    }catch(e){
+      if(typeof window.kznAbrirComprovanteOffline==='function')window.kznAbrirComprovanteOffline(id,nm);
+      else alert('O comprovante original não pôde ser recuperado agora. Reenvie o arquivo para criar uma cópia de visualização.');
+    }
   };
   function proof(x){const id=ESC(x.id||x.pedidoId||'');if(x.comprovanteUrl||x.comprovanteNome)return `<button class="kzn-v24-proof" type="button" onclick="kznVerComprovantePedido('${id}','${ESC(x.comprovanteNome||'Comprovante PIX')}')"><i class="fas fa-eye"></i> Ver comprovante</button>`;return `<button class="kzn-v24-proof disabled" type="button" disabled><i class="fas fa-file-circle-xmark"></i> Sem comprovante</button>`}
   window.kznAbrirInfoLogCompra=async function(id){if(!(await canAdmin()))return;const p=(await ORDERS.child(id).once('value')).val();if(!p)return alert('Pedido não encontrado.');const box=`PEDIDO ${id}\n\nData: ${date(p.createdAt)}\nE-mail: ${p.email||'-'}\nProduto: ${p.produto||'-'}\n\nTermos: ${p.termsAccepted?'ACEITOS':'NÃO REGISTRADO'}\nVersão: ${p.termsVersion||'-'}\nAceito em: ${date(p.termsAcceptedAt)}\n\nNome: ${p.nome||'-'}\nWhatsApp: ${p.whatsapp||'-'}\nMensagem: ${p.mensagem||'-'}`;alert(box)};
@@ -9094,7 +9137,7 @@ Pedido: ${activeOrderId}`;
       }
 
       // Do not block the Orders panel on Firebase Storage. Proof resolution happens on click.
-      const hydrated=list.map(x=>({...x,_proofUrl:String(x.comprovanteDataUrl||x.comprovanteUrl||'').trim(),_proofName:String(x.comprovanteNome||'').trim()}));
+      const hydrated=list.map(x=>({...x,_proofUrl:String(x.comprovantePreview||x.comprovanteDataUrl||x.comprovanteUrl||'').trim(),_proofName:String(x.comprovanteNome||'').trim()}));
 
       const cards=hydrated.map(x=>{
         const id=ESC(x.id||x.pedidoId||'');
@@ -9135,10 +9178,11 @@ Pedido: ${activeOrderId}`;
         }else if(x.comprovanteNome){
           proofHtml=`
             <div class="kzn-v27-proof-preview">
-              <div class="proof-loading"><i class="fas fa-spinner fa-spin"></i>&nbsp; Comprovante anexado. Toque em “Abrir” para visualizar.</div>
+              <div class="proof-loading"><i class="fas fa-image"></i>&nbsp; Comprovante registrado. Esta versão antiga ainda não possui preview local.</div>
               <div class="kzn-v27-proof-meta">
                 <span class="kzn-v27-proof-name">${ESC(x.comprovanteNome)}</span>
-                <button class="kzn-v27-proof-open" type="button" onclick="kznVerComprovantePedido('${id}','${ESC(x.comprovanteNome)}')"><i class="fas fa-eye"></i> Ver comprovante</button>
+                <button class="kzn-v27-proof-open" type="button" onclick="kznVerComprovantePedido('${id}','${ESC(x.comprovanteNome)}')"><i class="fas fa-eye"></i> Ver</button>
+                <button class="kzn-v27-proof-open" type="button" onclick="kznAbrirComprovanteOffline('${id}','${ESC(x.comprovanteNome)}')"><i class="fas fa-upload"></i> Reenviar</button>
               </div>
             </div>`;
         }else{
@@ -9200,7 +9244,37 @@ Pedido: ${activeOrderId}`;
   window.kznVerComprovante=function(url,name){if(!url)return alert('Comprovante indisponível.');if(!/^(https?:\/\/|data:image\/)/i.test(String(url)))return alert('Comprovante inválido.');const modal=document.getElementById('kznV24ProofViewer');const box=document.getElementById('kznV24ProofContent');document.getElementById('kznV24ProofTitle').textContent=name||'Comprovante PIX';box.replaceChildren();const raw=String(url);if(/\.pdf($|[?#])/i.test(String(name||raw))){const iframe=document.createElement('iframe');iframe.src=raw;iframe.title='Comprovante PIX';box.appendChild(iframe)}else{const img=document.createElement('img');img.src=raw;img.alt='Comprovante PIX';img.onerror=()=>{box.innerHTML='<div class="kzn-empty">Não foi possível carregar a imagem do comprovante.</div>'};box.appendChild(img)}modal.classList.add('open')};
   window.kznFecharComprovanteV24=function(){document.getElementById('kznV24ProofViewer')?.classList.remove('open')};
 
-  /* ---------- NEW ORDER SOUND ---------- */
+  /* ---------- PROOF REPAIR / OFFLINE FALLBACK ---------- */
+  window.kznAbrirComprovanteOffline=function(id,name){
+    if(document.getElementById('kznProofOfflineModal'))return;
+    const d=document.createElement('div');
+    d.id='kznProofOfflineModal';d.className='kzn-proof-viewer open';
+    d.innerHTML=`<div class="kzn-proof-viewer-box" style="max-width:520px;height:auto">
+      <div class="kzn-proof-viewer-head"><strong>Comprovante não disponível</strong><button type="button" onclick="this.closest('.kzn-proof-viewer').remove()"><i class="fas fa-times"></i></button></div>
+      <div class="kzn-proof-viewer-content" style="padding:22px;display:block">
+        <p style="margin:0 0 12px;color:#cbd5e1">O original do Storage não respondeu a tempo e este pedido ainda não possui uma cópia de visualização.</p>
+        <p style="margin:0 0 16px;color:#94a3b8;font-size:.85rem">Você pode reenviar o comprovante para gravar uma cópia leve diretamente no pedido. Isso não apaga o pedido nem altera os logs existentes.</p>
+        <button type="button" class="kzn-v24-proof" style="width:100%;justify-content:center" onclick="document.getElementById('kznRepairInput').click()"><i class="fas fa-upload"></i> Reenviar comprovante</button>
+        <input id="kznRepairInput" type="file" accept="image/*,.pdf" style="display:none">
+      </div>
+    </div>`;
+    document.body.appendChild(d);
+    const input=d.querySelector('#kznRepairInput');
+    input.onchange=async()=>{
+      const file=input.files?.[0]; if(!file)return;
+      try{
+        const preview=await proofDataUrl(file);
+        if(!preview && /^image\//i.test(file.type||''))throw new Error('Não foi possível gerar a pré-visualização da imagem.');
+        const ts=now();
+        await ORDERS.child(id).update({comprovanteNome:file.name||'Comprovante PIX',comprovantePreview:preview||'',comprovanteDataUrl:preview||'',comprovanteErro:null,updatedAt:ts});
+        await PURCHASE_LOGS.push({event:'ORDER_PROOF_REPAIRED',pedidoId:id,email:(await ORDERS.child(id).once('value')).val()?.email||'',produto:(await ORDERS.child(id).once('value')).val()?.produto||'',timestamp:ts});
+        d.remove();
+        renderOrders();
+        alert('✅ Comprovante atualizado. A partir de agora ele ficará disponível mesmo se o Storage estiver indisponível.');
+      }catch(e){alert('❌ Não foi possível atualizar o comprovante: '+(e.message||e))}
+    };
+  };
+    /* ---------- NEW ORDER SOUND ---------- */
   let soundReady=false;let initialOrderKeys=new Set();let orderListenerStarted=false;
   function beep(){try{const a=new Audio('https://github.com/gabriel6061yt-cell/Projeto-audio-api/raw/refs/heads/main/universfield-new-notification-012-363675.mp3');a.volume=.75;a.play().catch(()=>{});}catch(e){}}
   async function watchOrders(){if(orderListenerStarted)return;if(!await canAdmin()){setTimeout(watchOrders,5000);return}orderListenerStarted=true;const s=await ORDERS.once('value');Object.keys(s.val()||{}).forEach(k=>initialOrderKeys.add(k));ORDERS.on('child_added',snap=>{if(initialOrderKeys.has(snap.key))return;initialOrderKeys.add(snap.key);if(soundReady)beep();if(typeof window.renderAdminCompras==='function'&&document.getElementById('adminViewCompras')?.classList.contains('active'))window.renderAdminCompras();});setTimeout(()=>{soundReady=true},1500)}
