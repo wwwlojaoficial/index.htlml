@@ -3180,7 +3180,7 @@
 }
 
 /* Preserve privileged colors */
-.chat-messages .chat-msg .msg-nome.admin{color:#a78bfa !important;}
+.chat-messages .chat-msg .msg-nome.admin{color:#ef4444 !important;text-shadow:0 0 8px rgba(239,68,68,.22);}
 .chat-messages .chat-msg .msg-nome.proprietario{color:#fbbf24 !important;}
 .chat-messages .chat-msg .msg-nome.moderator{color:#c084fc !important;}
 
@@ -5341,10 +5341,20 @@
 
         // ====== USUÁRIOS ONLINE — PRESENÇA EM TEMPO REAL ======
         function carregarUsuariosOnline() {
-            presencaRef.on('value', (snapshot) => {
+            presencaRef.on('value', async (snapshot) => {
                 const dados = snapshot.val() || {};
                 const agora = Date.now();
-                const online = Object.values(dados).filter(u => u && u.online === true && (agora - Number(u.ultimo || 0)) < 75000);
+                const porEmail = new Map();
+                Object.values(dados).forEach(u => {
+                    if (!u || u.online !== true) return;
+                    const ultimo = Number(u.ultimo || 0);
+                    if ((agora - ultimo) >= 75000) return;
+                    const email = String(u.email || '').trim().toLowerCase();
+                    if (!email) return;
+                    const atual = porEmail.get(email);
+                    if (!atual || ultimo > Number(atual.ultimo || 0)) porEmail.set(email, {...u, email});
+                });
+                const online = [...porEmail.values()];
                 const el = document.getElementById('onlineCount');
                 if (el) el.textContent = `👤 ${online.length} online`;
             });
@@ -5563,20 +5573,55 @@
             }
 
             if (comando === '/online') {
-                presencaRef.once('value', (snapshot) => {
-                    const dados = snapshot.val() || {};
+                Promise.all([
+                    presencaRef.once('value'),
+                    usuariosRef.once('value'),
+                    adminsRef.once('value')
+                ]).then(([presenceSnap, usersSnap, adminsSnap]) => {
                     const agora = Date.now();
-                    const onlineUsers = Object.values(dados)
-                        .filter(u => u && u.online === true && (agora - Number(u.ultimo || 0)) < 75000)
-                        .sort((a,b) => String(a.nome || '').localeCompare(String(b.nome || ''), 'pt-BR'));
-                    let msg = `👥 **USUÁRIOS ONLINE AGORA:** ${onlineUsers.length}\n\n`;
-                    if (onlineUsers.length) {
-                        msg += onlineUsers.map((u, i) => `🟢 ${i+1}. ${u.nome || u.email || 'Usuário'}`).join('\n');
+                    const presencas = presenceSnap.val() || {};
+                    const perfis = usersSnap.val() || {};
+                    const admins = Object.values(adminsSnap.val() || {}).filter(a => a && a.ativo === true);
+                    const porEmail = new Map();
+
+                    Object.values(presencas).forEach(u => {
+                        if (!u || u.online !== true) return;
+                        const ultimo = Number(u.ultimo || 0);
+                        if ((agora - ultimo) >= 75000) return;
+                        const email = String(u.email || '').trim().toLowerCase();
+                        if (!email) return;
+                        const atual = porEmail.get(email);
+                        if (!atual || ultimo > Number(atual.ultimo || 0)) {
+                            porEmail.set(email, {...u, email, ultimo});
+                        }
+                    });
+
+                    const onlineUsers = [...porEmail.values()].map(u => {
+                        const perfil = Object.values(perfis).find(p => String(p?.email || '').trim().toLowerCase() === u.email) || {};
+                        const admin = admins.some(a => String(a?.email || '').trim().toLowerCase() === u.email);
+                        const owner = isProprietario(u.email);
+                        let nome = String(u.nome || '').trim();
+                        if (!nome || /^(usu[aá]rio|user)$/i.test(nome)) nome = String(perfil.nome || '').trim();
+                        if (!nome || /^(usu[aá]rio|user)$/i.test(nome)) nome = u.email.split('@')[0] || 'Usuário';
+                        return { ...u, nome, avatar: u.avatar || perfil.avatar || '', owner, admin };
+                    }).sort((a,b) => {
+                        const pa = a.owner ? 0 : (a.admin ? 1 : 2);
+                        const pb = b.owner ? 0 : (b.admin ? 1 : 2);
+                        return pa - pb || a.nome.localeCompare(b.nome, 'pt-BR');
+                    });
+
+                    let msg = `👥 **USUÁRIOS ONLINE**\n🟢 ${onlineUsers.length} ${onlineUsers.length === 1 ? 'pessoa' : 'pessoas'} online agora\n\n`;
+                    if (!onlineUsers.length) {
+                        msg += '🌙 Nenhum usuário está online neste momento.';
                     } else {
-                        msg += 'Nenhum usuário está online neste momento.';
+                        msg += onlineUsers.map((u, i) => {
+                            const cargo = u.owner ? '👑 PROPRIETÁRIO' : (u.admin ? '🔧 ADMIN' : '👤 USUÁRIO');
+                            return `🟢 **${u.nome}**\n   ${cargo} • Online agora`;
+                        }).join('\n\n');
                     }
+                    msg += `\n\n⏱ Atualizado às ${new Date().toLocaleTimeString('pt-BR', {hour:'2-digit',minute:'2-digit'})}`;
                     enviarMensagemBot(msg);
-                });
+                }).catch(() => enviarMensagemBot('❌ Não foi possível carregar a lista de usuários online agora.'));
                 return true;
             }
 
