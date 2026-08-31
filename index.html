@@ -3,2831 +3,2348 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Scripts & FreeFire — Loja</title>
-
-<meta name="description" content="Scripts & FreeFire — loja digital de produtos para Free Fire e Roblox.">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>Admin Panel — Scripts & FreeFire</title>
 
 <style>
-/* =========================================================
-   RESET
-========================================================= */
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-html {
-    scroll-behavior: smooth;
+:root{
+    --bg:#07090d;
+    --sidebar:#0b0e14;
+    --panel:#0e1219;
+    --panel2:#11161f;
+    --border:#222a36;
+    --text:#f5f7fa;
+    --muted:#7f8998;
+    --accent:#ffffff;
+    --green:#5ee69a;
+    --red:#ff6868;
+    --yellow:#ffc85c;
+    --blue:#62b9ff;
 }
 
-body {
-    background: #07080c;
-    color: #f5f5f7;
-    font-family: Inter, Arial, sans-serif;
-    overflow-x: hidden;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
+body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:Inter,Arial,Helvetica,sans-serif;
+    min-height:100vh;
 }
 
 button,
-input {
-    font-family: inherit;
+input,
+select,
+textarea{
+    font:inherit;
 }
 
-/* =========================================================
-   SCROLLBAR
-========================================================= */
-
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: #07080c;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #292d38;
-    border-radius: 10px;
-}
-
-/* =========================================================
-   HEADER
-========================================================= */
-
-.header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-
-    height: 74px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 0 6%;
-
-    background: rgba(7, 8, 12, .88);
-    border-bottom: 1px solid #191c24;
-
-    backdrop-filter: blur(18px);
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-
-    font-size: 15px;
-    font-weight: 800;
-    letter-spacing: -.5px;
-}
-
-.logo-box {
-    width: 32px;
-    height: 32px;
-
-    display: grid;
-    place-items: center;
-
-    border-radius: 9px;
-
-    background: white;
-    color: #07080c;
-
-    font-weight: 900;
-}
-
-.logo span:last-child {
-    color: #fff;
-}
-
-.logo em {
-    color: #737987;
-    font-style: normal;
-}
-
-.nav {
-    display: flex;
-    gap: 30px;
-
-    color: #858a99;
-    font-size: 13px;
-}
-
-.nav a {
-    transition: .2s;
-}
-
-.nav a:hover {
-    color: white;
-}
-
-.header-right {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.cart-button {
-    border: 1px solid #292d38;
-    background: #0d0f15;
-    color: white;
-
-    border-radius: 10px;
-
-    padding: 10px 14px;
-
-    font-size: 12px;
-    font-weight: 700;
-
-    cursor: pointer;
-
-    transition: .2s;
-}
-
-.cart-button:hover {
-    background: white;
-    color: #08090c;
-}
-
-.cart-count {
-    display: inline-grid;
-    place-items: center;
-
-    min-width: 19px;
-    height: 19px;
-
-    margin-left: 5px;
-
-    border-radius: 50%;
-
-    background: white;
-    color: #08090c;
-
-    font-size: 9px;
-}
-
-/* =========================================================
-   HERO
-========================================================= */
-
-.hero {
-    position: relative;
-
-    min-height: 680px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    gap: 70px;
-
-    padding: 90px 8%;
-
-    overflow: hidden;
-}
-
-.hero-glow {
-    position: absolute;
-
-    width: 520px;
-    height: 520px;
-
-    right: 0;
-    top: 0;
-
-    background: #654cff;
-
-    filter: blur(180px);
-
-    opacity: .13;
-
-    pointer-events: none;
-}
-
-.hero-content {
-    position: relative;
-    z-index: 2;
-
-    max-width: 690px;
-}
-
-.kicker {
-    display: inline-block;
-
-    color: #858b9a;
-
-    font-size: 10px;
-    font-weight: 800;
-
-    letter-spacing: 2px;
-}
-
-.hero h1 {
-    margin-top: 20px;
-
-    font-size: clamp(48px, 7vw, 82px);
-
-    line-height: .97;
-
-    letter-spacing: -4px;
-}
-
-.hero h1 span {
-    color: #737987;
-}
-
-.hero-description {
-    max-width: 600px;
-
-    margin-top: 25px;
-
-    color: #989daa;
-
-    font-size: 14px;
-
-    line-height: 1.8;
-}
-
-.hero-buttons {
-    display: flex;
-    gap: 10px;
-
-    margin-top: 30px;
-}
-
-.btn {
-    display: inline-flex;
-
-    align-items: center;
-    justify-content: center;
-
-    padding: 13px 18px;
-
-    border-radius: 10px;
-
-    font-size: 12px;
-    font-weight: 800;
-
-    cursor: pointer;
-
-    transition: .2s;
-}
-
-.btn:hover {
-    transform: translateY(-2px);
-}
-
-.btn-primary {
-    background: white;
-    color: #08090c;
-}
-
-.btn-secondary {
-    border: 1px solid #292d38;
-    background: #0d0f15;
-    color: white;
-}
-
-.hero-stats {
-    display: flex;
-    gap: 45px;
-
-    margin-top: 50px;
-}
-
-.hero-stat {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.hero-stat strong {
-    font-size: 20px;
-}
-
-.hero-stat small {
-    color: #6e7482;
-    font-size: 10px;
-}
-
-/* =========================================================
-   TERMINAL
-========================================================= */
-
-.terminal {
-    position: relative;
-    z-index: 2;
-
-    width: 390px;
-
-    flex-shrink: 0;
-
-    background: #0c0e14;
-
-    border: 1px solid #292d37;
-
-    border-radius: 18px;
-
-    box-shadow: 0 35px 90px #000b;
-
-    transform: rotate(2deg);
+button{
+    cursor:pointer;
 }
 
-.terminal-top {
-    height: 43px;
-
-    display: flex;
-    align-items: center;
-
-    padding: 0 15px;
-
-    border-bottom: 1px solid #20232c;
-}
-
-.terminal-dot {
-    width: 8px;
-    height: 8px;
-
-    margin-right: 6px;
-
-    border-radius: 50%;
-
-    background: #4c5260;
-}
-
-.terminal-title {
-    margin: auto;
-
-    color: #656b78;
-
-    font-size: 10px;
-}
-
-.terminal-live {
-    color: #72ffab;
-
-    font-size: 9px;
-    font-weight: 800;
+.app{
+    display:flex;
+    min-height:100vh;
 }
 
-.terminal-body {
-    padding: 25px;
-
-    font-family: monospace;
-
-    font-size: 12px;
-
-    line-height: 2;
-}
-
-.terminal-muted {
-    color: #5d6370;
-}
+/* SIDEBAR */
 
-.terminal-green {
-    color: #72ffab;
+.sidebar{
+    width:250px;
+    background:var(--sidebar);
+    border-right:1px solid var(--border);
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+    padding:22px 14px;
+    z-index:50;
 }
 
-.terminal-purple {
-    color: #a998ff;
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:8px 10px 30px;
 }
 
-/* =========================================================
-   TRUST
-========================================================= */
-
-.trust {
-    display: flex;
-    justify-content: center;
-    gap: 22px;
-
-    padding: 22px;
-
-    border-top: 1px solid #151820;
-    border-bottom: 1px solid #151820;
-
-    color: #626876;
-
-    font-size: 9px;
-    font-weight: 800;
-
-    letter-spacing: 1.5px;
+.logo-icon{
+    width:35px;
+    height:35px;
+    border-radius:10px;
+    background:#fff;
+    color:#080a0e;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:900;
 }
-
-/* =========================================================
-   SECTIONS
-========================================================= */
 
-.section {
-    padding: 95px 8%;
-
-    border-top: 1px solid #151820;
+.logo-text{
+    font-size:14px;
+    font-weight:900;
 }
-
-.section-header {
-    display: flex;
-
-    align-items: end;
-    justify-content: space-between;
 
-    gap: 25px;
-
-    margin-bottom: 35px;
+.logo-text span{
+    color:#707988;
 }
-
-.section-title {
-    margin-top: 9px;
 
-    font-size: 38px;
-
-    letter-spacing: -1.7px;
+.menu-title{
+    color:#4f5866;
+    font-size:8px;
+    font-weight:800;
+    letter-spacing:1.8px;
+    padding:12px 11px 7px;
 }
-
-.section-subtitle {
-    margin-top: 8px;
-
-    color: #777d8b;
 
-    font-size: 13px;
+.menu{
+    display:flex;
+    flex-direction:column;
+    gap:3px;
 }
 
-/* =========================================================
-   FILTERS
-========================================================= */
-
-.filters {
-    display: flex;
-
-    align-items: center;
-
-    gap: 7px;
-
-    flex-wrap: wrap;
+.menu button{
+    width:100%;
+    border:0;
+    background:transparent;
+    color:#778190;
+    padding:12px;
+    border-radius:9px;
+    text-align:left;
+    font-size:11px;
+    font-weight:700;
+    transition:.15s;
 }
-
-.search {
-    width: 190px;
-
-    padding: 10px 12px;
 
-    border: 1px solid #292d37;
-
-    border-radius: 9px;
-
-    outline: none;
-
-    background: #0c0e13;
-
-    color: white;
-
-    font-size: 11px;
+.menu button:hover,
+.menu button.active{
+    background:#171c25;
+    color:#fff;
 }
 
-.search::placeholder {
-    color: #626876;
+.menu button .icon{
+    display:inline-block;
+    width:22px;
+    opacity:.8;
 }
-
-.filter {
-    padding: 10px 13px;
-
-    border: 1px solid #292d37;
-
-    border-radius: 9px;
-
-    background: #0c0e13;
-
-    color: #7e8492;
 
-    font-size: 10px;
+/* MAIN */
 
-    cursor: pointer;
+.main{
+    margin-left:250px;
+    width:calc(100% - 250px);
+    padding:28px 4%;
 }
 
-.filter.active {
-    background: white;
-    color: #08090c;
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+    gap:20px;
 }
-
-/* =========================================================
-   PRODUCTS
-========================================================= */
-
-.products {
-    display: grid;
-
-    grid-template-columns: repeat(4, 1fr);
-
-    gap: 14px;
-}
-
-.product {
-    position: relative;
-
-    padding: 23px;
-
-    background: #0c0e13;
-
-    border: 1px solid #20242d;
-
-    border-radius: 15px;
 
-    transition: .2s;
+.page-title h1{
+    font-size:28px;
+    letter-spacing:-1px;
 }
 
-.product:hover {
-    transform: translateY(-5px);
-
-    border-color: #3a3f4c;
+.page-title p{
+    color:var(--muted);
+    font-size:10px;
+    margin-top:5px;
 }
 
-.product.popular-product {
-    border-color: #5148a0;
+.top-actions{
+    display:flex;
+    align-items:center;
+    gap:9px;
 }
-
-.popular {
-    position: absolute;
-
-    top: 14px;
-    right: 14px;
-
-    padding: 5px 7px;
-
-    border-radius: 5px;
 
-    background: #5148a0;
-
-    color: white;
-
-    font-size: 8px;
-    font-weight: 800;
-
-    letter-spacing: 1px;
+.admin-badge{
+    border:1px solid var(--border);
+    background:var(--panel);
+    color:#87909e;
+    padding:10px 13px;
+    border-radius:9px;
+    font-size:9px;
+    font-weight:800;
 }
-
-.product-icon {
-    width: 46px;
-    height: 46px;
-
-    display: grid;
-    place-items: center;
 
-    margin-bottom: 22px;
+/* BUTTONS */
 
-    border-radius: 12px;
-
-    background: #171a22;
-
-    font-size: 13px;
-    font-weight: 900;
+.btn{
+    border:1px solid var(--border);
+    background:#151a23;
+    color:#fff;
+    border-radius:8px;
+    padding:10px 13px;
+    font-size:10px;
+    font-weight:800;
+    transition:.15s;
 }
 
-.icon-ff {
-    color: #ffb84d;
+.btn:hover{
+    border-color:#394352;
+    transform:translateY(-1px);
 }
 
-.icon-roblox {
-    color: #6acbff;
+.btn-primary{
+    background:#fff;
+    color:#080a0e;
+    border-color:#fff;
 }
 
-.icon-nexus {
-    color: #a79cff;
+.btn-danger{
+    color:#ff7a7a;
 }
-
-.icon-pro {
-    color: #d28cff;
-}
-
-.product-tag {
-    color: #707685;
 
-    font-size: 9px;
-    font-weight: 800;
-
-    letter-spacing: 1.5px;
+.btn-green{
+    color:var(--green);
 }
 
-.product h3 {
-    margin-top: 8px;
+/* VIEWS */
 
-    font-size: 17px;
+.view{
+    display:none;
 }
-
-.product-description {
-    min-height: 60px;
-
-    margin-top: 9px;
 
-    color: #858a98;
-
-    font-size: 12px;
-
-    line-height: 1.6;
+.view.active{
+    display:block;
 }
-
-.product-info {
-    display: flex;
 
-    justify-content: space-between;
-    align-items: end;
+/* DASHBOARD */
 
-    margin-top: 24px;
-    margin-bottom: 14px;
-
-    color: #707685;
-
-    font-size: 10px;
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:13px;
 }
 
-.product-price {
-    color: white;
-
-    font-size: 17px;
-    font-weight: 800;
+.stat-card{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:13px;
+    padding:20px;
 }
-
-.buy-button {
-    width: 100%;
-
-    padding: 11px;
-
-    border: 1px solid #2a2e38;
-
-    border-radius: 9px;
-
-    background: #151820;
-
-    color: white;
-
-    font-size: 11px;
-    font-weight: 800;
 
-    cursor: pointer;
-
-    transition: .2s;
+.stat-card small{
+    color:#687281;
+    font-size:8px;
+    font-weight:800;
+    letter-spacing:.8px;
 }
 
-.buy-button:hover {
-    background: white;
-    color: #08090c;
+.stat-card strong{
+    display:block;
+    font-size:26px;
+    margin-top:8px;
 }
-
-/* =========================================================
-   FEATURES
-========================================================= */
 
-.features {
-    display: grid;
-
-    grid-template-columns: repeat(3, 1fr);
-
-    gap: 14px;
+.stat-status{
+    color:var(--green);
+    font-size:9px;
+    margin-top:5px;
 }
-
-.feature {
-    padding: 28px;
 
-    border: 1px solid #20242d;
-
-    border-radius: 15px;
-
-    background: #0c0e13;
+.panel{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:20px;
+    margin-top:22px;
 }
-
-.feature-number {
-    color: #666c79;
 
-    font-size: 10px;
+.panel-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    margin-bottom:18px;
 }
 
-.feature h3 {
-    margin-top: 28px;
-
-    font-size: 16px;
+.panel-header h2{
+    font-size:14px;
 }
-
-.feature p {
-    margin-top: 9px;
-
-    color: #858a98;
 
-    font-size: 12px;
-
-    line-height: 1.7;
+.panel-header p{
+    color:var(--muted);
+    font-size:9px;
 }
-
-/* =========================================================
-   FAQ
-========================================================= */
 
-.faq {
-    max-width: 950px;
+/* TABLE */
 
-    margin: auto;
+.table-wrapper{
+    overflow-x:auto;
 }
 
-.faq details {
-    padding: 20px 0;
-
-    border-bottom: 1px solid #20232c;
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:700px;
 }
 
-.faq summary {
-    cursor: pointer;
-
-    font-size: 13px;
-    font-weight: 700;
+th{
+    text-align:left;
+    color:#626c7b;
+    font-size:8px;
+    font-weight:800;
+    padding:12px 8px;
+    border-bottom:1px solid var(--border);
 }
-
-.faq p {
-    margin-top: 12px;
 
-    color: #858a98;
-
-    font-size: 12px;
-
-    line-height: 1.7;
+td{
+    padding:14px 8px;
+    border-bottom:1px solid #1b212b;
+    font-size:10px;
+    color:#dfe3e8;
 }
-
-/* =========================================================
-   SUPPORT
-========================================================= */
-
-.support {
-    margin: 30px 8% 80px;
-
-    padding: 45px;
 
-    display: flex;
-
-    align-items: center;
-    justify-content: space-between;
-
-    gap: 25px;
-
-    border: 1px solid #282c36;
-
-    border-radius: 18px;
-
-    background: linear-gradient(110deg, #10131b, #0a0c11);
+.status{
+    display:inline-block;
+    padding:5px 7px;
+    border-radius:5px;
+    font-size:8px;
+    font-weight:800;
 }
 
-.support h2 {
-    margin-top: 9px;
-
-    font-size: 32px;
-
-    letter-spacing: -1.3px;
+.status-paid{
+    color:var(--green);
+    background:#11271c;
 }
-
-.support p {
-    margin-top: 7px;
 
-    color: #858a98;
-
-    font-size: 12px;
+.status-pending{
+    color:var(--yellow);
+    background:#2a2110;
 }
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-.footer {
-    padding: 30px 8%;
 
-    display: flex;
-
-    justify-content: space-between;
-
-    border-top: 1px solid #151820;
-
-    color: #626876;
-
-    font-size: 10px;
+.status-cancelled{
+    color:var(--red);
+    background:#291414;
 }
-
-/* =========================================================
-   CART
-========================================================= */
-
-.overlay {
-    position: fixed;
-
-    inset: 0;
-
-    z-index: 1500;
-
-    display: none;
-
-    background: rgba(0,0,0,.72);
 
-    backdrop-filter: blur(5px);
-}
+/* PRODUCTS */
 
-.overlay.show {
-    display: block;
+.products{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:13px;
 }
-
-.cart {
-    position: fixed;
-
-    z-index: 1600;
-
-    top: 0;
-    right: 0;
-
-    width: min(420px, 100%);
-
-    height: 100%;
-
-    display: flex;
-
-    flex-direction: column;
-
-    background: #0b0d12;
-
-    border-left: 1px solid #292d37;
-
-    transform: translateX(100%);
 
-    transition: .25s;
+.product-card{
+    background:var(--panel2);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:17px;
 }
 
-.cart.show {
-    transform: translateX(0);
+.product-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:start;
 }
 
-.cart-header {
-    padding: 20px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: space-between;
-
-    border-bottom: 1px solid #20242d;
+.product-icon{
+    width:45px;
+    height:45px;
+    border-radius:11px;
+    background:#181e28;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:12px;
+    font-weight:900;
 }
 
-.cart-header h2 {
-    font-size: 18px;
+.product-category{
+    color:#6e7785;
+    font-size:8px;
+    letter-spacing:1px;
+    margin-top:18px;
 }
-
-.close-button {
-    border: 0;
-
-    background: transparent;
 
-    color: #858a98;
-
-    font-size: 28px;
-
-    cursor: pointer;
+.product-card h3{
+    font-size:14px;
+    margin-top:7px;
 }
 
-.cart-items {
-    flex: 1;
-
-    overflow-y: auto;
-
-    padding: 18px;
+.product-card p{
+    color:#798391;
+    font-size:10px;
+    line-height:1.6;
+    margin-top:7px;
+    min-height:32px;
 }
-
-.empty-cart {
-    padding: 50px 10px;
 
-    text-align: center;
-
-    color: #626876;
-
-    font-size: 12px;
+.product-price{
+    font-size:18px;
+    font-weight:900;
+    margin:17px 0 13px;
 }
-
-.cart-item {
-    display: grid;
-
-    grid-template-columns: 1fr auto;
-
-    gap: 15px;
 
-    padding: 15px 0;
-
-    border-bottom: 1px solid #1d2028;
+.product-actions{
+    display:flex;
+    gap:6px;
 }
 
-.cart-item h4 {
-    font-size: 13px;
+.product-actions button{
+    flex:1;
 }
 
-.cart-item small {
-    color: #707685;
+/* FORMS */
 
-    font-size: 10px;
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
 }
 
-.cart-item-price {
-    font-size: 13px;
-    font-weight: 800;
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
 }
-
-.quantity {
-    display: flex;
-
-    align-items: center;
 
-    gap: 6px;
-
-    margin-top: 9px;
+.form-group.full{
+    grid-column:1/-1;
 }
-
-.quantity button {
-    width: 25px;
-    height: 25px;
-
-    border: 1px solid #2a2e38;
 
-    border-radius: 6px;
-
-    background: #151820;
-
-    color: white;
-
-    cursor: pointer;
+.form-group label{
+    color:#737d8c;
+    font-size:8px;
+    font-weight:800;
+    letter-spacing:.5px;
 }
-
-.remove {
-    margin-top: 8px;
-
-    border: 0;
 
-    background: transparent;
-
-    color: #777d8b;
-
-    font-size: 9px;
-
-    cursor: pointer;
+.form-group input,
+.form-group select,
+.form-group textarea{
+    width:100%;
+    background:#090c11;
+    color:#fff;
+    border:1px solid #29313d;
+    border-radius:8px;
+    padding:11px;
+    outline:none;
+    font-size:10px;
 }
 
-.cart-footer {
-    padding: 20px;
-
-    border-top: 1px solid #20242d;
+.form-group textarea{
+    min-height:100px;
+    resize:vertical;
 }
-
-.cart-total {
-    display: flex;
 
-    justify-content: space-between;
-
-    margin-bottom: 16px;
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+    border-color:#596475;
 }
 
-.cart-total strong {
-    font-size: 19px;
-}
+/* MODAL */
 
-.checkout-button {
-    width: 100%;
+.modal{
+    position:fixed;
+    inset:0;
+    background:#000c;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    z-index:200;
 }
-
-.checkout-info {
-    display: block;
-
-    margin-top: 10px;
-
-    color: #626876;
 
-    font-size: 9px;
-
-    line-height: 1.5;
+.modal.show{
+    display:flex;
 }
-
-/* =========================================================
-   MODAL
-========================================================= */
-
-.modal {
-    position: fixed;
-
-    inset: 0;
-
-    z-index: 2000;
-
-    display: none;
 
-    place-items: center;
-
-    padding: 20px;
-
-    background: rgba(0,0,0,.78);
-
-    backdrop-filter: blur(8px);
+.modal-box{
+    width:min(550px,100%);
+    max-height:90vh;
+    overflow:auto;
+    background:#0d1118;
+    border:1px solid #2a323f;
+    border-radius:16px;
+    padding:25px;
 }
 
-.modal.show {
-    display: grid;
+.modal-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:22px;
 }
-
-.modal-box {
-    position: relative;
-
-    width: min(460px, 100%);
 
-    padding: 30px;
-
-    border: 1px solid #292d37;
-
-    border-radius: 17px;
-
-    background: #0d0f15;
+.modal-header h2{
+    font-size:18px;
 }
-
-.modal-close {
-    position: absolute;
-
-    right: 15px;
-    top: 10px;
 
-    border: 0;
-
-    background: transparent;
-
-    color: #858a98;
-
-    font-size: 28px;
-
-    cursor: pointer;
+.close{
+    border:0;
+    background:transparent;
+    color:#778190;
+    font-size:25px;
 }
 
-.modal-title {
-    margin-top: 10px;
+/* NOTIFICATION */
 
-    font-size: 23px;
+.toast{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+    z-index:500;
+    background:#151a22;
+    border:1px solid #303846;
+    padding:13px 16px;
+    border-radius:9px;
+    font-size:10px;
+    display:none;
+    box-shadow:0 15px 40px #0008;
 }
-
-.modal-description {
-    margin-top: 12px;
 
-    color: #858a98;
-
-    font-size: 12px;
-
-    line-height: 1.7;
+.toast.show{
+    display:block;
 }
-
-.modal-price {
-    margin: 22px 0;
 
-    font-size: 28px;
-    font-weight: 800;
-}
+/* MOBILE */
 
-.modal-pay {
-    width: 100%;
+.mobile-menu{
+    display:none;
 }
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-
-@media (max-width: 1050px) {
 
-    .hero {
-        flex-direction: column;
+@media(max-width:1000px){
 
-        align-items: flex-start;
+    .stats{
+        grid-template-columns:repeat(2,1fr);
     }
 
-    .terminal {
-        align-self: center;
-
-        width: min(390px, 100%);
-
-        transform: none;
+    .products{
+        grid-template-columns:repeat(2,1fr);
     }
 
-    .products {
-        grid-template-columns: repeat(2, 1fr);
-    }
 }
 
-@media (max-width: 700px) {
+@media(max-width:700px){
 
-    .header {
-        padding: 0 4%;
+    .sidebar{
+        transform:translateX(-100%);
+        transition:.2s;
     }
 
-    .nav {
-        display: none;
+    .sidebar.open{
+        transform:translateX(0);
     }
 
-    .hero {
-        padding: 70px 5%;
-
-        min-height: auto;
+    .main{
+        margin-left:0;
+        width:100%;
+        padding:20px 15px;
     }
 
-    .hero h1 {
-        letter-spacing: -2.5px;
+    .mobile-menu{
+        display:block;
+        border:1px solid var(--border);
+        background:var(--panel);
+        color:#fff;
+        padding:9px 11px;
+        border-radius:8px;
     }
 
-    .hero-buttons {
-        flex-direction: column;
+    .topbar{
+        align-items:flex-start;
     }
 
-    .hero-stats {
-        gap: 25px;
+    .top-actions{
+        flex-wrap:wrap;
+        justify-content:flex-end;
     }
 
-    .section {
-        padding: 75px 5%;
+    .stats,
+    .products,
+    .form-grid{
+        grid-template-columns:1fr;
     }
 
-    .section-header {
-        align-items: flex-start;
-
-        flex-direction: column;
+    .form-group.full{
+        grid-column:auto;
     }
 
-    .section-title {
-        font-size: 32px;
-    }
-
-    .filters {
-        width: 100%;
-    }
-
-    .search {
-        width: 100%;
-    }
-
-    .products {
-        grid-template-columns: 1fr;
-    }
-
-    .features {
-        grid-template-columns: 1fr;
-    }
-
-    .support {
-        margin-left: 5%;
-        margin-right: 5%;
-
-        flex-direction: column;
-
-        align-items: flex-start;
-    }
-
-    .trust {
-        flex-wrap: wrap;
-
-        text-align: center;
-    }
-
-    .footer {
-        flex-direction: column;
-
-        gap: 10px;
-    }
 }
 </style>
 </head>
 
 <body>
 
-<!-- =======================================================
-     HEADER
-======================================================= -->
+<div class="app">
 
-<header class="header">
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
 
-    <a href="#inicio" class="logo">
+    <div class="logo">
+        <div class="logo-icon">S</div>
+        <div class="logo-text">
+            Scripts <span>&</span> FreeFire
+        </div>
+    </div>
 
-        <span class="logo-box">S</span>
+    <div class="menu-title">GERENCIAMENTO</div>
 
-        <span>
-            Scripts <em>&</em> FreeFire
-        </span>
-
-    </a>
-
-    <nav class="nav">
-
-        <a href="#inicio">Início</a>
-
-        <a href="#loja">Loja</a>
-
-        <a href="#vantagens">Vantagens</a>
-
-        <a href="#faq">FAQ</a>
-
-        <a href="#suporte">Suporte</a>
-
-    </nav>
-
-    <div class="header-right">
-
-        <button class="cart-button" id="openCart">
-
-            Carrinho
-
-            <span class="cart-count" id="cartCount">
-                0
-            </span>
-
+    <div class="menu">
+        <button class="active" data-view="dashboard">
+            <span class="icon">▦</span> Dashboard
         </button>
 
-    </div>
-
-</header>
-
-
-<!-- =======================================================
-     HERO
-======================================================= -->
-
-<section class="hero" id="inicio">
-
-    <div class="hero-glow"></div>
-
-    <div class="hero-content">
-
-        <span class="kicker">
-            DIGITAL STORE • ONLINE
-        </span>
-
-        <h1>
-            Seus scripts.<br>
-            <span>Seu catálogo.</span>
-        </h1>
-
-        <p class="hero-description">
-            Uma loja profissional para seus produtos digitais
-            de Free Fire e Roblox, com catálogo, busca,
-            filtros, carrinho e checkout.
-        </p>
-
-        <div class="hero-buttons">
-
-            <a href="#loja" class="btn btn-primary">
-                Ver produtos →
-            </a>
-
-            <a href="#vantagens" class="btn btn-secondary">
-                Conhecer a loja
-            </a>
-
-        </div>
-
-        <div class="hero-stats">
-
-            <div class="hero-stat">
-
-                <strong>100%</strong>
-
-                <small>
-                    Digital
-                </small>
-
-            </div>
-
-            <div class="hero-stat">
-
-                <strong>24/7</strong>
-
-                <small>
-                    Loja online
-                </small>
-
-            </div>
-
-            <div class="hero-stat">
-
-                <strong>2</strong>
-
-                <small>
-                    Plataformas
-                </small>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="terminal">
-
-        <div class="terminal-top">
-
-            <span class="terminal-dot"></span>
-            <span class="terminal-dot"></span>
-            <span class="terminal-dot"></span>
-
-            <span class="terminal-title">
-                scripts-freefire
-            </span>
-
-            <span class="terminal-live">
-                ONLINE
-            </span>
-
-        </div>
-
-        <div class="terminal-body">
-
-            <div>
-                <span class="terminal-purple">
-                    store
-                </span>@nexus:~$
-            </div>
-
-            <div class="terminal-muted">
-                catalog --online
-            </div>
-
-            <br>
-
-            <div>
-                <span class="terminal-green">
-                    ✓
-                </span>
-                Free Fire
-            </div>
-
-            <div>
-                <span class="terminal-green">
-                    ✓
-                </span>
-                Roblox
-            </div>
-
-            <div>
-                <span class="terminal-green">
-                    ✓
-                </span>
-                Licenças
-            </div>
-
-            <div>
-                <span class="terminal-green">
-                    ✓
-                </span>
-                Entrega digital
-            </div>
-
-            <br>
-
-            <div class="terminal-muted">
-                system.ready = true
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =======================================================
-     TRUST
-======================================================= -->
-
-<div class="trust">
-
-    <span>PRODUTOS DIGITAIS</span>
-
-    <span>•</span>
-
-    <span>LICENÇAS</span>
-
-    <span>•</span>
-
-    <span>SUPORTE</span>
-
-    <span>•</span>
-
-    <span>FREE FIRE</span>
-
-    <span>•</span>
-
-    <span>ROBLOX</span>
-
-</div>
-
-
-<!-- =======================================================
-     LOJA
-======================================================= -->
-
-<section class="section" id="loja">
-
-    <div class="section-header">
-
-        <div>
-
-            <span class="kicker">
-                CATÁLOGO
-            </span>
-
-            <h2 class="section-title">
-                Produtos em destaque
-            </h2>
-
-            <p class="section-subtitle">
-                Escolha uma plataforma e encontre seu produto.
-            </p>
-
-        </div>
-
-
-        <div class="filters">
-
-            <input
-                type="text"
-                class="search"
-                id="search"
-                placeholder="Pesquisar..."
-            >
-
-            <button
-                class="filter active"
-                data-filter="all"
-            >
-                Todos
-            </button>
-
-            <button
-                class="filter"
-                data-filter="freefire"
-            >
-                Free Fire
-            </button>
-
-            <button
-                class="filter"
-                data-filter="roblox"
-            >
-                Roblox
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <div class="products" id="products">
-
-        <!-- PRODUTOS GERADOS PELO JAVASCRIPT -->
-
-    </div>
-
-</section>
-
-
-<!-- =======================================================
-     VANTAGENS
-======================================================= -->
-
-<section class="section" id="vantagens">
-
-    <div class="section-header">
-
-        <div>
-
-            <span class="kicker">
-                PLATAFORMA
-            </span>
-
-            <h2 class="section-title">
-                Feita para vender
-            </h2>
-
-        </div>
-
-    </div>
-
-
-    <div class="features">
-
-        <article class="feature">
-
-            <span class="feature-number">
-                01
-            </span>
-
-            <h3>
-                Catálogo profissional
-            </h3>
-
-            <p>
-                Organize seus produtos em uma interface
-                moderna e responsiva.
-            </p>
-
-        </article>
-
-
-        <article class="feature">
-
-            <span class="feature-number">
-                02
-            </span>
-
-            <h3>
-                Carrinho integrado
-            </h3>
-
-            <p>
-                O cliente pode adicionar vários produtos
-                e visualizar o total antes de comprar.
-            </p>
-
-        </article>
-
-
-        <article class="feature">
-
-            <span class="feature-number">
-                03
-            </span>
-
-            <h3>
-                Sem Firebase
-            </h3>
-
-            <p>
-                Esta versão é totalmente independente:
-                apenas HTML, CSS e JavaScript.
-            </p>
-
-        </article>
-
-    </div>
-
-</section>
-
-
-<!-- =======================================================
-     FAQ
-======================================================= -->
-
-<section class="section faq" id="faq">
-
-    <span class="kicker">
-        FAQ
-    </span>
-
-    <h2 class="section-title">
-        Perguntas frequentes
-    </h2>
-
-
-    <details>
-
-        <summary>
-            Preciso usar Firebase?
-        </summary>
-
-        <p>
-            Não. Este site não utiliza Firebase,
-            Firestore, Firebase Auth ou qualquer
-            banco de dados.
-        </p>
-
-    </details>
-
-
-    <details>
-
-        <summary>
-            O site funciona no GitHub Pages?
-        </summary>
-
-        <p>
-            Sim. Todo o código está dentro deste
-            único arquivo index.html.
-        </p>
-
-    </details>
-
-
-    <details>
-
-        <summary>
-            Posso mudar os produtos?
-        </summary>
-
-        <p>
-            Sim. Os produtos ficam em uma lista
-            no JavaScript no final deste arquivo.
-        </p>
-
-    </details>
-
-
-    <details>
-
-        <summary>
-            Como funciona o pagamento?
-        </summary>
-
-        <p>
-            O botão de pagamento pode ser configurado
-            para abrir o link de checkout de cada produto.
-            Nenhuma credencial de pagamento fica neste site.
-        </p>
-
-    </details>
-
-</section>
-
-
-<!-- =======================================================
-     SUPORTE
-======================================================= -->
-
-<section class="support" id="suporte">
-
-    <div>
-
-        <span class="kicker">
-            SUPORTE
-        </span>
-
-        <h2>
-            Precisa de ajuda?
-        </h2>
-
-        <p>
-            Configure abaixo o link público do seu
-            Discord ou canal de suporte.
-        </p>
-
-    </div>
-
-
-    <a
-        href="https://discord.com/"
-        target="_blank"
-        rel="noopener"
-        class="btn btn-primary"
-    >
-        Abrir Discord →
-    </a>
-
-</section>
-
-
-<!-- =======================================================
-     FOOTER
-======================================================= -->
-
-<footer class="footer">
-
-    <span>
-        © 2026 Scripts & FreeFire
-    </span>
-
-    <span>
-        Produtos digitais • Loja online
-    </span>
-
-</footer>
-
-
-<!-- =======================================================
-     OVERLAY
-======================================================= -->
-
-<div
-    class="overlay"
-    id="overlay"
-></div>
-
-
-<!-- =======================================================
-     CART
-======================================================= -->
-
-<aside
-    class="cart"
-    id="cart"
->
-
-    <div class="cart-header">
-
-        <h2>
-            Seu carrinho
-        </h2>
-
-        <button
-            class="close-button"
-            id="closeCart"
-        >
-            ×
+        <button data-view="products">
+            <span class="icon">□</span> Produtos
         </button>
 
-    </div>
-
-
-    <div
-        class="cart-items"
-        id="cartItems"
-    >
-
-        <div class="empty-cart">
-            Seu carrinho está vazio.
-        </div>
-
-    </div>
-
-
-    <div class="cart-footer">
-
-        <div class="cart-total">
-
-            <span>
-                Total
-            </span>
-
-            <strong id="cartTotal">
-                R$ 0,00
-            </strong>
-
-        </div>
-
-
-        <button
-            class="btn btn-primary checkout-button"
-            id="checkout"
-        >
-            Finalizar pedido
+        <button data-view="orders">
+            <span class="icon">▤</span> Pedidos
         </button>
 
+        <button data-view="customers">
+            <span class="icon">♙</span> Clientes
+        </button>
 
-        <small class="checkout-info">
-            O botão de checkout utiliza os links configurados
-            nos produtos. Nenhum dado bancário é armazenado
-            neste site.
-        </small>
+        <button data-view="coupons">
+            <span class="icon">%</span> Cupons
+        </button>
+    </div>
 
+    <div class="menu-title">CONFIGURAÇÕES</div>
+
+    <div class="menu">
+        <button data-view="settings">
+            <span class="icon">⚙</span> Configurações
+        </button>
+
+        <button id="viewStore">
+            <span class="icon">↗</span> Ver loja
+        </button>
+
+        <button id="logout">
+            <span class="icon">↪</span> Sair
+        </button>
     </div>
 
 </aside>
 
+<!-- MAIN -->
+<main class="main">
 
-<!-- =======================================================
-     PRODUCT MODAL
-======================================================= -->
+    <div class="topbar">
 
-<div
-    class="modal"
-    id="productModal"
->
+        <div class="page-title">
+            <h1 id="pageTitle">Dashboard</h1>
+            <p>Controle completo da sua loja</p>
+        </div>
+
+        <div class="top-actions">
+
+            <button class="mobile-menu" id="mobileMenu">
+                ☰
+            </button>
+
+            <div class="admin-badge">
+                ADMINISTRADOR
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- DASHBOARD -->
+    <section class="view active" id="dashboard">
+
+        <div class="stats">
+
+            <div class="stat-card">
+                <small>PRODUTOS</small>
+                <strong id="totalProducts">0</strong>
+                <div class="stat-status">● Catálogo ativo</div>
+            </div>
+
+            <div class="stat-card">
+                <small>PEDIDOS</small>
+                <strong id="totalOrders">0</strong>
+                <div class="stat-status">● Pedidos registrados</div>
+            </div>
+
+            <div class="stat-card">
+                <small>CLIENTES</small>
+                <strong id="totalCustomers">0</strong>
+                <div class="stat-status">● Clientes cadastrados</div>
+            </div>
+
+            <div class="stat-card">
+                <small>FATURAMENTO</small>
+                <strong id="totalRevenue">R$ 0,00</strong>
+                <div class="stat-status">● Total registrado</div>
+            </div>
+
+        </div>
+
+
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <div>
+                    <h2>Pedidos recentes</h2>
+                    <p>Últimas vendas registradas</p>
+                </div>
+
+                <button class="btn" data-view-button="orders">
+                    Ver todos
+                </button>
+
+            </div>
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>PRODUTO</th>
+                            <th>CLIENTE</th>
+                            <th>VALOR</th>
+                            <th>STATUS</th>
+                            <th>DATA</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="recentOrders"></tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PRODUCTS -->
+    <section class="view" id="products">
+
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <div>
+                    <h2>Produtos</h2>
+                    <p>Gerencie os produtos da sua loja</p>
+                </div>
+
+                <button class="btn btn-primary" id="addProduct">
+                    + Novo produto
+                </button>
+
+            </div>
+
+            <div class="products" id="productList"></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ORDERS -->
+    <section class="view" id="orders">
+
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <div>
+                    <h2>Pedidos</h2>
+                    <p>Histórico de vendas</p>
+                </div>
+
+                <button class="btn btn-danger" id="clearOrders">
+                    Limpar pedidos
+                </button>
+
+            </div>
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>PRODUTO</th>
+                            <th>CLIENTE</th>
+                            <th>VALOR</th>
+                            <th>STATUS</th>
+                            <th>DATA</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="ordersList"></tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CUSTOMERS -->
+    <section class="view" id="customers">
+
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <div>
+                    <h2>Clientes</h2>
+                    <p>Clientes registrados na loja</p>
+                </div>
+
+            </div>
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>NOME</th>
+                            <th>E-MAIL</th>
+                            <th>PEDIDOS</th>
+                            <th>TOTAL GASTO</th>
+                            <th>STATUS</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="customersList"></tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- COUPONS -->
+    <section class="view" id="coupons">
+
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <div>
+                    <h2>Cupons</h2>
+                    <p>Gerencie códigos promocionais</p>
+                </div>
+
+                <button class="btn btn-primary" id="addCoupon">
+                    + Novo cupom
+                </button>
+
+            </div>
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>CÓDIGO</th>
+                            <th>DESCONTO</th>
+                            <th>USOS</th>
+                            <th>STATUS</th>
+                            <th>AÇÕES</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="couponList"></tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SETTINGS -->
+    <section class="view" id="settings">
+
+        <div class="panel">
+
+            <div class="panel-header">
+                <div>
+                    <h2>Configurações da loja</h2>
+                    <p>Personalize informações do painel</p>
+                </div>
+            </div>
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>NOME DA LOJA</label>
+                    <input id="storeName" value="Scripts & FreeFire">
+                </div>
+
+                <div class="form-group">
+                    <label>NOME DO ADMIN</label>
+                    <input id="adminName" value="Administrador">
+                </div>
+
+                <div class="form-group">
+                    <label>LINK DO DISCORD</label>
+                    <input id="discordLink" value="https://discord.com/">
+                </div>
+
+                <div class="form-group">
+                    <label>MOEDA</label>
+                    <select id="currency">
+                        <option>BRL — Real Brasileiro</option>
+                        <option>USD — Dólar</option>
+                    </select>
+                </div>
+
+                <div class="form-group full">
+                    <label>DESCRIÇÃO DA LOJA</label>
+                    <textarea id="storeDescription">Loja profissional de produtos digitais.</textarea>
+                </div>
+
+                <div class="form-group full">
+                    <button class="btn btn-primary" id="saveSettings">
+                        Salvar configurações
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="panel">
+
+            <div class="panel-header">
+                <div>
+                    <h2>Armazenamento</h2>
+                    <p>Dados locais deste navegador</p>
+                </div>
+            </div>
+
+            <button class="btn btn-danger" id="resetData">
+                Restaurar dados demo
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+</div>
+
+
+<!-- PRODUCT MODAL -->
+
+<div class="modal" id="productModal">
 
     <div class="modal-box">
 
-        <button
-            class="modal-close"
-            id="closeProductModal"
-        >
-            ×
-        </button>
+        <div class="modal-header">
 
-        <span
-            class="kicker"
-            id="modalCategory"
-        >
-            PRODUTO
-        </span>
+            <h2 id="modalTitle">Novo produto</h2>
 
-        <h2
-            class="modal-title"
-            id="modalTitle"
-        >
-            Produto
-        </h2>
+            <button class="close" id="closeProductModal">
+                ×
+            </button>
 
-        <p
-            class="modal-description"
-            id="modalDescription"
-        >
-        </p>
-
-        <div
-            class="modal-price"
-            id="modalPrice"
-        >
-            R$ 0,00
         </div>
 
-        <button
-            class="btn btn-primary modal-pay"
-            id="modalBuy"
-        >
-            Comprar agora →
-        </button>
+        <div class="form-grid">
+
+            <div class="form-group full">
+                <label>NOME DO PRODUTO</label>
+                <input id="productName" placeholder="Ex: Nexus Panel">
+            </div>
+
+            <div class="form-group">
+                <label>CATEGORIA</label>
+                <select id="productCategory">
+                    <option>Free Fire</option>
+                    <option>Roblox</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>PREÇO</label>
+                <input id="productPrice" type="number" step="0.01" placeholder="39.90">
+            </div>
+
+            <div class="form-group">
+                <label>PLANO</label>
+                <select id="productPlan">
+                    <option>Mensal</option>
+                    <option>Semanal</option>
+                    <option>Permanente</option>
+                    <option>24 horas</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>DESTAQUE</label>
+                <select id="productFeatured">
+                    <option value="false">Não</option>
+                    <option value="true">Sim</option>
+                </select>
+            </div>
+
+            <div class="form-group full">
+                <label>DESCRIÇÃO</label>
+                <textarea id="productDescription" placeholder="Descrição do produto..."></textarea>
+            </div>
+
+            <div class="form-group full">
+                <label>LINK DE CHECKOUT</label>
+                <input id="productLink" placeholder="https://...">
+            </div>
+
+            <div class="form-group full">
+                <div style="display:flex;gap:8px;justify-content:flex-end">
+                    <button class="btn" id="cancelProduct">
+                        Cancelar
+                    </button>
+
+                    <button class="btn btn-primary" id="saveProduct">
+                        Salvar produto
+                    </button>
+                </div>
+            </div>
+
+        </div>
 
     </div>
 
 </div>
 
 
-<!-- =======================================================
-     JAVASCRIPT
-======================================================= -->
+<!-- TOAST -->
+
+<div class="toast" id="toast"></div>
+
 
 <script>
 
-/*
-============================================================
-CONFIGURAÇÃO DA LOJA
-============================================================
+/* =========================================================
+   DADOS LOCAIS
+   ========================================================= */
 
-IMPORTANTE:
-
-Você pode alterar os produtos abaixo.
-
-Não existe Firebase.
-Não existe banco de dados.
-Não existe e-mail.
-Não existe senha.
-Não existe chave privada.
-
-Para colocar seu link de pagamento:
-
-paymentLink:
-"https://SEU-LINK-DE-PAGAMENTO.com"
-
-============================================================
-*/
-
-const PRODUCTS = [
+const DEFAULT_PRODUCTS = [
 
     {
-        id: 1,
-
-        category: "freefire",
-
-        icon: "FF",
-
-        iconClass: "icon-ff",
-
-        name: "FF Utility Pack",
-
-        description:
-            "Pacote digital para sua comunidade de Free Fire.",
-
-        plan:
-            "Licença mensal",
-
-        price: 39.90,
-
-        popular: false,
-
-        paymentLink:
-            "#"
+        id:1,
+        name:"FF Utility Pack",
+        category:"Free Fire",
+        price:39.90,
+        plan:"Mensal",
+        featured:true,
+        description:"Pacote digital para Free Fire.",
+        link:"#"
     },
 
-
     {
-        id: 2,
-
-        category: "freefire",
-
-        icon: "NX",
-
-        iconClass: "icon-nexus",
-
-        name: "Nexus Panel",
-
-        description:
-            "Painel premium para organizar seus produtos e ferramentas.",
-
-        plan:
-            "Licença mensal",
-
-        price: 59.90,
-
-        popular: true,
-
-        paymentLink:
-            "#"
+        id:2,
+        name:"Nexus Panel",
+        category:"Free Fire",
+        price:59.90,
+        plan:"Mensal",
+        featured:true,
+        description:"Painel premium para sua loja.",
+        link:"#"
     },
 
-
     {
-        id: 3,
-
-        category: "roblox",
-
-        icon: "RB",
-
-        iconClass: "icon-roblox",
-
-        name: "Roblox Script Pack",
-
-        description:
-            "Coleção de scripts e ferramentas digitais para projetos Roblox.",
-
-        plan:
-            "Licença mensal",
-
-        price: 34.90,
-
-        popular: false,
-
-        paymentLink:
-            "#"
+        id:3,
+        name:"Roblox Script Pack",
+        category:"Roblox",
+        price:34.90,
+        plan:"Mensal",
+        featured:false,
+        description:"Pacote digital para Roblox.",
+        link:"#"
     },
 
-
     {
-        id: 4,
-
-        category: "roblox",
-
-        icon: "PR",
-
-        iconClass: "icon-pro",
-
-        name: "Roblox Pro Pack",
-
-        description:
-            "Pacote premium de ferramentas para desenvolvimento e testes.",
-
-        plan:
-            "Licença permanente",
-
-        price: 89.90,
-
-        popular: false,
-
-        paymentLink:
-            "#"
+        id:4,
+        name:"Roblox Pro Pack",
+        category:"Roblox",
+        price:89.90,
+        plan:"Permanente",
+        featured:true,
+        description:"Pacote profissional para Roblox.",
+        link:"#"
     }
 
 ];
 
 
-/*
-============================================================
-ESTADO
-============================================================
-*/
+const DEFAULT_ORDERS = [
 
-let cart = [];
+    {
+        id:1001,
+        product:"Nexus Panel",
+        customer:"Cliente Demo",
+        price:59.90,
+        status:"Pago",
+        date:"30/08/2026"
+    },
 
-let currentFilter = "all";
+    {
+        id:1002,
+        product:"FF Utility Pack",
+        customer:"Cliente Teste",
+        price:39.90,
+        status:"Pendente",
+        date:"30/08/2026"
+    }
 
-let currentProduct = null;
-
-
-/*
-============================================================
-ELEMENTOS
-============================================================
-*/
-
-const productsElement =
-    document.getElementById("products");
-
-const searchElement =
-    document.getElementById("search");
-
-const cartElement =
-    document.getElementById("cart");
-
-const overlayElement =
-    document.getElementById("overlay");
-
-const cartItemsElement =
-    document.getElementById("cartItems");
-
-const cartCountElement =
-    document.getElementById("cartCount");
-
-const cartTotalElement =
-    document.getElementById("cartTotal");
-
-const productModal =
-    document.getElementById("productModal");
+];
 
 
-/*
-============================================================
-FORMATAÇÃO DE PREÇO
-============================================================
-*/
+const DEFAULT_CUSTOMERS = [
 
-function money(value) {
+    {
+        name:"Cliente Demo",
+        email:"cliente@example.com",
+        orders:1,
+        spent:59.90,
+        status:"Ativo"
+    },
 
-    return value.toLocaleString(
+    {
+        name:"Cliente Teste",
+        email:"teste@example.com",
+        orders:1,
+        spent:39.90,
+        status:"Ativo"
+    }
+
+];
+
+
+const DEFAULT_COUPONS = [
+
+    {
+        code:"KZN10",
+        discount:10,
+        uses:0,
+        active:true
+    },
+
+    {
+        code:"KZN20",
+        discount:20,
+        uses:0,
+        active:true
+    }
+
+];
+
+
+let products =
+    JSON.parse(localStorage.getItem("admin_products")) ||
+    DEFAULT_PRODUCTS;
+
+let orders =
+    JSON.parse(localStorage.getItem("admin_orders")) ||
+    DEFAULT_ORDERS;
+
+let customers =
+    JSON.parse(localStorage.getItem("admin_customers")) ||
+    DEFAULT_CUSTOMERS;
+
+let coupons =
+    JSON.parse(localStorage.getItem("admin_coupons")) ||
+    DEFAULT_COUPONS;
+
+let editingProduct = null;
+
+
+/* =========================================================
+   UTILIDADES
+   ========================================================= */
+
+function saveAll(){
+
+    localStorage.setItem(
+        "admin_products",
+        JSON.stringify(products)
+    );
+
+    localStorage.setItem(
+        "admin_orders",
+        JSON.stringify(orders)
+    );
+
+    localStorage.setItem(
+        "admin_customers",
+        JSON.stringify(customers)
+    );
+
+    localStorage.setItem(
+        "admin_coupons",
+        JSON.stringify(coupons)
+    );
+
+}
+
+
+function money(value){
+
+    return Number(value).toLocaleString(
         "pt-BR",
         {
-            style: "currency",
-            currency: "BRL"
+            style:"currency",
+            currency:"BRL"
         }
     );
 
 }
 
 
-/*
-============================================================
-RENDER PRODUTOS
-============================================================
-*/
+function escapeHTML(value){
 
-function renderProducts() {
+    return String(value)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
 
-    const search =
-        searchElement.value
-            .toLowerCase()
-            .trim();
+}
 
 
-    const filtered =
-        PRODUCTS.filter(product => {
+function toast(message){
 
-            const matchesFilter =
-                currentFilter === "all" ||
-                product.category === currentFilter;
+    const el =
+        document.getElementById("toast");
 
+    el.textContent = message;
 
-            const matchesSearch =
-                product.name
-                    .toLowerCase()
-                    .includes(search) ||
+    el.classList.add("show");
 
-                product.description
-                    .toLowerCase()
-                    .includes(search);
+    setTimeout(()=>{
+        el.classList.remove("show");
+    },2500);
+
+}
 
 
-            return (
-                matchesFilter &&
-                matchesSearch
+/* =========================================================
+   NAVEGAÇÃO
+   ========================================================= */
+
+const menuButtons =
+    document.querySelectorAll(
+        ".menu button[data-view]"
+    );
+
+const views =
+    document.querySelectorAll(".view");
+
+
+function openView(name){
+
+    views.forEach(view=>{
+        view.classList.remove("active");
+    });
+
+    const target =
+        document.getElementById(name);
+
+    if(target){
+        target.classList.add("active");
+    }
+
+    menuButtons.forEach(button=>{
+        button.classList.remove("active");
+
+        if(button.dataset.view === name){
+            button.classList.add("active");
+        }
+    });
+
+    const titles = {
+
+        dashboard:"Dashboard",
+        products:"Produtos",
+        orders:"Pedidos",
+        customers:"Clientes",
+        coupons:"Cupons",
+        settings:"Configurações"
+
+    };
+
+    document.getElementById(
+        "pageTitle"
+    ).textContent =
+        titles[name] || "Dashboard";
+
+    document.getElementById(
+        "sidebar"
+    ).classList.remove("open");
+
+}
+
+
+menuButtons.forEach(button=>{
+
+    button.addEventListener("click",()=>{
+
+        openView(button.dataset.view);
+
+    });
+
+});
+
+
+document
+    .querySelectorAll("[data-view-button]")
+    .forEach(button=>{
+
+        button.addEventListener("click",()=>{
+
+            openView(
+                button.dataset.viewButton
             );
 
         });
 
-
-    productsElement.innerHTML = "";
-
-
-    if (filtered.length === 0) {
-
-        productsElement.innerHTML = `
-
-            <div style="
-                grid-column:1/-1;
-                padding:50px;
-                text-align:center;
-                color:#707685;
-            ">
-
-                Nenhum produto encontrado.
-
-            </div>
-
-        `;
-
-        return;
-
-    }
+    });
 
 
-    filtered.forEach(product => {
+document
+    .getElementById("mobileMenu")
+    .addEventListener("click",()=>{
 
-        const card =
-            document.createElement("article");
-
-
-        card.className =
-            "product" +
-            (product.popular
-                ? " popular-product"
-                : "");
-
-
-        card.innerHTML = `
-
-            ${
-                product.popular
-                ?
-                `<div class="popular">
-                    POPULAR
-                </div>`
-                :
-                ""
-            }
-
-
-            <div
-                class="product-icon ${product.iconClass}"
-            >
-                ${product.icon}
-            </div>
-
-
-            <div class="product-tag">
-                ${product.category === "freefire"
-                    ? "FREE FIRE"
-                    : "ROBLOX"}
-            </div>
-
-
-            <h3>
-                ${product.name}
-            </h3>
-
-
-            <p class="product-description">
-                ${product.description}
-            </p>
-
-
-            <div class="product-info">
-
-                <span>
-                    ${product.plan}
-                </span>
-
-                <strong class="product-price">
-                    ${money(product.price)}
-                </strong>
-
-            </div>
-
-
-            <button
-                class="buy-button"
-                data-id="${product.id}"
-            >
-                Comprar
-            </button>
-
-        `;
-
-
-        productsElement.appendChild(card);
+        document
+            .getElementById("sidebar")
+            .classList.toggle("open");
 
     });
 
 
-    document
-        .querySelectorAll(".buy-button")
-        .forEach(button => {
+document
+    .getElementById("viewStore")
+    .addEventListener("click",()=>{
 
-            button.addEventListener(
-                "click",
-                () => {
+        window.location.hash = "";
 
-                    const id =
-                        Number(
-                            button.dataset.id
-                        );
+        toast("Volte para a página da loja.");
 
-                    openProduct(id);
+    });
 
-                }
-            );
+
+/* =========================================================
+   DASHBOARD
+   ========================================================= */
+
+function renderDashboard(){
+
+    document.getElementById(
+        "totalProducts"
+    ).textContent =
+        products.length;
+
+
+    document.getElementById(
+        "totalOrders"
+    ).textContent =
+        orders.length;
+
+
+    document.getElementById(
+        "totalCustomers"
+    ).textContent =
+        customers.length;
+
+
+    const revenue =
+        orders.reduce(
+            (total,order)=>
+                total + Number(order.price || 0),
+            0
+        );
+
+
+    document.getElementById(
+        "totalRevenue"
+    ).textContent =
+        money(revenue);
+
+
+    const tbody =
+        document.getElementById(
+            "recentOrders"
+        );
+
+
+    tbody.innerHTML = "";
+
+
+    orders
+        .slice()
+        .reverse()
+        .slice(0,8)
+        .forEach(order=>{
+
+            tbody.innerHTML += `
+
+                <tr>
+
+                    <td>#${order.id}</td>
+
+                    <td>${escapeHTML(order.product)}</td>
+
+                    <td>${escapeHTML(order.customer)}</td>
+
+                    <td>${money(order.price)}</td>
+
+                    <td>
+
+                        <span class="status ${
+                            order.status === "Pago"
+                            ? "status-paid"
+                            : order.status === "Pendente"
+                            ? "status-pending"
+                            : "status-cancelled"
+                        }">
+
+                            ${escapeHTML(order.status)}
+
+                        </span>
+
+                    </td>
+
+                    <td>${escapeHTML(order.date)}</td>
+
+                </tr>
+
+            `;
 
         });
 
 }
 
 
-/*
-============================================================
-FILTROS
-============================================================
-*/
+/* =========================================================
+   PRODUTOS
+   ========================================================= */
 
-document
-    .querySelectorAll(".filter")
-    .forEach(button => {
+function renderProducts(){
 
-        button.addEventListener(
-            "click",
-            () => {
-
-                document
-                    .querySelectorAll(".filter")
-                    .forEach(item => {
-
-                        item.classList.remove(
-                            "active"
-                        );
-
-                    });
-
-
-                button.classList.add(
-                    "active"
-                );
-
-
-                currentFilter =
-                    button.dataset.filter;
-
-
-                renderProducts();
-
-            }
+    const container =
+        document.getElementById(
+            "productList"
         );
+
+
+    container.innerHTML = "";
+
+
+    products.forEach(product=>{
+
+        const icon =
+            product.category === "Roblox"
+            ? "RB"
+            : "FF";
+
+
+        container.innerHTML += `
+
+            <article class="product-card">
+
+                <div class="product-top">
+
+                    <div class="product-icon">
+                        ${icon}
+                    </div>
+
+                    ${
+                        product.featured
+                        ? `<span class="status status-paid">
+                            DESTAQUE
+                           </span>`
+                        : ""
+                    }
+
+                </div>
+
+                <div class="product-category">
+                    ${escapeHTML(product.category)}
+                </div>
+
+                <h3>
+                    ${escapeHTML(product.name)}
+                </h3>
+
+                <p>
+                    ${escapeHTML(product.description)}
+                </p>
+
+                <div class="product-price">
+                    ${money(product.price)}
+                </div>
+
+                <div class="product-actions">
+
+                    <button
+                        class="btn"
+                        onclick="editProduct(${product.id})">
+                        Editar
+                    </button>
+
+                    <button
+                        class="btn btn-danger"
+                        onclick="deleteProduct(${product.id})">
+                        Excluir
+                    </button>
+
+                </div>
+
+            </article>
+
+        `;
 
     });
 
-
-/*
-============================================================
-BUSCA
-============================================================
-*/
-
-searchElement.addEventListener(
-    "input",
-    renderProducts
-);
+}
 
 
-/*
-============================================================
-ABRIR PRODUTO
-============================================================
-*/
+function openProductModal(product=null){
 
-function openProduct(id) {
-
-    const product =
-        PRODUCTS.find(
-            item => item.id === id
-        );
-
-
-    if (!product) {
-        return;
-    }
-
-
-    currentProduct =
-        product;
-
-
-    document.getElementById(
-        "modalCategory"
-    ).textContent =
-        product.category === "freefire"
-            ? "FREE FIRE"
-            : "ROBLOX";
+    editingProduct =
+        product ? product.id : null;
 
 
     document.getElementById(
         "modalTitle"
     ).textContent =
-        product.name;
+        product
+        ? "Editar produto"
+        : "Novo produto";
 
 
     document.getElementById(
-        "modalDescription"
-    ).textContent =
-        product.description;
+        "productName"
+    ).value =
+        product?.name || "";
 
 
     document.getElementById(
-        "modalPrice"
-    ).textContent =
-        money(product.price);
+        "productCategory"
+    ).value =
+        product?.category || "Free Fire";
 
 
-    productModal.classList.add(
-        "show"
-    );
+    document.getElementById(
+        "productPrice"
+    ).value =
+        product?.price || "";
+
+
+    document.getElementById(
+        "productPlan"
+    ).value =
+        product?.plan || "Mensal";
+
+
+    document.getElementById(
+        "productFeatured"
+    ).value =
+        String(product?.featured || false);
+
+
+    document.getElementById(
+        "productDescription"
+    ).value =
+        product?.description || "";
+
+
+    document.getElementById(
+        "productLink"
+    ).value =
+        product?.link || "";
+
+
+    document
+        .getElementById("productModal")
+        .classList.add("show");
 
 }
 
 
-/*
-============================================================
-FECHAR MODAL
-============================================================
-*/
+function closeProductModal(){
+
+    document
+        .getElementById("productModal")
+        .classList.remove("show");
+
+    editingProduct = null;
+
+}
+
+
+function editProduct(id){
+
+    const product =
+        products.find(
+            p=>p.id === id
+        );
+
+    if(product){
+
+        openProductModal(product);
+
+    }
+
+}
+
+
+function deleteProduct(id){
+
+    const product =
+        products.find(
+            p=>p.id === id
+        );
+
+
+    if(!product){
+        return;
+    }
+
+
+    if(
+        !confirm(
+            `Excluir "${product.name}"?`
+        )
+    ){
+
+        return;
+
+    }
+
+
+    products =
+        products.filter(
+            p=>p.id !== id
+        );
+
+
+    saveAll();
+
+    renderProducts();
+
+    renderDashboard();
+
+    toast("Produto excluído.");
+
+}
+
+
+document
+    .getElementById("addProduct")
+    .addEventListener("click",()=>{
+
+        openProductModal();
+
+    });
+
 
 document
     .getElementById("closeProductModal")
-    .addEventListener(
-        "click",
-        () => {
+    .addEventListener("click",closeProductModal);
 
-            productModal.classList.remove(
-                "show"
-            );
-
-        }
-    );
-
-
-productModal.addEventListener(
-    "click",
-    event => {
-
-        if (
-            event.target ===
-            productModal
-        ) {
-
-            productModal.classList.remove(
-                "show"
-            );
-
-        }
-
-    }
-);
-
-
-/*
-============================================================
-COMPRAR PELO MODAL
-============================================================
-*/
 
 document
-    .getElementById("modalBuy")
-    .addEventListener(
-        "click",
-        () => {
-
-            if (!currentProduct) {
-                return;
-            }
+    .getElementById("cancelProduct")
+    .addEventListener("click",closeProductModal);
 
 
-            addToCart(
-                currentProduct.id
+document
+    .getElementById("saveProduct")
+    .addEventListener("click",()=>{
+
+        const name =
+            document.getElementById(
+                "productName"
+            ).value.trim();
+
+
+        const category =
+            document.getElementById(
+                "productCategory"
+            ).value;
+
+
+        const price =
+            Number(
+                document.getElementById(
+                    "productPrice"
+                ).value
             );
 
 
-            productModal.classList.remove(
-                "show"
-            );
+        const plan =
+            document.getElementById(
+                "productPlan"
+            ).value;
 
 
-            openCart();
+        const featured =
+            document.getElementById(
+                "productFeatured"
+            ).value === "true";
+
+
+        const description =
+            document.getElementById(
+                "productDescription"
+            ).value.trim();
+
+
+        const link =
+            document.getElementById(
+                "productLink"
+            ).value.trim();
+
+
+        if(!name){
+
+            alert("Digite o nome do produto.");
+
+            return;
 
         }
-    );
 
 
-/*
-============================================================
-ADICIONAR AO CARRINHO
-============================================================
-*/
+        if(!Number.isFinite(price)){
 
-function addToCart(id) {
+            alert("Digite um preço válido.");
 
-    const product =
-        PRODUCTS.find(
-            item => item.id === id
+            return;
+
+        }
+
+
+        if(editingProduct){
+
+            const product =
+                products.find(
+                    p=>p.id === editingProduct
+                );
+
+
+            if(product){
+
+                product.name = name;
+                product.category = category;
+                product.price = price;
+                product.plan = plan;
+                product.featured = featured;
+                product.description = description;
+                product.link = link;
+
+            }
+
+            toast("Produto atualizado.");
+
+        }else{
+
+            products.push({
+
+                id:Date.now(),
+
+                name,
+
+                category,
+
+                price,
+
+                plan,
+
+                featured,
+
+                description,
+
+                link
+
+            });
+
+            toast("Produto criado.");
+
+        }
+
+
+        saveAll();
+
+        renderProducts();
+
+        renderDashboard();
+
+        closeProductModal();
+
+    });
+
+
+/* =========================================================
+   PEDIDOS
+   ========================================================= */
+
+function renderOrders(){
+
+    const tbody =
+        document.getElementById(
+            "ordersList"
         );
 
 
-    if (!product) {
+    tbody.innerHTML = "";
+
+
+    if(!orders.length){
+
+        tbody.innerHTML = `
+
+            <tr>
+
+                <td colspan="6">
+                    Nenhum pedido registrado.
+                </td>
+
+            </tr>
+
+        `;
+
         return;
+
     }
 
 
-    const existing =
-        cart.find(
-            item => item.id === id
-        );
+    orders
+        .slice()
+        .reverse()
+        .forEach(order=>{
 
+            tbody.innerHTML += `
 
-    if (existing) {
+                <tr>
 
-        existing.quantity++;
+                    <td>#${order.id}</td>
 
-    } else {
+                    <td>${escapeHTML(order.product)}</td>
 
-        cart.push({
+                    <td>${escapeHTML(order.customer)}</td>
 
-            ...product,
+                    <td>${money(order.price)}</td>
 
-            quantity: 1
+                    <td>
+
+                        <span class="status ${
+                            order.status === "Pago"
+                            ? "status-paid"
+                            : order.status === "Pendente"
+                            ? "status-pending"
+                            : "status-cancelled"
+                        }">
+
+                            ${escapeHTML(order.status)}
+
+                        </span>
+
+                    </td>
+
+                    <td>${escapeHTML(order.date)}</td>
+
+                </tr>
+
+            `;
 
         });
 
-    }
-
-
-    updateCart();
-
 }
 
 
-/*
-============================================================
-REMOVER
-============================================================
-*/
+document
+    .getElementById("clearOrders")
+    .addEventListener("click",()=>{
 
-function removeFromCart(id) {
+        if(
+            !confirm(
+                "Deseja apagar todos os pedidos locais?"
+            )
+        ){
 
-    cart =
-        cart.filter(
-            item => item.id !== id
+            return;
+
+        }
+
+
+        orders = [];
+
+        saveAll();
+
+        renderOrders();
+
+        renderDashboard();
+
+        toast("Pedidos apagados.");
+
+    });
+
+
+/* =========================================================
+   CLIENTES
+   ========================================================= */
+
+function renderCustomers(){
+
+    const tbody =
+        document.getElementById(
+            "customersList"
         );
 
 
-    updateCart();
-
-}
+    tbody.innerHTML = "";
 
 
-/*
-============================================================
-ALTERAR QUANTIDADE
-============================================================
-*/
+    customers.forEach(customer=>{
 
-function changeQuantity(
-    id,
-    amount
-) {
+        tbody.innerHTML += `
 
-    const item =
-        cart.find(
-            product => product.id === id
-        );
+            <tr>
 
+                <td>${escapeHTML(customer.name)}</td>
 
-    if (!item) {
-        return;
-    }
+                <td>${escapeHTML(customer.email)}</td>
 
+                <td>${customer.orders}</td>
 
-    item.quantity += amount;
+                <td>${money(customer.spent)}</td>
 
+                <td>
 
-    if (item.quantity <= 0) {
+                    <span class="status status-paid">
+                        ${escapeHTML(customer.status)}
+                    </span>
 
-        removeFromCart(id);
+                </td>
 
-        return;
-
-    }
-
-
-    updateCart();
-
-}
-
-
-/*
-============================================================
-ATUALIZAR CARRINHO
-============================================================
-*/
-
-function updateCart() {
-
-    cartItemsElement.innerHTML = "";
-
-
-    if (cart.length === 0) {
-
-        cartItemsElement.innerHTML = `
-
-            <div class="empty-cart">
-                Seu carrinho está vazio.
-            </div>
+            </tr>
 
         `;
 
+    });
+
+}
+
+
+/* =========================================================
+   CUPONS
+   ========================================================= */
+
+function renderCoupons(){
+
+    const tbody =
+        document.getElementById(
+            "couponList"
+        );
+
+
+    tbody.innerHTML = "";
+
+
+    coupons.forEach((coupon,index)=>{
+
+        tbody.innerHTML += `
+
+            <tr>
+
+                <td>
+                    <strong>${escapeHTML(coupon.code)}</strong>
+                </td>
+
+                <td>
+                    ${coupon.discount}%
+                </td>
+
+                <td>
+                    ${coupon.uses}
+                </td>
+
+                <td>
+
+                    <span class="status ${
+                        coupon.active
+                        ? "status-paid"
+                        : "status-cancelled"
+                    }">
+
+                        ${coupon.active
+                        ? "Ativo"
+                        : "Inativo"}
+
+                    </span>
+
+                </td>
+
+                <td>
+
+                    <button
+                        class="btn"
+                        onclick="toggleCoupon(${index})">
+
+                        ${
+                            coupon.active
+                            ? "Desativar"
+                            : "Ativar"
+                        }
+
+                    </button>
+
+                    <button
+                        class="btn btn-danger"
+                        onclick="deleteCoupon(${index})">
+
+                        Excluir
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+        `;
+
+    });
+
+}
+
+
+window.toggleCoupon=function(index){
+
+    coupons[index].active =
+        !coupons[index].active;
+
+
+    saveAll();
+
+    renderCoupons();
+
+    toast("Cupom atualizado.");
+
+};
+
+
+window.deleteCoupon=function(index){
+
+    if(
+        !confirm(
+            "Excluir este cupom?"
+        )
+    ){
+
+        return;
+
     }
 
 
-    let total = 0;
+    coupons.splice(index,1);
 
-    let count = 0;
+    saveAll();
 
+    renderCoupons();
 
-    cart.forEach(item => {
+    toast("Cupom excluído.");
 
-        total +=
-            item.price *
-            item.quantity;
-
-
-        count +=
-            item.quantity;
+};
 
 
-        const row =
-            document.createElement(
-                "div"
+document
+    .getElementById("addCoupon")
+    .addEventListener("click",()=>{
+
+        const code =
+            prompt(
+                "Código do cupom:"
+            );
+
+        if(!code){
+            return;
+        }
+
+
+        const discount =
+            Number(
+                prompt(
+                    "Desconto em porcentagem:",
+                    "10"
+                )
             );
 
 
-        row.className =
-            "cart-item";
+        if(
+            !Number.isFinite(discount)
+        ){
+
+            return;
+
+        }
 
 
-        row.innerHTML = `
+        coupons.push({
 
-            <div>
+            code:
+                code.toUpperCase(),
 
-                <h4>
-                    ${item.name}
-                </h4>
+            discount,
 
-                <small>
-                    ${money(item.price)}
-                </small>
+            uses:0,
 
+            active:true
 
-                <div class="quantity">
-
-                    <button
-                        data-minus="${item.id}"
-                    >
-                        −
-                    </button>
-
-                    <span>
-                        ${item.quantity}
-                    </span>
-
-                    <button
-                        data-plus="${item.id}"
-                    >
-                        +
-                    </button>
-
-                </div>
+        });
 
 
-                <button
-                    class="remove"
-                    data-remove="${item.id}"
-                >
-                    Remover
-                </button>
+        saveAll();
 
-            </div>
+        renderCoupons();
 
+        toast("Cupom criado.");
 
-            <div class="cart-item-price">
-
-                ${money(
-                    item.price *
-                    item.quantity
-                )}
-
-            </div>
-
-        `;
+    });
 
 
-        cartItemsElement.appendChild(
-            row
+/* =========================================================
+   CONFIGURAÇÕES
+   ========================================================= */
+
+document
+    .getElementById("saveSettings")
+    .addEventListener("click",()=>{
+
+        const settings = {
+
+            storeName:
+                document.getElementById(
+                    "storeName"
+                ).value,
+
+            adminName:
+                document.getElementById(
+                    "adminName"
+                ).value,
+
+            discord:
+                document.getElementById(
+                    "discordLink"
+                ).value,
+
+            currency:
+                document.getElementById(
+                    "currency"
+                ).value,
+
+            description:
+                document.getElementById(
+                    "storeDescription"
+                ).value
+
+        };
+
+
+        localStorage.setItem(
+            "admin_settings",
+            JSON.stringify(settings)
+        );
+
+
+        toast(
+            "Configurações salvas."
         );
 
     });
 
 
-    cartCountElement.textContent =
-        count;
+function loadSettings(){
+
+    const settings =
+        JSON.parse(
+            localStorage.getItem(
+                "admin_settings"
+            ) || "null"
+        );
 
 
-    cartTotalElement.textContent =
-        money(total);
+    if(!settings){
+        return;
+    }
 
 
-    document
-        .querySelectorAll(
-            "[data-minus]"
-        )
-        .forEach(button => {
-
-            button.onclick =
-                () => {
-
-                    changeQuantity(
-                        Number(
-                            button.dataset.minus
-                        ),
-                        -1
-                    );
-
-                };
-
-        });
+    document.getElementById(
+        "storeName"
+    ).value =
+        settings.storeName || "";
 
 
-    document
-        .querySelectorAll(
-            "[data-plus]"
-        )
-        .forEach(button => {
-
-            button.onclick =
-                () => {
-
-                    changeQuantity(
-                        Number(
-                            button.dataset.plus
-                        ),
-                        1
-                    );
-
-                };
-
-        });
+    document.getElementById(
+        "adminName"
+    ).value =
+        settings.adminName || "";
 
 
-    document
-        .querySelectorAll(
-            "[data-remove]"
-        )
-        .forEach(button => {
-
-            button.onclick =
-                () => {
-
-                    removeFromCart(
-                        Number(
-                            button.dataset.remove
-                        )
-                    );
-
-                };
-
-        });
-
-}
+    document.getElementById(
+        "discordLink"
+    ).value =
+        settings.discord || "";
 
 
-/*
-============================================================
-ABRIR CARRINHO
-============================================================
-*/
-
-function openCart() {
-
-    cartElement.classList.add(
-        "show"
-    );
-
-    overlayElement.classList.add(
-        "show"
-    );
-
-}
-
-
-/*
-============================================================
-FECHAR CARRINHO
-============================================================
-*/
-
-function closeCart() {
-
-    cartElement.classList.remove(
-        "show"
-    );
-
-    overlayElement.classList.remove(
-        "show"
-    );
+    document.getElementById(
+        "storeDescription"
+    ).value =
+        settings.description || "";
 
 }
 
 
 document
-    .getElementById("openCart")
-    .addEventListener(
-        "click",
-        openCart
-    );
+    .getElementById("resetData")
+    .addEventListener("click",()=>{
 
+        if(
+            !confirm(
+                "Restaurar todos os dados demo?"
+            )
+        ){
 
-document
-    .getElementById("closeCart")
-    .addEventListener(
-        "click",
-        closeCart
-    );
-
-
-overlayElement.addEventListener(
-    "click",
-    closeCart
-);
-
-
-/*
-============================================================
-CHECKOUT
-============================================================
-
-Aqui não existe Firebase.
-
-O cliente será enviado para o link de pagamento
-configurado no produto.
-
-============================================================
-*/
-
-document
-    .getElementById("checkout")
-    .addEventListener(
-        "click",
-        () => {
-
-            if (cart.length === 0) {
-
-                alert(
-                    "Seu carrinho está vazio."
-                );
-
-                return;
-
-            }
-
-
-            /*
-             *
-             * Se houver apenas um produto,
-             * usamos o link daquele produto.
-             *
-             */
-
-            if (cart.length === 1) {
-
-                const product =
-                    cart[0];
-
-
-                if (
-                    product.paymentLink &&
-                    product.paymentLink !== "#"
-                ) {
-
-                    window.open(
-                        product.paymentLink,
-                        "_blank"
-                    );
-
-                    return;
-
-                }
-
-            }
-
-
-            /*
-             *
-             * Caso ainda não tenha configurado
-             * o link de pagamento:
-             *
-             */
-
-            alert(
-                "O checkout ainda não foi configurado pelo administrador."
-            );
+            return;
 
         }
-    );
 
 
-/*
-============================================================
-INICIALIZAÇÃO
-============================================================
-*/
+        products =
+            JSON.parse(
+                JSON.stringify(
+                    DEFAULT_PRODUCTS
+                )
+            );
 
-renderProducts();
 
-updateCart();
+        orders =
+            JSON.parse(
+                JSON.stringify(
+                    DEFAULT_ORDERS
+                )
+            );
+
+
+        customers =
+            JSON.parse(
+                JSON.stringify(
+                    DEFAULT_CUSTOMERS
+                )
+            );
+
+
+        coupons =
+            JSON.parse(
+                JSON.stringify(
+                    DEFAULT_COUPONS
+                )
+            );
+
+
+        saveAll();
+
+        renderAll();
+
+        toast(
+            "Dados restaurados."
+        );
+
+    });
+
+
+/* =========================================================
+   LOGIN LOCAL
+   ========================================================= */
+
+document
+    .getElementById("logout")
+    .addEventListener("click",()=>{
+
+        if(
+            confirm(
+                "Deseja sair do painel?"
+            )
+        ){
+
+            sessionStorage.removeItem(
+                "admin_logged"
+            );
+
+            location.reload();
+
+        }
+
+    });
+
+
+/* =========================================================
+   RENDER
+   ========================================================= */
+
+function renderAll(){
+
+    renderDashboard();
+
+    renderProducts();
+
+    renderOrders();
+
+    renderCustomers();
+
+    renderCoupons();
+
+    loadSettings();
+
+}
+
+
+renderAll();
+
+
+/* =========================================================
+   ATALHO ADMIN
+   ========================================================= */
+
+if(
+    location.hash.toLowerCase()
+    === "#admin"
+){
+
+    openView("dashboard");
+
+}
 
 </script>
 
