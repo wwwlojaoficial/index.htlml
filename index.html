@@ -1,111 +1,149 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ASPEC TV â€” Animes</title>
+<title>ASPEC TV — Animes Dublados PT-BR</title>
 <style>
-:root{--bg:#07070b;--panel:#111118;--text:#fff;--muted:#9c9cab;--purple:#8b5cf6}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif}
-header{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:22px;padding:15px 5%;background:#07070bf5;border-bottom:1px solid #ffffff12;backdrop-filter:blur(10px)}
-.logo{font-size:25px;font-weight:900}.logo span{color:var(--purple)}
-nav{display:flex;gap:14px}nav button{border:0;background:none;color:#aaa;font-weight:800;cursor:pointer}nav button:hover{color:#fff}
-.search{margin-left:auto;display:flex;width:min(320px,100%)}.search input{width:100%;padding:11px;border:1px solid #ffffff16;background:#111118;color:#fff;border-radius:9px 0 0 9px;outline:0}.search button{border:0;background:var(--purple);color:#fff;padding:0 15px;border-radius:0 9px 9px 0;font-weight:800}
-.hero{padding:65px 7%;min-height:310px;display:flex;align-items:center;background:radial-gradient(circle at 75% 30%,#8b5cf650,transparent 35%)}.hero small{color:#c4b5fd;font-weight:900;letter-spacing:2px}.hero h1{font-size:clamp(42px,7vw,68px);line-height:.95;margin:12px 0}.hero p{max-width:650px;color:var(--muted);line-height:1.6}
-.section{padding:35px 5%}.section h2{margin:0 0 7px}.sub{color:var(--muted);margin-top:0}.filters{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}.filter{background:#111118;color:#aaa;border:1px solid #ffffff14;border-radius:999px;padding:9px 13px;font-weight:800;cursor:pointer}.filter.active{background:var(--purple);color:#fff}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:17px}.card{background:var(--panel);border:1px solid #ffffff10;border-radius:13px;overflow:hidden;cursor:pointer;transition:.2s}.card:hover{transform:translateY(-4px);border-color:#8b5cf666}
-.poster{aspect-ratio:2/3;background:linear-gradient(145deg,#211633,#101014);display:flex;align-items:center;justify-content:center;text-align:center;padding:15px}.poster strong{font-size:18px}.poster span{display:block;color:#c4b5fd;font-size:11px;font-weight:900;margin-top:9px}.info{padding:11px}.title{font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.meta{font-size:12px;color:#999;margin-top:6px}
-.modal{position:fixed;inset:0;z-index:100;display:none;background:#000e;padding:16px;align-items:center;justify-content:center}.modal.open{display:flex}.box{width:min(1000px,100%);max-height:95vh;overflow:auto;background:#0d0d13;border:1px solid #ffffff14;border-radius:15px}.close{position:fixed;right:15px;top:15px;width:40px;height:40px;border:0;border-radius:50%;font-size:22px;cursor:pointer}.player{background:#000;aspect-ratio:16/9}.player iframe{width:100%;height:100%;border:0}.details{padding:18px}.details p{color:#aaa;line-height:1.5}.episodes{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:8px}.ep{padding:10px;border:0;border-radius:8px;background:#181821;color:#fff;cursor:pointer;font-weight:800}.ep:hover{background:var(--purple)}
-@media(max-width:700px){header{flex-wrap:wrap}nav{order:3;width:100%;overflow:auto}.search{order:2;width:100%;margin:0}.hero{padding:50px 6%}.grid{grid-template-columns:repeat(2,1fr)}}
+:root{--bg:#07070b;--panel:#111119;--panel2:#17131f;--purple:#8b5cf6;--purple2:#a855f7;--text:#fff;--muted:#a7a3b3;--line:#25212e}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 80% 0,#25143f 0,transparent 32%),var(--bg);color:var(--text);font-family:Inter,Arial,sans-serif}
+header{position:sticky;top:0;z-index:20;background:rgba(7,7,11,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{max-width:1250px;margin:auto;display:flex;align-items:center;gap:24px;padding:14px 22px}
+.logo{font-size:20px;font-weight:900;white-space:nowrap}.logo span{color:var(--purple)}
+nav{display:flex;gap:16px}nav a{color:#aaa5b4;text-decoration:none;font-size:13px}nav a.active,nav a:hover{color:#fff}
+.search{margin-left:auto;display:flex;background:#111019;border:1px solid #282330;border-radius:10px;overflow:hidden}
+.search input{width:190px;background:none;border:0;outline:0;color:#fff;padding:10px 12px}.search button,.hero button{border:0;background:var(--purple);color:#fff;font-weight:800;padding:10px 15px;cursor:pointer}
+main{max-width:1250px;margin:auto;padding:0 22px 70px}
+.hero{padding:75px 0 48px}.eyebrow{color:#b58aff;font-size:12px;font-weight:900;letter-spacing:2px}
+h1{font-size:clamp(42px,7vw,76px);line-height:.98;margin:12px 0 18px;max-width:760px}
+.hero p{color:var(--muted);max-width:720px;line-height:1.7}
+.notice{border:1px solid #28232f;background:#0e0d13;border-radius:12px;padding:13px 15px;color:#aaa5b4;font-size:13px;margin-bottom:34px}
+.section-title{font-size:22px;margin:0 0 7px}.section-sub{color:#817b8d;font-size:13px;margin-bottom:18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:16px}
+.card{background:linear-gradient(180deg,#17131f,#0e0d13);border:1px solid #24202b;border-radius:14px;overflow:hidden;cursor:pointer;transition:.18s;position:relative}
+.card:hover{transform:translateY(-4px);border-color:#6d3fc0}
+.poster{width:100%;aspect-ratio:2/3;object-fit:cover;display:block;background:#1a1621}
+.card-body{padding:12px}.card h3{font-size:14px;margin:0 0 7px}.meta{font-size:11px;color:#777183}
+.badge{display:inline-block;margin-bottom:7px;padding:4px 7px;border-radius:999px;background:#24143c;color:#c9a9ff;font-size:9px;font-weight:900}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:50;overflow:auto;padding:25px}
+.modal.open{display:block}.box{max-width:1000px;margin:20px auto;background:#0d0c12;border:1px solid #29232f;border-radius:18px;overflow:hidden}
+.close{float:right;margin:10px;background:#211d28;border:0;color:#fff;border-radius:9px;width:38px;height:38px;font-size:20px;cursor:pointer}
+.player{position:relative;aspect-ratio:16/9;background:#000}.player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.info{padding:20px}.info h2{margin:0 0 8px}.info p{color:#9992a5;line-height:1.6}.episodes{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}
+.ep{border:1px solid #302936;background:#17131d;color:#ddd;padding:9px 12px;border-radius:8px;cursor:pointer}.ep:hover,.ep.active{background:var(--purple);border-color:var(--purple)}
+.audio-note{font-size:12px;color:#8e8799;margin-top:12px}
+.empty{display:none;padding:30px;text-align:center;color:#8e8799}
+@media(max-width:700px){.nav{gap:12px;padding:12px 14px}nav{gap:10px}.search input{width:105px}main{padding:0 14px 50px}.hero{padding:55px 0 35px}.grid{grid-template-columns:repeat(2,1fr);gap:12px}.modal{padding:8px}.box{margin:5px auto}}
 </style>
 </head>
 <body>
 <header>
-  <div class="logo">ASPEC<span>TV</span></div>
-  <nav>
-    <button onclick="scrollTop()">InÃ­cio</button>
-    <button onclick="filter('all')">Animes</button>
-    <button onclick="filter('popular')">Populares</button>
-    <button onclick="filter('action')">AÃ§Ã£o</button>
-    <button onclick="filter('fantasy')">Fantasia</button>
-  </nav>
-  <form class="search" onsubmit="search(event)">
-    <input id="q" placeholder="Buscar anime..."><button>Buscar</button>
-  </form>
+<div class="nav">
+<div class="logo">ASPEC<span>TV</span></div>
+<nav><a href="#" class="active">Animes</a><a href="#">Populares</a><a href="#">Ação</a><a href="#">Fantasia</a></nav>
+<form class="search" onsubmit="searchAnime(event)"><input id="search" placeholder="Buscar anime..."><button>Buscar</button></form>
+</div>
 </header>
 
+<main>
 <section class="hero">
-  <div>
-    <small>ASPEC TV â€¢ ANIMES</small>
-    <h1>Animes<br>Dublados PT-BR</h1>
-    <p>CatÃ¡logo de demonstraÃ§Ã£o com player VidRift integrado diretamente Ã  pÃ¡gina. Cada tÃ­tulo possui temporadas e episÃ³dios configurÃ¡veis.</p>
-  </div>
+<div class="eyebrow">ASPEC TV • ANIMES</div>
+<h1>Animes em um só lugar.</h1>
+<p>Catálogo de animes com capas oficiais, temporadas e episódios. O player usa o embed do VidRift diretamente na página.</p>
+<button onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">Explorar catálogo</button>
 </section>
 
-<section class="section">
-  <h2>CatÃ¡logo</h2>
-  <p class="sub">Clique em um anime para abrir temporadas e episÃ³dios.</p>
-  <div id="grid" class="grid"></div>
-</section>
+<div class="notice">As capas são carregadas automaticamente do catálogo público de anime. A disponibilidade de áudio dublado PT-BR depende da fonte encontrada pelo player.</div>
 
-<div id="modal" class="modal">
-  <button class="close" onclick="closeModal()">Ã—</button>
-  <div class="box">
-    <div class="player" id="player"></div>
-    <div class="details">
-      <h2 id="name"></h2>
-      <p id="desc"></p>
-      <h3>EpisÃ³dios</h3>
-      <div id="episodes" class="episodes"></div>
-    </div>
-  </div>
+<section id="catalogo">
+<h2 class="section-title">Animes</h2>
+<div class="section-sub">Clique em um anime para abrir temporadas e episódios.</div>
+<div id="grid" class="grid"></div>
+<div id="empty" class="empty">Nenhum anime encontrado.</div>
+</section>
+</main>
+
+<div id="modal" class="modal" onclick="closeOutside(event)">
+<div class="box">
+<button class="close" onclick="closeModal()">×</button>
+<div class="player"><iframe id="player" allowfullscreen allow="autoplay; fullscreen" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+<div class="info">
+<h2 id="title"></h2>
+<p id="desc"></p>
+<div class="episodes" id="episodes"></div>
+<div class="audio-note">PT-BR: o site não pode garantir dublagem só pelo TMDB. O VidRift documenta legendas em 30+ idiomas, mas a faixa de áudio disponível varia por título/fonte.</div>
+</div>
+</div>
 </div>
 
 <script>
-const animes=[
- {title:"Attack on Titan",tmdb:"1429",desc:"Anime de aÃ§Ã£o e fantasia.",cats:["popular","action"],seasons:[{n:1,eps:25},{n:2,eps:12},{n:3,eps:22},{n:4,eps:30}]},
- {title:"Demon Slayer",tmdb:"85937",desc:"Aventura, aÃ§Ã£o e fantasia.",cats:["popular","action","fantasy"],seasons:[{n:1,eps:26},{n:2,eps:18},{n:3,eps:11},{n:4,eps:8}]},
- {title:"Jujutsu Kaisen",tmdb:"95479",desc:"AÃ§Ã£o e sobrenatural.",cats:["popular","action"],seasons:[{n:1,eps:24},{n:2,eps:23}]},
- {title:"One Piece",tmdb:"37854",desc:"Aventura e aÃ§Ã£o.",cats:["popular","action"],seasons:[{n:1,eps:20}]},
- {title:"Black Clover",tmdb:"73223",desc:"Fantasia e aÃ§Ã£o.",cats:["action","fantasy"],seasons:[{n:1,eps:170}]},
- {title:"Solo Leveling",tmdb:"127532",desc:"AÃ§Ã£o e fantasia.",cats:["popular","action","fantasy"],seasons:[{n:1,eps:12},{n:2,eps:13}]},
- {title:"My Hero Academia",tmdb:"65930",desc:"HerÃ³is e aÃ§Ã£o.",cats:["popular","action"],seasons:[{n:1,eps:13},{n:2,eps:25}]},
- {title:"Dr. STONE",tmdb:"86031",desc:"Aventura e ficÃ§Ã£o cientÃ­fica.",cats:["action","fantasy"],seasons:[{n:1,eps:24},{n:2,eps:11}]}
+const anime=[
+ {name:"Attack on Titan",tmdb:"1429",search:"Attack on Titan"},
+ {name:"Demon Slayer",tmdb:"85937",search:"Kimetsu no Yaiba"},
+ {name:"Jujutsu Kaisen",tmdb:"95479",search:"Jujutsu Kaisen"},
+ {name:"One Piece",tmdb:"37854",search:"One Piece"},
+ {name:"Black Clover",tmdb:"60572",search:"Black Clover"},
+ {name:"Solo Leveling",tmdb:"127532",search:"Ore dake Level Up na Ken"},
+ {name:"My Hero Academia",tmdb:"65930",search:"Boku no Hero Academia"},
+ {name:"Dr. STONE",tmdb:"86031",search:"Dr. Stone"}
 ];
 
-let current=animes;
+const grid=document.getElementById("grid");
+const empty=document.getElementById("empty");
 
-function render(list){
- const g=document.getElementById("grid");g.innerHTML="";
- list.forEach(a=>{
-  const c=document.createElement("article");c.className="card";
-  c.innerHTML=`<div class="poster"><div><strong>${esc(a.title)}</strong><span>ðŸ‡§ðŸ‡· DUBLADO</span></div></div><div class="info"><div class="title">${esc(a.title)}</div><div class="meta">Anime â€¢ PT-BR</div></div>`;
-  c.onclick=()=>openAnime(a);g.appendChild(c);
+function fallback(n){
+ return "data:image/svg+xml;charset=UTF-8,"+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 750"><rect width="500" height="750" fill="#17131f"/><text x="50%" y="48%" fill="#9b6cff" font-size="42" text-anchor="middle" font-family="Arial" font-weight="900">ASPEC TV</text><text x="50%" y="55%" fill="#aaa" font-size="20" text-anchor="middle" font-family="Arial">${n}</text></svg>`);
+}
+
+function render(list=anime){
+ grid.innerHTML="";
+ empty.style.display=list.length?"none":"block";
+ list.forEach((a,i)=>{
+   const card=document.createElement("article");
+   card.className="card";
+   card.innerHTML=`<img class="poster" id="poster-${i}" src="${fallback(a.name)}" alt="${a.name}"><div class="card-body"><span class="badge">ANIME</span><h3>${a.name}</h3><div class="meta">TMDB ${a.tmdb}</div></div>`;
+   card.onclick=()=>openAnime(a);
+   grid.appendChild(card);
+   loadPoster(a,i);
  });
 }
+
+async function loadPoster(a,i){
+ try{
+   const r=await fetch("https://api.jikan.moe/v4/anime?q="+encodeURIComponent(a.search)+"&limit=1");
+   const j=await r.json();
+   const img=j?.data?.[0]?.images?.jpg?.large_image_url || j?.data?.[0]?.images?.jpg?.image_url;
+   if(img) document.getElementById("poster-"+i).src=img;
+ }catch(e){}
+}
+
+function searchAnime(e){
+ e.preventDefault();
+ const q=document.getElementById("search").value.trim().toLowerCase();
+ render(q?anime.filter(a=>a.name.toLowerCase().includes(q)):anime);
+}
+
 function openAnime(a){
- document.getElementById("name").textContent=a.title;
- document.getElementById("desc").textContent=a.desc+" Player incorporado via VidRift.";
- let e=document.getElementById("episodes");e.innerHTML="";
- a.seasons.forEach(s=>{
-  const h=document.createElement("div");h.style.gridColumn="1/-1";h.style.marginTop="10px";h.innerHTML=`<b>Temporada ${s.n}</b>`;e.appendChild(h);
-  for(let ep=1;ep<=s.eps;ep++){
-   const b=document.createElement("button");b.className="ep";b.textContent="EP "+String(ep).padStart(2,"0");b.onclick=()=>play(a,s.n,ep);e.appendChild(b);
-  }
- });
  document.getElementById("modal").classList.add("open");
- play(a,a.seasons[0].n,1);
+ document.getElementById("title").textContent=a.name;
+ document.getElementById("desc").textContent="Selecione um episódio. O player será carregado pelo VidRift.";
+ const eps=document.getElementById("episodes"); eps.innerHTML="";
+ for(let n=1;n<=12;n++){
+   const b=document.createElement("button");b.className="ep";b.textContent="Episódio "+n;
+   b.onclick=()=>play(a,n,b);eps.appendChild(b);
+ }
+ play(a,1,eps.firstChild);
 }
-function play(a,season,episode){
- const url=`https://embed.vidrift.net/embed/tv/${a.tmdb}/${season}/${episode}`;
- document.getElementById("player").innerHTML=`<iframe src="${url}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>`;
+function play(a,ep,btn){
+ document.querySelectorAll(".ep").forEach(x=>x.classList.remove("active"));
+ if(btn)btn.classList.add("active");
+ const url=`https://embed.vidrift.net/embed/tv/${a.tmdb}/1/${ep}?brand=ASPECTV&brandColor=8b5cf6`;
+ document.getElementById("player").src=url;
 }
-function closeModal(){document.getElementById("modal").classList.remove("open");document.getElementById("player").innerHTML=""}
-function filter(cat){current=cat==="all"?animes:animes.filter(a=>a.cats.includes(cat));render(current)}
-function search(e){e.preventDefault();let q=document.getElementById("q").value.toLowerCase();render(animes.filter(a=>a.title.toLowerCase().includes(q)))}
-function scrollTop(){window.scrollTo({top:0,behavior:"smooth"})}
-function esc(v){return String(v).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
-render(animes);
+function closeModal(){document.getElementById("modal").classList.remove("open");document.getElementById("player").src=""}
+function closeOutside(e){if(e.target.id==="modal")closeModal()}
+render();
 </script>
 </body>
 </html>
