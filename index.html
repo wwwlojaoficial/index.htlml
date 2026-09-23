@@ -84,9 +84,8 @@ h1{font-size:clamp(40px,7vw,70px);line-height:.96;margin:12px 0}.hero p{color:va
   ASPEC TV
   Não é necessário TMDB API key nesta versão.
 
-  EmbedMovies:
-  - FILMES: use IMDb ID, por exemplo "tt1234567"
-  - SÉRIES/ANIMES: use TMDB ID, conforme a documentação atual do serviço.
+  Nesta versão inicial usamos somente títulos disponibilizados
+  como domínio público no Internet Archive.
 
   Não coloque tokens ou chaves privadas neste arquivo público.
 */
@@ -94,19 +93,19 @@ h1{font-size:clamp(40px,7vw,70px);line-height:.96;margin:12px 0}.hero p{color:va
 const catalogo = [
   {
     tipo: "movie",
-    titulo: "Filme de teste",
-    ano: "2026",
-    poster: "https://placehold.co/500x750/111118/8b5cf6?text=ASPEC+TV",
-    imdbId: "COLOQUE_IMDB_ID_AQUI",
-    descricao: "Título de teste do catálogo ASPEC TV."
+    titulo: "Night of the Living Dead",
+    ano: "1968",
+    poster: "https://placehold.co/500x750/111118/8b5cf6?text=NIGHT%20OF%20THE%20LIVING%20DEAD",
+    archiveId: "night_of_the_living_dead",
+    descricao: "Clássico de terror de 1968. A obra é amplamente disponibilizada como domínio público nos EUA; confirme os direitos aplicáveis à sua região antes de redistribuir."
   },
   {
-    tipo: "tv",
-    titulo: "Série de teste",
-    ano: "2026",
-    poster: "https://placehold.co/500x750/111118/8b5cf6?text=SERIE",
-    tmdbId: "COLOQUE_TMDB_ID_AQUI",
-    descricao: "Série de teste do catálogo ASPEC TV."
+    tipo: "movie",
+    titulo: "His Girl Friday",
+    ano: "1940",
+    poster: "https://placehold.co/500x750/111118/8b5cf6?text=HIS%20GIRL%20FRIDAY",
+    archiveId: "his_girl_friday",
+    descricao: "Comédia romântica de 1940. Há uma cópia disponibilizada como domínio público no Internet Archive."
   }
 ];
 
@@ -132,27 +131,15 @@ function openPlayer(item){
   document.getElementById("detailTitle").textContent=item.titulo;
   document.getElementById("detailDescription").textContent=item.descricao||"";
 
-  let url="";
-  if(item.tipo==="movie"){
-    if(!item.imdbId || item.imdbId.includes("COLOQUE")){
-      showPlayerMessage("ID IMDb não configurado","Edite o filme e coloque o IMDb ID.");
-    }else{
-      url=`https://myembed.biz/filme/${encodeURIComponent(item.imdbId)}`;
-      setIframe(url);
-    }
+  if(item.archiveId){
+    setIframe(`https://archive.org/embed/${encodeURIComponent(item.archiveId)}`);
   }else{
-    if(!item.tmdbId || item.tmdbId.includes("COLOQUE")){
-      showPlayerMessage("ID TMDB não configurado","Edite a série e coloque o TMDB ID.");
-    }else{
-      url=`https://myembed.biz/serie/${encodeURIComponent(item.tmdbId)}/1/1`;
-      setIframe(url);
-    }
+    showPlayerMessage("Fonte não configurada","Este título ainda não possui uma fonte de reprodução.");
   }
 
   document.getElementById("modal").classList.add("active");
   document.body.style.overflow="hidden";
 }
-
 function setIframe(url){
   document.getElementById("player").innerHTML=`
     <iframe src="${url}"
