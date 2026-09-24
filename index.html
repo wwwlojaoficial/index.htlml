@@ -1,246 +1,1371 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ASPEC TV — Animes Dublados PT-BR</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ASPEC TV</title>
+
 <style>
-:root{--bg:#07070b;--panel:#111119;--panel2:#17131f;--purple:#8b5cf6;--purple2:#a855f7;--text:#fff;--muted:#a7a3b3;--line:#25212e}
-*{box-sizing:border-box}
-body{margin:0;background:radial-gradient(circle at 80% 0,#25143f 0,transparent 32%),var(--bg);color:var(--text);font-family:Inter,Arial,sans-serif}
-header{position:sticky;top:0;z-index:20;background:rgba(7,7,11,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-.nav{max-width:1250px;margin:auto;display:flex;align-items:center;gap:24px;padding:14px 22px}
-.logo{font-size:20px;font-weight:900;white-space:nowrap}.logo span{color:var(--purple)}
-nav{display:flex;gap:16px}nav a{color:#aaa5b4;text-decoration:none;font-size:13px}nav a.active,nav a:hover{color:#fff}
-.search{margin-left:auto;display:flex;background:#111019;border:1px solid #282330;border-radius:10px;overflow:hidden}
-.search input{width:190px;background:none;border:0;outline:0;color:#fff;padding:10px 12px}.search button,.hero button{border:0;background:var(--purple);color:#fff;font-weight:800;padding:10px 15px;cursor:pointer}
-main{max-width:1250px;margin:auto;padding:0 22px 70px}
-.hero{padding:75px 0 48px}.eyebrow{color:#b58aff;font-size:12px;font-weight:900;letter-spacing:2px}
-h1{font-size:clamp(42px,7vw,76px);line-height:.98;margin:12px 0 18px;max-width:760px}
-.hero p{color:var(--muted);max-width:720px;line-height:1.7}
-.notice{border:1px solid #28232f;background:#0e0d13;border-radius:12px;padding:13px 15px;color:#aaa5b4;font-size:13px;margin-bottom:34px}
-.section-title{font-size:22px;margin:0 0 7px}.section-sub{color:#817b8d;font-size:13px;margin-bottom:18px}
-.filterbar{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 22px}
-.filter{background:#121018;border:1px solid #2a2432;color:#aaa;padding:9px 13px;border-radius:9px;cursor:pointer;font-weight:700}
-.filter:hover,.filter.active{background:var(--purple);border-color:var(--purple);color:#fff}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:16px}
-.card{background:linear-gradient(180deg,#17131f,#0e0d13);border:1px solid #24202b;border-radius:14px;overflow:hidden;cursor:pointer;transition:.18s;position:relative}
-.card:hover{transform:translateY(-4px);border-color:#6d3fc0}
-.poster{width:100%;aspect-ratio:2/3;object-fit:cover;display:block;background:#1a1621}
-.card-body{padding:12px}.card h3{font-size:14px;margin:0 0 7px}.meta{font-size:11px;color:#777183}
-.badge{display:inline-block;margin-bottom:7px;padding:4px 7px;border-radius:999px;background:#24143c;color:#c9a9ff;font-size:9px;font-weight:900}
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:50;overflow:auto;padding:25px}
-.modal.open{display:block}.box{max-width:1000px;margin:20px auto;background:#0d0c12;border:1px solid #29232f;border-radius:18px;overflow:hidden}
-.close{float:right;margin:10px;background:#211d28;border:0;color:#fff;border-radius:9px;width:38px;height:38px;font-size:20px;cursor:pointer}
-.player{position:relative;aspect-ratio:16/9;background:#000}.player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.info{padding:20px}.info h2{margin:0 0 8px}.info p{color:#9992a5;line-height:1.6}.episodes{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}
-.ep{border:1px solid #302936;background:#17131d;color:#ddd;padding:9px 12px;border-radius:8px;cursor:pointer}.ep:hover,.ep.active{background:var(--purple);border-color:var(--purple)}
-.audio-note{font-size:12px;color:#8e8799;margin-top:12px}
-.empty{display:none;padding:30px;text-align:center;color:#8e8799}
-@media(max-width:700px){.nav{gap:12px;padding:12px 14px}nav{gap:10px}.search input{width:105px}main{padding:0 14px 50px}.hero{padding:55px 0 35px}.grid{grid-template-columns:repeat(2,1fr);gap:12px}.modal{padding:8px}.box{margin:5px auto}}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#07070b;
+    color:#fff;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+/* HEADER */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(7,7,11,.95);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid #25222d;
+}
+
+.nav{
+    max-width:1200px;
+    margin:auto;
+    padding:15px 20px;
+    display:flex;
+    align-items:center;
+    gap:25px;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:900;
+    white-space:nowrap;
+}
+
+.logo span{
+    color:#8b5cf6;
+}
+
+nav{
+    display:flex;
+    gap:8px;
+}
+
+nav button,
+.filter{
+    background:#111018;
+    border:1px solid #292532;
+    color:#aaa;
+    padding:9px 13px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+nav button:hover,
+nav button.active,
+.filter:hover,
+.filter.active{
+    background:#8b5cf6;
+    border-color:#8b5cf6;
+    color:white;
+}
+
+.search{
+    margin-left:auto;
+    display:flex;
+    border:1px solid #292532;
+    border-radius:9px;
+    overflow:hidden;
+}
+
+.search input{
+    width:200px;
+    padding:10px;
+    border:0;
+    outline:none;
+    background:#111018;
+    color:white;
+}
+
+.search button{
+    border:0;
+    background:#8b5cf6;
+    color:white;
+    padding:0 15px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+/* MAIN */
+
+main{
+    max-width:1200px;
+    margin:auto;
+    padding:0 20px 70px;
+}
+
+.hero{
+    padding:80px 0 55px;
+}
+
+.eyebrow{
+    color:#a77cff;
+    font-size:12px;
+    font-weight:bold;
+    letter-spacing:3px;
+}
+
+.hero h1{
+    margin-top:12px;
+    font-size:clamp(42px,7vw,75px);
+    line-height:.95;
+}
+
+.hero p{
+    max-width:650px;
+    margin-top:20px;
+    color:#aaa;
+    line-height:1.7;
+}
+
+.hero button{
+    margin-top:25px;
+    background:#8b5cf6;
+    border:0;
+    color:white;
+    padding:13px 18px;
+    border-radius:9px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+/* CATALOG */
+
+.filters{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin:20px 0 25px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:
+        repeat(auto-fill,minmax(160px,1fr));
+    gap:16px;
+}
+
+.card{
+    background:#111118;
+    border:1px solid #292532;
+    border-radius:13px;
+    overflow:hidden;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    border-color:#8b5cf6;
+}
+
+.poster{
+    width:100%;
+    aspect-ratio:2/3;
+    object-fit:cover;
+    display:block;
+    background:#18131f;
+}
+
+.body{
+    padding:11px;
+}
+
+.body h3{
+    font-size:14px;
+    margin-bottom:8px;
+}
+
+.meta{
+    color:#777;
+    font-size:11px;
+}
+
+.badge{
+    display:inline-block;
+    background:#281744;
+    color:#d7c4ff;
+    padding:4px 7px;
+    border-radius:20px;
+    font-size:9px;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.empty{
+    display:none;
+    text-align:center;
+    color:#777;
+    padding:40px;
+}
+
+/* MODAL */
+
+.modal{
+    position:fixed;
+    inset:0;
+    z-index:200;
+    display:none;
+    overflow:auto;
+    padding:20px;
+    background:rgba(0,0,0,.9);
+}
+
+.modal.open{
+    display:block;
+}
+
+.box{
+    max-width:1000px;
+    margin:20px auto;
+    background:#0d0c12;
+    border:1px solid #292532;
+    border-radius:15px;
+    overflow:hidden;
+}
+
+.close{
+    position:absolute;
+    right:25px;
+    top:25px;
+    z-index:5;
+    width:40px;
+    height:40px;
+    border:0;
+    border-radius:8px;
+    background:#25202d;
+    color:white;
+    font-size:22px;
+    cursor:pointer;
+}
+
+.player{
+    width:100%;
+    aspect-ratio:16/9;
+    background:#000;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.player iframe,
+.player video{
+    width:100%;
+    height:100%;
+    border:0;
+}
+
+.placeholder{
+    text-align:center;
+    max-width:600px;
+    padding:30px;
+    color:#999;
+    line-height:1.6;
+}
+
+.placeholder b{
+    display:block;
+    color:white;
+    font-size:20px;
+    margin-bottom:10px;
+}
+
+.info{
+    padding:20px;
+}
+
+.info h2{
+    margin-bottom:8px;
+}
+
+.info p{
+    color:#888;
+}
+
+.seasons,
+.episodes{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:15px;
+}
+
+.ep{
+    padding:9px 12px;
+    border-radius:8px;
+    border:1px solid #302a38;
+    background:#18151e;
+    color:#ddd;
+    cursor:pointer;
+}
+
+.ep:hover,
+.ep.active{
+    background:#8b5cf6;
+    border-color:#8b5cf6;
+    color:white;
+}
+
+.notice{
+    margin-top:20px;
+    padding:14px;
+    border:1px dashed #393240;
+    border-radius:9px;
+    color:#888;
+    font-size:12px;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+    .nav{
+        flex-wrap:wrap;
+        gap:12px;
+    }
+
+    nav{
+        width:100%;
+        overflow:auto;
+    }
+
+    .search{
+        width:100%;
+        margin-left:0;
+    }
+
+    .search input{
+        width:100%;
+    }
+
+    main{
+        padding-left:13px;
+        padding-right:13px;
+    }
+
+    .hero{
+        padding-top:55px;
+    }
+
+    .grid{
+        grid-template-columns:
+            repeat(2,1fr);
+        gap:12px;
+    }
+
+}
 </style>
 </head>
+
 <body>
+
 <header>
+
 <div class="nav">
-<div class="logo">ASPEC<span>TV</span></div>
-<nav>
-<a href="#" class="active" onclick="setFilter('all');return false">Todos</a>
-<a href="#" onclick="setFilter('dub');return false">Dublado PT-BR</a>
-<a href="#" onclick="setFilter('sub');return false">Legendado</a>
-</nav>
-<form class="search" onsubmit="searchAnime(event)"><input id="search" placeholder="Buscar anime..."><button>Buscar</button></form>
+
+<div class="logo">
+ASPEC<span>TV</span>
 </div>
+
+<nav>
+
+<button
+class="active"
+onclick="setFilter('all')">
+Todos
+</button>
+
+<button
+onclick="setFilter('dub')">
+Dublado PT-BR
+</button>
+
+<button
+onclick="setFilter('sub')">
+Legendado
+</button>
+
+</nav>
+
+<form
+class="search"
+onsubmit="searchAnime(event)">
+
+<input
+id="search"
+placeholder="Buscar anime...">
+
+<button>
+Buscar
+</button>
+
+</form>
+
+</div>
+
 </header>
 
+
 <main>
+
 <section class="hero">
-<div class="eyebrow">ASPEC TV • ANIMES</div>
-<h1>Animes em um só lugar.</h1>
-<p>Catálogo de animes com capas oficiais, temporadas e episódios. O player usa o embed do VidRift diretamente na página.</p>
-<button onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">Explorar catálogo</button>
+
+<div class="eyebrow">
+ASPEC TV • ANIMES
+</div>
+
+<h1>
+Seu catálogo<br>
+de animes.
+</h1>
+
+<p>
+Encontre seus animes favoritos em um catálogo rápido,
+bonito e adaptado para celular.
+</p>
+
+<button
+onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">
+
+Explorar catálogo
+
+</button>
+
 </section>
 
-<div class="notice">O catálogo marca títulos com dublagem PT-BR conhecida. Isso é uma informação do catálogo; a faixa de áudio efetivamente disponível no VidRift depende da fonte do vídeo.</div>
 
 <section id="catalogo">
-<h2 class="section-title">Animes</h2>
-<div class="section-sub">Clique em um anime para abrir temporadas e episódios.</div>
-<div class="filterbar">
-<button class="filter active" onclick="setFilter('all')">Todos</button>
-<button class="filter" onclick="setFilter('dub')">Dublado PT-BR</button>
-<button class="filter" onclick="setFilter('sub')">Legendado</button>
+
+<h2>
+Catálogo de Animes
+</h2>
+
+<p style="color:#777;margin-top:8px;font-size:13px">
+
+Capas são carregadas automaticamente.
+A reprodução depende da fonte de vídeo configurada.
+
+</p>
+
+
+<div class="filters">
+
+<button
+class="filter active"
+onclick="setFilter('all')">
+Todos
+</button>
+
+<button
+class="filter"
+onclick="setFilter('dub')">
+Dublado PT-BR
+</button>
+
+<button
+class="filter"
+onclick="setFilter('sub')">
+Legendado
+</button>
+
 </div>
-<div id="grid" class="grid"></div>
-<div id="empty" class="empty">Nenhum anime encontrado.</div>
+
+
+<div
+id="grid"
+class="grid">
+</div>
+
+<div
+id="empty"
+class="empty">
+
+Nenhum anime encontrado.
+
+</div>
+
 </section>
+
 </main>
 
-<div id="modal" class="modal" onclick="closeOutside(event)">
+
+<!-- PLAYER -->
+
+<div
+id="modal"
+class="modal"
+onclick="outsideModal(event)">
+
 <div class="box">
-<button class="close" onclick="closeModal()">×</button>
-<div class="player"><iframe id="player" allowfullscreen allow="autoplay; fullscreen" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+
+<button
+class="close"
+onclick="closeModal()">
+
+×
+
+</button>
+
+
+<div
+id="player"
+class="player">
+
+<div class="placeholder">
+
+<b>
+Player ASPEC TV
+</b>
+
+Selecione um episódio.
+
+</div>
+
+</div>
+
+
 <div class="info">
-<h2 id="title"></h2>
-<p id="desc"></p>
-<div id="seasons" class="episodes"></div><div class="episodes" id="episodes"></div>
-<div class="audio-note">PT-BR: o site não pode garantir dublagem só pelo TMDB. O VidRift documenta legendas em 30+ idiomas, mas a faixa de áudio disponível varia por título/fonte.</div>
+
+<h2 id="animeTitle">
+</h2>
+
+<p id="animeDescription">
+Selecione uma temporada e um episódio.
+</p>
+
+
+<div
+id="seasons"
+class="seasons">
 </div>
+
+
+<div
+id="episodes"
+class="episodes">
 </div>
+
+
+<div class="notice">
+
+O player está preparado para receber
+uma URL de vídeo ou iframe de uma fonte
+que permita incorporação.
+
 </div>
+
+</div>
+
+</div>
+
+</div>
+
 
 <script>
-const anime=[
- {name:"Attack on Titan",tmdb:"1429",search:"Shingeki no Kyojin",dub:true},
- {name:"Demon Slayer",tmdb:"85937",search:"Kimetsu no Yaiba",dub:true},
- {name:"Jujutsu Kaisen",tmdb:"95479",search:"Jujutsu Kaisen",dub:true},
- {name:"One Piece",tmdb:"37854",search:"One Piece",dub:true},
- {name:"Black Clover",tmdb:"60572",search:"Black Clover",dub:true},
- {name:"Solo Leveling",tmdb:"127532",search:"Ore dake Level Up na Ken",dub:true},
- {name:"My Hero Academia",tmdb:"65930",search:"Boku no Hero Academia",dub:true},
- {name:"Dr. STONE",tmdb:"86031",search:"Dr. Stone",dub:true},
- {name:"Naruto",tmdb:"46260",search:"Naruto",dub:true},
- {name:"Naruto Shippuden",tmdb:"31910",search:"Naruto Shippuden",dub:true},
- {name:"Dragon Ball Z",tmdb:"12971",search:"Dragon Ball Z",dub:true},
- {name:"Dragon Ball Super",tmdb:"62715",search:"Dragon Ball Super",dub:true},
- {name:"Bleach",tmdb:"30984",search:"Bleach",dub:true},
- {name:"Death Note",tmdb:"13916",search:"Death Note",dub:true},
- {name:"Hunter x Hunter",tmdb:"46298",search:"Hunter x Hunter",dub:true},
- {name:"Yu Yu Hakusho",tmdb:"777",search:"Yu Yu Hakusho",dub:true},
- {name:"Pokémon",tmdb:"60572",search:"Pokemon",dub:true},
- {name:"Digimon Adventure",tmdb:"31657",search:"Digimon Adventure",dub:true},
- {name:"One Punch Man",tmdb:"63926",search:"One Punch Man",dub:true},
- {name:"Mob Psycho 100",tmdb:"67075",search:"Mob Psycho 100",dub:true},
- {name:"Tokyo Revengers",tmdb:"105009",search:"Tokyo Revengers",dub:true},
- {name:"Chainsaw Man",tmdb:"114410",search:"Chainsaw Man",dub:true},
- {name:"Spy x Family",tmdb:"120089",search:"Spy x Family",dub:true},
- {name:"Haikyuu!!",tmdb:"60863",search:"Haikyuu",dub:true},
- {name:"Blue Lock",tmdb:"131041",search:"Blue Lock",dub:true},
- {name:"Fire Force",tmdb:"66732",search:"Enen no Shouboutai",dub:true},
- {name:"Fairy Tail",tmdb:"46261",search:"Fairy Tail",dub:true},
- {name:"Sword Art Online",tmdb:"45790",search:"Sword Art Online",dub:true},
- {name:"The Seven Deadly Sins",tmdb:"62104",search:"Nanatsu no Taizai",dub:true},
- {name:"JoJo's Bizarre Adventure",tmdb:"45782",search:"JoJo no Kimyou na Bouken",dub:true},
- {name:"Black Lagoon",tmdb:"3436",search:"Black Lagoon",dub:true},
- {name:"Yu-Gi-Oh!",tmdb:"12484",search:"Yu-Gi-Oh!",dub:true},
- {name:"Inuyasha",tmdb:"21311",search:"InuYasha",dub:true},
- {name:"Fullmetal Alchemist: Brotherhood",tmdb:"31911",search:"Hagane no Renkinjutsushi",dub:true},
- {name:"Code Geass",tmdb:"31724",search:"Code Geass",dub:true},
- {name:"Vinland Saga",tmdb:"88803",search:"Vinland Saga",dub:true},
- {name:"The Rising of the Shield Hero",tmdb:"92830",search:"Tate no Yuusha no Nariagari",dub:true},
- {name:"Re:Zero",tmdb:"65942",search:"Re:Zero kara Hajimeru Isekai Seikatsu",dub:true},
- {name:"Frieren",tmdb:"209867",search:"Sousou no Frieren",dub:true},
- {name:"Delicious in Dungeon",tmdb:"216256",search:"Dungeon Meshi",dub:true},
- {name:"The Apothecary Diaries",tmdb:"220542",search:"Kusuriya no Hitorigoto",dub:true},
- {name:"Kaiju No. 8",tmdb:"238402",search:"Kaijuu 8-gou",dub:true},
- {name:"Mashle",tmdb:"204700",search:"Mashle",dub:true}
+
+/* ==============================
+   CATÁLOGO
+============================== */
+
+const animes = [
+
+{
+name:"Demon Slayer",
+search:"Kimetsu no Yaiba",
+type:"dub",
+seasons:4,
+source:""
+},
+
+{
+name:"Jujutsu Kaisen",
+search:"Jujutsu Kaisen",
+type:"dub",
+seasons:2,
+source:""
+},
+
+{
+name:"One Piece",
+search:"One Piece",
+type:"dub",
+seasons:1,
+source:""
+},
+
+{
+name:"Naruto",
+search:"Naruto",
+type:"dub",
+seasons:1,
+source:""
+},
+
+{
+name:"Naruto Shippuden",
+search:"Naruto Shippuden",
+type:"dub",
+seasons:1,
+source:""
+},
+
+{
+name:"Dragon Ball Z",
+search:"Dragon Ball Z",
+type:"dub",
+seasons:1,
+source:""
+},
+
+{
+name:"Dragon Ball Super",
+search:"Dragon Ball Super",
+type:"dub",
+seasons1:1,
+seasons:1,
+source:""
+},
+
+{
+name:"Bleach",
+search:"Bleach",
+type:"dub",
+seasons:1,
+source:""
+},
+
+{
+name:"Death Note",
+search:"Death Note",
+type:"dub",
+seasons:1,
+source:""
+},
+
+{
+name:"Hunter x Hunter",
+search:"Hunter x Hunter",
+type:"dub",
+seasons:1,
+source:""
+},
+
+{
+name:"My Hero Academia",
+search:"Boku no Hero Academia",
+type:"dub",
+seasons:7,
+source:""
+},
+
+{
+name:"Black Clover",
+search:"Black Clover",
+type:"dub",
+seasons:1,
+source:""
+},
+
+{
+name:"Attack on Titan",
+search:"Shingeki no Kyojin",
+type:"dub",
+seasons:4,
+source:""
+},
+
+{
+name:"Solo Leveling",
+search:"Ore dake Level Up na Ken",
+type:"dub",
+seasons:2,
+source:""
+},
+
+{
+name:"One Punch Man",
+search:"One Punch Man",
+type:"dub",
+seasons:2,
+source:""
+},
+
+{
+name:"Mob Psycho 100",
+search:"Mob Psycho 100",
+type:"dub",
+seasons:3,
+source:""
+},
+
+{
+name:"Chainsaw Man",
+search:"Chainsaw Man",
+type:"dub",
+seasons:1,
+source:""
+},
+
+{
+name:"Spy x Family",
+search:"Spy x Family",
+type:"dub",
+seasons:2,
+source:""
+},
+
+{
+name:"Blue Lock",
+search:"Blue Lock",
+type:"dub",
+seasons:2,
+source:""
+},
+
+{
+name:"Haikyuu!!",
+search:"Haikyuu",
+type:"dub",
+seasons:4,
+source:""
+},
+
+{
+name:"Fire Force",
+search:"Enen no Shouboutai",
+type:"dub",
+seasons:2,
+source:""
+},
+
+{
+name:"Fairy Tail",
+search:"Fairy Tail",
+type:"dub",
+seasons:1,
+source:""
+},
+
+{
+name:"Sword Art Online",
+search:"Sword Art Online",
+type:"dub",
+seasons:4,
+source:""
+},
+
+{
+name:"JoJo's Bizarre Adventure",
+search:"JoJo no Kimyou na Bouken",
+type:"dub",
+seasons:6,
+source:""
+},
+
+{
+name:"Dr. STONE",
+search:"Dr. Stone",
+type:"dub",
+seasons:4,
+source:""
+},
+
+{
+name:"Frieren",
+search:"Sousou no Frieren",
+type:"dub",
+seasons:1,
+source:""
+},
+
+{
+name:"Kaiju No. 8",
+search:"Kaijuu 8-gou",
+type:"dub",
+seasons:2,
+source:""
+},
+
+{
+name:"Re:Zero",
+search:"Re Zero kara Hajimeru Isekai Seikatsu",
+type:"dub",
+seasons:3,
+source:""
+},
+
+{
+name:"Vinland Saga",
+search:"Vinland Saga",
+type:"dub",
+seasons:2,
+source:""
+},
+
+{
+name:"The Apothecary Diaries",
+search:"Kusuriya no Hitorigoto",
+type:"dub",
+seasons:2,
+source:""
+}
+
 ];
 
-const grid=document.getElementById("grid");
-const empty=document.getElementById("empty");
 
-function fallback(n){
- return "data:image/svg+xml;charset=UTF-8,"+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 750"><rect width="500" height="750" fill="#17131f"/><text x="50%" y="48%" fill="#9b6cff" font-size="42" text-anchor="middle" font-family="Arial" font-weight="900">ASPEC TV</text><text x="50%" y="55%" fill="#aaa" font-size="20" text-anchor="middle" font-family="Arial">${n}</text></svg>`);
+let currentFilter = "all";
+
+
+/* ==============================
+   PLACEHOLDER
+============================== */
+
+function fallbackPoster(name){
+
+return "data:image/svg+xml;charset=UTF-8," +
+
+encodeURIComponent(`
+
+<svg xmlns="http://www.w3.org/2000/svg"
+viewBox="0 0 500 750">
+
+<rect
+width="500"
+height="750"
+fill="#18131f"/>
+
+<text
+x="50%"
+y="46%"
+fill="#9b6cff"
+font-size="42"
+text-anchor="middle"
+font-family="Arial"
+font-weight="900">
+
+ASPEC TV
+
+</text>
+
+<text
+x="50%"
+y="54%"
+fill="#aaa"
+font-size="20"
+text-anchor="middle"
+font-family="Arial">
+
+${name}
+
+</text>
+
+</svg>
+
+`);
+
 }
 
-let currentFilter="all";
 
-function filteredList(){
-  const q=document.getElementById("search").value.trim().toLowerCase();
-  return anime.filter(a=>{
-    const matchesText=!q || a.name.toLowerCase().includes(q);
-    const matchesFilter=currentFilter==="all" || (currentFilter==="dub" ? a.dub : !a.dub);
-    return matchesText && matchesFilter;
-  });
+/* ==============================
+   RENDER
+============================== */
+
+function getFiltered(){
+
+const query =
+document
+.getElementById("search")
+.value
+.toLowerCase()
+.trim();
+
+return animes.filter(anime => {
+
+const filterOK =
+currentFilter === "all" ||
+anime.type === currentFilter;
+
+const searchOK =
+!query ||
+anime.name
+.toLowerCase()
+.includes(query);
+
+return filterOK && searchOK;
+
+});
+
 }
+
 
 function render(){
-  const list=filteredList();
-  grid.innerHTML="";
-  empty.style.display=list.length?"none":"block";
-  list.forEach((a,i)=>{
-    const card=document.createElement("article");
-    card.className="card";
-    card.innerHTML=`<img class="poster" id="poster-${i}" src="${fallback(a.name)}" alt="${a.name}"><div class="card-body"><span class="badge">${a.dub ? "DUBLAGEM PT-BR" : "LEGENDADO"}</span><h3>${a.name}</h3><div class="meta">Anime • TMDB ${a.tmdb}</div></div>`;
-    card.onclick=()=>openAnime(a);
-    grid.appendChild(card);
-    loadPoster(a,i);
-  });
+
+const grid =
+document.getElementById("grid");
+
+const empty =
+document.getElementById("empty");
+
+const list =
+getFiltered();
+
+grid.innerHTML = "";
+
+empty.style.display =
+list.length ? "none" : "block";
+
+
+list.forEach((anime,index)=>{
+
+const card =
+document.createElement("article");
+
+card.className = "card";
+
+
+card.innerHTML = `
+
+<img
+class="poster"
+id="poster-${index}"
+src="${fallbackPoster(anime.name)}"
+alt="${anime.name}">
+
+<div class="body">
+
+<span class="badge">
+
+${anime.type === "dub"
+? "DUBLADO PT-BR"
+: "LEGENDADO"}
+
+</span>
+
+<h3>
+${anime.name}
+</h3>
+
+<div class="meta">
+Anime
+</div>
+
+</div>
+
+`;
+
+
+card.onclick =
+()=>openAnime(anime);
+
+grid.appendChild(card);
+
+loadPoster(anime,index);
+
+});
+
 }
 
-async function loadPoster(a,i){
-  try{
-    const r=await fetch("https://api.jikan.moe/v4/anime?q="+encodeURIComponent(a.search)+"&limit=1");
-    if(!r.ok) return;
-    const j=await r.json();
-    const img=j?.data?.[0]?.images?.jpg?.large_image_url || j?.data?.[0]?.images?.jpg?.image_url;
-    if(img){
-      const el=document.getElementById("poster-"+i);
-      if(el) el.src=img;
-    }
-  }catch(e){}
+
+/* ==============================
+   CAPAS REAIS
+============================== */
+
+async function loadPoster(anime,index){
+
+try{
+
+const response =
+await fetch(
+
+"https://api.jikan.moe/v4/anime?q=" +
+
+encodeURIComponent(anime.search) +
+
+"&limit=1"
+
+);
+
+if(!response.ok)
+return;
+
+const data =
+await response.json();
+
+const image =
+data
+?.data?.[0]
+?.images
+?.jpg
+?.large_image_url;
+
+
+if(image){
+
+const img =
+document.getElementById(
+"poster-"+index
+);
+
+if(img)
+img.src = image;
+
 }
 
-function setFilter(f){
-  currentFilter=f;
-  document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));
-  const btn=[...document.querySelectorAll(".filter")].find(b=>
-    (f==="all"&&b.textContent==="Todos") ||
-    (f==="dub"&&b.textContent==="Dublado PT-BR") ||
-    (f==="sub"&&b.textContent==="Legendado")
-  );
-  if(btn) btn.classList.add("active");
-  render();
+}catch(error){
+
+console.log(
+"Não foi possível carregar a capa:",
+anime.name
+);
+
 }
 
-function searchAnime(e){
-  e.preventDefault();
-  render();
 }
 
-let selectedSeason=1;
 
-function openAnime(a){
-  document.getElementById("modal").classList.add("open");
-  document.getElementById("title").textContent=a.name;
-  document.getElementById("desc").textContent="Escolha uma temporada e um episódio. O player usa o embed do VidRift.";
-  const seasons=document.getElementById("seasons");
-  seasons.innerHTML="";
-  for(let s=1;s<=3;s++){
-    const b=document.createElement("button");
-    b.className="ep"+(s===1?" active":"");
-    b.textContent="Temporada "+s;
-    b.onclick=()=>selectSeason(a,s,b);
-    seasons.appendChild(b);
-  }
-  selectSeason(a,1,seasons.firstChild);
-}
+/* ==============================
+   FILTRO
+============================== */
 
-function selectSeason(a,s,btn){
-  selectedSeason=s;
-  document.querySelectorAll("#seasons .ep").forEach(x=>x.classList.remove("active"));
-  if(btn) btn.classList.add("active");
-  const eps=document.getElementById("episodes");
-  eps.innerHTML="";
-  for(let n=1;n<=24;n++){
-    const b=document.createElement("button");
-    b.className="ep";
-    b.textContent="Episódio "+n;
-    b.onclick=()=>play(a,n,b);
-    eps.appendChild(b);
-  }
-  play(a,1,eps.firstChild);
-}
+function setFilter(filter){
 
-function play(a,ep,btn){
- document.querySelectorAll(".ep").forEach(x=>x.classList.remove("active"));
- if(btn)btn.classList.add("active");
- const url=`https://embed.vidrift.net/embed/tv/${a.tmdb}/1/${ep}?brand=ASPECTV&brandColor=8b5cf6`;
- document.getElementById("player").src=url;
-}
-function closeModal(){document.getElementById("modal").classList.remove("open");document.getElementById("player").src=""}
-function closeOutside(e){if(e.target.id==="modal")closeModal()}
+currentFilter =
+filter;
+
+document
+.querySelectorAll(".filter")
+.forEach(button=>{
+button.classList.remove("active");
+});
+
+
+if(filter === "all")
+document
+.querySelectorAll(".filter")[0]
+.classList.add("active");
+
+if(filter === "dub")
+document
+.querySelectorAll(".filter")[1]
+.classList.add("active");
+
+if(filter === "sub")
+document
+.querySelectorAll(".filter")[2]
+.classList.add("active");
+
+
 render();
+
+}
+
+
+/* ==============================
+   BUSCA
+============================== */
+
+function searchAnime(event){
+
+event.preventDefault();
+
+render();
+
+}
+
+
+/* ==============================
+   ABRIR ANIME
+============================== */
+
+function openAnime(anime){
+
+document
+.getElementById("modal")
+.classList.add("open");
+
+
+document
+.getElementById("animeTitle")
+.textContent =
+anime.name;
+
+
+const seasons =
+document.getElementById("seasons");
+
+seasons.innerHTML = "";
+
+
+for(
+let season = 1;
+season <= anime.seasons;
+season++
+){
+
+const button =
+document.createElement("button");
+
+button.className = "ep";
+
+button.textContent =
+"Temporada " + season;
+
+
+button.onclick =
+()=>showEpisodes(
+anime,
+season,
+button
+);
+
+
+seasons.appendChild(button);
+
+}
+
+
+showEpisodes(
+anime,
+1,
+seasons.firstChild
+);
+
+}
+
+
+/* ==============================
+   EPISÓDIOS
+============================== */
+
+function showEpisodes(
+anime,
+season,
+button
+){
+
+document
+.querySelectorAll("#seasons .ep")
+.forEach(
+b=>b.classList.remove("active")
+);
+
+
+if(button)
+button.classList.add("active");
+
+
+const episodes =
+document.getElementById("episodes");
+
+episodes.innerHTML = "";
+
+
+for(
+let episode = 1;
+episode <= 24;
+episode++
+){
+
+const button =
+document.createElement("button");
+
+button.className =
+"ep";
+
+button.textContent =
+"EP " + episode;
+
+
+button.onclick =
+()=>playEpisode(
+anime,
+season,
+episode
+);
+
+
+episodes.appendChild(button);
+
+}
+
+}
+
+
+/* ==============================
+   PLAYER
+============================== */
+
+function playEpisode(
+anime,
+season,
+episode
+){
+
+const player =
+document.getElementById("player");
+
+
+if(!anime.source){
+
+player.innerHTML = `
+
+<div class="placeholder">
+
+<b>
+
+${anime.name}
+
+<br>
+
+Temporada ${season}
+• Episódio ${episode}
+
+</b>
+
+A fonte de vídeo ainda não foi
+configurada para este anime.
+
+<br><br>
+
+Configure a propriedade
+
+<code>
+
+source
+
+</code>
+
+do anime no código.
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+/*
+
+Se source for um iframe:
+
+anime.source =
+"https://exemplo.com/embed/..."
+
+*/
+
+if(
+anime.source.includes("embed")
+){
+
+player.innerHTML = `
+
+<iframe
+src="${anime.source}"
+allowfullscreen
+allow="autoplay; fullscreen">
+</iframe>
+
+`;
+
+return;
+
+}
+
+
+/*
+
+Se source for um arquivo MP4:
+
+anime.source =
+"https://seusite.com/video.mp4"
+
+*/
+
+player.innerHTML = `
+
+<video
+controls
+playsinline>
+
+<source
+src="${anime.source}"
+type="video/mp4">
+
+Seu navegador não suporta vídeo HTML5.
+
+</video>
+
+`;
+
+}
+
+
+/* ==============================
+   FECHAR PLAYER
+============================== */
+
+function closeModal(){
+
+document
+.getElementById("modal")
+.classList.remove("open");
+
+
+document
+.getElementById("player")
+.innerHTML = `
+
+<div class="placeholder">
+
+<b>
+Player ASPEC TV
+</b>
+
+Selecione um episódio.
+
+</div>
+
+`;
+
+}
+
+
+function outsideModal(event){
+
+if(
+event.target.id === "modal"
+){
+
+closeModal();
+
+}
+
+}
+
+
+/* ==============================
+   INICIAR
+============================== */
+
+render();
+
 </script>
+
 </body>
 </html>
