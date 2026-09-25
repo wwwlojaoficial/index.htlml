@@ -14,6 +14,17 @@ main{max-width:1440px;margin:auto;padding:0 20px 80px}.hero{min-height:600px;pos
 .modal{position:fixed;inset:0;z-index:200;background:#000e;display:none;padding:18px;overflow:auto}.modal.open{display:block}.modal-box{max-width:1120px;margin:25px auto;background:#0b0a0f;border:1px solid var(--line);border-radius:16px;overflow:hidden}.close{position:fixed;right:22px;top:18px;width:42px;height:42px;border:0;border-radius:9px;background:#282230;color:#fff;font-size:25px;z-index:5}.player{aspect-ratio:16/9;background:#000;display:grid;place-items:center}.player iframe{width:100%;height:100%;border:0}.player-msg{text-align:center;color:#777;padding:30px}.details{padding:22px}.details h2{margin:0 0 7px;font-size:30px}.details p{color:#aaa;line-height:1.7}.detail-meta{color:#8e8796;font-size:12px}.chips{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}.chip{background:#18151d;border:1px solid #2d2834;padding:6px 9px;border-radius:99px;color:#bbb;font-size:11px}.season-bar,.episode-bar{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.episode{border:1px solid #302a38;background:#18151e;color:#ddd;padding:9px 12px;border-radius:8px}.episode.active,.episode:hover{background:var(--p);border-color:var(--p);color:#fff}
 footer{border-top:1px solid var(--line);color:#6f6976;padding:30px 20px;text-align:center;font-size:12px}.tmdb{margin-top:8px}.tmdb a{color:#a78bfa}
 @media(max-width:900px){.nav{flex-wrap:wrap}.navlinks{order:3;width:100%}.search{order:2;width:100%;margin-left:0}.hero{min-height:520px}.hero-content{padding-bottom:45px}.catalog{grid-template-columns:repeat(2,1fr);gap:12px}.row .card{min-width:155px;width:155px}main{padding:0 12px 60px}}
+
+/* Android/mobile player fix: keep the external player selection above the details panel. */
+@media (max-width:700px){
+  .modal{padding:0;align-items:flex-start;overflow-y:auto;z-index:9999;}
+  .modal-box{width:100%;max-width:none;margin:0;border-radius:0;border-left:0;border-right:0;overflow:visible;background:#0b0a0f;}
+  .close{position:fixed;right:12px;top:12px;z-index:10002;}
+  .player{width:100%;height:100dvh;min-height:100svh;aspect-ratio:auto;position:relative;z-index:10000;background:#000;}
+  .player iframe{position:absolute;inset:0;width:100%;height:100%;z-index:10001;}
+  .details{position:relative;z-index:1;padding:18px 16px 40px;background:#0b0a0f;}
+  .details h2{font-size:24px;}
+}
 </style>
 </head>
 <body>
