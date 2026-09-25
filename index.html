@@ -78,10 +78,10 @@ footer{border-top:1px solid var(--line);color:#6f6976;padding:28px 20px;text-ali
 
 <script>
 /* CONFIGURAÇÃO
-   Cole seu Bearer Token do TMDB abaixo.
+   Chave TMDB configurada para o teste.
    Em produção, mova o token para um backend/WordPress para não expô-lo no navegador.
 */
-const TMDB_TOKEN="COLE_SEU_BEARER_TOKEN_AQUI";
+const TMDB_API_KEY="b8ad39e612b18173c1b8eb5e7be92a9f";
 const TMDB="https://api.themoviedb.org/3";
 const IMG="https://image.tmdb.org/t/p/";
 const EMBED="https://myembed.biz"; // Substitua por um player autorizado que você tenha permissão para incorporar.
@@ -90,7 +90,8 @@ let data={movies:[],tv:[],all:[],hero:null,current:null};
 
 const $=s=>document.querySelector(s);
 const api=async path=>{
- const r=await fetch(TMDB+path,{headers:{Authorization:"Bearer "+TMDB_TOKEN,accept:"application/json"}});
+ const sep=path.includes("?")?"&":"?";
+ const r=await fetch(TMDB+path+sep+"api_key="+encodeURIComponent(TMDB_API_KEY),{headers:{accept:"application/json"}});
  if(!r.ok)throw new Error("TMDB "+r.status);
  return r.json();
 };
@@ -170,8 +171,8 @@ async function search(q){
 }
 
 async function start(){
- if(TMDB_TOKEN.includes("COLE_SEU")){
-  document.querySelectorAll(".state").forEach(x=>x.textContent="Configure o Bearer Token do TMDB no código.");
+ if(!TMDB_API_KEY){
+  document.querySelectorAll(".state").forEach(x=>x.textContent="Configure a chave do TMDB no código.");
   return;
  }
  try{
@@ -192,7 +193,7 @@ async function start(){
   row("#anime",anime.results.map(x=>({...x,media_type:"tv"})).slice(0,14));
   row("#dubbed",data.movies.slice(0,14));
   bindCards();
- }catch(e){document.querySelectorAll(".state").forEach(x=>x.textContent="Erro ao conectar ao TMDB. Confira o token.");}
+ }catch(e){document.querySelectorAll(".state").forEach(x=>x.textContent="Erro ao conectar ao TMDB. Confira a chave da API.");}
 }
 
 document.querySelectorAll("[data-view]").forEach(b=>b.onclick=()=>{
