@@ -3,218 +3,76 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ASPEC TV — Filmes, Séries e Animes</title>
-<meta name="description" content="ASPEC TV — catálogo de filmes, séries e animes.">
+<title>ASPEC TV — Filmes, Séries, Animes e Desenhos</title>
+<meta name="description" content="ASPEC TV — catálogo de filmes, séries, animes, desenhos e muito mais.">
 <style>
-:root{--bg:#060609;--surface:#101016;--surface2:#17151e;--line:#282431;--purple:#8b5cf6;--purple2:#b08cff;--text:#fff;--muted:#aaa4b2}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Arial,sans-serif}
-button,input{font:inherit}button{cursor:pointer}.hidden{display:none!important}
-header{position:sticky;top:0;z-index:100;background:rgba(6,6,9,.86);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
-.nav{max-width:1380px;margin:auto;min-height:68px;padding:10px 20px;display:flex;align-items:center;gap:18px}
-.logo{font-size:27px;font-weight:950;letter-spacing:-1px;white-space:nowrap}.logo span{color:var(--purple2)}
-.navlinks{display:flex;gap:4px;align-items:center}.navlinks button{border:0;background:transparent;color:#aaa;padding:10px 11px;border-radius:9px;font-weight:750}.navlinks button:hover,.navlinks button.active{background:#21182f;color:#fff}
-.search{margin-left:auto;display:flex;border:1px solid var(--line);background:#101016;border-radius:10px;overflow:hidden}.search input{width:250px;padding:11px 13px;border:0;outline:0;color:#fff;background:transparent}.search button{border:0;background:var(--purple);color:#fff;padding:0 16px;font-weight:900}
-main{max-width:1380px;margin:auto;padding:0 20px 80px}
-.hero{height:590px;position:relative;display:flex;align-items:end;overflow:hidden}.hero-bg{position:absolute;inset:0;background-position:center;background-size:cover;opacity:.55;transform:scale(1.02)}.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#060609 0%,rgba(6,6,9,.92) 28%,rgba(6,6,9,.28) 72%,#060609 100%),linear-gradient(0deg,#060609 0%,transparent 48%,rgba(6,6,9,.3) 100%)}
-.hero-content{position:relative;z-index:2;max-width:680px;padding-bottom:65px}.eyebrow{color:#c7b1ff;font-size:12px;font-weight:950;letter-spacing:3px}.hero h1{font-size:clamp(44px,6vw,78px);line-height:.94;margin:12px 0}.hero p{color:#c5c0ca;line-height:1.7;max-width:620px}.meta{color:#b6b0bd;font-size:13px;margin:13px 0}.btn{border:0;border-radius:9px;padding:13px 18px;font-weight:900}.btn.primary{background:var(--purple);color:#fff}.btn.secondary{background:#25212d;color:#fff;margin-left:7px}.btn:hover{filter:brightness(1.12)}
-section{margin-top:42px}.section-head{display:flex;align-items:end;justify-content:space-between;margin-bottom:16px}.section-head h2{margin:0;font-size:24px}.section-head span{font-size:12px;color:#716b79}
-.row{display:flex;gap:16px;overflow-x:auto;padding:2px 2px 12px;scrollbar-width:thin}.row .card{min-width:180px;width:180px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:13px;overflow:hidden;transition:.18s;cursor:pointer}.card:hover{transform:translateY(-5px);border-color:#7650b9;box-shadow:0 15px 35px #0008}
-.poster{width:100%;aspect-ratio:2/3;object-fit:cover;background:#191520;display:block}.card-body{padding:11px}.tag{display:inline-block;font-size:9px;font-weight:950;padding:4px 7px;border-radius:99px;background:#28183d;color:#d8c6ff}.card-title{font-size:14px;font-weight:800;margin:8px 0 5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.card-meta{font-size:11px;color:#777}
-.filters{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}.filter{background:#111017;border:1px solid var(--line);color:#aaa;padding:9px 13px;border-radius:9px;font-weight:800}.filter.active,.filter:hover{background:var(--purple);border-color:var(--purple);color:#fff}
-.catalog{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:17px}.state{text-align:center;color:#777;padding:45px}.notice{background:#120e1b;border:1px solid #302440;color:#aaa;padding:13px;border-radius:10px;margin-top:20px;font-size:12px;line-height:1.6}
-.modal{position:fixed;inset:0;z-index:200;background:#000e;display:none;padding:18px;overflow:auto}.modal.open{display:block}.modal-box{max-width:1100px;margin:25px auto;background:#0b0a0f;border:1px solid var(--line);border-radius:16px;overflow:hidden}.close{position:fixed;right:22px;top:18px;width:42px;height:42px;border:0;border-radius:9px;background:#282230;color:#fff;font-size:25px;z-index:5}.player{aspect-ratio:16/9;background:#000}.player iframe{width:100%;height:100%;border:0}.details{padding:22px}.details h2{margin:0 0 7px;font-size:29px}.details p{color:#aaa;line-height:1.7}.detail-meta{color:#8e8796;font-size:12px}.chips{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}.chip{background:#18151d;border:1px solid #2d2834;padding:6px 9px;border-radius:99px;color:#bbb;font-size:11px}.season-bar,.episode-bar{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.episode{border:1px solid #302a38;background:#18151e;color:#ddd;padding:9px 12px;border-radius:8px}.episode.active,.episode:hover{background:var(--purple);border-color:var(--purple);color:#fff}
-footer{border-top:1px solid var(--line);color:#6f6976;padding:28px 20px;text-align:center;font-size:12px}
-@media(max-width:800px){.nav{flex-wrap:wrap}.navlinks{order:3;width:100%;overflow:auto}.search{order:2;width:100%;margin-left:0}.search input{width:100%}.hero{height:520px}.hero-content{padding-bottom:45px}.catalog{grid-template-columns:repeat(2,1fr);gap:12px}.row .card{min-width:155px;width:155px}main{padding:0 12px 60px}}
+:root{--bg:#060609;--panel:#101016;--panel2:#15121c;--line:#282431;--p:#8b5cf6;--p2:#b99cff;--text:#fff;--muted:#a7a0ae;--green:#36d399}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 75% 0%,#1b1030 0,transparent 32%),var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif}button,input{font:inherit}button{cursor:pointer}.hidden{display:none!important}
+header{position:sticky;top:0;z-index:100;background:rgba(6,6,9,.88);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}.nav{max-width:1440px;margin:auto;min-height:70px;padding:10px 20px;display:flex;align-items:center;gap:16px}.logo{font-size:28px;font-weight:950;letter-spacing:-1.5px;white-space:nowrap}.logo span{color:var(--p2)}.navlinks{display:flex;gap:3px;align-items:center;overflow:auto}.navlinks button{border:0;background:transparent;color:#aaa;padding:10px 11px;border-radius:9px;font-weight:800;white-space:nowrap}.navlinks button:hover,.navlinks button.active{background:#21172f;color:#fff}.search{margin-left:auto;display:flex;border:1px solid var(--line);background:#101016;border-radius:10px;overflow:hidden;min-width:260px}.search input{width:100%;padding:11px 13px;border:0;outline:0;color:#fff;background:transparent}.search button{border:0;background:var(--p);color:#fff;padding:0 16px;font-weight:900}
+main{max-width:1440px;margin:auto;padding:0 20px 80px}.hero{min-height:600px;position:relative;display:flex;align-items:end;overflow:hidden}.hero-bg{position:absolute;inset:0;background-position:center;background-size:cover;opacity:.62;transform:scale(1.03)}.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#060609 0%,rgba(6,6,9,.92) 26%,rgba(6,6,9,.2) 74%,#060609 100%),linear-gradient(0deg,#060609 0%,transparent 55%,rgba(6,6,9,.35) 100%)}.hero-content{position:relative;z-index:2;max-width:720px;padding:80px 0 65px}.eyebrow{color:#c9b5ff;font-size:12px;font-weight:950;letter-spacing:3px}.hero h1{font-size:clamp(45px,6vw,82px);line-height:.94;margin:12px 0}.hero p{color:#c5c0ca;line-height:1.7;max-width:680px}.meta{color:#b6b0bd;font-size:13px;margin:13px 0}.btn{border:0;border-radius:10px;padding:13px 18px;font-weight:900}.btn.primary{background:var(--p);color:#fff}.btn.secondary{background:#25212d;color:#fff;margin-left:7px}.btn:hover{filter:brightness(1.12)}
+.section{margin-top:42px}.section-head{display:flex;align-items:end;justify-content:space-between;margin-bottom:16px}.section-head h2{margin:0;font-size:24px}.section-head span{font-size:12px;color:#716b79}.row{display:flex;gap:16px;overflow-x:auto;padding:2px 2px 12px;scrollbar-width:thin}.row .card{min-width:185px;width:185px}.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:.18s;cursor:pointer}.card:hover{transform:translateY(-5px);border-color:#7650b9;box-shadow:0 15px 35px #0008}.poster{width:100%;aspect-ratio:2/3;object-fit:cover;background:#191520;display:block}.card-body{padding:11px}.tag{display:inline-block;font-size:9px;font-weight:950;padding:4px 7px;border-radius:99px;background:#28183d;color:#d8c6ff}.card-title{font-size:14px;font-weight:800;margin:8px 0 5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.card-meta{font-size:11px;color:#777}.catalog{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:17px}.state{text-align:center;color:#777;padding:45px}.notice{background:#120e1b;border:1px solid #302440;color:#aaa;padding:13px;border-radius:10px;margin-top:24px;font-size:12px;line-height:1.6}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}.filter{background:#111017;border:1px solid var(--line);color:#aaa;padding:9px 13px;border-radius:9px;font-weight:800}.filter.active,.filter:hover{background:var(--p);border-color:var(--p);color:#fff}.loadmore{display:block;margin:24px auto 0;border:1px solid #3b2a50;background:#17121f;color:#fff;padding:12px 20px;border-radius:10px;font-weight:900}.loadmore:hover{background:var(--p)}.genrebar{display:flex;gap:8px;overflow:auto;padding-bottom:8px}.genre{white-space:nowrap}
+.modal{position:fixed;inset:0;z-index:200;background:#000e;display:none;padding:18px;overflow:auto}.modal.open{display:block}.modal-box{max-width:1120px;margin:25px auto;background:#0b0a0f;border:1px solid var(--line);border-radius:16px;overflow:hidden}.close{position:fixed;right:22px;top:18px;width:42px;height:42px;border:0;border-radius:9px;background:#282230;color:#fff;font-size:25px;z-index:5}.player{aspect-ratio:16/9;background:#000;display:grid;place-items:center}.player iframe{width:100%;height:100%;border:0}.player-msg{text-align:center;color:#777;padding:30px}.details{padding:22px}.details h2{margin:0 0 7px;font-size:30px}.details p{color:#aaa;line-height:1.7}.detail-meta{color:#8e8796;font-size:12px}.chips{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}.chip{background:#18151d;border:1px solid #2d2834;padding:6px 9px;border-radius:99px;color:#bbb;font-size:11px}.season-bar,.episode-bar{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.episode{border:1px solid #302a38;background:#18151e;color:#ddd;padding:9px 12px;border-radius:8px}.episode.active,.episode:hover{background:var(--p);border-color:var(--p);color:#fff}.providers{margin-top:20px}.providers h3{font-size:15px;margin-bottom:8px}.provider{display:inline-flex;align-items:center;gap:7px;margin:0 7px 7px 0;padding:7px 9px;border:1px solid var(--line);border-radius:8px;color:#bbb;text-decoration:none}.provider img{width:20px;height:20px;border-radius:5px}.provider:hover{border-color:var(--p);color:#fff}
+footer{border-top:1px solid var(--line);color:#6f6976;padding:30px 20px;text-align:center;font-size:12px}.tmdb{margin-top:8px}.tmdb a{color:#a78bfa}
+@media(max-width:900px){.nav{flex-wrap:wrap}.navlinks{order:3;width:100%}.search{order:2;width:100%;margin-left:0}.hero{min-height:520px}.hero-content{padding-bottom:45px}.catalog{grid-template-columns:repeat(2,1fr);gap:12px}.row .card{min-width:155px;width:155px}main{padding:0 12px 60px}}
 </style>
 </head>
 <body>
 <header><div class="nav">
 <div class="logo">ASPEC<span>TV</span></div>
 <div class="navlinks">
-<button class="active" data-view="home">Início</button><button data-view="movie">Filmes</button><button data-view="tv">Séries</button><button data-view="anime">Animes</button><button data-view="dubbed">Dublado</button><button data-view="latest">Lançamentos</button>
+<button class="active" data-view="home">Início</button><button data-view="movie">Filmes</button><button data-view="tv">Séries</button><button data-view="anime">Animes</button><button data-view="cartoon">Desenhos</button><button data-view="genre">Gêneros</button><button data-view="latest">Lançamentos</button>
 </div>
-<form class="search" id="searchForm"><input id="search" placeholder="Buscar título..."><button>Buscar</button></form>
+<form class="search" id="searchForm"><input id="search" placeholder="Buscar filmes, séries, animes..."><button>Buscar</button></form>
 </div></header>
-
 <main>
-<section class="hero">
-<div class="hero-bg" id="heroBg"></div>
-<div class="hero-content">
-<div class="eyebrow">ASPEC TV • EM DESTAQUE</div>
-<h1 id="heroTitle">Carregando...</h1>
-<div class="meta" id="heroMeta"></div>
-<p id="heroDesc"></p>
-<button class="btn primary" id="heroWatch">▶ Assistir agora</button><button class="btn secondary" id="heroInfo">Mais informações</button>
-</div>
-</section>
-
+<section class="hero"><div class="hero-bg" id="heroBg"></div><div class="hero-content"><div class="eyebrow">ASPEC TV • EM DESTAQUE</div><h1 id="heroTitle">Carregando...</h1><div class="meta" id="heroMeta"></div><p id="heroDesc"></p><button class="btn primary" id="heroWatch">▶ Ver detalhes</button><button class="btn secondary" id="heroInfo">Mais informações</button></div></section>
 <div id="homeSections">
-<section><div class="section-head"><h2>🔥 Filmes em destaque</h2><span>Seleção automática</span></div><div id="featuredMovies" class="row"><div class="state">Carregando...</div></div></section>
-<section><div class="section-head"><h2>⭐ Mais populares</h2><span>Filmes e séries</span></div><div id="popular" class="row"><div class="state">Carregando...</div></div></section>
-<section><div class="section-head"><h2>🚀 Lançamentos</h2><span>Atualizados pelo TMDB</span></div><div id="latest" class="row"><div class="state">Carregando...</div></div></section>
-<section><div class="section-head"><h2>🎌 Animes</h2><span>Animação japonesa</span></div><div id="anime" class="row"><div class="state">Carregando...</div></div></section>
-<section><div class="section-head"><h2>🇧🇷 Dublado / Português</h2><span>Metadados em PT-BR</span></div><div id="dubbed" class="row"><div class="state">Carregando...</div></div></section>
+<section class="section"><div class="section-head"><h2>🔥 Filmes em destaque</h2><span>Popularidade</span></div><div id="featuredMovies" class="row"><div class="state">Carregando...</div></div></section>
+<section class="section"><div class="section-head"><h2>⭐ Mais populares</h2><span>Filmes e séries</span></div><div id="popular" class="row"><div class="state">Carregando...</div></div></section>
+<section class="section"><div class="section-head"><h2>🚀 Lançamentos</h2><span>Atualizados pelo TMDB</span></div><div id="latest" class="row"><div class="state">Carregando...</div></div></section>
+<section class="section"><div class="section-head"><h2>🎌 Animes</h2><span>Animação japonesa</span></div><div id="anime" class="row"><div class="state">Carregando...</div></div></section>
+<section class="section"><div class="section-head"><h2>🧒 Desenhos e animações</h2><span>Família e animação</span></div><div id="cartoon" class="row"><div class="state">Carregando...</div></div></section>
+<section class="section"><div class="section-head"><h2>😂 Comédia</h2><span>Filmes e séries</span></div><div id="comedy" class="row"><div class="state">Carregando...</div></div></section>
 </div>
-
-<section id="catalogSection" class="hidden">
-<div class="section-head"><h2 id="catalogTitle">Catálogo</h2><span id="count"></span></div>
-<div class="filters"><button class="filter active" data-filter="all">Todos</button><button class="filter" data-filter="movie">Filmes</button><button class="filter" data-filter="tv">Séries</button></div>
-<div id="catalog" class="catalog"></div>
-</section>
-
-<div class="notice">ASPEC TV utiliza metadados e imagens fornecidos pelo TMDB. A disponibilidade de áudio dublado e a reprodução dependem da fonte de vídeo integrada e não são determinadas pelo TMDB.</div>
+<section id="catalogSection" class="hidden section"><div class="section-head"><h2 id="catalogTitle">Catálogo</h2><span id="count"></span></div><div id="genreBar" class="genrebar hidden"></div><div class="toolbar"><button class="filter active" data-filter="all">Todos</button><button class="filter" data-filter="movie">Filmes</button><button class="filter" data-filter="tv">Séries</button></div><div id="catalog" class="catalog"></div><button id="loadMore" class="loadmore hidden">Carregar mais</button></section>
+<div class="notice">ASPEC TV utiliza metadados e imagens fornecidos pelo TMDB. O catálogo é carregado sob demanda pela API; ele não precisa baixar todos os títulos de uma vez. A disponibilidade de áudio dublado e de reprodução depende da fonte de vídeo integrada e não é determinada pelo TMDB.</div>
 </main>
-<footer>ASPEC TV • Catálogo e interface em desenvolvimento</footer>
-
-<div id="modal" class="modal">
-<button class="close" id="close">×</button>
-<div class="modal-box">
-<div id="player" class="player"><div class="state">Player</div></div>
-<div class="details">
-<h2 id="detailTitle"></h2><div id="detailMeta" class="detail-meta"></div><div id="chips" class="chips"></div><p id="detailDesc"></p>
-<div id="seasonBar" class="season-bar"></div><div id="episodeBar" class="episode-bar"></div>
-</div></div></div>
-
+<footer>ASPEC TV • Catálogo de filmes, séries, animes e animações<div class="tmdb">Este produto usa a API do TMDB, mas não é endossado ou certificado pelo TMDB. <a href="https://www.themoviedb.org" target="_blank" rel="noopener">The Movie Database</a></div></footer>
+<div id="modal" class="modal"><button class="close" id="close">×</button><div class="modal-box"><div id="player" class="player"><div class="player-msg">Player não configurado.</div></div><div class="details"><h2 id="detailTitle"></h2><div id="detailMeta" class="detail-meta"></div><div id="chips" class="chips"></div><p id="detailDesc"></p><div id="providers" class="providers"></div><div id="seasonBar" class="season-bar"></div><div id="episodeBar" class="episode-bar"></div></div></div></div>
 <script>
-/* CONFIGURAÇÃO
-   Chave TMDB configurada para o teste.
-   Em produção, mova o token para um backend/WordPress para não expô-lo no navegador.
+/* ASPEC TV — catálogo dinâmico TMDB
+   A chave abaixo é a que estava configurada no projeto de teste.
+   Para produção, mova a chamada TMDB para um backend/proxy para não expor a chave no navegador.
 */
 const TMDB_API_KEY="b8ad39e612b18173c1b8eb5e7be92a9f";
 const TMDB="https://api.themoviedb.org/3";
 const IMG="https://image.tmdb.org/t/p/";
-const EMBED="https://myembed.biz"; // Substitua por um player autorizado que você tenha permissão para incorporar.
-
-let data={movies:[],tv:[],all:[],hero:null,current:null};
-
+/* Deixe vazio até você configurar um player que tenha autorização para incorporação. */
+const EMBED="";
+const state={movies:[],tv:[],anime:[],cartoon:[],all:[],currentView:"home",page:1,kind:"multi",query:"",genre:null};
 const $=s=>document.querySelector(s);
-const api=async path=>{
- const sep=path.includes("?")?"&":"?";
- const r=await fetch(TMDB+path+sep+"api_key="+encodeURIComponent(TMDB_API_KEY),{headers:{accept:"application/json"}});
- if(!r.ok)throw new Error("TMDB "+r.status);
- return r.json();
-};
-const title=x=>x.title||x.name||"Sem título";
-const media=x=>x.media_type||(x.first_air_date?"tv":"movie");
-const year=x=>(x.release_date||x.first_air_date||"").slice(0,4)||"—";
-const poster=x=>x.poster_path?IMG+"w500"+x.poster_path:"https://placehold.co/500x750/17131f/a78bfa?text=ASPEC+TV";
-const back=x=>x.backdrop_path?IMG+"w1280"+x.backdrop_path:"";
-
-function safe(o){return encodeURIComponent(JSON.stringify(o))}
-function card(x){
- const obj={id:x.id,type:media(x),title:title(x),desc:x.overview||"",backdrop:x.backdrop_path||"",poster:x.poster_path||""};
- return `<article class="card" data-open="${safe(obj)}"><img class="poster" loading="lazy" src="${poster(x)}" alt=""><div class="card-body"><span class="tag">${media(x)==="tv"?"SÉRIE":"FILME"}</span><div class="card-title">${title(x)}</div><div class="card-meta">${year(x)} • ★ ${(x.vote_average||0).toFixed(1)}</div></div></article>`;
-}
-function row(id,items){$(id).innerHTML=items.map(card).join("")||'<div class="state">Nenhum título encontrado.</div>'}
+const api=async path=>{const sep=path.includes("?")?"&":"?";const r=await fetch(TMDB+path+sep+"api_key="+encodeURIComponent(TMDB_API_KEY),{headers:{accept:"application/json"}});if(!r.ok)throw new Error("TMDB "+r.status);return r.json()};
+const title=x=>x.title||x.name||"Sem título";const media=x=>x.media_type||(x.first_air_date?"tv":"movie");const year=x=>(x.release_date||x.first_air_date||"").slice(0,4)||"—";const poster=x=>x.poster_path?IMG+"w500"+x.poster_path:"https://placehold.co/500x750/17131f/a78bfa?text=ASPEC+TV";const back=x=>x.backdrop_path?IMG+"w1280"+x.backdrop_path:"";
+function card(x){const o={id:x.id,type:media(x),title:title(x),desc:x.overview||"",backdrop:x.backdrop_path||""};return `<article class="card" data-open="${encodeURIComponent(JSON.stringify(o))}"><img class="poster" loading="lazy" src="${poster(x)}" alt="${title(x)}"><div class="card-body"><span class="tag">${media(x)==="tv"?"SÉRIE":"FILME"}</span><div class="card-title">${title(x)}</div><div class="card-meta">${year(x)} • ★ ${(x.vote_average||0).toFixed(1)}</div></div></article>`}
+function row(id,items){$(id).innerHTML=items.map(card).join("")||'<div class="state">Nenhum título encontrado.</div>';bindCards()}
 function bindCards(){document.querySelectorAll("[data-open]").forEach(c=>c.onclick=()=>openItem(JSON.parse(decodeURIComponent(c.dataset.open))))}
-
-function setHero(x){
- if(!x)return;
- data.hero=x;
- $("#heroBg").style.backgroundImage=`url("${back(x)}")`;
- $("#heroTitle").textContent=title(x);
- $("#heroMeta").textContent=`${media(x)==="tv"?"SÉRIE":"FILME"} • ${year(x)} • ★ ${(x.vote_average||0).toFixed(1)}`;
- $("#heroDesc").textContent=x.overview||"Veja informações e disponibilidade deste título.";
- $("#heroWatch").onclick=()=>openItem({id:x.id,type:media(x),title:title(x),desc:x.overview||"",backdrop:x.backdrop_path||""});
- $("#heroInfo").onclick=()=>openItem({id:x.id,type:media(x),title:title(x),desc:x.overview||"",backdrop:x.backdrop_path||""});
-}
-
-async function openItem(x){
- $("#modal").classList.add("open");
- $("#detailTitle").textContent=x.title;
- $("#detailDesc").textContent=x.desc||"Carregando...";
- $("#detailMeta").textContent="";
- $("#chips").innerHTML="";
- $("#seasonBar").innerHTML="";
- $("#episodeBar").innerHTML="";
- $("#player").innerHTML=`<iframe src="${EMBED}/${x.type==="tv"?"serie":"filme"}/${x.id}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
- try{
-   let d=await api(`/${x.type}/${x.id}?language=pt-BR`);
-   $("#detailTitle").textContent=title(d);
-   $("#detailDesc").textContent=d.overview||x.desc||"";
-   $("#detailMeta").textContent=`${x.type==="tv"?"Série":"Filme"} • ${year(d)} • ★ ${(d.vote_average||0).toFixed(1)}${d.runtime?` • ${d.runtime} min`:""}`;
-   $("#chips").innerHTML=(d.genres||[]).map(g=>`<span class="chip">${g.name}</span>`).join("");
-   if(x.type==="tv")buildSeasons(d);
- }catch(e){}
-}
-
-function buildSeasons(d){
- for(let s=1;s<=Math.min(d.number_of_seasons||0,30);s++){
-  let b=document.createElement("button");b.className="episode";b.textContent="Temporada "+s;
-  b.onclick=()=>loadSeason(d.id,s,b);$("#seasonBar").appendChild(b);
- }
-}
-async function loadSeason(id,s,button){
- document.querySelectorAll("#seasonBar .episode").forEach(x=>x.classList.remove("active"));button.classList.add("active");
- $("#episodeBar").innerHTML='<span style="color:#777">Carregando episódios...</span>';
- try{
-  let d=await api(`/tv/${id}/season/${s}?language=pt-BR`);
-  $("#episodeBar").innerHTML="";
-  d.episodes.forEach(ep=>{
-   let b=document.createElement("button");b.className="episode";b.textContent=`EP ${ep.episode_number} — ${ep.name||""}`;
-   b.onclick=()=>$("#player").innerHTML=`<iframe src="${EMBED}/serie/${id}/${s}/${ep.episode_number}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
-   $("#episodeBar").appendChild(b);
-  });
- }catch(e){$("#episodeBar").innerHTML='<span style="color:#777">Não foi possível carregar os episódios.</span>'}
-}
-
-function showCatalog(title,items){
- $("#homeSections").classList.add("hidden");$("#catalogSection").classList.remove("hidden");
- $("#catalogTitle").textContent=title;$("#catalog").innerHTML=items.map(card).join("");$("#count").textContent=items.length+" títulos";bindCards();window.scrollTo({top:0,behavior:"smooth"});
-}
-function showHome(){$("#homeSections").classList.remove("hidden");$("#catalogSection").classList.add("hidden");window.scrollTo({top:0,behavior:"smooth"})}
-
-async function search(q){
- if(!q)return showHome();
- try{let d=await api(`/search/multi?query=${encodeURIComponent(q)}&language=pt-BR&include_adult=false`);showCatalog("Resultados para: "+q,d.results.filter(x=>x.media_type==="movie"||x.media_type==="tv"))}catch(e){}
-}
-
-async function start(){
- if(!TMDB_API_KEY){
-  document.querySelectorAll(".state").forEach(x=>x.textContent="Configure a chave do TMDB no código.");
-  return;
- }
- try{
-  const [tr,m,t,p,anime]=await Promise.all([
-   api("/trending/all/week?language=pt-BR"),
-   api("/movie/popular?language=pt-BR&page=1"),
-   api("/tv/popular?language=pt-BR&page=1"),
-   api("/movie/now_playing?language=pt-BR&page=1"),
-   api("/discover/tv?language=pt-BR&with_genres=16&with_original_language=ja&page=1")
-  ]);
-  data.movies=m.results.map(x=>({...x,media_type:"movie"}));data.tv=t.results.map(x=>({...x,media_type:"tv"}));
-  data.all=[...data.movies,...data.tv];
-  let trend=tr.results.filter(x=>x.media_type==="movie"||x.media_type==="tv");
-  setHero(trend[0]);
-  row("#featuredMovies",data.movies.slice(0,12));
-  row("#popular",trend.slice(0,14));
-  row("#latest",p.results.map(x=>({...x,media_type:"movie"})).slice(0,14));
-  row("#anime",anime.results.map(x=>({...x,media_type:"tv"})).slice(0,14));
-  row("#dubbed",data.movies.slice(0,14));
-  bindCards();
- }catch(e){document.querySelectorAll(".state").forEach(x=>x.textContent="Erro ao conectar ao TMDB. Confira a chave da API.");}
-}
-
-document.querySelectorAll("[data-view]").forEach(b=>b.onclick=()=>{
- document.querySelectorAll("[data-view]").forEach(x=>x.classList.remove("active"));b.classList.add("active");
- let v=b.dataset.view;
- if(v==="home")return showHome();
- if(v==="movie")return showCatalog("Filmes",data.movies);
- if(v==="tv")return showCatalog("Séries",data.tv);
- if(v==="anime")return showCatalog("Animes",[]);
- if(v==="dubbed")return showCatalog("Dublado / Português",[]);
- if(v==="latest")return showCatalog("Lançamentos",data.movies.slice(0,20));
-});
-document.querySelectorAll("[data-filter]").forEach(b=>b.onclick=()=>{
- document.querySelectorAll("[data-filter]").forEach(x=>x.classList.remove("active"));b.classList.add("active");
- let f=b.dataset.filter;let base=[...data.movies,...data.tv];$("#catalog").innerHTML=(f==="all"?base:base.filter(x=>media(x)===f)).map(card).join("");$("#count").textContent=$("#catalog").children.length+" títulos";bindCards();
-});
-$("#searchForm").onsubmit=e=>{e.preventDefault();search($("#search").value.trim())};
-$("#close").onclick=()=>$("#modal").classList.remove("open");
-$("#modal").onclick=e=>{if(e.target.id==="modal")$("#modal").classList.remove("open")};
-document.addEventListener("keydown",e=>{if(e.key==="Escape")$("#modal").classList.remove("open")});
-start();
+function setHero(x){if(!x)return;state.hero=x;$("#heroBg").style.backgroundImage=`url("${back(x)}")`;$("#heroTitle").textContent=title(x);$("#heroMeta").textContent=`${media(x)==="tv"?"SÉRIE":"FILME"} • ${year(x)} • ★ ${(x.vote_average||0).toFixed(1)}`;$("#heroDesc").textContent=x.overview||"Veja informações deste título.";const open=()=>openItem({id:x.id,type:media(x),title:title(x),desc:x.overview||"",backdrop:x.backdrop_path||""});$("#heroWatch").onclick=open;$("#heroInfo").onclick=open}
+function playerFor(x,s,e){if(!EMBED){$("#player").innerHTML='<div class="player-msg">Player ainda não configurado.<br><small>O TMDB fornece dados e imagens, não os arquivos de vídeo.</small></div>';return}let u=x.type==="tv"?`${EMBED}/serie/${x.id}/${s}/${e}`:`${EMBED}/filme/${x.id}`;$("#player").innerHTML=`<iframe src="${u}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`}
+async function openItem(x){$("#modal").classList.add("open");$("#detailTitle").textContent=x.title;$("#detailDesc").textContent=x.desc||"Carregando...";$("#detailMeta").textContent="";$("#chips").innerHTML="";$("#providers").innerHTML="";$("#seasonBar").innerHTML="";$("#episodeBar").innerHTML="";playerFor(x);try{const d=await api(`/${x.type}/${x.id}?language=pt-BR`);$("#detailTitle").textContent=title(d);$("#detailDesc").textContent=d.overview||x.desc||"";$("#detailMeta").textContent=`${x.type==="tv"?"Série":"Filme"} • ${year(d)} • ★ ${(d.vote_average||0).toFixed(1)}${d.runtime?` • ${d.runtime} min`:""}`;$("#chips").innerHTML=(d.genres||[]).map(g=>`<span class="chip">${g.name}</span>`).join("");if(x.type==="tv")buildSeasons(d);loadProviders(x.type,x.id)}catch(e){}}
+function buildSeasons(d){for(let s=1;s<=Math.min(d.number_of_seasons||0,40);s++){const b=document.createElement("button");b.className="episode";b.textContent="Temporada "+s;b.onclick=()=>loadSeason(d.id,s,b);$("#seasonBar").appendChild(b)}}
+async function loadSeason(id,s,b){document.querySelectorAll("#seasonBar .episode").forEach(x=>x.classList.remove("active"));b.classList.add("active");$("#episodeBar").innerHTML='<span style="color:#777">Carregando episódios...</span>';try{const d=await api(`/tv/${id}/season/${s}?language=pt-BR`);$("#episodeBar").innerHTML="";d.episodes.forEach(ep=>{const b=document.createElement("button");b.className="episode";b.textContent=`EP ${ep.episode_number} — ${ep.name||""}`;b.onclick=()=>playerFor({type:"tv",id},s,ep.episode_number);$("#episodeBar").appendChild(b)})}catch(e){$("#episodeBar").innerHTML='<span style="color:#777">Não foi possível carregar os episódios.</span>'}}
+async function loadProviders(type,id){try{const d=await api(`/${type}/${id}/watch/providers`);const br=d.results?.BR;if(!br)return;let arr=[...(br.flatrate||[]),...(br.free||[]),...(br.ads||[])];arr=arr.filter((v,i,a)=>a.findIndex(x=>x.provider_id===v.provider_id)===i);if(!arr.length)return;$("#providers").innerHTML='<h3>Onde assistir</h3>'+arr.map(p=>`<a class="provider" href="${br.link||"https://www.themoviedb.org"}" target="_blank" rel="noopener"><img src="${IMG}original${p.logo_path}" alt="">${p.provider_name}</a>`).join("")}catch(e){}}
+function showCatalog(name,items,opts={}){$("#homeSections").classList.add("hidden");$("#catalogSection").classList.remove("hidden");$("#catalogTitle").textContent=name;$("#genreBar").classList.toggle("hidden",!opts.genres);state.currentView=opts.view||"static";state.kind=opts.kind||"multi";state.query=opts.query||"";state.page=opts.page||1;state.genre=opts.genre||null;$("#catalog").innerHTML=items.map(card).join("");$("#count").textContent=items.length?items.length+" carregados":"";$("#loadMore").classList.toggle("hidden",!opts.load);bindCards();window.scrollTo({top:0,behavior:"smooth"})}
+function showHome(){$("#homeSections").classList.remove("hidden");$("#catalogSection").classList.add("hidden");state.currentView="home";window.scrollTo({top:0,behavior:"smooth"})}
+async function discover(type,page=1,extra=""){const endpoint=type==="movie"?"/discover/movie":"/discover/tv";return api(`${endpoint}?language=pt-BR&include_adult=false&sort_by=popularity.desc&page=${page}${extra}`)}
+async function openCollection(kind){state.page=1;state.kind=kind;state.query="";state.genre=null;const d=await discover(kind,1);showCatalog(kind==="movie"?"Todos os filmes":"Todas as séries",d.results.map(x=>({...x,media_type:kind}),),{load:true,kind});$("#loadMore").classList.remove("hidden")}
+async function loadMore(){if($("#loadMore").classList.contains("hidden"))return;const btn=$("#loadMore");btn.disabled=true;btn.textContent="Carregando...";try{state.page++;let d;if(state.currentView==="search"){d=await api(`/search/multi?query=${encodeURIComponent(state.query)}&language=pt-BR&include_adult=false&page=${state.page}`)}else if(state.genre){d=await discover(state.kind,state.page,`&with_genres=${state.genre}`)}else{d=await discover(state.kind,state.page)}let items=(d.results||[]).filter(x=>x.media_type==="movie"||x.media_type==="tv").map(x=>({...x,media_type:x.media_type||state.kind}));$("#catalog").insertAdjacentHTML("beforeend",items.map(card).join(""));$("#count").textContent=$("#catalog").children.length+" carregados";bindCards();if(!d.total_pages||state.page>=Math.min(d.total_pages,500))btn.classList.add("hidden")}catch(e){state.page--}btn.disabled=false;btn.textContent="Carregar mais"}
+async function search(q){if(!q)return showHome();try{const d=await api(`/search/multi?query=${encodeURIComponent(q)}&language=pt-BR&include_adult=false&page=1`);state.currentView="search";state.query=q;showCatalog(`Resultados para: ${q}`,d.results.filter(x=>x.media_type==="movie"||x.media_type==="tv"),{load:true,view:"search",query:q,kind:"multi"})}catch(e){}}
+async function genres(){const [m,t]=await Promise.all([api("/genre/movie/list?language=pt-BR"),api("/genre/tv/list?language=pt-BR")]);const map=new Map();[...(m.genres||[]),...(t.genres||[])].forEach(g=>map.set(g.id,g.name));$("#genreBar").innerHTML=[...map].map(([id,n])=>`<button class="filter genre" data-g="${id}">${n}</button>`).join("");$("#genreBar").classList.remove("hidden");document.querySelectorAll("[data-g]").forEach(b=>b.onclick=async()=>{state.genre=b.dataset.g;state.kind="movie";const d=await discover("movie",1,`&with_genres=${b.dataset.g}`);showCatalog(b.textContent+" — Filmes",d.results.map(x=>({...x,media_type:"movie"})),{load:true,kind:"movie",genre:b.dataset.g});$("#genreBar").classList.remove("hidden");genres().catch(()=>{})})}
+async function start(){try{const [tr,m,t,p,anime,cartoon,comedy]=await Promise.all([api("/trending/all/week?language=pt-BR"),discover("movie",1),discover("tv",1),api("/movie/now_playing?language=pt-BR&page=1"),api("/discover/tv?language=pt-BR&with_genres=16&with_original_language=ja&sort_by=popularity.desc&page=1"),api("/discover/tv?language=pt-BR&with_genres=16&sort_by=popularity.desc&page=1"),api("/discover/movie?language=pt-BR&with_genres=35&sort_by=popularity.desc&page=1")]);state.movies=m.results.map(x=>({...x,media_type:"movie"}));state.tv=t.results.map(x=>({...x,media_type:"tv"}));state.anime=anime.results.map(x=>({...x,media_type:"tv"}));state.cartoon=cartoon.results.map(x=>({...x,media_type:"tv"}));state.all=[...state.movies,...state.tv];const trend=tr.results.filter(x=>x.media_type==="movie"||x.media_type==="tv");setHero(trend[0]);row("#featuredMovies",state.movies.slice(0,14));row("#popular",trend.slice(0,18));row("#latest",p.results.map(x=>({...x,media_type:"movie"})).slice(0,18));row("#anime",state.anime.slice(0,18));row("#cartoon",state.cartoon.slice(0,18));row("#comedy",comedy.results.map(x=>({...x,media_type:"movie"})).slice(0,18))}catch(e){document.querySelectorAll(".state").forEach(x=>x.textContent="Erro ao conectar ao TMDB. Verifique a chave da API.")}}
+document.querySelectorAll("[data-view]").forEach(b=>b.onclick=async()=>{document.querySelectorAll("[data-view]").forEach(x=>x.classList.remove("active"));b.classList.add("active");const v=b.dataset.view;if(v==="home")return showHome();if(v==="movie")return openCollection("movie");if(v==="tv")return openCollection("tv");if(v==="anime")return showCatalog("Animes",state.anime,{kind:"tv"});if(v==="cartoon")return showCatalog("Desenhos e Animações",state.cartoon,{kind:"tv"});if(v==="genre"){await genres();return showCatalog("Gêneros",state.movies,{kind:"movie",genres:true})}if(v==="latest")return showCatalog("Lançamentos",state.movies.slice(0,20),{kind:"movie"})});
+document.querySelectorAll("[data-filter]").forEach(b=>b.onclick=()=>{document.querySelectorAll("[data-filter]").forEach(x=>x.classList.remove("active"));b.classList.add("active");const f=b.dataset.filter;let base=state.all;$("#catalog").innerHTML=(f==="all"?base:base.filter(x=>media(x)===f)).map(card).join("");$("#count").textContent=$("#catalog").children.length+" títulos";bindCards()});
+$("#searchForm").onsubmit=e=>{e.preventDefault();search($("#search").value.trim())};$("#loadMore").onclick=loadMore;$("#close").onclick=()=>$("#modal").classList.remove("open");$("#modal").onclick=e=>{if(e.target.id==="modal")$("#modal").classList.remove("open")};document.addEventListener("keydown",e=>{if(e.key==="Escape")$("#modal").classList.remove("open")});start();
 </script>
 </body>
 </html>
