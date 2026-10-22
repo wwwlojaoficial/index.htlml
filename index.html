@@ -12,7 +12,7 @@
 #title{position:absolute;top:14px;left:14px;font-size:12px;letter-spacing:.2em;font-weight:bold}#status{position:absolute;top:14px;right:14px;text-align:right;font-size:11px;color:#d0d3c8;max-width:48%}#objective{position:absolute;left:14px;top:54px;font-size:11px;max-width:230px;line-height:1.5;color:#d2d5c9}#crosshair{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:20px;color:#ffffffa0;text-shadow:0 0 6px #000}
 #message{position:absolute;left:50%;top:18%;transform:translateX(-50%);font-size:12px;text-align:center;letter-spacing:.12em;text-shadow:0 2px 8px #000;max-width:80%;opacity:0;transition:opacity .4s}#message.show{opacity:1}
 #start{position:fixed;z-index:10;inset:0;background:radial-gradient(ellipse at center,#24251d 0,#080a09 70%);display:grid;place-items:center;padding:22px}#start .card{max-width:560px;width:100%;text-align:center;padding:28px 24px;background:#080b0bea;border:1px solid #ffffff25;border-radius:18px;box-shadow:0 20px 80px #0009}h1{font-size:clamp(25px,6vw,42px);letter-spacing:.13em;margin:0 0 8px}#start p{color:#b6b9ad;font-size:13px;line-height:1.7}button{background:#c9c9ad;color:#11140f;border:0;border-radius:9px;padding:12px 16px;font-weight:bold;cursor:pointer}button.secondary{background:#222820;color:#e5e8dc;border:1px solid #ffffff25}#buttons{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:16px}.small{font-size:11px;color:#858b80!important}
-#mobile{position:fixed;z-index:5;inset:auto 0 max(12px,env(safe-area-inset-bottom));display:none;justify-content:space-between;align-items:end;padding:0 14px;pointer-events:none}.look button{background:#151b17c9;border:1px solid #ffffff45;color:#fff;border-radius:12px;padding:0;font-size:11px;touch-action:none}.look{display:flex;flex-direction:column;gap:8px;pointer-events:auto}.look button{width:58px;height:44px}#joystick{width:132px;height:132px;border-radius:50%;background:#dce3ce18;border:2px solid #ffffff4d;position:relative;pointer-events:auto;touch-action:none;box-shadow:inset 0 0 22px #0005}#stick{position:absolute;width:54px;height:54px;left:37px;top:37px;border-radius:50%;background:#dce3ce66;border:2px solid #ffffff80;box-shadow:0 4px 14px #0008;pointer-events:none}
+#mobile{position:fixed;z-index:5;inset:auto 0 max(12px,env(safe-area-inset-bottom));display:none;justify-content:space-between;align-items:end;padding:0 14px;pointer-events:none}.look button{background:#151b17c9;border:1px solid #ffffff45;color:#fff;border-radius:12px;padding:0;font-size:11px;touch-action:none}.look{display:flex;flex-direction:column;gap:8px;pointer-events:auto}.look button{width:68px;height:40px;font-size:10px}#joystick{width:132px;height:132px;border-radius:50%;background:#dce3ce18;border:2px solid #ffffff4d;position:relative;pointer-events:auto;touch-action:none;box-shadow:inset 0 0 22px #0005}#stick{position:absolute;width:54px;height:54px;left:37px;top:37px;border-radius:50%;background:#dce3ce66;border:2px solid #ffffff80;box-shadow:0 4px 14px #0008;pointer-events:none}
 #hint{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);font-size:10px;color:#c0c4b8;background:#080b09b8;border:1px solid #ffffff1a;border-radius:20px;padding:8px 12px;white-space:nowrap}
 @media(max-width:700px){#mobile{display:flex}#hint{bottom:164px;font-size:9px;max-width:92%;overflow:hidden;text-overflow:ellipsis}#objective{max-width:48%;top:54px;font-size:10px}#title{font-size:10px;top:max(10px,env(safe-area-inset-top));left:10px}#status{font-size:9px;top:max(10px,env(safe-area-inset-top));right:10px}.panel{backdrop-filter:none}}@media(max-height:500px) and (orientation:landscape){#mobile{padding:0 10px}#joystick{width:100px;height:100px}#stick{left:27px;top:27px;width:42px;height:42px}.look{gap:4px}.look button{height:36px}#hint{bottom:120px}}
 </style>
@@ -30,13 +30,13 @@
 </div>
 <div id="mobile">
  <div id="joystick" aria-label="Joystick de movimento"><div id="stick"></div></div>
- <div class="look"><button id="flashBtn">LUZ</button><button id="runBtn">CORRER</button><button id="useBtn">USAR</button></div>
+ <div class="look"><button id="fullscreenBtn">TELA CHEIA</button><button id="flashBtn">LUZ</button><button id="runBtn">CORRER</button><button id="useBtn">USAR</button></div>
 </div>
 <div id="start"><div class="card">
  <h1>BACKROOMS</h1><div style="letter-spacing:.28em;color:#b8bd9d;font-size:11px">ECOS DO INFINITO</div>
  <p>Um labirinto conectado: escritórios amarelos, corredores industriais e as Poolrooms. Sons ambientais são gerados localmente pelo navegador; algo se move por aí.</p>
  <p><b>Computador:</b> WASD para andar, mouse para olhar, Shift para correr, F para lanterna e E para interagir.<br><b>Celular:</b> use o direcional na tela e arraste a área do jogo para olhar.</p>
- <div id="buttons"><button id="startBtn">ENTRAR NO LABIRINTO</button><button class="secondary" id="soundBtn">ÁUDIO: LIGAR</button></div>
+ <div id="buttons"><button id="startBtn">ENTRAR NO LABIRINTO</button><button class="secondary" id="soundBtn">ÁUDIO: LIGAR</button><button class="secondary" id="menuFullscreenBtn">TELA CHEIA</button></div>
  <p class="small">Melhor experiência com fones. Toque em “Entrar” para iniciar o áudio.</p>
  </div></div>
 <script type="module">
@@ -138,11 +138,26 @@ zones.push({name:'NÍVEL 0 · LABIRINTO AMARELO',x:0,z:0,r:28,kind:'yellow'},{na
 for(let i=0;i<12;i++){const x=(Math.random()-.5)*85,z=(Math.random()-.5)*62;if(Math.random()<.6)box(.18,3.1,.18,mats.wall2,x,1.5,z,{collide:false})}
 for(let i=0;i<10;i++){const x=(Math.random()-.5)*75,z=(Math.random()-.5)*55;const g=new THREE.Mesh(new THREE.PlaneGeometry(1.4,.8),new THREE.MeshBasicMaterial({color:0x34372b,transparent:true,opacity:.24,side:THREE.DoubleSide}));g.rotation.x=-Math.PI/2;g.position.set(x,.006,z);scene.add(g)}
 // Creature: dark silhouette with head and long limbs, patrols and approaches player.
-const monster=new THREE.Group();const black=new THREE.MeshStandardMaterial({color:0x050605,roughness:1});const eyeMat=new THREE.MeshBasicMaterial({color:0xb4d78a});
-const torso=new THREE.Mesh(new THREE.CapsuleGeometry(.34,.95,5,8),black);torso.position.y=1.35;monster.add(torso);
-const head=new THREE.Mesh(new THREE.SphereGeometry(.29,12,10),black);head.position.set(0,2.1,0);monster.add(head);
-for(const s of [-1,1]){const arm=new THREE.Mesh(new THREE.CapsuleGeometry(.095,.95,3,6),black);arm.position.set(s*.43,1.35,0);arm.rotation.z=s*.12;monster.add(arm);const leg=new THREE.Mesh(new THREE.CapsuleGeometry(.12,.9,3,6),black);leg.position.set(s*.17,.48,0);monster.add(leg);const eye=new THREE.Mesh(new THREE.SphereGeometry(.035,8,6),eyeMat);eye.position.set(s*.105,2.14,-.245);monster.add(eye)}
-monster.position.set(12,0,-2);scene.add(monster);
+const monster=new THREE.Group();
+const black=new THREE.MeshStandardMaterial({color:0x030403,roughness:.98});
+const skin=new THREE.MeshStandardMaterial({color:0x11150f,roughness:.82});
+const eyeMat=new THREE.MeshBasicMaterial({color:0xc8ff87});
+const mouthMat=new THREE.MeshBasicMaterial({color:0x000000});
+const torso=new THREE.Mesh(new THREE.CapsuleGeometry(.31,1.05,5,9),black);torso.position.y=1.42;torso.scale.set(.9,1.08,.72);monster.add(torso);
+const rib=new THREE.Mesh(new THREE.SphereGeometry(.34,12,10),skin);rib.position.set(0,1.62,-.04);rib.scale.set(1,.75,.8);monster.add(rib);
+const neck=new THREE.Mesh(new THREE.CylinderGeometry(.12,.18,.32,8),black);neck.position.y=2.03;monster.add(neck);
+const head=new THREE.Mesh(new THREE.SphereGeometry(.28,16,12),skin);head.position.set(0,2.25,-.03);head.scale.set(.8,1.25,.78);monster.add(head);
+const jaw=new THREE.Mesh(new THREE.BoxGeometry(.28,.16,.17),mouthMat);jaw.position.set(0,2.08,-.23);monster.add(jaw);
+for(const s of [-1,1]){
+ const shoulder=new THREE.Mesh(new THREE.SphereGeometry(.2,10,8),black);shoulder.position.set(s*.36,1.82,0);monster.add(shoulder);
+ const arm=new THREE.Mesh(new THREE.CapsuleGeometry(.105,.9,4,7),black);arm.position.set(s*.48,1.25,-.02);arm.rotation.z=s*.22;arm.rotation.x=-.12;monster.add(arm);
+ const forearm=new THREE.Mesh(new THREE.CapsuleGeometry(.075,.58,3,6),black);forearm.position.set(s*.58,.78,-.12);forearm.rotation.z=s*.15;monster.add(forearm);
+ for(let c=0;c<3;c++){const claw=new THREE.Mesh(new THREE.ConeGeometry(.035,.23,5),skin);claw.position.set(s*(.55+c*.07),.43,-.18);claw.rotation.x=Math.PI;monster.add(claw)}
+ const leg=new THREE.Mesh(new THREE.CapsuleGeometry(.12,.88,4,7),black);leg.position.set(s*.17,.48,.02);monster.add(leg);
+ const eye=new THREE.Mesh(new THREE.SphereGeometry(.042,8,6),eyeMat);eye.position.set(s*.105,2.28,-.245);monster.add(eye);
+ const eyeGlow=new THREE.PointLight(0xaaff66,.18,1.2);eyeGlow.position.copy(eye.position);monster.add(eyeGlow);
+}
+monster.position.set(-35,0,13);monster.visible=false;scene.add(monster);
 const player=controls.getObject();let yaw=0,flashOn=false,started=false,hasSound=false,running=false,scareCooldown=0,monsterMode='stalk';
 const keys={};const mobileMove={forward:false,back:false,left:false,right:false};let joyX=0,joyY=0,joyPointer=null,lookPointer=null,lastLookX=0,lastLookY=0;let velocity=new THREE.Vector3(),direction=new THREE.Vector3();
 let audioCtx=null,master=null,ambientGain=null,oscA=null,oscB=null,filter=null,waterNoise=null,noiseSource=null,noiseGain=null,heartbeatOsc=null,heartbeatGain=null;
@@ -179,7 +194,7 @@ function movePlayer(dt){const forward=keys.KeyW||keys.ArrowUp||mobileMove.forwar
  const p=player.position.clone();p.x+=delta.x;if(!collision(p))player.position.x=p.x;p.z+=delta.z;if(!collision(p))player.position.z=p.z;player.position.y=1.65;
  if(audioCtx&&ambientGain){const target=fast&&direction.lengthSq()>.1?.2:.16;ambientGain.gain.setTargetAtTime(target,audioCtx.currentTime,.25)}
 }
-function moveMonster(dt,now){const dx=player.position.x-monster.position.x,dz=player.position.z-monster.position.z,dist=Math.hypot(dx,dz);if(dist<17)monsterMode='hunt';else if(dist>27)monsterMode='stalk';const speed=monsterMode==='hunt'?2.0:.48;
+function moveMonster(dt,now){if(!monsterAwake){const age=now-gameStartedAt;const walked=Math.hypot(player.position.x,player.position.z);if(age<65000||walked<9)return;monsterAwake=true;monster.visible=true;showMsg('Um ruído ecoa muito longe...');monster.position.set(-35,0,13);return}const dx=player.position.x-monster.position.x,dz=player.position.z-monster.position.z,dist=Math.hypot(dx,dz);if(dist<17)monsterMode='hunt';else if(dist>27)monsterMode='stalk';const speed=monsterMode==='hunt'?2.0:.48;
  if(dist>1.7){const nx=monster.position.x+dx/dist*speed*dt,nz=monster.position.z+dz/dist*speed*dt;const p={x:nx,z:nz};if(!collision(p)){monster.position.x=nx;monster.position.z=nz}else{monster.position.x+=Math.sin(now*.001)*speed*dt;monster.position.z+=Math.cos(now*.0013)*speed*dt}}
  monster.lookAt(player.position.x,monster.position.y+1,player.position.z);
  const near=THREE.MathUtils.clamp(1-dist/18,0,1);if(audioCtx&&heartbeatGain)heartbeatGain.gain.setTargetAtTime(near*.13,audioCtx.currentTime,.25);
@@ -194,9 +209,27 @@ document.addEventListener('keydown',e=>{keys[e.code]=true;if(e.code==='KeyF')tog
 document.addEventListener('keyup',e=>keys[e.code]=false);
 
 let touchX=0,touchY=0;renderer.domElement.style.touchAction='none';
-renderer.domElement.addEventListener('pointerdown',e=>{if(e.pointerType==='touch'&&e.clientX>innerWidth*.38){lookPointer=e.pointerId;lastLookX=e.clientX;lastLookY=e.clientY;renderer.domElement.setPointerCapture?.(e.pointerId)}});
-renderer.domElement.addEventListener('pointermove',e=>{if(e.pointerType==='touch'&&e.pointerId===lookPointer){const dx=e.clientX-lastLookX,dy=e.clientY-lastLookY;player.rotation.y-=dx*.004;camera.rotation.x=THREE.MathUtils.clamp(camera.rotation.x-dy*.003,-1.35,1.35);lastLookX=e.clientX;lastLookY=e.clientY}});
-renderer.domElement.addEventListener('pointerup',e=>{if(e.pointerId===lookPointer)lookPointer=null});renderer.domElement.addEventListener('pointercancel',e=>{if(e.pointerId===lookPointer)lookPointer=null});
+let lookTouchId=null, lookLastX=0, lookLastY=0, lookSensitivity=0.0032;
+camera.rotation.order='YXZ';
+function requestFullscreenSafe(){const root=document.documentElement;try{if(!document.fullscreenElement){const r=root.requestFullscreen?.();if(r&&r.catch)r.catch(()=>showMsg('Tela cheia indisponível neste navegador; use Adicionar à tela inicial.'))}else document.exitFullscreen?.()}catch(e){showMsg('Tela cheia não suportada neste navegador.')}}
+$('fullscreenBtn').addEventListener('click',requestFullscreenSafe);
+$('menuFullscreenBtn').addEventListener('click',requestFullscreenSafe);
+document.addEventListener('fullscreenchange',()=>{renderer.setSize(innerWidth,innerHeight);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix()});
+renderer.domElement.addEventListener('pointerdown',e=>{
+ if(e.pointerType==='touch' && e.clientX>innerWidth*.42 && e.clientY<innerHeight-165){lookTouchId=e.pointerId;lookLastX=e.clientX;lookLastY=e.clientY;renderer.domElement.setPointerCapture?.(e.pointerId)}
+});
+renderer.domElement.addEventListener('pointermove',e=>{
+ if(e.pointerType==='touch' && e.pointerId===lookTouchId){
+  const dx=e.clientX-lookLastX,dy=e.clientY-lookLastY;
+  player.rotation.y-=dx*lookSensitivity;
+  camera.rotation.x=THREE.MathUtils.clamp(camera.rotation.x-dy*lookSensitivity,-1.25,1.25);
+  lookLastX=e.clientX;lookLastY=e.clientY;
+ }
+});
+function releaseLook(e){if(e.pointerId===lookTouchId)lookTouchId=null}
+renderer.domElement.addEventListener('pointerup',releaseLook);
+renderer.domElement.addEventListener('pointercancel',releaseLook);
+
 const joy=$('joystick'),stick=$('stick');
 function joystickMove(e){const r=joy.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2,dx=e.clientX-cx,dy=e.clientY-cy,max=r.width*.31,len=Math.hypot(dx,dy),scale=len>max?max/len:1;joyX=dx*scale/max;joyY=dy*scale/max;stick.style.transform=`translate(${dx*scale}px,${dy*scale}px)`}
 function resetJoystick(){joyPointer=null;joyX=0;joyY=0;stick.style.transform='translate(0,0)'}
@@ -204,7 +237,7 @@ joy.addEventListener('pointerdown',e=>{e.preventDefault();joyPointer=e.pointerId
 joy.addEventListener('pointermove',e=>{if(e.pointerId===joyPointer)joystickMove(e)});
 joy.addEventListener('pointerup',e=>{if(e.pointerId===joyPointer)resetJoystick()});joy.addEventListener('pointercancel',resetJoystick);
 renderer.domElement.addEventListener('click',()=>{if(started&&innerWidth>700&&!controls.isLocked)controls.lock()});
-let last=performance.now(),zoneTimer=0;
+let last=performance.now(),zoneTimer=0;const gameStartedAt=performance.now();let monsterAwake=false;
 function animate(now){requestAnimationFrame(animate);const dt=Math.min((now-last)/1000,.04);last=now;if(started){movePlayer(dt);moveMonster(dt,now);updateAmbient(now);if(now-zoneTimer>1200){zoneTimer=now;const z=nearestZone();$('objective').textContent=z.kind==='pool'?'OBJETIVO: atravesse as salas alagadas. Os ecos podem esconder movimento.':z.kind==='industrial'?'OBJETIVO: atravesse a manutenção. Não confie nos ruídos.':'OBJETIVO: explore os corredores e procure uma passagem.'}}renderer.render(scene,camera)}
 requestAnimationFrame(animate);
 addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(Math.min(devicePixelRatio,1))});
