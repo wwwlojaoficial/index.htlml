@@ -54,9 +54,27 @@ button,select,input{font:inherit;color:inherit}button{border:1px solid var(--lin
   </div>
   <div class="range-row"><span>Tempo</span><input type="range" id="timeRange" min="0" max="100" value="0" aria-label="Avançar ou retroceder o tempo"><span id="timeReadout">0 dias</span></div>
 </section>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+<script>
+/* Se o módulo 3D não inicializar, evita uma tela de carregamento infinita. */
+window.setTimeout(() => {
+  const loading = document.getElementById('loading');
+  if (loading && !loading.classList.contains('hide')) {
+    const message = loading.querySelector('p');
+    if (message) message.textContent = 'Falha ao carregar o 3D. Verifique a conexão e recarregue a página.';
+  }
+}, 12000);
+</script>
 <script type="module">
-import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
-import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/controls/OrbitControls.js';
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 const data = [
 {name:'Sol',type:'Estrela',color:'#ffca70',hex:0xffc15c,radius:2.7,orbit:0,period:0,rotation:25.4,diameter:'1.392.700 km',mass:'1,989 × 10³⁰ kg',gravity:'274 m/s²',temp:'~5.500 °C (superfície)',day:'~25,4 dias (equatorial)',year:'~225–250 milhões de anos na Via Láctea',moons:'—',composition:'Hidrogênio e hélio; plasma no interior e na atmosfera.',description:'A estrela no centro do Sistema Solar. Sua gravidade mantém os planetas em órbita e sua fusão nuclear transforma hidrogênio em hélio, liberando a energia que sustenta a vida na Terra.',facts:['Contém cerca de 99,86% da massa do Sistema Solar.','A luz leva aproximadamente 8 min e 20 s para chegar à Terra.','O núcleo atinge cerca de 15 milhões °C.']},
