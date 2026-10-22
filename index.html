@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#090b0b">
 <title>BACKROOMS — Ecos do Infinito</title>
 <style>
@@ -12,9 +12,9 @@
 #title{position:absolute;top:14px;left:14px;font-size:12px;letter-spacing:.2em;font-weight:bold}#status{position:absolute;top:14px;right:14px;text-align:right;font-size:11px;color:#d0d3c8;max-width:48%}#objective{position:absolute;left:14px;top:54px;font-size:11px;max-width:230px;line-height:1.5;color:#d2d5c9}#crosshair{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:20px;color:#ffffffa0;text-shadow:0 0 6px #000}
 #message{position:absolute;left:50%;top:18%;transform:translateX(-50%);font-size:12px;text-align:center;letter-spacing:.12em;text-shadow:0 2px 8px #000;max-width:80%;opacity:0;transition:opacity .4s}#message.show{opacity:1}
 #start{position:fixed;z-index:10;inset:0;background:radial-gradient(ellipse at center,#24251d 0,#080a09 70%);display:grid;place-items:center;padding:22px}#start .card{max-width:560px;width:100%;text-align:center;padding:28px 24px;background:#080b0bea;border:1px solid #ffffff25;border-radius:18px;box-shadow:0 20px 80px #0009}h1{font-size:clamp(25px,6vw,42px);letter-spacing:.13em;margin:0 0 8px}#start p{color:#b6b9ad;font-size:13px;line-height:1.7}button{background:#c9c9ad;color:#11140f;border:0;border-radius:9px;padding:12px 16px;font-weight:bold;cursor:pointer}button.secondary{background:#222820;color:#e5e8dc;border:1px solid #ffffff25}#buttons{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:16px}.small{font-size:11px;color:#858b80!important}
-#mobile{position:fixed;z-index:5;inset:auto 0 12px;display:none;justify-content:space-between;align-items:end;padding:0 14px;pointer-events:none}.pad{display:grid;grid-template-columns:46px 46px 46px;grid-template-rows:46px 46px 46px;gap:5px;pointer-events:auto}.pad button,.look button{background:#151b17b8;border:1px solid #ffffff35;color:#fff;border-radius:12px;padding:0;font-size:18px;touch-action:none}.pad .up{grid-column:2;grid-row:1}.pad .left{grid-column:1;grid-row:2}.pad .down{grid-column:2;grid-row:2}.pad .right{grid-column:3;grid-row:2}.look{display:flex;flex-direction:column;gap:7px;pointer-events:auto}.look button{width:56px;height:44px;font-size:12px}
+#mobile{position:fixed;z-index:5;inset:auto 0 max(12px,env(safe-area-inset-bottom));display:none;justify-content:space-between;align-items:end;padding:0 14px;pointer-events:none}.look button{background:#151b17c9;border:1px solid #ffffff45;color:#fff;border-radius:12px;padding:0;font-size:11px;touch-action:none}.look{display:flex;flex-direction:column;gap:8px;pointer-events:auto}.look button{width:58px;height:44px}#joystick{width:132px;height:132px;border-radius:50%;background:#dce3ce18;border:2px solid #ffffff4d;position:relative;pointer-events:auto;touch-action:none;box-shadow:inset 0 0 22px #0005}#stick{position:absolute;width:54px;height:54px;left:37px;top:37px;border-radius:50%;background:#dce3ce66;border:2px solid #ffffff80;box-shadow:0 4px 14px #0008;pointer-events:none}
 #hint{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);font-size:10px;color:#c0c4b8;background:#080b09b8;border:1px solid #ffffff1a;border-radius:20px;padding:8px 12px;white-space:nowrap}
-@media(max-width:700px){#mobile{display:flex}#hint{bottom:178px;font-size:9px}#objective{max-width:180px;top:58px;font-size:10px}#title{font-size:10px}#status{font-size:10px}}
+@media(max-width:700px){#mobile{display:flex}#hint{bottom:164px;font-size:9px;max-width:92%;overflow:hidden;text-overflow:ellipsis}#objective{max-width:48%;top:54px;font-size:10px}#title{font-size:10px;top:max(10px,env(safe-area-inset-top));left:10px}#status{font-size:9px;top:max(10px,env(safe-area-inset-top));right:10px}.panel{backdrop-filter:none}}@media(max-height:500px) and (orientation:landscape){#mobile{padding:0 10px}#joystick{width:100px;height:100px}#stick{left:27px;top:27px;width:42px;height:42px}.look{gap:4px}.look button{height:36px}#hint{bottom:120px}}
 </style>
 <script type="importmap">
 {"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}
@@ -29,10 +29,8 @@
  <div id="hint">WASD mover · mouse olhar · F lanterna · Shift correr · E interagir</div>
 </div>
 <div id="mobile">
- <div class="pad">
-  <button class="up" data-move="forward">▲</button><button class="left" data-move="left">◀</button><button class="down" data-move="back">▼</button><button class="right" data-move="right">▶</button>
- </div>
- <div class="look"><button id="flashBtn">LANTERNA</button><button id="runBtn">CORRER</button><button id="useBtn">INTERAGIR</button></div>
+ <div id="joystick" aria-label="Joystick de movimento"><div id="stick"></div></div>
+ <div class="look"><button id="flashBtn">LUZ</button><button id="runBtn">CORRER</button><button id="useBtn">USAR</button></div>
 </div>
 <div id="start"><div class="card">
  <h1>BACKROOMS</h1><div style="letter-spacing:.28em;color:#b8bd9d;font-size:11px">ECOS DO INFINITO</div>
@@ -48,12 +46,12 @@ import { PointerLockControls } from 'three/addons/controls/PointerLockControls.j
 const $=id=>document.getElementById(id);
 const scene=new THREE.Scene(); scene.background=new THREE.Color(0x181a14); scene.fog=new THREE.FogExp2(0x181a14,.018);
 const camera=new THREE.PerspectiveCamera(75,innerWidth/innerHeight,.08,180); camera.position.set(0,1.65,0);
-const renderer=new THREE.WebGLRenderer({antialias:true,powerPreference:'high-performance'});
-renderer.setSize(innerWidth,innerHeight); renderer.setPixelRatio(Math.min(devicePixelRatio,1.6)); renderer.shadowMap.enabled=true; renderer.shadowMap.type=THREE.PCFSoftShadowMap; renderer.outputColorSpace=THREE.SRGBColorSpace; renderer.toneMapping=THREE.ACESFilmicToneMapping; renderer.toneMappingExposure=1.05; document.body.appendChild(renderer.domElement);
+const renderer=new THREE.WebGLRenderer({antialias:false,powerPreference:'low-power',stencil:false,depth:true});
+renderer.setSize(innerWidth,innerHeight); renderer.setPixelRatio(Math.min(devicePixelRatio,1)); renderer.shadowMap.enabled=false; renderer.outputColorSpace=THREE.SRGBColorSpace; renderer.toneMapping=THREE.ACESFilmicToneMapping; renderer.toneMappingExposure=1.05; document.body.appendChild(renderer.domElement);
 const controls=new PointerLockControls(camera,renderer.domElement); scene.add(controls.getObject());
 const hemi=new THREE.HemisphereLight(0xe5dfb8,0x26251b,.6); scene.add(hemi);
 const ambient=new THREE.AmbientLight(0x9c9a70,.22);scene.add(ambient);
-const flashlight=new THREE.SpotLight(0xfff4d4,0,18,Math.PI/7,.45,1.5); flashlight.position.set(0,0,0); flashlight.castShadow=true; flashlight.shadow.mapSize.set(512,512);camera.add(flashlight);const flashTarget=new THREE.Object3D();flashTarget.position.set(0,0,-1);camera.add(flashTarget);flashlight.target=flashTarget;
+const flashlight=new THREE.SpotLight(0xfff4d4,0,18,Math.PI/7,.45,1.5); flashlight.position.set(0,0,0); flashlight.castShadow=false;camera.add(flashlight);const flashTarget=new THREE.Object3D();flashTarget.position.set(0,0,-1);camera.add(flashTarget);flashlight.target=flashTarget;
 const mats={
  wall:new THREE.MeshStandardMaterial({color:0xb8ad69,roughness:1}),
  wall2:new THREE.MeshStandardMaterial({color:0x8c8c75,roughness:1}),
@@ -80,10 +78,10 @@ function room(cx,cz,w,d,kind='yellow',openings=[]){
   for(const p of sorted){const lo=p-span/2,hi=p+span/2;if(lo>cursor)make(cursor,lo);cursor=hi}
   if(cursor<length/2)make(cursor,length/2);
  };
- segs('north',w,3,(a,b)=>box(b-a,3.2,.22,wallmat,cx+(a+b)/2,1.5,cz-d/2,{collide:false}));
- segs('south',w,3,(a,b)=>box(b-a,3.2,.22,wallmat,cx+(a+b)/2,1.5,cz+d/2,{collide:false}));
- segs('west',d,3,(a,b)=>box(.22,3.2,b-a,wallmat,cx-w/2,1.5,cz+(a+b)/2,{collide:false}));
- segs('east',d,3,(a,b)=>box(.22,3.2,b-a,wallmat,cx+w/2,1.5,cz+(a+b)/2,{collide:false}));
+ segs('north',w,3,(a,b)=>box(b-a,3.2,.22,wallmat,cx+(a+b)/2,1.5,cz-d/2));
+ segs('south',w,3,(a,b)=>box(b-a,3.2,.22,wallmat,cx+(a+b)/2,1.5,cz+d/2));
+ segs('west',d,3,(a,b)=>box(.22,3.2,b-a,wallmat,cx-w/2,1.5,cz+(a+b)/2));
+ segs('east',d,3,(a,b)=>box(.22,3.2,b-a,wallmat,cx+w/2,1.5,cz+(a+b)/2));
  if(kind==='pool'){
   // shallow pool basin inside the chamber
   box(w*.52,.12,d*.43,mats.water,cx,0.02,cz,{collide:false});
@@ -94,7 +92,7 @@ function room(cx,cz,w,d,kind='yellow',openings=[]){
   for(let z=cz-d/2+1;z<cz+d/2;z+=2.4){const p=new THREE.Mesh(new THREE.CylinderGeometry(.09,.09,d*.92,10),mats.pipe);p.rotation.x=Math.PI/2;p.position.set(cx+w*.36,2.55,z);scene.add(p)}
  }
  // ceiling lamps
- for(let x=cx-w/2+1.7;x<cx+w/2-1;x+=3.2){const lamp=box(.9,.07,.25,new THREE.MeshStandardMaterial({color:0xffffd4,emissive:0xffefad,emissiveIntensity:1.2}),x,3.04,cz,{collide:false,shadow:false});light(x,2.9,cz,kind==='pool'?0x8ce8ef:kind==='industrial'?0xff5d38:0xffe6a0,kind==='pool'?1.6:1.25,kind==='pool'?12:9,kind==='yellow')}
+ for(let x=cx-w/2+2.2;x<cx+w/2-1;x+=5.5){const lamp=box(.9,.07,.25,new THREE.MeshStandardMaterial({color:0xffffd4,emissive:0xffefad,emissiveIntensity:1.2}),x,3.04,cz,{collide:false,shadow:false});if(Math.round((x-cx+w/2)/5.5)%2===0)light(x,2.9,cz,kind==='pool'?0x8ce8ef:kind==='industrial'?0xff5d38:0xffe6a0,kind==='pool'?1.0:.8,kind==='pool'?9:7,kind==='yellow')}
 }
 function connectCorridor(x1,z1,x2,z2,kind='yellow',width=3.1){
  // Rectangular connector between room centers; floors/walls physically connect room openings.
@@ -107,7 +105,7 @@ function hallway(x,z,w,d,kind='yellow'){
  const wallmat=kind==='pool'?mats.tile:kind==='industrial'?mats.concrete:mats.wall;
  box(w,.2,d,kind==='pool'?mats.tile:kind==='industrial'?mats.concrete:mats.floor,x,-.12,z,{collide:false});
  box(w,.2,d,mats.ceiling,x,3.2,z,{collide:false});
- box(.2,3.2,d,wallmat,x-w/2,1.5,z,{collide:false});box(.2,3.2,d,wallmat,x+w/2,1.5,z,{collide:false});
+ box(.2,3.2,d,wallmat,x-w/2,1.5,z);box(.2,3.2,d,wallmat,x+w/2,1.5,z);
  for(let zz=z-d/2+2;zz<z+d/2;zz+=4){box(.75,.06,.3,new THREE.MeshStandardMaterial({color:0xfff1bf,emissive:0xffe7a0,emissiveIntensity:.8}),x,3.04,zz,{collide:false,shadow:false});light(x,2.85,zz,kind==='pool'?0x91e7e7:0xffe6a0,1,8,kind==='yellow')}
 }
 function sign(text,x,y,z,color=0xcac9a4){const c=document.createElement('canvas');c.width=512;c.height=128;const ctx=c.getContext('2d');ctx.fillStyle='#171a15';ctx.fillRect(0,0,512,128);ctx.strokeStyle='#777b69';ctx.strokeRect(4,4,504,120);ctx.font='bold 34px Arial';ctx.fillStyle='#'+color.toString(16).padStart(6,'0');ctx.textAlign='center';ctx.fillText(text,256,77);const tex=new THREE.CanvasTexture(c);const m=new THREE.Mesh(new THREE.PlaneGeometry(3.2,.8),new THREE.MeshBasicMaterial({map:tex}));m.position.set(x,y,z);scene.add(m)}
@@ -137,8 +135,8 @@ hallway(-48,7.5,3,3,'yellow');hallway(-48,-7.5,3,3,'yellow');hallway(-39,-15,3,3
 sign('NÍVEL 0',0,2.5,-8.85,0xd8c982);sign('MANUTENÇÃO',30,2.5,-22.85,0xd77c61);sign('POOLROOMS',-14,2.5,-6.85,0x8be1df);
 zones.push({name:'NÍVEL 0 · LABIRINTO AMARELO',x:0,z:0,r:28,kind:'yellow'},{name:'TÚNEIS INDUSTRIAIS',x:30,z:-23,r:25,kind:'industrial'},{name:'POOLROOMS · PISCINAS',x:-25,z:10,r:32,kind:'pool'},{name:'CORREDORES ESQUECIDOS',x:-42,z:-10,r:25,kind:'yellow'});
 // Scatter pillars, stains and distant dark openings for scale and unease.
-for(let i=0;i<36;i++){const x=(Math.random()-.5)*85,z=(Math.random()-.5)*62;if(Math.random()<.6)box(.18,3.1,.18,mats.wall2,x,1.5,z,{collide:false})}
-for(let i=0;i<22;i++){const x=(Math.random()-.5)*75,z=(Math.random()-.5)*55;const g=new THREE.Mesh(new THREE.PlaneGeometry(1.4,.8),new THREE.MeshBasicMaterial({color:0x34372b,transparent:true,opacity:.24,side:THREE.DoubleSide}));g.rotation.x=-Math.PI/2;g.position.set(x,.006,z);scene.add(g)}
+for(let i=0;i<12;i++){const x=(Math.random()-.5)*85,z=(Math.random()-.5)*62;if(Math.random()<.6)box(.18,3.1,.18,mats.wall2,x,1.5,z,{collide:false})}
+for(let i=0;i<10;i++){const x=(Math.random()-.5)*75,z=(Math.random()-.5)*55;const g=new THREE.Mesh(new THREE.PlaneGeometry(1.4,.8),new THREE.MeshBasicMaterial({color:0x34372b,transparent:true,opacity:.24,side:THREE.DoubleSide}));g.rotation.x=-Math.PI/2;g.position.set(x,.006,z);scene.add(g)}
 // Creature: dark silhouette with head and long limbs, patrols and approaches player.
 const monster=new THREE.Group();const black=new THREE.MeshStandardMaterial({color:0x050605,roughness:1});const eyeMat=new THREE.MeshBasicMaterial({color:0xb4d78a});
 const torso=new THREE.Mesh(new THREE.CapsuleGeometry(.34,.95,5,8),black);torso.position.y=1.35;monster.add(torso);
@@ -146,7 +144,7 @@ const head=new THREE.Mesh(new THREE.SphereGeometry(.29,12,10),black);head.positi
 for(const s of [-1,1]){const arm=new THREE.Mesh(new THREE.CapsuleGeometry(.095,.95,3,6),black);arm.position.set(s*.43,1.35,0);arm.rotation.z=s*.12;monster.add(arm);const leg=new THREE.Mesh(new THREE.CapsuleGeometry(.12,.9,3,6),black);leg.position.set(s*.17,.48,0);monster.add(leg);const eye=new THREE.Mesh(new THREE.SphereGeometry(.035,8,6),eyeMat);eye.position.set(s*.105,2.14,-.245);monster.add(eye)}
 monster.position.set(12,0,-2);scene.add(monster);
 const player=controls.getObject();let yaw=0,flashOn=false,started=false,hasSound=false,running=false,scareCooldown=0,monsterMode='stalk';
-const keys={};const mobileMove={forward:false,back:false,left:false,right:false};let velocity=new THREE.Vector3(),direction=new THREE.Vector3();
+const keys={};const mobileMove={forward:false,back:false,left:false,right:false};let joyX=0,joyY=0,joyPointer=null,lookPointer=null,lastLookX=0,lastLookY=0;let velocity=new THREE.Vector3(),direction=new THREE.Vector3();
 let audioCtx=null,master=null,ambientGain=null,oscA=null,oscB=null,filter=null,waterNoise=null,noiseSource=null,noiseGain=null,heartbeatOsc=null,heartbeatGain=null;
 function startAudio(){
  if(audioCtx){hasSound=true;master.gain.setTargetAtTime(.5,audioCtx.currentTime,.2);return}
@@ -175,7 +173,7 @@ function collision(pos){ // Approximate wall collision against wall meshes tagge
  return false;
 }
 function movePlayer(dt){const forward=keys.KeyW||keys.ArrowUp||mobileMove.forward,back=keys.KeyS||keys.ArrowDown||mobileMove.back,left=keys.KeyA||keys.ArrowLeft||mobileMove.left,right=keys.KeyD||keys.ArrowRight||mobileMove.right;
- direction.set(Number(right)-Number(left),0,Number(back)-Number(forward));if(direction.lengthSq()>0)direction.normalize();const fast=keys.ShiftLeft||keys.ShiftRight||running;const speed=fast?5.3:2.7;
+ direction.set((Number(right)-Number(left))+joyX,0,(Number(back)-Number(forward))+joyY);if(direction.lengthSq()>1)direction.normalize();const fast=keys.ShiftLeft||keys.ShiftRight||running;const speed=fast?5.3:2.7;
  const fwd=new THREE.Vector3();camera.getWorldDirection(fwd);fwd.y=0;fwd.normalize();const side=new THREE.Vector3().crossVectors(fwd,new THREE.Vector3(0,1,0)).normalize();
  const delta=new THREE.Vector3().addScaledVector(fwd,-direction.z).addScaledVector(side,direction.x).multiplyScalar(speed*dt);
  const p=player.position.clone();p.x+=delta.x;if(!collision(p))player.position.x=p.x;p.z+=delta.z;if(!collision(p))player.position.z=p.z;player.position.y=1.65;
@@ -194,12 +192,21 @@ $('soundBtn').addEventListener('click',()=>{startAudio();$('soundBtn').textConte
 $('flashBtn').addEventListener('click',toggleFlash);$('runBtn').addEventListener('touchstart',e=>{e.preventDefault();running=true});$('runBtn').addEventListener('touchend',()=>running=false);$('useBtn').addEventListener('click',interact);
 document.addEventListener('keydown',e=>{keys[e.code]=true;if(e.code==='KeyF')toggleFlash();if(e.code==='KeyE')interact();if(e.code==='Escape'&&started)showMsg('Toque/clique no jogo para continuar')});
 document.addEventListener('keyup',e=>keys[e.code]=false);
-document.querySelectorAll('[data-move]').forEach(b=>{const k=b.dataset.move;const down=e=>{e.preventDefault();mobileMove[k]=true},up=e=>{e.preventDefault();mobileMove[k]=false};b.addEventListener('pointerdown',down);b.addEventListener('pointerup',up);b.addEventListener('pointercancel',up);b.addEventListener('pointerleave',up)});
-let touchX=0,touchY=0;renderer.domElement.addEventListener('pointerdown',e=>{if(e.pointerType==='touch'){touchX=e.clientX;touchY=e.clientY}});renderer.domElement.addEventListener('pointermove',e=>{if(e.pointerType==='touch'&&e.buttons){const dx=e.clientX-touchX,dy=e.clientY-touchY;player.rotation.y-=dx*.004;camera.rotation.x=THREE.MathUtils.clamp(camera.rotation.x-dy*.003,-1.35,1.35);touchX=e.clientX;touchY=e.clientY}});
+
+let touchX=0,touchY=0;renderer.domElement.style.touchAction='none';
+renderer.domElement.addEventListener('pointerdown',e=>{if(e.pointerType==='touch'&&e.clientX>innerWidth*.38){lookPointer=e.pointerId;lastLookX=e.clientX;lastLookY=e.clientY;renderer.domElement.setPointerCapture?.(e.pointerId)}});
+renderer.domElement.addEventListener('pointermove',e=>{if(e.pointerType==='touch'&&e.pointerId===lookPointer){const dx=e.clientX-lastLookX,dy=e.clientY-lastLookY;player.rotation.y-=dx*.004;camera.rotation.x=THREE.MathUtils.clamp(camera.rotation.x-dy*.003,-1.35,1.35);lastLookX=e.clientX;lastLookY=e.clientY}});
+renderer.domElement.addEventListener('pointerup',e=>{if(e.pointerId===lookPointer)lookPointer=null});renderer.domElement.addEventListener('pointercancel',e=>{if(e.pointerId===lookPointer)lookPointer=null});
+const joy=$('joystick'),stick=$('stick');
+function joystickMove(e){const r=joy.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2,dx=e.clientX-cx,dy=e.clientY-cy,max=r.width*.31,len=Math.hypot(dx,dy),scale=len>max?max/len:1;joyX=dx*scale/max;joyY=dy*scale/max;stick.style.transform=`translate(${dx*scale}px,${dy*scale}px)`}
+function resetJoystick(){joyPointer=null;joyX=0;joyY=0;stick.style.transform='translate(0,0)'}
+joy.addEventListener('pointerdown',e=>{e.preventDefault();joyPointer=e.pointerId;joy.setPointerCapture(e.pointerId);joystickMove(e)});
+joy.addEventListener('pointermove',e=>{if(e.pointerId===joyPointer)joystickMove(e)});
+joy.addEventListener('pointerup',e=>{if(e.pointerId===joyPointer)resetJoystick()});joy.addEventListener('pointercancel',resetJoystick);
 renderer.domElement.addEventListener('click',()=>{if(started&&innerWidth>700&&!controls.isLocked)controls.lock()});
 let last=performance.now(),zoneTimer=0;
 function animate(now){requestAnimationFrame(animate);const dt=Math.min((now-last)/1000,.04);last=now;if(started){movePlayer(dt);moveMonster(dt,now);updateAmbient(now);if(now-zoneTimer>1200){zoneTimer=now;const z=nearestZone();$('objective').textContent=z.kind==='pool'?'OBJETIVO: atravesse as salas alagadas. Os ecos podem esconder movimento.':z.kind==='industrial'?'OBJETIVO: atravesse a manutenção. Não confie nos ruídos.':'OBJETIVO: explore os corredores e procure uma passagem.'}}renderer.render(scene,camera)}
 requestAnimationFrame(animate);
-addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
+addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(Math.min(devicePixelRatio,1))});
 </script>
 </body></html>
