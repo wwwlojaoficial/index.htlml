@@ -2,183 +2,204 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#05070d">
-<title>Sistema Solar — Explorador 3D</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#090b0b">
+<title>BACKROOMS — Ecos do Infinito</title>
 <style>
-:root{--bg:#05070d;--panel:rgba(10,15,27,.84);--line:rgba(154,180,230,.18);--text:#edf3ff;--muted:#9ba9c3;--accent:#82b7ff}
-*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
-#scene{position:fixed;inset:0;z-index:0}canvas{display:block}
-.glass{background:var(--panel);border:1px solid var(--line);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 18px 60px rgba(0,0,0,.25)}
-.topbar{position:fixed;z-index:3;top:18px;left:20px;right:20px;display:flex;align-items:center;justify-content:space-between;gap:14px;pointer-events:none}
-.brand,.top-actions{pointer-events:auto}.brand{display:flex;align-items:center;gap:12px}.brand-mark{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,#183b68,#0c1528);border:1px solid #426a9d;color:#b9d9ff;font-size:22px;box-shadow:0 0 28px #2a67ad33}.brand h1{font-size:15px;letter-spacing:.16em;margin:0;font-weight:800}.brand p{font-size:10px;letter-spacing:.2em;color:var(--muted);margin:4px 0 0;text-transform:uppercase}.top-actions{display:flex;gap:8px;align-items:center}
-button,select,input{font:inherit;color:inherit}button{border:1px solid var(--line);background:rgba(20,29,47,.86);border-radius:10px;padding:10px 13px;cursor:pointer;transition:.18s ease}button:hover{border-color:#6eaaff;background:rgba(38,61,94,.9)}button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}.icon-btn{width:40px;height:40px;padding:0;font-size:17px}.primary{background:#1e4e83;border-color:#4e8bd0}.primary:hover{background:#2865a5}
-.panel{position:fixed;z-index:2;border-radius:16px}.left-panel{left:20px;top:90px;bottom:20px;width:248px;padding:16px;display:flex;flex-direction:column;gap:12px}.section-label{font-size:10px;letter-spacing:.17em;text-transform:uppercase;color:#8da2c4;font-weight:800}.search{width:100%;padding:11px 12px;border-radius:10px;background:#080d17;border:1px solid var(--line);outline:none}.search:focus{border-color:#6099e5}.planet-list{display:flex;flex-direction:column;gap:5px;overflow:auto;padding-right:3px}.planet-item{display:flex;align-items:center;gap:10px;width:100%;text-align:left;padding:9px;border:1px solid transparent;background:transparent;border-radius:10px}.planet-item.active{background:rgba(70,119,184,.18);border-color:#4c7db8}.planet-dot{width:24px;height:24px;border-radius:50%;flex:0 0 auto;box-shadow:inset -5px -4px 7px #0009,0 0 12px #fff1}.planet-copy{min-width:0;flex:1}.planet-copy strong{display:block;font-size:12px;font-weight:700}.planet-copy span{display:block;font-size:10px;color:var(--muted);margin-top:3px}.planet-arrow{color:#7185a6}.left-footer{margin-top:auto;border-top:1px solid var(--line);padding-top:13px;color:var(--muted);font-size:10px;line-height:1.55}
-.info-panel{right:20px;top:90px;bottom:20px;width:320px;overflow:auto;padding:20px}.info-head{display:flex;align-items:center;gap:12px;margin-bottom:17px}.body-emblem{width:54px;height:54px;border-radius:50%;box-shadow:inset -12px -8px 15px #0009,0 0 24px #fff1;flex:0 0 auto;border:1px solid #ffffff24}.info-head h2{margin:0;font-size:23px;letter-spacing:-.04em}.info-head p{margin:5px 0 0;color:var(--muted);font-size:11px}.tag{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:5px 8px;font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:#b8d5ff;margin-bottom:12px}.description{font-size:12px;line-height:1.65;color:#c4cee0;margin:0 0 17px}.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px}.stat{padding:11px;border-radius:11px;background:rgba(255,255,255,.035);border:1px solid var(--line);min-width:0}.stat span{display:block;font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.09em;margin-bottom:7px}.stat strong{font-size:13px;overflow-wrap:anywhere}.info-section{border-top:1px solid var(--line);margin-top:17px;padding-top:15px}.info-section h3{font-size:10px;text-transform:uppercase;letter-spacing:.14em;color:#9cb5da;margin:0 0 9px}.info-section p{font-size:11px;line-height:1.65;color:#c4cee0;margin:0}.fact-list{padding-left:16px;margin:0;color:#c4cee0;font-size:11px;line-height:1.7}
-.bottom-controls{position:fixed;z-index:3;left:50%;bottom:20px;transform:translateX(-50%);width:min(500px,calc(100% - 40px));padding:13px 16px;border-radius:16px}.control-row{display:flex;align-items:center;gap:10px}.play{width:42px;height:42px;padding:0;font-size:16px;flex:0 0 auto}.time-info{min-width:0;flex:1}.time-info label{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.13em;display:block;margin-bottom:5px}.time-info strong{font-size:12px;display:block;white-space:nowrap}.speed-wrap{display:flex;align-items:center;gap:6px}.speed-wrap select{background:#0a101d;border:1px solid var(--line);border-radius:8px;padding:8px;font-size:11px;max-width:110px}.range-row{display:flex;align-items:center;gap:9px;margin-top:11px}.range-row span{font-size:9px;color:var(--muted);white-space:nowrap}.range-row input{width:100%;accent-color:#7db8ff}
-.hint{position:fixed;z-index:1;left:50%;top:78px;transform:translateX(-50%);font-size:10px;color:#aab8d0;background:#08101dcc;border:1px solid #ffffff12;border-radius:99px;padding:7px 12px;white-space:nowrap;pointer-events:none}
-.toast{position:fixed;z-index:10;left:50%;top:20px;transform:translate(-50%,-15px);opacity:0;transition:.25s;background:#13223a;border:1px solid #456b9c;border-radius:10px;padding:10px 14px;font-size:12px;pointer-events:none}.toast.show{opacity:1;transform:translate(-50%,0)}
-.loading{position:fixed;z-index:20;inset:0;display:grid;place-items:center;background:#05070d;transition:opacity .5s}.loading.hide{opacity:0;pointer-events:none}.loading-inner{text-align:center}.loader{width:44px;height:44px;border-radius:50%;border:2px solid #243d60;border-top-color:#9ccaff;animation:spin 1s linear infinite;margin:0 auto 16px}.loading p{font-size:11px;letter-spacing:.2em;color:#9db9df;text-transform:uppercase}@keyframes spin{to{transform:rotate(360deg)}}
-.legend{position:fixed;z-index:1;left:290px;bottom:32px;color:#8c9db9;font-size:10px;line-height:1.6;pointer-events:none}.legend b{color:#c7d8f5;font-weight:600}
-@media(max-width:900px){.left-panel{width:205px}.info-panel{width:285px}.legend{display:none}.hint{top:72px}.brand p{display:none}}
-@media(max-width:650px){.topbar{top:10px;left:10px;right:10px}.brand-mark{width:36px;height:36px}.brand h1{font-size:12px}.top-actions button{padding:8px 9px;font-size:11px}.top-actions .icon-btn{width:35px;height:35px}.hint{top:58px;font-size:9px}.left-panel{left:10px;top:auto;bottom:12px;height:155px;width:calc(100% - 20px);padding:10px;gap:7px}.left-panel .section-label,.left-footer{display:none}.search{padding:8px;font-size:12px}.planet-list{flex-direction:row;overflow-x:auto;overflow-y:hidden}.planet-item{min-width:104px;width:auto;flex:0 0 auto;padding:8px}.planet-item .planet-copy span{font-size:9px}.planet-arrow{display:none}.info-panel{top:65px;right:10px;bottom:180px;width:min(270px,calc(100% - 20px));padding:13px}.info-head{gap:9px;margin-bottom:10px}.body-emblem{width:40px;height:40px}.info-head h2{font-size:19px}.description{font-size:11px;margin-bottom:10px}.stats{gap:6px}.stat{padding:8px}.stat span{font-size:8px;margin-bottom:5px}.stat strong{font-size:11px}.info-section{margin-top:11px;padding-top:10px}.info-section p,.fact-list{font-size:10px}.bottom-controls{bottom:178px;width:calc(100% - 20px);padding:9px 10px}.control-row{gap:7px}.play{width:35px;height:35px}.time-info strong{font-size:10px}.time-info label{font-size:8px}.speed-wrap select{max-width:83px;font-size:10px;padding:7px}.range-row{margin-top:7px}.range-row span{font-size:8px}}
-@media(max-width:380px){.info-panel{width:calc(100% - 20px);bottom:180px}.top-actions #resetView{display:none}.brand h1{letter-spacing:.08em}.bottom-controls{bottom:178px}}
+:root{color-scheme:dark;--panel:rgba(8,12,13,.82);--line:#ffffff24;--text:#e7e9df;--muted:#a5aaa0}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#090b0b;color:var(--text);font-family:Arial,system-ui,sans-serif}canvas{display:block}
+#hud{position:fixed;inset:0;pointer-events:none;z-index:2}.panel{background:var(--panel);border:1px solid var(--line);backdrop-filter:blur(10px);border-radius:12px;padding:12px;box-shadow:0 8px 35px #0005}
+#title{position:absolute;top:14px;left:14px;font-size:12px;letter-spacing:.2em;font-weight:bold}#status{position:absolute;top:14px;right:14px;text-align:right;font-size:11px;color:#d0d3c8;max-width:48%}#objective{position:absolute;left:14px;top:54px;font-size:11px;max-width:230px;line-height:1.5;color:#d2d5c9}#crosshair{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:20px;color:#ffffffa0;text-shadow:0 0 6px #000}
+#message{position:absolute;left:50%;top:18%;transform:translateX(-50%);font-size:12px;text-align:center;letter-spacing:.12em;text-shadow:0 2px 8px #000;max-width:80%;opacity:0;transition:opacity .4s}#message.show{opacity:1}
+#start{position:fixed;z-index:10;inset:0;background:radial-gradient(ellipse at center,#24251d 0,#080a09 70%);display:grid;place-items:center;padding:22px}#start .card{max-width:560px;width:100%;text-align:center;padding:28px 24px;background:#080b0bea;border:1px solid #ffffff25;border-radius:18px;box-shadow:0 20px 80px #0009}h1{font-size:clamp(25px,6vw,42px);letter-spacing:.13em;margin:0 0 8px}#start p{color:#b6b9ad;font-size:13px;line-height:1.7}button{background:#c9c9ad;color:#11140f;border:0;border-radius:9px;padding:12px 16px;font-weight:bold;cursor:pointer}button.secondary{background:#222820;color:#e5e8dc;border:1px solid #ffffff25}#buttons{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:16px}.small{font-size:11px;color:#858b80!important}
+#mobile{position:fixed;z-index:5;inset:auto 0 12px;display:none;justify-content:space-between;align-items:end;padding:0 14px;pointer-events:none}.pad{display:grid;grid-template-columns:46px 46px 46px;grid-template-rows:46px 46px 46px;gap:5px;pointer-events:auto}.pad button,.look button{background:#151b17b8;border:1px solid #ffffff35;color:#fff;border-radius:12px;padding:0;font-size:18px;touch-action:none}.pad .up{grid-column:2;grid-row:1}.pad .left{grid-column:1;grid-row:2}.pad .down{grid-column:2;grid-row:2}.pad .right{grid-column:3;grid-row:2}.look{display:flex;flex-direction:column;gap:7px;pointer-events:auto}.look button{width:56px;height:44px;font-size:12px}
+#hint{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);font-size:10px;color:#c0c4b8;background:#080b09b8;border:1px solid #ffffff1a;border-radius:20px;padding:8px 12px;white-space:nowrap}
+@media(max-width:700px){#mobile{display:flex}#hint{bottom:178px;font-size:9px}#objective{max-width:180px;top:58px;font-size:10px}#title{font-size:10px}#status{font-size:10px}}
 </style>
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}
+</script>
 </head>
 <body>
-<div id="scene"></div>
-<div class="loading" id="loading"><div class="loading-inner"><div class="loader"></div><p>Preparando a exploração</p></div></div>
-<div class="toast" id="toast"></div>
-<header class="topbar">
-  <div class="brand"><div class="brand-mark">☼</div><div><h1>SOLAR SYSTEM</h1><p>Explorador astronômico · 3D</p></div></div>
-  <div class="top-actions">
-    <button id="resetView" title="Visão geral">Visão geral</button>
-    <button id="toggleLabels" title="Mostrar ou ocultar nomes">Nomes: ON</button>
-    <button class="icon-btn" id="fullscreen" title="Tela cheia">⛶</button>
-  </div>
-</header>
-<div class="hint">ARRASTE PARA GIRAR · RODA DO MOUSE PARA ZOOM · CLIQUE EM UM ASTRO</div>
-<aside class="panel glass left-panel">
-  <div class="section-label">Navegação do sistema</div>
-  <input class="search" id="search" placeholder="Buscar planeta..." autocomplete="off" aria-label="Buscar planeta">
-  <div class="planet-list" id="planetList"></div>
-  <div class="left-footer">MODELO VISUAL COM ESCALAS COMPRIMIDAS<br>Distâncias e tamanhos não estão na mesma escala para manter os astros visíveis.</div>
-</aside>
-<aside class="panel glass info-panel" id="infoPanel" aria-live="polite"></aside>
-<div class="legend">DISTÂNCIAS ORBITAIS VISUALMENTE COMPRIMIDAS<br><b>Simulação educativa</b> · órbitas elípticas aproximadas</div>
-<section class="panel glass bottom-controls">
-  <div class="control-row">
-    <button class="play primary" id="playPause" aria-label="Pausar simulação">Ⅱ</button>
-    <div class="time-info"><label>Relógio da simulação</label><strong id="simDate">Dia 1 · Ano de referência</strong></div>
-    <div class="speed-wrap"><select id="speed" aria-label="Velocidade do tempo"><option value="0.1">0,1×</option><option value="0.5">0,5×</option><option value="1" selected>1×</option><option value="3">3×</option><option value="10">10×</option><option value="30">30×</option><option value="100">100×</option></select></div>
-  </div>
-  <div class="range-row"><span>Tempo</span><input type="range" id="timeRange" min="0" max="100" value="0" aria-label="Avançar ou retroceder o tempo"><span id="timeReadout">0 dias</span></div>
-</section>
-<script type="importmap">
-{
-  "imports": {
-    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
-    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
-  }
-}
-</script>
-<script>
-/* Se o módulo 3D não inicializar, evita uma tela de carregamento infinita. */
-window.setTimeout(() => {
-  const loading = document.getElementById('loading');
-  if (loading && !loading.classList.contains('hide')) {
-    const message = loading.querySelector('p');
-    if (message) message.textContent = 'Falha ao carregar o 3D. Verifique a conexão e recarregue a página.';
-  }
-}, 12000);
-</script>
+<div id="hud">
+ <div id="title">BACKROOMS <span style="color:#a6ad8b">/ ECOS DO INFINITO</span></div>
+ <div id="status">NÍVEL 0 · LABIRINTO AMARELO<br>ÁUDIO: DESLIGADO</div>
+ <div id="objective">OBJETIVO: explore os corredores e encontre uma passagem para outro lugar.</div>
+ <div id="crosshair">+</div><div id="message"></div>
+ <div id="hint">WASD mover · mouse olhar · F lanterna · Shift correr · E interagir</div>
+</div>
+<div id="mobile">
+ <div class="pad">
+  <button class="up" data-move="forward">▲</button><button class="left" data-move="left">◀</button><button class="down" data-move="back">▼</button><button class="right" data-move="right">▶</button>
+ </div>
+ <div class="look"><button id="flashBtn">LANTERNA</button><button id="runBtn">CORRER</button><button id="useBtn">INTERAGIR</button></div>
+</div>
+<div id="start"><div class="card">
+ <h1>BACKROOMS</h1><div style="letter-spacing:.28em;color:#b8bd9d;font-size:11px">ECOS DO INFINITO</div>
+ <p>Um labirinto conectado: escritórios amarelos, corredores industriais e as Poolrooms. Sons ambientais são gerados localmente pelo navegador; algo se move por aí.</p>
+ <p><b>Computador:</b> WASD para andar, mouse para olhar, Shift para correr, F para lanterna e E para interagir.<br><b>Celular:</b> use o direcional na tela e arraste a área do jogo para olhar.</p>
+ <div id="buttons"><button id="startBtn">ENTRAR NO LABIRINTO</button><button class="secondary" id="soundBtn">ÁUDIO: LIGAR</button></div>
+ <p class="small">Melhor experiência com fones. Toque em “Entrar” para iniciar o áudio.</p>
+ </div></div>
 <script type="module">
 import * as THREE from 'three';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { PointerLockControls } from 'three/addons/controls/PointerLockControls.js';
 
-const data = [
-{name:'Sol',type:'Estrela',color:'#ffca70',hex:0xffc15c,radius:2.7,orbit:0,period:0,rotation:25.4,diameter:'1.392.700 km',mass:'1,989 × 10³⁰ kg',gravity:'274 m/s²',temp:'~5.500 °C (superfície)',day:'~25,4 dias (equatorial)',year:'~225–250 milhões de anos na Via Láctea',moons:'—',composition:'Hidrogênio e hélio; plasma no interior e na atmosfera.',description:'A estrela no centro do Sistema Solar. Sua gravidade mantém os planetas em órbita e sua fusão nuclear transforma hidrogênio em hélio, liberando a energia que sustenta a vida na Terra.',facts:['Contém cerca de 99,86% da massa do Sistema Solar.','A luz leva aproximadamente 8 min e 20 s para chegar à Terra.','O núcleo atinge cerca de 15 milhões °C.']},
-{name:'Mercúrio',type:'Planeta rochoso',color:'#b6a99a',hex:0xb6a99a,radius:.34,orbit:5.0,period:87.969,rotation:58.646,diameter:'4.879 km',mass:'3,301 × 10²³ kg',gravity:'3,7 m/s²',temp:'−180 a 430 °C',day:'58,6 dias terrestres',year:'88 dias terrestres',moons:'0',composition:'Núcleo metálico muito grande, manto e crosta rochosos; exosfera extremamente tênue.',description:'O menor planeta e o mais próximo do Sol. Quase não possui atmosfera para reter calor, por isso sua superfície sofre variações extremas de temperatura.',facts:['Uma rotação completa dura 59 dias terrestres, aproximadamente.','Sua ressonância 3:2 faz três rotações a cada duas órbitas.','Há gelo de água em crateras permanentemente sombreadas nos polos.']},
-{name:'Vênus',type:'Planeta rochoso',color:'#e6b875',hex:0xe6b875,radius:.58,orbit:7.2,period:224.701,rotation:-243.025,diameter:'12.104 km',mass:'4,867 × 10²⁴ kg',gravity:'8,87 m/s²',temp:'~465 °C (média)',day:'243 dias terrestres (retrógrado)',year:'225 dias terrestres',moons:'0',composition:'Atmosfera densa de dióxido de carbono, nuvens de ácido sulfúrico; superfície basáltica.',description:'Mundo rochoso coberto por nuvens espessas. Um efeito estufa descontrolado torna Vênus o planeta mais quente, apesar de Mercúrio estar mais perto do Sol.',facts:['A pressão na superfície é cerca de 92 vezes a da Terra.','Gira em sentido retrógrado em relação à maioria dos planetas.','É semelhante à Terra em tamanho, mas tem ambiente extremo.']},
-{name:'Terra',type:'Planeta rochoso',color:'#4f9bff',hex:0x4f9bff,radius:.62,orbit:9.8,period:365.256,rotation:.9973,diameter:'12.742 km',mass:'5,972 × 10²⁴ kg',gravity:'9,81 m/s²',temp:'~15 °C (média global)',day:'23 h 56 min (dia sideral)',year:'365,256 dias',moons:'1 (Lua)',composition:'Crosta e manto de silicatos, núcleo de ferro e níquel; atmosfera dominada por nitrogênio e oxigênio.',description:'Nosso planeta: um mundo oceânico com água líquida estável na superfície e a única vida conhecida. A atmosfera e o campo magnético ajudam a proteger a biosfera.',facts:['Cerca de 71% da superfície é coberta por água.','A Lua ajuda a estabilizar a inclinação do eixo terrestre.','A magnetosfera desvia grande parte das partículas carregadas do vento solar.']},
-{name:'Marte',type:'Planeta rochoso',color:'#d97854',hex:0xd97854,radius:.46,orbit:12.7,period:686.98,rotation:1.02596,diameter:'6.779 km',mass:'6,417 × 10²³ kg',gravity:'3,71 m/s²',temp:'~−65 °C (média)',day:'24 h 37 min',year:'687 dias terrestres',moons:'2 (Fobos e Deimos)',composition:'Rocha basáltica rica em óxidos de ferro; atmosfera fina, principalmente CO₂.',description:'O Planeta Vermelho preserva sinais de rios e lagos antigos. Hoje é frio e seco, com calotas polares, tempestades de poeira e grandes vulcões.',facts:['O Monte Olimpo tem cerca de 22 km de altura.','Um dia marciano, chamado sol, dura pouco mais de 24,6 horas.','Robôs exploram sua geologia em busca de sinais de habitabilidade passada.']},
-{name:'Júpiter',type:'Gigante gasoso',color:'#d7b18b',hex:0xd7b18b,radius:1.42,orbit:17.2,period:4332.59,rotation:.41354,diameter:'139.820 km',mass:'1,898 × 10²⁷ kg',gravity:'24,79 m/s² (nível de 1 bar)',temp:'~−110 °C (topo das nuvens)',day:'~9 h 56 min',year:'11,86 anos terrestres',moons:'95 luas confirmadas (pode mudar)',composition:'Principalmente hidrogênio e hélio; provavelmente núcleo difuso e interior de hidrogênio metálico.',description:'O maior planeta, com bandas de nuvens e tempestades gigantes. Seu campo magnético é poderoso e suas grandes luas formam sistemas próprios fascinantes.',facts:['A Grande Mancha Vermelha é uma tempestade gigantesca observada há séculos.','Ganimedes, uma de suas luas, é maior que Mercúrio.','Júpiter emite mais energia do que recebe do Sol.']},
-{name:'Saturno',type:'Gigante gasoso',color:'#e7d1a0',hex:0xe7d1a0,radius:1.18,orbit:22.4,period:10759.22,rotation:.444,diameter:'116.460 km',mass:'5,683 × 10²⁶ kg',gravity:'10,44 m/s² (nível de 1 bar)',temp:'~−140 °C (topo das nuvens)',day:'~10 h 33 min (estimado)',year:'29,45 anos terrestres',moons:'146 luas confirmadas (pode mudar)',composition:'Hidrogênio e hélio; sistema de anéis composto sobretudo de partículas de gelo de água.',description:'Conhecido por seus anéis brilhantes, formados por incontáveis partículas de gelo e rocha. É um gigante gasoso de baixa densidade média.',facts:['Seus anéis são muito largos, mas relativamente finos.','Titã tem lagos e mares de metano e etano líquidos.','Encélado lança plumas de água de um oceano sob sua crosta gelada.']},
-{name:'Urano',type:'Gigante de gelo',color:'#8bd8df',hex:0x8bd8df,radius:.88,orbit:27.4,period:30688.5,rotation:-.718,diameter:'50.724 km',mass:'8,681 × 10²⁵ kg',gravity:'8,69 m/s² (nível de 1 bar)',temp:'~−195 °C (topo das nuvens)',day:'~17 h 14 min (retrógrado)',year:'84 anos terrestres',moons:'28 luas conhecidas (pode mudar)',composition:'Hidrogênio e hélio na atmosfera; interior rico em água, amônia e metano sob altas pressões.',description:'Um gigante de gelo azul-esverdeado. Seu eixo é inclinado em cerca de 98 graus, fazendo o planeta girar praticamente de lado.',facts:['Tem anéis escuros e estreitos.','A cor resulta em parte do metano atmosférico que absorve luz vermelha.','Sua atmosfera apresenta algumas das temperaturas mais baixas medidas em planetas.']},
-{name:'Netuno',type:'Gigante de gelo',color:'#4678ed',hex:0x4678ed,radius:.86,orbit:32.4,period:60182,rotation:.671,diameter:'49.244 km',mass:'1,024 × 10²⁶ kg',gravity:'11,15 m/s² (nível de 1 bar)',temp:'~−200 °C (topo das nuvens)',day:'~16 h 6 min',year:'165 anos terrestres',moons:'16 conhecidas (pode mudar)',composition:'Atmosfera de hidrogênio, hélio e metano; interior rico em materiais voláteis sob alta pressão.',description:'O planeta principal mais distante do Sol. É um mundo frio e ventoso, descoberto em 1846 após previsões matemáticas sobre sua posição.',facts:['Ventos podem superar 2.000 km/h.','Tritão, sua maior lua, orbita em sentido retrógrado e pode ter sido capturada.','Desde sua descoberta, completou apenas uma órbita solar em 2011.']}
-];
-const el = id => document.getElementById(id);
-const scene = new THREE.Scene(); scene.background = new THREE.Color(0x03050b);
-scene.fog = new THREE.FogExp2(0x03050b,0.0009);
-const camera = new THREE.PerspectiveCamera(48,innerWidth/innerHeight,.1,1800); camera.position.set(0,27,52);
-const renderer = new THREE.WebGLRenderer({antialias:true,alpha:false,powerPreference:'high-performance'});
-renderer.setPixelRatio(Math.min(devicePixelRatio,2)); renderer.setSize(innerWidth,innerHeight); renderer.outputColorSpace=THREE.SRGBColorSpace; renderer.toneMapping=THREE.ACESFilmicToneMapping; renderer.toneMappingExposure=1.18;
-el('scene').appendChild(renderer.domElement);
-const controls = new OrbitControls(camera,renderer.domElement); controls.enableDamping=true; controls.dampingFactor=.06; controls.minDistance=3; controls.maxDistance=170; controls.maxPolarAngle=Math.PI*.92; controls.target.set(0,0,0);
-scene.add(new THREE.AmbientLight(0x8192b0,.38));
-const sunLight=new THREE.PointLight(0xffd9a1,1600,500,1.4); sunLight.position.set(0,0,0); scene.add(sunLight);
-const starGeo=new THREE.BufferGeometry(), starCount=3600, positions=new Float32Array(starCount*3);
-for(let i=0;i<starCount;i++){const r=THREE.MathUtils.randFloat(100,700),u=Math.random()*2-1,a=Math.random()*Math.PI*2,s=Math.sqrt(1-u*u);positions[i*3]=r*s*Math.cos(a);positions[i*3+1]=r*u;positions[i*3+2]=r*s*Math.sin(a)}
-starGeo.setAttribute('position',new THREE.BufferAttribute(positions,3));const stars=new THREE.Points(starGeo,new THREE.PointsMaterial({color:0xc7dcff,size:.65,sizeAttenuation:true,transparent:true,opacity:.78}));scene.add(stars);
-function makeTexture(kind,color){
- const c=document.createElement('canvas');c.width=1024;c.height=512;const ctx=c.getContext('2d');
- const base=new THREE.Color(color);ctx.fillStyle='#'+base.getHexString();ctx.fillRect(0,0,c.width,c.height);
- if(kind==='Sun'){
-  for(let i=0;i<2500;i++){let x=Math.random()*1024,y=Math.random()*512,r=Math.random()*3+0.3;ctx.fillStyle=Math.random()>.5?'rgba(255,245,170,.12)':'rgba(255,90,20,.13)';ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill()}
- } else if(kind==='Júpiter'||kind==='Saturno'){
-  for(let y=0;y<512;y++){const n=Math.sin(y*.055)+Math.sin(y*.14)*.5+Math.sin(y*.31)*.2;ctx.fillStyle=`rgba(${kind==='Júpiter'?110:160},${kind==='Júpiter'?65:120},${kind==='Júpiter'?35:65},${.13+Math.abs(n)*.10})`;ctx.fillRect(0,y,1024,Math.random()*4+1)}
-  for(let i=0;i<80;i++){let y=Math.random()*512;ctx.fillStyle='rgba(255,230,190,.1)';ctx.fillRect(0,y,1024,Math.random()*5+1)}
-  if(kind==='Júpiter'){ctx.fillStyle='rgba(170,65,40,.8)';ctx.beginPath();ctx.ellipse(700,310,52,22,-.12,0,Math.PI*2);ctx.fill();ctx.strokeStyle='rgba(255,210,170,.5)';ctx.lineWidth=5;ctx.stroke()}
- } else if(kind==='Terra'){
-  for(let i=0;i<90;i++){let x=Math.random()*1024,y=Math.random()*512;ctx.fillStyle=['#337d50','#5b9c63','#b7a46b'][i%3];ctx.beginPath();ctx.ellipse(x,y,Math.random()*40+8,Math.random()*20+4,Math.random()*3,0,Math.PI*2);ctx.fill()}
-  for(let i=0;i<120;i++){let x=Math.random()*1024,y=Math.random()*512;ctx.fillStyle='rgba(255,255,255,.22)';ctx.beginPath();ctx.ellipse(x,y,Math.random()*35+4,Math.random()*4+1,Math.random(),0,Math.PI*2);ctx.fill()}
- } else if(kind==='Marte'){
-  for(let i=0;i<600;i++){let x=Math.random()*1024,y=Math.random()*512;ctx.fillStyle=Math.random()>.5?'rgba(80,30,20,.16)':'rgba(255,190,140,.15)';ctx.beginPath();ctx.arc(x,y,Math.random()*12+1,0,Math.PI*2);ctx.fill()}
- } else if(kind==='Vênus'){
-  for(let i=0;i<130;i++){let y=Math.random()*512;ctx.strokeStyle='rgba(255,235,175,.16)';ctx.lineWidth=Math.random()*13+2;ctx.beginPath();ctx.moveTo(0,y);ctx.bezierCurveTo(250,y-30,700,y+30,1024,y-10);ctx.stroke()}
- } else {
-  for(let i=0;i<700;i++){let x=Math.random()*1024,y=Math.random()*512;ctx.fillStyle='rgba(255,255,255,.08)';ctx.beginPath();ctx.arc(x,y,Math.random()*3+.3,0,Math.PI*2);ctx.fill()}
+const $=id=>document.getElementById(id);
+const scene=new THREE.Scene(); scene.background=new THREE.Color(0x181a14); scene.fog=new THREE.FogExp2(0x181a14,.018);
+const camera=new THREE.PerspectiveCamera(75,innerWidth/innerHeight,.08,180); camera.position.set(0,1.65,0);
+const renderer=new THREE.WebGLRenderer({antialias:true,powerPreference:'high-performance'});
+renderer.setSize(innerWidth,innerHeight); renderer.setPixelRatio(Math.min(devicePixelRatio,1.6)); renderer.shadowMap.enabled=true; renderer.shadowMap.type=THREE.PCFSoftShadowMap; renderer.outputColorSpace=THREE.SRGBColorSpace; renderer.toneMapping=THREE.ACESFilmicToneMapping; renderer.toneMappingExposure=1.05; document.body.appendChild(renderer.domElement);
+const controls=new PointerLockControls(camera,renderer.domElement); scene.add(controls.getObject());
+const hemi=new THREE.HemisphereLight(0xe5dfb8,0x26251b,.6); scene.add(hemi);
+const ambient=new THREE.AmbientLight(0x9c9a70,.22);scene.add(ambient);
+const flashlight=new THREE.SpotLight(0xfff4d4,0,18,Math.PI/7,.45,1.5); flashlight.position.set(0,0,0); flashlight.castShadow=true; flashlight.shadow.mapSize.set(512,512);camera.add(flashlight);const flashTarget=new THREE.Object3D();flashTarget.position.set(0,0,-1);camera.add(flashTarget);flashlight.target=flashTarget;
+const mats={
+ wall:new THREE.MeshStandardMaterial({color:0xb8ad69,roughness:1}),
+ wall2:new THREE.MeshStandardMaterial({color:0x8c8c75,roughness:1}),
+ floor:new THREE.MeshStandardMaterial({color:0x716b48,roughness:1}),
+ ceiling:new THREE.MeshStandardMaterial({color:0xc8c7b6,roughness:.95}),
+ tile:new THREE.MeshStandardMaterial({color:0x9bc9c5,roughness:.3,metalness:.05}),
+ water:new THREE.MeshStandardMaterial({color:0x1a7f89,roughness:.18,metalness:.15,transparent:true,opacity:.82}),
+ concrete:new THREE.MeshStandardMaterial({color:0x51534b,roughness:.95}),
+ pipe:new THREE.MeshStandardMaterial({color:0x77776b,metalness:.45,roughness:.55}),
+ dark:new THREE.MeshStandardMaterial({color:0x080a08,roughness:1}),
+};
+const colliders=[], flickers=[], zones=[], doors=[];
+function box(w,h,d,mat,x,y,z,opts={}){const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat);m.position.set(x,y,z);m.castShadow=opts.shadow!==false;m.receiveShadow=true;scene.add(m);if(opts.collide!==false)colliders.push({x:x-w/2,z:z-d/2,w,d,mesh:m});return m}
+function light(x,y,z,color,intensity=2,range=9,flicker=false){const l=new THREE.PointLight(color,intensity,range,2);l.position.set(x,y,z);scene.add(l);if(flicker)flickers.push({light:l,base:intensity,next:0});return l}
+function room(cx,cz,w,d,kind='yellow',openings=[]){
+ const wallmat=kind==='pool'?mats.tile:kind==='industrial'?mats.concrete:mats.wall;
+ const floormat=kind==='pool'?mats.tile:kind==='industrial'?mats.concrete:mats.floor;
+ box(w,.25,d,floormat,cx,-.13,cz,{collide:false});
+ box(w,.22,d,mats.ceiling,cx,3.2,cz,{collide:false});
+ // Wall segments leave openings where a corridor joins.
+ const has=(side,pos)=>openings.some(o=>o.side===side&&Math.abs(o.pos-pos)<.01);
+ const segs=(side,length,span,make)=>{
+  const sorted=openings.filter(o=>o.side===side).map(o=>o.pos).sort((a,b)=>a-b);let cursor=-length/2;
+  for(const p of sorted){const lo=p-span/2,hi=p+span/2;if(lo>cursor)make(cursor,lo);cursor=hi}
+  if(cursor<length/2)make(cursor,length/2);
+ };
+ segs('north',w,3,(a,b)=>box(b-a,3.2,.22,wallmat,cx+(a+b)/2,1.5,cz-d/2,{collide:false}));
+ segs('south',w,3,(a,b)=>box(b-a,3.2,.22,wallmat,cx+(a+b)/2,1.5,cz+d/2,{collide:false}));
+ segs('west',d,3,(a,b)=>box(.22,3.2,b-a,wallmat,cx-w/2,1.5,cz+(a+b)/2,{collide:false}));
+ segs('east',d,3,(a,b)=>box(.22,3.2,b-a,wallmat,cx+w/2,1.5,cz+(a+b)/2,{collide:false}));
+ if(kind==='pool'){
+  // shallow pool basin inside the chamber
+  box(w*.52,.12,d*.43,mats.water,cx,0.02,cz,{collide:false});
+  for(let x=cx-w*.26;x<=cx+w*.26;x+=1.3){box(.035,.02,d*.43, new THREE.MeshStandardMaterial({color:0xc5e7e2,roughness:.4}),x,.09,cz,{collide:false,shadow:false})}
+  for(let z=cz-d*.215;z<=cz+d*.215;z+=1.3){box(w*.52,.02,.035,new THREE.MeshStandardMaterial({color:0xc5e7e2,roughness:.4}),cx,.09,z,{collide:false,shadow:false})}
  }
- const tex=new THREE.CanvasTexture(c);tex.colorSpace=THREE.SRGBColorSpace;tex.wrapS=THREE.RepeatWrapping;tex.anisotropy=4;return tex;
-}
-const sunGeometry=new THREE.SphereGeometry(data[0].radius,64,48);
-const sunMat=new THREE.MeshBasicMaterial({map:makeTexture('Sun',data[0].color),color:0xffd59a});
-const sun=new THREE.Mesh(sunGeometry,sunMat);scene.add(sun);sun.userData.index=0;
-const glow=new THREE.Sprite(new THREE.SpriteMaterial({map:(()=>{const c=document.createElement('canvas');c.width=c.height=128;const x=c.getContext('2d'),g=x.createRadialGradient(64,64,5,64,64,64);g.addColorStop(0,'rgba(255,215,130,.48)');g.addColorStop(.3,'rgba(255,150,60,.16)');g.addColorStop(1,'rgba(255,100,30,0)');x.fillStyle=g;x.fillRect(0,0,128,128);const t=new THREE.CanvasTexture(c);return t})(),transparent:true,depthWrite:false,blending:THREE.AdditiveBlending}));glow.scale.set(12,12,1);sun.add(glow);
-const bodies=[],clickables=[sun],orbitLines=[],labels=[];
-function makeLabel(text){
- const c=document.createElement('canvas');c.width=256;c.height=64;const x=c.getContext('2d');x.fillStyle='rgba(4,8,16,.72)';x.beginPath();x.roundRect(5,5,246,54,14);x.fill();x.strokeStyle='rgba(155,192,245,.35)';x.stroke();x.font='bold 24px Arial';x.textAlign='center';x.fillStyle='#e7f1ff';x.fillText(text,128,39);const tex=new THREE.CanvasTexture(c);const s=new THREE.Sprite(new THREE.SpriteMaterial({map:tex,transparent:true,depthWrite:false}));s.scale.set(3.2,.8,1);return s;
-}
-data.slice(1).forEach((d,i)=>{
- const a=(i+1)*.67, orbitGeo=new THREE.BufferGeometry(), pts=[];
- for(let j=0;j<=256;j++){const t=j/256*Math.PI*2;pts.push(new THREE.Vector3(Math.cos(t)*d.orbit,0,Math.sin(t)*d.orbit*(1-.018*(i+1))))}
- orbitGeo.setFromPoints(pts);const line=new THREE.LineLoop(orbitGeo,new THREE.LineBasicMaterial({color:0x4d6384,transparent:true,opacity:.38}));scene.add(line);orbitLines.push(line);
- const mat=new THREE.MeshStandardMaterial({map:makeTexture(d.name,d.color),roughness:.92,metalness:.02});
- const mesh=new THREE.Mesh(new THREE.SphereGeometry(d.radius,48,32),mat);mesh.userData.index=i+1;
- const group=new THREE.Group();scene.add(group);group.add(mesh);
- const label=makeLabel(d.name);label.position.set(0,d.radius+0.75,0);group.add(label);labels.push(label);
- if(d.name==='Saturno'){
-  const ring=new THREE.Mesh(new THREE.RingGeometry(d.radius*1.35,d.radius*2.15,96),new THREE.MeshStandardMaterial({color:0xcbbd9b,side:THREE.DoubleSide,transparent:true,opacity:.78,roughness:1}));
-  ring.rotation.x=Math.PI/2.35;ring.rotation.z=.15;group.add(ring);
-  const inner=new THREE.Mesh(new THREE.RingGeometry(d.radius*1.18,d.radius*1.34,96),new THREE.MeshStandardMaterial({color:0x766c5c,side:THREE.DoubleSide,transparent:true,opacity:.62}));inner.rotation.copy(ring.rotation);group.add(inner);
+ if(kind==='industrial'){
+  for(let z=cz-d/2+1;z<cz+d/2;z+=2.4){const p=new THREE.Mesh(new THREE.CylinderGeometry(.09,.09,d*.92,10),mats.pipe);p.rotation.x=Math.PI/2;p.position.set(cx+w*.36,2.55,z);scene.add(p)}
  }
- if(d.name==='Urano'){
-  const ring=new THREE.Mesh(new THREE.RingGeometry(d.radius*1.35,d.radius*1.7,80),new THREE.MeshStandardMaterial({color:0x8ab9bd,side:THREE.DoubleSide,transparent:true,opacity:.35}));ring.rotation.set(1.2,.2,.4);group.add(ring);
- }
- bodies.push({data:d,mesh,group,phase:a,label});clickables.push(mesh);
-});
-const moonPivot=new THREE.Group();scene.add(moonPivot);const moon=new THREE.Mesh(new THREE.SphereGeometry(.16,24,16),new THREE.MeshStandardMaterial({color:0xd4d5d9,roughness:1}));moonPivot.add(moon);moon.position.set(1.05,0,0);const moonOrbit=new THREE.Mesh(new THREE.RingGeometry(1.03,1.05,64),new THREE.MeshBasicMaterial({color:0x8c9db4,side:THREE.DoubleSide,transparent:true,opacity:.35}));moonOrbit.rotation.x=Math.PI/2;moonPivot.add(moonOrbit);
-const raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();let selected=3,paused=false,showLabels=true,elapsed=0,simRate=1,last=performance.now(),focusTween=null;
-function fmtNum(n){return n.toLocaleString('pt-BR')}
-function renderInfo(index){
- const d=data[index];selected=index;
- document.querySelectorAll('.planet-item').forEach(b=>b.classList.toggle('active',Number(b.dataset.index)===index));
- const color=d.color;
- el('infoPanel').innerHTML=`<div class="info-head"><div class="body-emblem" style="background:radial-gradient(circle at 30% 25%,${color},#111827 85%);"></div><div><h2>${d.name}</h2><p>${d.type}</p></div></div><span class="tag">${index===0?'Estrela central':`Planeta ${index} de 8`}</span><p class="description">${d.description}</p><div class="stats"><div class="stat"><span>Diâmetro</span><strong>${d.diameter}</strong></div><div class="stat"><span>Massa</span><strong>${d.mass}</strong></div><div class="stat"><span>Gravidade</span><strong>${d.gravity}</strong></div><div class="stat"><span>Temperatura</span><strong>${d.temp}</strong></div><div class="stat"><span>Rotação / dia</span><strong>${d.day}</strong></div><div class="stat"><span>Translação / ano</span><strong>${d.year}</strong></div><div class="stat"><span>Luas</span><strong>${d.moons}</strong></div><div class="stat"><span>Distância média ao Sol</span><strong>${index===0?'—':({Mercúrio:'57,9 milhões km',Vênus:'108,2 milhões km',Terra:'149,6 milhões km',Marte:'227,9 milhões km',Júpiter:'778,6 milhões km',Saturno:'1,43 bilhão km',Urano:'2,87 bilhões km',Netuno:'4,50 bilhões km'})[d.name]}</strong></div></div><div class="info-section"><h3>Composição</h3><p>${d.composition}</p></div><div class="info-section"><h3>Você sabia?</h3><ul class="fact-list">${d.facts.map(f=>`<li>${f}</li>`).join('')}</ul></div><div class="info-section"><h3>Nota científica</h3><p>Valores aproximados, arredondados e sujeitos a atualização científica. Temperaturas, gravidade e duração do dia podem variar conforme a definição e a região medida. A representação visual comprime as distâncias e amplia os corpos para facilitar a exploração.</p></div>`;
+ // ceiling lamps
+ for(let x=cx-w/2+1.7;x<cx+w/2-1;x+=3.2){const lamp=box(.9,.07,.25,new THREE.MeshStandardMaterial({color:0xffffd4,emissive:0xffefad,emissiveIntensity:1.2}),x,3.04,cz,{collide:false,shadow:false});light(x,2.9,cz,kind==='pool'?0x8ce8ef:kind==='industrial'?0xff5d38:0xffe6a0,kind==='pool'?1.6:1.25,kind==='pool'?12:9,kind==='yellow')}
 }
-const planetList=el('planetList');
-data.forEach((d,i)=>{const b=document.createElement('button');b.className='planet-item';b.dataset.index=i;b.innerHTML=`<span class="planet-dot" style="background:radial-gradient(circle at 30% 25%,${d.color},#111827 85%)"></span><span class="planet-copy"><strong>${d.name}</strong><span>${i===0?'Estrela central':d.type}</span></span><span class="planet-arrow">›</span>`;b.addEventListener('click',()=>selectBody(i,true));planetList.appendChild(b)});
-function getTarget(index){if(index===0)return new THREE.Vector3(0,0,0);return bodies[index-1].group.position.clone()}
-function selectBody(index,move=true){
- renderInfo(index);if(move){const target=getTarget(index);const direction=camera.position.clone().sub(controls.target);if(direction.length()<.1)direction.set(0,1,1);direction.normalize();const dist=index===0?11:Math.max(4,data[index].radius*5.5);focusTween={fromTarget:controls.target.clone(),toTarget:target,fromPos:camera.position.clone(),toPos:target.clone().add(direction.multiplyScalar(dist)),start:performance.now(),duration:1000};}
+function connectCorridor(x1,z1,x2,z2,kind='yellow',width=3.1){
+ // Rectangular connector between room centers; floors/walls physically connect room openings.
+ const dx=x2-x1,dz=z2-z1,len=Math.hypot(dx,dz),mx=(x1+x2)/2,mz=(z1+z2)/2;
+ const horizontal=Math.abs(dx)>Math.abs(dz);
+ const w=horizontal?len:width,d=horizontal?width:len;
+ room(mx,mz,w,d,kind,[]);
 }
-el('search').addEventListener('input',e=>{const q=e.target.value.toLowerCase();document.querySelectorAll('.planet-item').forEach(b=>{b.style.display=data[Number(b.dataset.index)].name.toLowerCase().includes(q)?'flex':'none'})});
-el('playPause').addEventListener('click',()=>{paused=!paused;el('playPause').textContent=paused?'▶':'Ⅱ';el('playPause').setAttribute('aria-label',paused?'Retomar simulação':'Pausar simulação')});
-el('speed').addEventListener('change',e=>{simRate=Number(e.target.value)});
-el('timeRange').addEventListener('input',e=>{elapsed=Number(e.target.value)*36.525;el('timeReadout').textContent=`${fmtNum(Math.round(elapsed))} dias`;updatePositions()});
-el('resetView').addEventListener('click',()=>{selected=3;renderInfo(3);focusTween={fromTarget:controls.target.clone(),toTarget:new THREE.Vector3(0,0,0),fromPos:camera.position.clone(),toPos:new THREE.Vector3(0,27,52),start:performance.now(),duration:1000}});
-el('toggleLabels').addEventListener('click',()=>{showLabels=!showLabels;labels.forEach(l=>l.visible=showLabels);el('toggleLabels').textContent=`Nomes: ${showLabels?'ON':'OFF'}`});
-el('fullscreen').addEventListener('click',()=>{if(!document.fullscreenElement)document.documentElement.requestFullscreen?.();else document.exitFullscreen?.()});
-function updatePositions(){for(const b of bodies){const d=b.data;const period=d.period||1;const t=elapsed/period*Math.PI*2+b.phase;const eccentricity=d.name==='Mercúrio'?.12:d.name==='Marte'?.07:.035;const r=d.orbit*(1-eccentricity*eccentricity)/(1+eccentricity*Math.cos(t));b.group.position.set(Math.cos(t)*r,Math.sin(t*.7)*.035,Math.sin(t)*r*(1-.018*(d.orbit/5)));b.mesh.rotation.y+=0;}moonPivot.position.copy(bodies[2].group.position);moonPivot.rotation.y=elapsed/27.3*Math.PI*2;}
-function onPointerDown(e){if(e.target.closest('.panel,button,input,select'))return;pointer.x=(e.clientX/innerWidth)*2-1;pointer.y=-(e.clientY/innerHeight)*2+1;raycaster.setFromCamera(pointer,camera);const hit=raycaster.intersectObjects(clickables,false)[0];if(hit)selectBody(hit.object.userData.index,true)}
-renderer.domElement.addEventListener('pointerdown',onPointerDown);
-function animate(now){requestAnimationFrame(animate);const dt=Math.min((now-last)/1000,.05);last=now;if(!paused){elapsed+=dt*simRate*2.1;const range=el('timeRange');range.value=String((elapsed%3652.5)/36.525);el('timeReadout').textContent=`${fmtNum(Math.round(elapsed))} dias`;el('simDate').textContent=`Dia ${fmtNum(Math.floor(elapsed)+1)} · simulação`;updatePositions()}bodies.forEach(b=>{b.mesh.rotation.y+=dt*(b.data.rotation<0?-1:1)*.12;});sun.rotation.y+=dt*.025;stars.rotation.y+=dt*.0004;
- if(focusTween){const p=Math.min(1,(now-focusTween.start)/focusTween.duration),e=1-Math.pow(1-p,3);controls.target.lerpVectors(focusTween.fromTarget,focusTween.toTarget,e);camera.position.lerpVectors(focusTween.fromPos,focusTween.toPos,e);if(p>=1)focusTween=null}
- controls.update();renderer.render(scene,camera)}
-function resize(){camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)}
-addEventListener('resize',resize);
-renderInfo(3);updatePositions();requestAnimationFrame(animate);
-setTimeout(()=>el('loading').classList.add('hide'),750);
+function hallway(x,z,w,d,kind='yellow'){
+ const wallmat=kind==='pool'?mats.tile:kind==='industrial'?mats.concrete:mats.wall;
+ box(w,.2,d,kind==='pool'?mats.tile:kind==='industrial'?mats.concrete:mats.floor,x,-.12,z,{collide:false});
+ box(w,.2,d,mats.ceiling,x,3.2,z,{collide:false});
+ box(.2,3.2,d,wallmat,x-w/2,1.5,z,{collide:false});box(.2,3.2,d,wallmat,x+w/2,1.5,z,{collide:false});
+ for(let zz=z-d/2+2;zz<z+d/2;zz+=4){box(.75,.06,.3,new THREE.MeshStandardMaterial({color:0xfff1bf,emissive:0xffe7a0,emissiveIntensity:.8}),x,3.04,zz,{collide:false,shadow:false});light(x,2.85,zz,kind==='pool'?0x91e7e7:0xffe6a0,1,8,kind==='yellow')}
+}
+function sign(text,x,y,z,color=0xcac9a4){const c=document.createElement('canvas');c.width=512;c.height=128;const ctx=c.getContext('2d');ctx.fillStyle='#171a15';ctx.fillRect(0,0,512,128);ctx.strokeStyle='#777b69';ctx.strokeRect(4,4,504,120);ctx.font='bold 34px Arial';ctx.fillStyle='#'+color.toString(16).padStart(6,'0');ctx.textAlign='center';ctx.fillText(text,256,77);const tex=new THREE.CanvasTexture(c);const m=new THREE.Mesh(new THREE.PlaneGeometry(3.2,.8),new THREE.MeshBasicMaterial({map:tex}));m.position.set(x,y,z);scene.add(m)}
+// Connected spatial route, built as rooms and junctions. Each transition remains physically walkable.
+room(0,0,18,18,'yellow',[{side:'east',pos:0},{side:'south',pos:0},{side:'west',pos:0}]);
+room(16,0,14,14,'yellow',[{side:'west',pos:0},{side:'east',pos:0},{side:'north',pos:0}]);
+room(30,0,12,16,'yellow',[{side:'west',pos:0},{side:'north',pos:0},{side:'east',pos:0}]);
+room(30,-15,14,14,'industrial',[{side:'south',pos:0},{side:'north',pos:0}]);
+room(30,-30,16,14,'industrial',[{side:'south',pos:0},{side:'west',pos:0}]);
+room(14,-30,14,14,'industrial',[{side:'east',pos:0},{side:'south',pos:0}]);
+room(14,-15,12,12,'yellow',[{side:'north',pos:0},{side:'south',pos:0},{side:'west',pos:0}]);
+room(0,-15,12,12,'yellow',[{side:'east',pos:0},{side:'west',pos:0}]);
+room(-14,-15,14,14,'yellow',[{side:'east',pos:0},{side:'south',pos:0}]);
+room(-14,0,14,14,'pool',[{side:'north',pos:0},{side:'south',pos:0}]);
+room(-14,15,18,16,'pool',[{side:'north',pos:0},{side:'west',pos:0}]);
+room(-31,15,16,12,'pool',[{side:'east',pos:0},{side:'west',pos:0}]);
+room(-48,15,18,14,'pool',[{side:'east',pos:0},{side:'north',pos:0}]);
+room(-48,0,12,14,'yellow',[{side:'south',pos:0},{side:'north',pos:0}]);
+room(-48,-15,16,14,'yellow',[{side:'south',pos:0},{side:'east',pos:0}]);
+room(-31,-15,14,14,'yellow',[{side:'west',pos:0},{side:'east',pos:0}]);
+// Corridor connections are aligned with openings, producing a continuous route.
+hallway(8.5,0,3,4,'yellow');hallway(23,0,3,4,'yellow');hallway(30,-7.5,3,3,'industrial');
+hallway(30,-22.5,3,3,'industrial');hallway(22,-30,3,4,'industrial');hallway(14,-22.5,3,3,'yellow');
+hallway(8,-15,3,3,'yellow');hallway(-7,-15,3,3,'yellow');hallway(-14,-7.5,3,3,'pool');
+hallway(-14,7.5,3,3,'pool');hallway(-22.5,15,3,3,'pool');hallway(-39,15,3,3,'pool');
+hallway(-48,7.5,3,3,'yellow');hallway(-48,-7.5,3,3,'yellow');hallway(-39,-15,3,3,'yellow');
+sign('NÍVEL 0',0,2.5,-8.85,0xd8c982);sign('MANUTENÇÃO',30,2.5,-22.85,0xd77c61);sign('POOLROOMS',-14,2.5,-6.85,0x8be1df);
+zones.push({name:'NÍVEL 0 · LABIRINTO AMARELO',x:0,z:0,r:28,kind:'yellow'},{name:'TÚNEIS INDUSTRIAIS',x:30,z:-23,r:25,kind:'industrial'},{name:'POOLROOMS · PISCINAS',x:-25,z:10,r:32,kind:'pool'},{name:'CORREDORES ESQUECIDOS',x:-42,z:-10,r:25,kind:'yellow'});
+// Scatter pillars, stains and distant dark openings for scale and unease.
+for(let i=0;i<36;i++){const x=(Math.random()-.5)*85,z=(Math.random()-.5)*62;if(Math.random()<.6)box(.18,3.1,.18,mats.wall2,x,1.5,z,{collide:false})}
+for(let i=0;i<22;i++){const x=(Math.random()-.5)*75,z=(Math.random()-.5)*55;const g=new THREE.Mesh(new THREE.PlaneGeometry(1.4,.8),new THREE.MeshBasicMaterial({color:0x34372b,transparent:true,opacity:.24,side:THREE.DoubleSide}));g.rotation.x=-Math.PI/2;g.position.set(x,.006,z);scene.add(g)}
+// Creature: dark silhouette with head and long limbs, patrols and approaches player.
+const monster=new THREE.Group();const black=new THREE.MeshStandardMaterial({color:0x050605,roughness:1});const eyeMat=new THREE.MeshBasicMaterial({color:0xb4d78a});
+const torso=new THREE.Mesh(new THREE.CapsuleGeometry(.34,.95,5,8),black);torso.position.y=1.35;monster.add(torso);
+const head=new THREE.Mesh(new THREE.SphereGeometry(.29,12,10),black);head.position.set(0,2.1,0);monster.add(head);
+for(const s of [-1,1]){const arm=new THREE.Mesh(new THREE.CapsuleGeometry(.095,.95,3,6),black);arm.position.set(s*.43,1.35,0);arm.rotation.z=s*.12;monster.add(arm);const leg=new THREE.Mesh(new THREE.CapsuleGeometry(.12,.9,3,6),black);leg.position.set(s*.17,.48,0);monster.add(leg);const eye=new THREE.Mesh(new THREE.SphereGeometry(.035,8,6),eyeMat);eye.position.set(s*.105,2.14,-.245);monster.add(eye)}
+monster.position.set(12,0,-2);scene.add(monster);
+const player=controls.getObject();let yaw=0,flashOn=false,started=false,hasSound=false,running=false,scareCooldown=0,monsterMode='stalk';
+const keys={};const mobileMove={forward:false,back:false,left:false,right:false};let velocity=new THREE.Vector3(),direction=new THREE.Vector3();
+let audioCtx=null,master=null,ambientGain=null,oscA=null,oscB=null,filter=null,waterNoise=null,noiseSource=null,noiseGain=null,heartbeatOsc=null,heartbeatGain=null;
+function startAudio(){
+ if(audioCtx){hasSound=true;master.gain.setTargetAtTime(.5,audioCtx.currentTime,.2);return}
+ try{
+  audioCtx=new (window.AudioContext||window.webkitAudioContext)();master=audioCtx.createGain();master.gain.value=.45;master.connect(audioCtx.destination);
+  // Electrical hum: layered low oscillators and subtle filtered noise.
+  ambientGain=audioCtx.createGain();ambientGain.gain.value=.16;ambientGain.connect(master);
+  oscA=audioCtx.createOscillator();oscA.type='sawtooth';oscA.frequency.value=59;filter=audioCtx.createBiquadFilter();filter.type='lowpass';filter.frequency.value=170;oscA.connect(filter);filter.connect(ambientGain);oscA.start();
+  oscB=audioCtx.createOscillator();oscB.type='sine';oscB.frequency.value=117;const g2=audioCtx.createGain();g2.gain.value=.035;oscB.connect(g2);g2.connect(ambientGain);oscB.start();
+  const buffer=audioCtx.createBuffer(1,audioCtx.sampleRate*2,audioCtx.sampleRate);const arr=buffer.getChannelData(0);for(let i=0;i<arr.length;i++)arr[i]=(Math.random()*2-1)*.24;
+  noiseSource=audioCtx.createBufferSource();noiseSource.buffer=buffer;noiseSource.loop=true;const nf=audioCtx.createBiquadFilter();nf.type='lowpass';nf.frequency.value=450;noiseGain=audioCtx.createGain();noiseGain.gain.value=.055;noiseSource.connect(nf);nf.connect(noiseGain);noiseGain.connect(master);noiseSource.start();
+  heartbeatOsc=audioCtx.createOscillator();heartbeatOsc.type='sine';heartbeatOsc.frequency.value=48;heartbeatGain=audioCtx.createGain();heartbeatGain.gain.value=0;heartbeatOsc.connect(heartbeatGain);heartbeatGain.connect(master);heartbeatOsc.start();
+  hasSound=true;$('status').innerHTML=$('status').innerHTML.replace('ÁUDIO: DESLIGADO','ÁUDIO: ATIVO');
+ }catch(e){showMsg('O navegador bloqueou o áudio. Toque novamente em Áudio.')}
+}
+function blip(freq=120,dur=.08,vol=.12,type='sine'){if(!audioCtx||!hasSound)return;const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type=type;o.frequency.value=freq;g.gain.setValueAtTime(vol,audioCtx.currentTime);g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+dur);o.connect(g);g.connect(master);o.start();o.stop(audioCtx.currentTime+dur)}
+function showMsg(s){const m=$('message');m.textContent=s;m.classList.add('show');clearTimeout(showMsg.t);showMsg.t=setTimeout(()=>m.classList.remove('show'),2600)}
+function toggleFlash(){flashOn=!flashOn;flashlight.intensity=flashOn?75:0;showMsg(flashOn?'LANTERNA LIGADA':'LANTERNA DESLIGADA');blip(flashOn?700:330,.05,.06,'square')}
+function nearestZone(){let best=zones[0],dist=Infinity;for(const z of zones){const d=Math.hypot(player.position.x-z.x,player.position.z-z.z);if(d<dist){dist=d;best=z}}return best}
+function updateZone(){const z=nearestZone();$('status').innerHTML=z.name+'<br>ÁUDIO: '+(hasSound?'ATIVO':'DESLIGADO');if(z.kind==='pool'){scene.fog.color.set(0x123638);scene.fog.density=.012;if(audioCtx&&ambientGain)filter.frequency.setTargetAtTime(85,audioCtx.currentTime,1);if(audioCtx&&noiseGain)noiseGain.gain.setTargetAtTime(.09,audioCtx.currentTime,1)}else if(z.kind==='industrial'){scene.fog.color.set(0x171816);scene.fog.density=.02;if(audioCtx&&filter)filter.frequency.setTargetAtTime(240,audioCtx.currentTime,1);if(audioCtx&&noiseGain)noiseGain.gain.setTargetAtTime(.075,audioCtx.currentTime,1)}else{scene.fog.color.set(0x181a14);scene.fog.density=.018;if(audioCtx&&filter)filter.frequency.setTargetAtTime(170,audioCtx.currentTime,1);if(audioCtx&&noiseGain)noiseGain.gain.setTargetAtTime(.055,audioCtx.currentTime,1)}}
+let lastZone='';
+function updateAmbient(now){for(const f of flickers){if(now>f.next){f.next=now+150+Math.random()*900;f.light.intensity=Math.random()<.22?0:f.base*(.65+Math.random()*.55)}}const z=nearestZone();if(z.name!==lastZone){lastZone=z.name;updateZone();showMsg(z.name);if(z.kind==='pool'){blip(420,.45,.035,'sine')}else if(z.kind==='industrial'){blip(65,.25,.08,'sawtooth')}}}
+function collision(pos){ // Approximate wall collision against wall meshes tagged in colliders.
+ const r=.32;
+ for(const c of colliders){if(pos.x>c.x-r&&pos.x<c.x+c.w+r&&pos.z>c.z-r&&pos.z<c.z+c.d+r)return true}
+ return false;
+}
+function movePlayer(dt){const forward=keys.KeyW||keys.ArrowUp||mobileMove.forward,back=keys.KeyS||keys.ArrowDown||mobileMove.back,left=keys.KeyA||keys.ArrowLeft||mobileMove.left,right=keys.KeyD||keys.ArrowRight||mobileMove.right;
+ direction.set(Number(right)-Number(left),0,Number(back)-Number(forward));if(direction.lengthSq()>0)direction.normalize();const fast=keys.ShiftLeft||keys.ShiftRight||running;const speed=fast?5.3:2.7;
+ const fwd=new THREE.Vector3();camera.getWorldDirection(fwd);fwd.y=0;fwd.normalize();const side=new THREE.Vector3().crossVectors(fwd,new THREE.Vector3(0,1,0)).normalize();
+ const delta=new THREE.Vector3().addScaledVector(fwd,-direction.z).addScaledVector(side,direction.x).multiplyScalar(speed*dt);
+ const p=player.position.clone();p.x+=delta.x;if(!collision(p))player.position.x=p.x;p.z+=delta.z;if(!collision(p))player.position.z=p.z;player.position.y=1.65;
+ if(audioCtx&&ambientGain){const target=fast&&direction.lengthSq()>.1?.2:.16;ambientGain.gain.setTargetAtTime(target,audioCtx.currentTime,.25)}
+}
+function moveMonster(dt,now){const dx=player.position.x-monster.position.x,dz=player.position.z-monster.position.z,dist=Math.hypot(dx,dz);if(dist<17)monsterMode='hunt';else if(dist>27)monsterMode='stalk';const speed=monsterMode==='hunt'?2.0:.48;
+ if(dist>1.7){const nx=monster.position.x+dx/dist*speed*dt,nz=monster.position.z+dz/dist*speed*dt;const p={x:nx,z:nz};if(!collision(p)){monster.position.x=nx;monster.position.z=nz}else{monster.position.x+=Math.sin(now*.001)*speed*dt;monster.position.z+=Math.cos(now*.0013)*speed*dt}}
+ monster.lookAt(player.position.x,monster.position.y+1,player.position.z);
+ const near=THREE.MathUtils.clamp(1-dist/18,0,1);if(audioCtx&&heartbeatGain)heartbeatGain.gain.setTargetAtTime(near*.13,audioCtx.currentTime,.25);
+ if(dist<4&&now>scareCooldown){scareCooldown=now+6500;showMsg('VOCÊ NÃO ESTÁ SOZINHO. CORRA.');blip(40,.65,.2,'sawtooth');if(audioCtx){const old=master.gain.value;master.gain.setTargetAtTime(.85,audioCtx.currentTime,.08);setTimeout(()=>master.gain.setTargetAtTime(.45,audioCtx.currentTime,.7),650)}}
+ if(dist<1.15){showMsg('ELE TE ENCONTROU — continue explorando para escapar');monster.position.set(14,0,-28);scareCooldown=now+5000;player.position.set(0,1.65,0);blip(28,.9,.25,'sawtooth')}
+}
+function interact(){let nearest=null,nd=4;for(const d of doors){const dist=player.position.distanceTo(d.position);if(dist<nd){nearest=d;nd=dist}}if(nearest){showMsg(nearest.userData.message);return}showMsg('A passagem está escondida em algum lugar do labirinto.')}
+$('startBtn').addEventListener('click',()=>{startAudio();started=true;$('start').style.display='none';if(innerWidth>700)controls.lock();showMsg('O zumbido nunca para. Encontre o caminho.');lastZone='';updateZone()});
+$('soundBtn').addEventListener('click',()=>{startAudio();$('soundBtn').textContent='ÁUDIO: LIGADO';});
+$('flashBtn').addEventListener('click',toggleFlash);$('runBtn').addEventListener('touchstart',e=>{e.preventDefault();running=true});$('runBtn').addEventListener('touchend',()=>running=false);$('useBtn').addEventListener('click',interact);
+document.addEventListener('keydown',e=>{keys[e.code]=true;if(e.code==='KeyF')toggleFlash();if(e.code==='KeyE')interact();if(e.code==='Escape'&&started)showMsg('Toque/clique no jogo para continuar')});
+document.addEventListener('keyup',e=>keys[e.code]=false);
+document.querySelectorAll('[data-move]').forEach(b=>{const k=b.dataset.move;const down=e=>{e.preventDefault();mobileMove[k]=true},up=e=>{e.preventDefault();mobileMove[k]=false};b.addEventListener('pointerdown',down);b.addEventListener('pointerup',up);b.addEventListener('pointercancel',up);b.addEventListener('pointerleave',up)});
+let touchX=0,touchY=0;renderer.domElement.addEventListener('pointerdown',e=>{if(e.pointerType==='touch'){touchX=e.clientX;touchY=e.clientY}});renderer.domElement.addEventListener('pointermove',e=>{if(e.pointerType==='touch'&&e.buttons){const dx=e.clientX-touchX,dy=e.clientY-touchY;player.rotation.y-=dx*.004;camera.rotation.x=THREE.MathUtils.clamp(camera.rotation.x-dy*.003,-1.35,1.35);touchX=e.clientX;touchY=e.clientY}});
+renderer.domElement.addEventListener('click',()=>{if(started&&innerWidth>700&&!controls.isLocked)controls.lock()});
+let last=performance.now(),zoneTimer=0;
+function animate(now){requestAnimationFrame(animate);const dt=Math.min((now-last)/1000,.04);last=now;if(started){movePlayer(dt);moveMonster(dt,now);updateAmbient(now);if(now-zoneTimer>1200){zoneTimer=now;const z=nearestZone();$('objective').textContent=z.kind==='pool'?'OBJETIVO: atravesse as salas alagadas. Os ecos podem esconder movimento.':z.kind==='industrial'?'OBJETIVO: atravesse a manutenção. Não confie nos ruídos.':'OBJETIVO: explore os corredores e procure uma passagem.'}}renderer.render(scene,camera)}
+requestAnimationFrame(animate);
+addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
 </script>
-</body>
-</html>
+</body></html>
